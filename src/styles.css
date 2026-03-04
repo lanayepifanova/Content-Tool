@@ -350,6 +350,45 @@ button {
   border-color: var(--ink);
 }
 
+.idea-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.idea-tags span {
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(25, 25, 25, 0.05);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.idea-tags button {
+  margin-left: 4px;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.idea-tags button:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.idea-tags button.is-copied {
+  color: var(--ink);
+  border-color: var(--ink);
+  background: rgba(25, 25, 25, 0.06);
+}
+
 .idea-foot {
   display: flex;
   align-items: center;

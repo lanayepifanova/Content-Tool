@@ -10,8 +10,8 @@ One run per day. Ten ideas: nine short-form (A/B/C) plus one long-form (D).
 list, not a beat sheet — the spoken piece, written out, in the voice Lana says
 it in. She should be able to open the brief, pick one, and record it without
 writing a word or looking anything up. That is the whole design: an entry is a
-title, **The script**, and **Sources**. Nothing else, in any of the three
-short-form buckets.
+title, **The script**, **Sources** and **Tags**. Nothing else, in any of the
+three short-form buckets.
 
 There is no **Hook** field, no **What this is**, no **The material** and no beat
 sheet on a short-form idea. Every one of those was a note toward a script that
@@ -44,6 +44,8 @@ _{N} ideas · generated {HH:MM} · sources checked: {count}_
 - {publication} — {url}
 - {primary source, filing, or repo} — {url}
 
+**Tags** #{five to eight lowercase hashtags, one line, space separated}
+
 **Freshness** {N}h ago · **Saturation** low | medium | high
 
 `rate: ` ← put + or - here
@@ -51,7 +53,7 @@ _{N} ideas · generated {HH:MM} · sources checked: {count}_
 ---
 ```
 
-`B1..B3` and `C1..C3` use the same three fields, with `TUTORIAL` and `EXPLAINER`
+`B1..B3` and `C1..C3` use the same four fields, with `TUTORIAL` and `EXPLAINER`
 in the header. Bucket B adds **How you set it up** between the script and the
 sources.
 
@@ -112,6 +114,34 @@ fact to leave out — it is usually the most interesting sentence in the piece.
 A number that cannot be verified does not get softened or hedged into the
 script. It gets left out. She is saying these sentences on camera as her own, so
 a wrong figure is far more expensive here than a missing one.
+
+---
+
+## Tags
+
+The hashtags that go in the upload box, so a finished idea carries everything
+the post needs and the tags get written by whoever just read the sources rather
+than from memory at upload time. Five to eight of them, on one line, after
+**Sources**.
+
+**Every tag is a single lowercase token** — `#predictionmarkets`, not
+`#prediction markets` and not `#PredictionMarkets`. A space ends a hashtag on
+every platform, so a two-word tag posts as one tag plus one loose word. No
+punctuation inside a tag, no emoji, no tag that is only a number.
+
+The mix, in this order:
+
+1. **Two or three subject tags** — what the video is actually about:
+   `#predictionmarkets`, `#localllm`, `#datacenters`.
+2. **Two or three named things from the script** — the company, the tool, the
+   ticker, the paper: `#cme`, `#nhl`, `#browseruse`. These are what someone
+   following the story searches.
+3. **One or two category tags** — the shelf it sits on: `#fintech`, `#ai`,
+   `#trading`.
+
+Every tag names something the script actually says. A tag carried for reach
+alone — `#fyp`, `#viral`, `#foryou`, or a trending tag unrelated to the
+subject — does not go in.
 
 ---
 
@@ -259,6 +289,8 @@ the honest answer is "it doesn't," cut the idea.}
 **Sources**
 - {at least four, weighted toward primary}
 
+**Tags** #{five to eight lowercase hashtags, one line, space separated}
+
 **Freshness** {N}h ago | evergreen · **Saturation** low | medium | high
 
 `rate: `
@@ -317,10 +349,10 @@ knowing up front.
   bullet per line.
 - Setup steps are numbered `1.` `2.` `3.`; every other list is `- `. The email
   and the app both key off that distinction to render them as ordered.
-- A short-form entry carries exactly the title, **The script**, **Sources**, the
-  freshness line and the rate line — plus **How you set it up** for Bucket B.
-  Anything else under an `## A`, `## B` or `## C` heading is a leftover note and
-  gets cut.
+- A short-form entry carries exactly the title, **The script**, **Sources**,
+  **Tags**, the freshness line and the rate line — plus **How you set it up**
+  for Bucket B. Anything else under an `## A`, `## B` or `## C` heading is a
+  leftover note and gets cut.
 - Short-form titles are four to six words, concrete nouns, no colons. The
   Bucket D working title may run to seven; its **Title options** are the ones
   written for the platform and play by YouTube's rules instead.

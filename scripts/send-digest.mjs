@@ -38,11 +38,14 @@ function loadEnv() {
 // be a worse version of the entry. Tutorials additionally carry the numbered
 // setup, because reading the build on a phone is how she decides to do it.
 // Only the long-form still gets cut, since its material is research notes.
+//
+// Tags ride along in every bucket: they are the upload box's contents, and the
+// inbox is where an idea most often gets picked up to post.
 const BUCKETS = { A: "news", B: "tutorial", C: "explainer", D: "longform" };
 const EMAIL_SECTIONS = {
-  news:      { keepOnly: ["The script", "Sources", "Freshness"] },
-  tutorial:  { keepOnly: ["The script", "How you set it up", "Sources", "Freshness"] },
-  explainer: { keepOnly: ["The script", "Sources", "Freshness"] },
+  news:      { keepOnly: ["The script", "Sources", "Tags", "Freshness"] },
+  tutorial:  { keepOnly: ["The script", "How you set it up", "Sources", "Tags", "Freshness"] },
+  explainer: { keepOnly: ["The script", "Sources", "Tags", "Freshness"] },
   longform:  { drop: ["The beats"] },
 };
 

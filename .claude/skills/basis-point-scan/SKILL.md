@@ -274,6 +274,11 @@ Then read each finished script back against these, and fix what fails:
   argues one side is the specific failure the old material section prevented.
 - **Does it end on a view rather than a recap?** If the last paragraph
   summarises the first four, it is not written yet.
+- **Does it carry its tags?** Five to eight single-token lowercase hashtags on
+  one line after **Sources**, every one naming something the script actually
+  says. Write them while the sources are still in front of you — at upload time
+  they get reconstructed from memory, which is how a video ends up tagged
+  `#ai #tech #news`.
 - **Do the nine sound like one person?** Read the opening sentences of all nine
   together. If one is in a different register, rewrite it, not the others.
 

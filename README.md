@@ -36,10 +36,11 @@ between a run costing ~$48 and ~$20.
 **The nine short-form ideas ship as finished scripts.** Each is 600-1000 words of
 spoken prose — five to seven paragraphs, four to six minutes read aloud — that
 can be recorded off the screen without writing a word or looking anything up. An
-entry is a title, **The script** and **Sources**; tutorials add the numbered
-setup walkthrough, because standing the thing up is a separate job from
-narrating it. The facts the subagents mine feed the script instead of shipping
-beside it as a bullet list.
+entry is a title, **The script**, **Sources** and **Tags** — the five to eight
+hashtags for the upload box, written while the sources are still open; tutorials
+add the numbered setup walkthrough, because standing the thing up is a separate
+job from narrating it. The facts the subagents mine feed the script instead of
+shipping beside it as a bullet list.
 
 Bucket D is the exception. Ten minutes is a pitch to be approved rather than a
 script to be read, so it keeps its thesis, chapters and **The material** — the

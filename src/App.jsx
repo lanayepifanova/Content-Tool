@@ -50,6 +50,37 @@ function Sources({ sources }) {
   );
 }
 
+// The contents of the upload box. Chips to read, one button to copy the whole
+// line — tags are only ever wanted at the moment of posting, on another screen.
+function Tags({ tags }) {
+  const [copied, setCopied] = useState(null);
+  if (!tags?.length) return null;
+  const line = tags.map((t) => `#${t}`).join(" ");
+
+  return (
+    <div className="idea-tags">
+      {tags.map((t) => (
+        <span key={t}>#{t}</span>
+      ))}
+      <button
+        type="button"
+        className={copied === true ? "is-copied" : ""}
+        onClick={async () => {
+          try {
+            await navigator.clipboard.writeText(line);
+            setCopied(true);
+          } catch {
+            setCopied(false); // blocked clipboard — the chips are still selectable
+          }
+          setTimeout(() => setCopied(null), 1400);
+        }}
+      >
+        {copied === true ? "Copied" : copied === false ? "Blocked" : "Copy"}
+      </button>
+    </div>
+  );
+}
+
 function Idea({ idea, slug, onRated }) {
   const [rating, setRating] = useState(idea.rating);
   const [reason, setReason] = useState(idea.ratingReason || "");
@@ -156,6 +187,8 @@ function Idea({ idea, slug, onRated }) {
       )}
 
       <Sources sources={idea.sources} />
+
+      <Tags tags={idea.tags} />
 
       <footer className="idea-foot">
         <div className="rate-buttons">

@@ -102,6 +102,15 @@ for (const chunk of chunks) {
     return m[1].split("\n").map((l) => l.trim()).join("\n").trim() || null;
   })();
 
+  // The upload-box hashtags, stored bare so the UI owns the "#". One line,
+  // space separated; briefs written before the field existed simply have none.
+  // `\w` is the tag exactly as a platform reads it — a hyphen or a space ends a
+  // hashtag everywhere it gets pasted, so `#sports-betting` really is `#sports`.
+  const tags = [...new Set(
+    [...(chunk.match(/\*\*Tags\*\*([^\n]*)/i)?.[1] ?? "").matchAll(/#(\w+)/g)]
+      .map((t) => t[1].toLowerCase())
+  )];
+
   // The raw fact list. Deliberately long — Lana picks from it to write the script.
   const materialBlock = chunk.match(/\*\*The material\*\*[^\n]*\n((?:- [\s\S]*?)?)(?=\n\*\*|\n## |$)/);
   const material = (materialBlock?.[1] ?? "")
@@ -152,6 +161,7 @@ for (const chunk of chunks) {
     beats,
     material,
     sources,
+    tags,
     freshness: chunk.match(/\*\*Freshness\*\*\s*([^·\n]+)/)?.[1].trim() || null,
     saturation: chunk.match(/\*\*Saturation\*\*\s*([^\n]+)/)?.[1].trim() || null,
     note: chunk.match(/^> note:\s*(.+)$/m)?.[1] || null,
