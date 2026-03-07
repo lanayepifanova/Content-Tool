@@ -33,7 +33,7 @@
       </aside>
       <div id="drawerScrim" class="drawer-scrim"></div>
 
-      <section class="hero">
+      <section id="homePage" class="hero page-view">
         <div id="chatIntro" class="intro-copy">
           <h1>Find today’s Reel topic</h1>
         </div>
@@ -49,64 +49,50 @@
         </section>
       </section>
 
-      <section id="stationPanel" class="station-panel is-hidden" aria-label="Content workstation">
-        <header class="station-header">
-          <div>
-            <span id="stationKicker">Workstation</span>
-            <h2 id="stationTitle">Instagram &amp; Tiktok</h2>
-          </div>
-          <button id="closeStationButton" type="button">Close</button>
+      <section id="stationPage" class="page-view workstation-page is-hidden" aria-label="Content workstation">
+        <header class="workstation-header">
+          <button id="backHomeButton" type="button">Basis Point /</button>
+          <h1 id="stationTitle">Instagram &amp; Tiktok</h1>
+          <p id="stationSubtitle">Scratch ideas, collect angles, and shape drafts for this format.</p>
         </header>
 
-        <div class="station-grid">
-          <section class="station-card">
-            <div class="station-card-head">
-              <h3>Potential ideas</h3>
-              <span id="ideaCount">0 saved</span>
-            </div>
-            <form id="ideaForm" class="station-form">
-              <textarea id="ideaInput" rows="5" placeholder="Drop raw hooks, angles, references, thumbnails, or content ideas..."></textarea>
-              <button type="submit">Add idea</button>
-            </form>
-            <div id="ideaList" class="note-list"></div>
-          </section>
-
-          <section class="station-card">
-            <div class="station-card-head">
-              <h3>Drafts</h3>
-              <span id="draftCount">0 saved</span>
-            </div>
-            <form id="draftForm" class="station-form">
-              <input id="draftTitleInput" type="text" placeholder="Draft title">
-              <textarea id="draftBodyInput" rows="8" placeholder="Write the actual draft here..."></textarea>
-              <button type="submit">Save draft</button>
-            </form>
-            <div id="draftList" class="note-list"></div>
-          </section>
-        </div>
-      </section>
-
-      <section id="uilgPanel" class="uilg-panel" aria-label="UILG context trainer">
-        <div class="uilg-copy">
-          <span>UILG</span>
-          <h2>Train the content intelligence layer</h2>
-          <p>Add your context database here: formats, hooks, retention notes, creator voice, teardown notes, and rules for what performs.</p>
-        </div>
-
-        <form id="uilgForm" class="uilg-card">
-          <label>
-            Dataset label
-            <input id="uilgLabel" type="text" placeholder="High-performing reels playbook">
-          </label>
-          <label>
-            Context dump
-            <textarea id="uilgContext" rows="8" placeholder="Paste database export, notes, examples, rules, or content frameworks..."></textarea>
-          </label>
-          <div class="uilg-actions">
-            <span id="uilgStatus">No context saved yet.</span>
-            <button type="submit">Save context</button>
+        <section class="scratch-section">
+          <div class="section-line">
+            <h2>Potential ideas</h2>
+            <span id="ideaCount">0 saved</span>
           </div>
-        </form>
+          <form id="ideaForm" class="scratch-form">
+            <textarea id="ideaInput" rows="7" placeholder="Drop raw hooks, angles, references, thumbnails, or content ideas..."></textarea>
+            <button type="submit">Add idea</button>
+          </form>
+          <div id="ideaList" class="scratch-list"></div>
+        </section>
+
+        <section class="scratch-section">
+          <div class="section-line">
+            <h2>Drafts</h2>
+            <span id="draftCount">0 saved</span>
+          </div>
+          <form id="draftForm" class="scratch-form">
+            <input id="draftTitleInput" type="text" placeholder="Draft title">
+            <textarea id="draftBodyInput" rows="12" placeholder="Write the actual draft here..."></textarea>
+            <button type="submit">Save draft</button>
+          </form>
+          <div id="draftList" class="scratch-list"></div>
+        </section>
+
+        <section id="uilgContextBlock" class="scratch-section is-hidden">
+          <div class="section-line">
+            <h2>UILG context library</h2>
+            <span id="uilgStatus">No context saved yet.</span>
+          </div>
+          <p class="section-note">Paste format rules, retention notes, creator voice, teardown notes, or database exports here.</p>
+          <form id="uilgForm" class="scratch-form">
+            <input id="uilgLabel" type="text" placeholder="Dataset label">
+            <textarea id="uilgContext" rows="10" placeholder="Paste context dump..."></textarea>
+            <button type="submit">Save context</button>
+          </form>
+        </section>
       </section>
     </main>
 
