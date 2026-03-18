@@ -1,7 +1,10 @@
 const chatIntro = document.getElementById("chatIntro");
 const chatThread = document.getElementById("chatThread");
 const promptInput = document.getElementById("promptInput");
-const uilgNavButton = document.getElementById("uilgNavButton");
+const menuButton = document.getElementById("menuButton");
+const choiceDrawer = document.getElementById("choiceDrawer");
+const closeDrawerButton = document.getElementById("closeDrawerButton");
+const drawerScrim = document.getElementById("drawerScrim");
 const uilgPanel = document.getElementById("uilgPanel");
 const uilgForm = document.getElementById("uilgForm");
 const uilgLabel = document.getElementById("uilgLabel");
@@ -165,6 +168,33 @@ function scrollToUilg() {
   uilgContext.focus({ preventScroll: true });
 }
 
+function setDrawerOpen(isOpen) {
+  choiceDrawer.classList.toggle("is-open", isOpen);
+  drawerScrim.classList.toggle("is-visible", isOpen);
+  choiceDrawer.setAttribute("aria-hidden", String(!isOpen));
+  menuButton.setAttribute("aria-expanded", String(isOpen));
+}
+
+function chooseDrawerItem(choice) {
+  setDrawerOpen(false);
+  if (choice === "home") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    promptInput.focus({ preventScroll: true });
+    return;
+  }
+  if (choice === "uilg") {
+    scrollToUilg();
+    return;
+  }
+  const topic = topics.find((item) => item.aliases.includes(choice) || item.label.toLowerCase() === choice);
+  if (topic) {
+    activeTopic = topic;
+    promptInput.value = topic.prompt;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    promptInput.focus({ preventScroll: true });
+  }
+}
+
 promptInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
@@ -172,7 +202,22 @@ promptInput.addEventListener("keydown", (event) => {
   }
 });
 
-uilgNavButton.addEventListener("click", scrollToUilg);
+menuButton.addEventListener("click", () => {
+  setDrawerOpen(!choiceDrawer.classList.contains("is-open"));
+});
+
+closeDrawerButton.addEventListener("click", () => setDrawerOpen(false));
+drawerScrim.addEventListener("click", () => setDrawerOpen(false));
+
+document.querySelectorAll(".drawer-choice").forEach((button) => {
+  button.addEventListener("click", () => chooseDrawerItem(button.dataset.choice));
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    setDrawerOpen(false);
+  }
+});
 
 uilgForm.addEventListener("submit", (event) => {
   event.preventDefault();

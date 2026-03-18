@@ -75,15 +75,6 @@ input:disabled {
   gap: 22px;
 }
 
-.nav-link {
-  border: 0;
-  background: transparent;
-  color: var(--ink);
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0;
-}
-
 .menu-button {
   width: 34px;
   height: 34px;
@@ -99,6 +90,79 @@ input:disabled {
   height: 3px;
   border-radius: 99px;
   background: #151515;
+}
+
+.choice-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 20;
+  width: min(340px, calc(100vw - 28px));
+  height: 100vh;
+  display: grid;
+  align-content: start;
+  gap: 24px;
+  padding: 34px 28px;
+  background: rgba(255, 255, 255, 0.92);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: -24px 0 70px rgba(39, 45, 72, 0.16);
+  transform: translateX(105%);
+  transition: transform 180ms ease;
+}
+
+.choice-drawer.is-open {
+  transform: translateX(0);
+}
+
+.drawer-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  display: none;
+  background: rgba(25, 25, 25, 0.08);
+}
+
+.drawer-scrim.is-visible {
+  display: block;
+}
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.drawer-head span {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.drawer-head button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.drawer-list {
+  display: grid;
+  gap: 3px;
+}
+
+.drawer-choice {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--ink);
+  padding: 12px 10px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.drawer-choice:hover {
+  background: rgba(255, 255, 255, 0.68);
 }
 
 .hero {

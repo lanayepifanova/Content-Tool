@@ -13,13 +13,30 @@
           <span>Basis Point</span>
         </a>
         <div class="nav-actions">
-          <button id="uilgNavButton" class="nav-link" type="button">UILG</button>
-          <button class="menu-button" type="button" aria-label="Menu">
+          <button id="menuButton" class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
             <span></span>
             <span></span>
           </button>
         </div>
       </nav>
+
+      <aside id="choiceDrawer" class="choice-drawer" aria-label="Navigation choices" aria-hidden="true">
+        <div class="drawer-head">
+          <span>Choices</span>
+          <button id="closeDrawerButton" type="button" aria-label="Close menu">Close</button>
+        </div>
+        <div class="drawer-list">
+          <button class="drawer-choice" type="button" data-choice="home">Home</button>
+          <button class="drawer-choice" type="button" data-choice="uilg">UILG</button>
+          <button class="drawer-choice" type="button" data-choice="ai">AI</button>
+          <button class="drawer-choice" type="button" data-choice="markets">Markets</button>
+          <button class="drawer-choice" type="button" data-choice="startups">Startups</button>
+          <button class="drawer-choice" type="button" data-choice="policy">Policy</button>
+          <button class="drawer-choice" type="button" data-choice="robotics">Robotics</button>
+          <button class="drawer-choice" type="button" data-choice="real-estate">Real estate</button>
+        </div>
+      </aside>
+      <div id="drawerScrim" class="drawer-scrim"></div>
 
       <section class="hero">
         <div id="chatIntro" class="intro-copy">
