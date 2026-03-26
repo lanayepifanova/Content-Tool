@@ -1,6 +1,12 @@
 const chatIntro = document.getElementById("chatIntro");
 const chatThread = document.getElementById("chatThread");
 const promptInput = document.getElementById("promptInput");
+const uilgNavButton = document.getElementById("uilgNavButton");
+const uilgPanel = document.getElementById("uilgPanel");
+const uilgForm = document.getElementById("uilgForm");
+const uilgLabel = document.getElementById("uilgLabel");
+const uilgContext = document.getElementById("uilgContext");
+const uilgStatus = document.getElementById("uilgStatus");
 
 const topics = [
   {
@@ -66,6 +72,7 @@ const topics = [
 ];
 
 let activeTopic = topics[0];
+let uilgLibrary = [];
 
 function showConversation() {
   chatIntro.classList.add("is-compact");
@@ -96,10 +103,15 @@ function pickTopicFromPrompt(prompt) {
 }
 
 function buildReelResponse(prompt, topic) {
+  const uilgLine = uilgLibrary.length
+    ? `UILG context: ${uilgLibrary.length} saved training ${uilgLibrary.length === 1 ? "set" : "sets"} available for style and performance rules.`
+    : "UILG context: none saved yet.";
+
   return [
     `Topic for today: ${topic.label}`,
     "",
     `Request: ${prompt}`,
+    uilgLine,
     "",
     "News to cover:",
     ...topic.stories.map((story, index) => `${index + 1}. ${story}`),
@@ -125,9 +137,58 @@ function submitPrompt() {
   promptInput.focus();
 }
 
+function updateUilgStatus() {
+  if (uilgLibrary.length === 0) {
+    uilgStatus.textContent = "No context saved yet.";
+    return;
+  }
+  const latest = uilgLibrary[uilgLibrary.length - 1];
+  uilgStatus.textContent = `${uilgLibrary.length} saved | Latest: ${latest.label}`;
+}
+
+function loadUilgLibrary() {
+  try {
+    uilgLibrary = JSON.parse(localStorage.getItem("basisPointUilg") || "[]");
+  } catch {
+    uilgLibrary = [];
+  }
+  updateUilgStatus();
+}
+
+function saveUilgLibrary() {
+  localStorage.setItem("basisPointUilg", JSON.stringify(uilgLibrary));
+  updateUilgStatus();
+}
+
+function scrollToUilg() {
+  uilgPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+  uilgContext.focus({ preventScroll: true });
+}
+
 promptInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
     submitPrompt();
   }
 });
+
+uilgNavButton.addEventListener("click", scrollToUilg);
+
+uilgForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const context = uilgContext.value.trim();
+  if (!context) {
+    uilgStatus.textContent = "Paste context before saving.";
+    return;
+  }
+  uilgLibrary.push({
+    label: uilgLabel.value.trim() || "Untitled context set",
+    context,
+    savedAt: new Date().toISOString(),
+  });
+  uilgLabel.value = "";
+  uilgContext.value = "";
+  saveUilgLibrary();
+});
+
+loadUilgLibrary();

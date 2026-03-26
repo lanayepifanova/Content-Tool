@@ -13,6 +13,7 @@
           <span>Basis Point</span>
         </a>
         <div class="nav-actions">
+          <button id="uilgNavButton" class="nav-link" type="button">UILG</button>
           <button class="menu-button" type="button" aria-label="Menu">
             <span></span>
             <span></span>
@@ -34,6 +35,29 @@
             placeholder="Ask Basis Point to find a Reel topic about AI, markets, startups..."
           ></textarea>
         </section>
+      </section>
+
+      <section id="uilgPanel" class="uilg-panel" aria-label="UILG context trainer">
+        <div class="uilg-copy">
+          <span>UILG</span>
+          <h2>Train the content intelligence layer</h2>
+          <p>Add your context database here: formats, hooks, retention notes, creator voice, teardown notes, and rules for what performs.</p>
+        </div>
+
+        <form id="uilgForm" class="uilg-card">
+          <label>
+            Dataset label
+            <input id="uilgLabel" type="text" placeholder="High-performing reels playbook">
+          </label>
+          <label>
+            Context dump
+            <textarea id="uilgContext" rows="8" placeholder="Paste database export, notes, examples, rules, or content frameworks..."></textarea>
+          </label>
+          <div class="uilg-actions">
+            <span id="uilgStatus">No context saved yet.</span>
+            <button type="submit">Save context</button>
+          </div>
+        </form>
       </section>
     </main>
 
