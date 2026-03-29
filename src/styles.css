@@ -14,11 +14,62 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 12% 92%, rgba(237, 95, 211, 0.42), transparent 30%),
-    radial-gradient(circle at 84% 80%, rgba(110, 162, 255, 0.5), transparent 34%),
+    radial-gradient(circle, rgba(237, 95, 211, 0.42), transparent 30%),
+    radial-gradient(circle, rgba(110, 162, 255, 0.5), transparent 34%),
     linear-gradient(180deg, #fffdf9 0%, #fffdf9 62%, #eef4ff 86%, #f4cbef 100%);
+  background-position:
+    10% 94%,
+    88% 84%,
+    center;
+  background-repeat: no-repeat;
+  background-size:
+    70vw 46vh,
+    74vw 50vh,
+    100% 100%;
   color: var(--ink);
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  animation: bottomGlowDrift 18s ease-in-out infinite alternate;
+}
+
+@keyframes bottomGlowDrift {
+  0% {
+    background-position:
+      8% 96%,
+      88% 84%,
+      center;
+    background-size:
+      68vw 44vh,
+      72vw 48vh,
+      100% 100%;
+  }
+
+  50% {
+    background-position:
+      22% 90%,
+      72% 92%,
+      center;
+    background-size:
+      76vw 48vh,
+      66vw 46vh,
+      100% 100%;
+  }
+
+  100% {
+    background-position:
+      16% 86%,
+      94% 88%,
+      center;
+    background-size:
+      64vw 42vh,
+      78vw 52vh,
+      100% 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+  }
 }
 
 button,
