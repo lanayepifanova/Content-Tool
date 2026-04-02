@@ -114,8 +114,7 @@ button {
   font-weight: 800;
 }
 
-.drawer-head button,
-.workstation-header button {
+.drawer-head button {
   border: 0;
   background: transparent;
   color: var(--muted);
@@ -140,10 +139,6 @@ button {
 .drawer-choice:hover {
   color: #000000;
   text-decoration: underline;
-}
-
-.page-view.is-hidden {
-  display: none;
 }
 
 .hero {
@@ -242,7 +237,6 @@ button {
 
 .workstation-header {
   display: grid;
-  gap: 8px;
   margin-bottom: 44px;
 }
 
@@ -252,21 +246,9 @@ button {
   line-height: 1;
 }
 
-.workstation-header p {
-  max-width: 620px;
-  margin: 0;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.45;
-}
-
 .scratch-section {
   padding: 26px 0 34px;
   border-top: 1px solid var(--line);
-}
-
-.scratch-section.is-hidden {
-  display: none;
 }
 
 .section-line {
@@ -282,72 +264,17 @@ button {
   font-size: 1.22rem;
 }
 
-.section-line span,
-.section-note,
-.empty-note,
-.note-item span {
-  color: var(--muted);
-  font-size: 0.84rem;
-}
-
-.section-note {
-  margin: 0 0 12px;
-  line-height: 1.45;
-}
-
-.scratch-form {
-  display: grid;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-
-.scratch-form input,
-.scratch-form textarea {
+.scratchpad {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid var(--line);
   background: transparent;
   color: var(--ink);
   outline: 0;
-  padding: 10px 0;
+  padding: 0;
   font-size: 1rem;
   line-height: 1.5;
-}
-
-.scratch-form textarea {
   resize: vertical;
-}
-
-.scratch-form button {
-  justify-self: start;
-  border: 0;
-  background: transparent;
-  color: var(--ink);
-  padding: 4px 0;
-  font-weight: 750;
-  text-decoration: underline;
-}
-
-.scratch-list {
-  display: grid;
-  gap: 16px;
-}
-
-.note-item {
-  display: grid;
-  gap: 4px;
-}
-
-.note-item strong {
-  font-size: 0.98rem;
-}
-
-.note-item p {
-  margin: 0;
-  color: var(--ink);
-  font-size: 0.98rem;
-  line-height: 1.5;
-  white-space: pre-wrap;
+  min-height: 55vh;
 }
 
 @media (max-width: 780px) {
