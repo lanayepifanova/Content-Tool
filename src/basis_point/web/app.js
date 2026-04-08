@@ -177,21 +177,20 @@ function setDrawerOpen(isOpen) {
 
 function chooseDrawerItem(choice) {
   setDrawerOpen(false);
-  if (choice === "home") {
+  if (choice === "instagram-tiktok") {
+    promptInput.value = "Find today's strongest news angle for a high-performing Instagram or Tiktok video.";
     window.scrollTo({ top: 0, behavior: "smooth" });
     promptInput.focus({ preventScroll: true });
     return;
   }
-  if (choice === "uilg") {
+  if (choice === "youtube") {
+    promptInput.value = "Find today's strongest news angle for a Youtube channel video.";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    promptInput.focus({ preventScroll: true });
+    return;
+  }
+  if (choice === "uilg-format") {
     scrollToUilg();
-    return;
-  }
-  const topic = topics.find((item) => item.aliases.includes(choice) || item.label.toLowerCase() === choice);
-  if (topic) {
-    activeTopic = topic;
-    promptInput.value = topic.prompt;
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    promptInput.focus({ preventScroll: true });
   }
 }
 
