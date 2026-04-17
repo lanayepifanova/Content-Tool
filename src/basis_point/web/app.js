@@ -1,7 +1,6 @@
 const chatIntro = document.getElementById("chatIntro");
 const chatThread = document.getElementById("chatThread");
 const promptInput = document.getElementById("promptInput");
-const topicChips = document.getElementById("topicChips");
 
 const topics = [
   {
@@ -68,12 +67,6 @@ const topics = [
 
 let activeTopic = topics[0];
 
-function clearElement(element) {
-  while (element.firstChild) {
-    element.removeChild(element.firstChild);
-  }
-}
-
 function showConversation() {
   chatIntro.classList.add("is-compact");
   chatThread.classList.add("has-messages");
@@ -91,22 +84,6 @@ function addMessage(role, content) {
   message.appendChild(bubble);
   chatThread.appendChild(message);
   message.scrollIntoView({ behavior: "smooth", block: "end" });
-}
-
-function renderTopicChips() {
-  clearElement(topicChips);
-  topics.forEach((topic) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "topic-chip";
-    button.textContent = topic.label;
-    button.addEventListener("click", () => {
-      activeTopic = topic;
-      promptInput.value = topic.prompt;
-      promptInput.focus();
-    });
-    topicChips.appendChild(button);
-  });
 }
 
 function pickTopicFromPrompt(prompt) {
@@ -154,5 +131,3 @@ promptInput.addEventListener("keydown", (event) => {
     submitPrompt();
   }
 });
-
-renderTopicChips();
