@@ -10,6 +10,34 @@ const uilgForm = document.getElementById("uilgForm");
 const uilgLabel = document.getElementById("uilgLabel");
 const uilgContext = document.getElementById("uilgContext");
 const uilgStatus = document.getElementById("uilgStatus");
+const stationPanel = document.getElementById("stationPanel");
+const stationKicker = document.getElementById("stationKicker");
+const stationTitle = document.getElementById("stationTitle");
+const closeStationButton = document.getElementById("closeStationButton");
+const ideaForm = document.getElementById("ideaForm");
+const ideaInput = document.getElementById("ideaInput");
+const ideaList = document.getElementById("ideaList");
+const ideaCount = document.getElementById("ideaCount");
+const draftForm = document.getElementById("draftForm");
+const draftTitleInput = document.getElementById("draftTitleInput");
+const draftBodyInput = document.getElementById("draftBodyInput");
+const draftList = document.getElementById("draftList");
+const draftCount = document.getElementById("draftCount");
+
+const stations = {
+  "instagram-tiktok": {
+    title: "Instagram & Tiktok",
+    prompt: "Find today's strongest news angle for a high-performing Instagram or Tiktok video.",
+  },
+  youtube: {
+    title: "Youtube Channel",
+    prompt: "Find today's strongest news angle for a Youtube channel video.",
+  },
+  "uilg-format": {
+    title: "UILG Format Videos",
+    prompt: "Build a UILG-backed format video using my saved performance context.",
+  },
+};
 
 const topics = [
   {
@@ -76,6 +104,44 @@ const topics = [
 
 let activeTopic = topics[0];
 let uilgLibrary = [];
+let activeStationKey = "instagram-tiktok";
+let stationState = {};
+
+function emptyStation() {
+  return { ideas: [], drafts: [] };
+}
+
+function loadStationState() {
+  try {
+    stationState = JSON.parse(localStorage.getItem("basisPointStations") || "{}");
+  } catch {
+    stationState = {};
+  }
+  Object.keys(stations).forEach((key) => {
+    if (!stationState[key]) {
+      stationState[key] = emptyStation();
+    }
+  });
+}
+
+function saveStationState() {
+  localStorage.setItem("basisPointStations", JSON.stringify(stationState));
+}
+
+function clearElement(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
+
+function formatSavedTime(value) {
+  return new Intl.DateTimeFormat(undefined, {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(new Date(value));
+}
 
 function showConversation() {
   chatIntro.classList.add("is-compact");
@@ -177,21 +243,73 @@ function setDrawerOpen(isOpen) {
 
 function chooseDrawerItem(choice) {
   setDrawerOpen(false);
-  if (choice === "instagram-tiktok") {
-    promptInput.value = "Find today's strongest news angle for a high-performing Instagram or Tiktok video.";
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    promptInput.focus({ preventScroll: true });
-    return;
-  }
-  if (choice === "youtube") {
-    promptInput.value = "Find today's strongest news angle for a Youtube channel video.";
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    promptInput.focus({ preventScroll: true });
-    return;
-  }
-  if (choice === "uilg-format") {
+  openStation(choice);
+  if (choice === "uilg-format" && uilgLibrary.length === 0) {
     scrollToUilg();
   }
+}
+
+function renderNotes() {
+  const current = stationState[activeStationKey] || emptyStation();
+  clearElement(ideaList);
+  clearElement(draftList);
+  ideaCount.textContent = `${current.ideas.length} saved`;
+  draftCount.textContent = `${current.drafts.length} saved`;
+
+  if (current.ideas.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "empty-note";
+    empty.textContent = "No ideas saved in this station yet.";
+    ideaList.appendChild(empty);
+  }
+
+  current.ideas.forEach((idea) => {
+    const item = document.createElement("article");
+    item.className = "note-item";
+    item.innerHTML = `<p></p><span></span>`;
+    item.querySelector("p").textContent = idea.text;
+    item.querySelector("span").textContent = formatSavedTime(idea.createdAt);
+    ideaList.appendChild(item);
+  });
+
+  if (current.drafts.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "empty-note";
+    empty.textContent = "No drafts saved in this station yet.";
+    draftList.appendChild(empty);
+  }
+
+  current.drafts.forEach((draft) => {
+    const item = document.createElement("article");
+    item.className = "note-item";
+    const title = document.createElement("strong");
+    title.textContent = draft.title;
+    const body = document.createElement("p");
+    body.textContent = draft.body;
+    const meta = document.createElement("span");
+    meta.textContent = formatSavedTime(draft.createdAt);
+    item.append(title, body, meta);
+    draftList.appendChild(item);
+  });
+}
+
+function openStation(choice) {
+  const station = stations[choice];
+  if (!station) {
+    return;
+  }
+  activeStationKey = choice;
+  stationKicker.textContent = "Workstation";
+  stationTitle.textContent = station.title;
+  promptInput.value = station.prompt;
+  stationPanel.classList.remove("is-hidden");
+  renderNotes();
+  stationPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function closeStation() {
+  stationPanel.classList.add("is-hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 promptInput.addEventListener("keydown", (event) => {
@@ -218,6 +336,40 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+closeStationButton.addEventListener("click", closeStation);
+
+ideaForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const text = ideaInput.value.trim();
+  if (!text) {
+    return;
+  }
+  stationState[activeStationKey].ideas.unshift({
+    text,
+    createdAt: new Date().toISOString(),
+  });
+  ideaInput.value = "";
+  saveStationState();
+  renderNotes();
+});
+
+draftForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const body = draftBodyInput.value.trim();
+  if (!body) {
+    return;
+  }
+  stationState[activeStationKey].drafts.unshift({
+    title: draftTitleInput.value.trim() || "Untitled draft",
+    body,
+    createdAt: new Date().toISOString(),
+  });
+  draftTitleInput.value = "";
+  draftBodyInput.value = "";
+  saveStationState();
+  renderNotes();
+});
+
 uilgForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const context = uilgContext.value.trim();
@@ -235,4 +387,5 @@ uilgForm.addEventListener("submit", (event) => {
   saveUilgLibrary();
 });
 
+loadStationState();
 loadUilgLibrary();

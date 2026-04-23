@@ -49,6 +49,43 @@
         </section>
       </section>
 
+      <section id="stationPanel" class="station-panel is-hidden" aria-label="Content workstation">
+        <header class="station-header">
+          <div>
+            <span id="stationKicker">Workstation</span>
+            <h2 id="stationTitle">Instagram &amp; Tiktok</h2>
+          </div>
+          <button id="closeStationButton" type="button">Close</button>
+        </header>
+
+        <div class="station-grid">
+          <section class="station-card">
+            <div class="station-card-head">
+              <h3>Potential ideas</h3>
+              <span id="ideaCount">0 saved</span>
+            </div>
+            <form id="ideaForm" class="station-form">
+              <textarea id="ideaInput" rows="5" placeholder="Drop raw hooks, angles, references, thumbnails, or content ideas..."></textarea>
+              <button type="submit">Add idea</button>
+            </form>
+            <div id="ideaList" class="note-list"></div>
+          </section>
+
+          <section class="station-card">
+            <div class="station-card-head">
+              <h3>Drafts</h3>
+              <span id="draftCount">0 saved</span>
+            </div>
+            <form id="draftForm" class="station-form">
+              <input id="draftTitleInput" type="text" placeholder="Draft title">
+              <textarea id="draftBodyInput" rows="8" placeholder="Write the actual draft here..."></textarea>
+              <button type="submit">Save draft</button>
+            </form>
+            <div id="draftList" class="note-list"></div>
+          </section>
+        </div>
+      </section>
+
       <section id="uilgPanel" class="uilg-panel" aria-label="UILG context trainer">
         <div class="uilg-copy">
           <span>UILG</span>
