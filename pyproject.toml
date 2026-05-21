@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "basis-point"
+version = "0.1.0"
+description = "News ingestion and content generation CLI"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "OpenAI Codex" }
+]
+
+[project.scripts]
+basis-point = "basis_point.__main__:main"
+run = "basis_point.launcher:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

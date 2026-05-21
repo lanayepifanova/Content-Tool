@@ -1,0 +1,106 @@
+{
+  "topics": [
+    {
+      "slug": "startups-vc-tech",
+      "label": "Startups / VC / Tech",
+      "description": "Fast startup coverage, venture signals, tech power shifts, and operator thinking.",
+      "editorial_topics": ["startups", "venture capital", "technology", "founders", "deal flow", "ai"],
+      "sources": [
+        {"name": "TechCrunch", "url": "https://techcrunch.com", "type": "web", "weight": 1.3, "max_items": 4},
+        {"name": "The Information", "url": "https://www.theinformation.com", "type": "web", "weight": 1.6, "max_items": 3},
+        {"name": "Semafor", "url": "https://www.semafor.com", "type": "web", "weight": 1.2, "max_items": 3},
+        {"name": "Stratechery", "url": "https://stratechery.com", "type": "web", "weight": 1.2, "max_items": 3},
+        {"name": "Every", "url": "https://every.to", "type": "web", "weight": 1.0, "max_items": 3},
+        {"name": "TBPN", "url": "https://tbpn.com", "type": "web", "weight": 0.9, "max_items": 3},
+        {"name": "StrictlyVC", "url": "https://strictlyvc.com", "type": "web", "weight": 1.1, "max_items": 3},
+        {"name": "Sifted", "url": "https://sifted.eu", "type": "web", "weight": 1.0, "max_items": 3},
+        {"name": "Crunchbase News", "url": "https://news.crunchbase.com", "type": "web", "weight": 1.0, "max_items": 3},
+        {"name": "a16z", "url": "https://a16z.com", "type": "web", "weight": 0.8, "max_items": 2},
+        {"name": "Y Combinator Library", "url": "https://www.ycombinator.com/library", "type": "web", "weight": 0.8, "max_items": 2},
+        {"name": "Paul Graham Essays", "url": "https://paulgraham.com/articles.html", "type": "web", "weight": 0.8, "max_items": 2},
+        {"name": "First Round Review", "url": "https://review.firstround.com", "type": "web", "weight": 0.9, "max_items": 2}
+      ]
+    },
+    {
+      "slug": "markets-finance",
+      "label": "Markets / Finance",
+      "description": "Macro, public markets, capital flows, deals, and institutional finance.",
+      "editorial_topics": ["markets", "finance", "macro", "inflation", "rates", "credit"],
+      "sources": [
+        {"name": "Bloomberg", "url": "https://www.bloomberg.com", "type": "web", "weight": 1.6, "max_items": 4},
+        {"name": "Financial Times", "url": "https://www.ft.com", "type": "web", "weight": 1.5, "max_items": 4},
+        {"name": "Money Stuff", "url": "https://www.bloomberg.com/account/newsletters/money-stuff", "type": "web", "weight": 1.3, "max_items": 2},
+        {"name": "Apollo Academy", "url": "https://www.apolloacademy.com", "type": "web", "weight": 1.0, "max_items": 2},
+        {"name": "Reuters", "url": "https://www.reuters.com", "type": "web", "weight": 1.4, "max_items": 4},
+        {"name": "Wall Street Journal", "url": "https://www.wsj.com", "type": "web", "weight": 1.3, "max_items": 3},
+        {"name": "MarketWatch", "url": "https://www.marketwatch.com", "type": "web", "weight": 0.9, "max_items": 3},
+        {"name": "Noahpinion", "url": "https://www.noahpinion.blog", "type": "web", "weight": 1.0, "max_items": 2},
+        {"name": "The Diff", "url": "https://www.thediff.co", "type": "web", "weight": 1.0, "max_items": 2},
+        {"name": "Kyla's Newsletter", "url": "https://kyla.substack.com", "type": "web", "weight": 0.9, "max_items": 2}
+      ]
+    },
+    {
+      "slug": "infrastructure-policy",
+      "label": "Infrastructure / Policy",
+      "description": "State capacity, industrial policy, infrastructure systems, and institutional power.",
+      "editorial_topics": ["infrastructure", "policy", "industrial policy", "government", "manufacturing", "logistics"],
+      "sources": [
+        {"name": "Brookings", "url": "https://www.brookings.edu", "type": "web", "weight": 1.2, "max_items": 3},
+        {"name": "Niskanen Center", "url": "https://www.niskanencenter.org", "type": "web", "weight": 1.0, "max_items": 3},
+        {"name": "Works in Progress", "url": "https://worksinprogress.co", "type": "web", "weight": 1.2, "max_items": 3},
+        {"name": "Noahpinion", "url": "https://www.noahpinion.blog", "type": "web", "weight": 1.1, "max_items": 2},
+        {"name": "Construction Physics", "url": "https://www.construction-physics.com", "type": "web", "weight": 1.2, "max_items": 2},
+        {"name": "Politico", "url": "https://www.politico.com", "type": "web", "weight": 1.1, "max_items": 3},
+        {"name": "Punchbowl News", "url": "https://punchbowl.news", "type": "web", "weight": 1.0, "max_items": 2},
+        {"name": "Foreign Affairs", "url": "https://www.foreignaffairs.com", "type": "web", "weight": 1.0, "max_items": 2},
+        {"name": "Lawfare", "url": "https://www.lawfaremedia.org", "type": "web", "weight": 1.1, "max_items": 2},
+        {"name": "American Affairs", "url": "https://americanaffairsjournal.org", "type": "web", "weight": 0.9, "max_items": 2},
+        {"name": "FreightWaves", "url": "https://www.freightwaves.com", "type": "web", "weight": 0.9, "max_items": 2},
+        {"name": "Supply Chain Dive", "url": "https://www.supplychaindive.com", "type": "web", "weight": 0.9, "max_items": 2},
+        {"name": "Industry Dive", "url": "https://www.industrydive.com", "type": "web", "weight": 0.9, "max_items": 2},
+        {"name": "The Loadstar", "url": "https://theloadstar.com", "type": "web", "weight": 0.9, "max_items": 2},
+        {"name": "Container News", "url": "https://container-news.com", "type": "web", "weight": 0.8, "max_items": 2}
+      ]
+    },
+    {
+      "slug": "ai",
+      "label": "AI",
+      "description": "AI labs, tooling, research drift, and startup crossover coverage.",
+      "editorial_topics": ["ai", "models", "labs", "agents", "research", "startup tooling"],
+      "sources": [
+        {"name": "Semafor Technology", "url": "https://www.semafor.com", "type": "web", "weight": 1.2, "max_items": 3},
+        {"name": "Import AI", "url": "https://importai.substack.com", "type": "web", "weight": 1.3, "max_items": 2},
+        {"name": "Latent Space", "url": "https://www.latent.space", "type": "web", "weight": 1.2, "max_items": 2},
+        {"name": "Ben's Bites", "url": "https://www.bensbites.com", "type": "web", "weight": 1.0, "max_items": 2},
+        {"name": "Hugging Face Papers", "url": "https://huggingface.co/papers", "type": "web", "weight": 0.9, "max_items": 3},
+        {"name": "The Information", "url": "https://www.theinformation.com", "type": "web", "weight": 1.4, "max_items": 3}
+      ]
+    },
+    {
+      "slug": "robotics",
+      "label": "Robotics",
+      "description": "Humanoids, automation, industrial robotics, and manufacturing strategy.",
+      "editorial_topics": ["robotics", "automation", "humanoids", "manufacturing", "hardware"],
+      "sources": [
+        {"name": "The Robot Report", "url": "https://www.therobotreport.com", "type": "web", "weight": 1.2, "max_items": 3},
+        {"name": "IEEE Spectrum Robotics", "url": "https://spectrum.ieee.org/robotics", "type": "web", "weight": 1.2, "max_items": 3},
+        {"name": "Automate.org News", "url": "https://www.automate.org/news", "type": "web", "weight": 1.0, "max_items": 2},
+        {"name": "New Atlas Robotics", "url": "https://newatlas.com/robotics", "type": "web", "weight": 1.0, "max_items": 2},
+        {"name": "The Information", "url": "https://www.theinformation.com", "type": "web", "weight": 1.3, "max_items": 2}
+      ]
+    },
+    {
+      "slug": "real-estate",
+      "label": "Real Estate",
+      "description": "Commercial real estate, private capital, and major metro deal flow.",
+      "editorial_topics": ["real estate", "commercial real estate", "private equity real estate", "development"],
+      "sources": [
+        {"name": "Bisnow", "url": "https://www.bisnow.com", "type": "web", "weight": 1.1, "max_items": 3},
+        {"name": "Commercial Observer", "url": "https://commercialobserver.com", "type": "web", "weight": 1.0, "max_items": 3},
+        {"name": "The Real Deal", "url": "https://therealdeal.com", "type": "web", "weight": 1.1, "max_items": 3},
+        {"name": "GlobeSt", "url": "https://www.globest.com", "type": "web", "weight": 0.9, "max_items": 2},
+        {"name": "PERE", "url": "https://www.perenews.com", "type": "web", "weight": 1.0, "max_items": 2}
+      ]
+    }
+  ]
+}
