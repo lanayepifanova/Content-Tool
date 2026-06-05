@@ -4,176 +4,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Basis Point</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main class="os-shell">
-      <aside class="rail rail-left">
-        <div class="sidebar-brand">
-          <div class="brand-icon">B</div>
-          <div>
-            <div class="brand-title">Basis Point</div>
-            <div class="brand-subtitle">Editorial workspace</div>
-          </div>
+    <main class="home-shell">
+      <nav class="top-nav" aria-label="Primary">
+        <a class="brand" href="/">
+          <span>Basis Point</span>
+        </a>
+        <div class="nav-actions">
+          <button class="menu-button" type="button" aria-label="Menu">
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div id="chatIntro" class="intro-copy">
+          <h1>Find today’s Reel topic</h1>
         </div>
 
-        <div class="sidebar-section">
-          <div class="sidebar-label">Workspace</div>
-          <div class="sidebar-stack">
-            <button class="sidebar-row sidebar-row-static is-active" type="button">
-              <span class="row-icon">⌂</span>
-              <span class="row-label">Inbox</span>
-              <span class="row-count">12</span>
-            </button>
-            <button class="sidebar-row sidebar-row-static" type="button">
-              <span class="row-icon">✎</span>
-              <span class="row-label">Drafts</span>
-              <span class="row-count">4</span>
-            </button>
-            <button class="sidebar-row sidebar-row-static" type="button">
-              <span class="row-icon">↑</span>
-              <span class="row-label">Published</span>
-              <span class="row-count">18</span>
-            </button>
-            <button class="sidebar-row sidebar-row-static" type="button">
-              <span class="row-icon">★</span>
-              <span class="row-label">Saved Ideas</span>
-              <span class="row-count">9</span>
-            </button>
-          </div>
-        </div>
+        <div id="chatThread" class="chat-thread" aria-live="polite"></div>
 
-        <div class="sidebar-section">
-          <div class="sidebar-label">Topics</div>
-          <div id="topicTree" class="sidebar-stack"></div>
-        </div>
-      </aside>
-
-      <section class="rail rail-center">
-        <header class="panel-header">
-          <div>
-            <p class="panel-kicker">Intelligence synthesis</p>
-            <h1 id="topicTitle" class="panel-title">Basis Point</h1>
-            <p id="topicDescription" class="panel-description">Select a topic to surface live narratives instead of raw source lists.</p>
+        <section class="prompt-card" aria-label="Prompt composer">
+          <textarea
+            id="promptInput"
+            rows="2"
+            placeholder="Ask Basis Point to find a Reel topic about AI, markets, startups..."
+          ></textarea>
+          <div class="composer-row">
+            <div id="topicChips" class="topic-chips"></div>
           </div>
-          <button id="refreshFeedButton" class="inline-button" type="button">Refresh</button>
-        </header>
-
-        <section class="hero-strip">
-          <div class="hero-stat">
-            <span>Last refreshed</span>
-            <strong id="statRefreshed">Not yet</strong>
-          </div>
-          <div class="hero-stat">
-            <span>Content volume</span>
-            <strong id="statVolume">0 stories</strong>
-          </div>
-          <div class="hero-stat">
-            <span>Source health</span>
-            <strong id="statHealth">Idle</strong>
-          </div>
-        </section>
-
-        <section class="view-rail">
-          <button class="view-chip is-active" data-view="trending" type="button">Trending</button>
-          <button class="view-chip" data-view="controversial" type="button">Controversial</button>
-          <button class="view-chip" data-view="engagement" type="button">Engagement</button>
-          <button class="view-chip" data-view="macro" type="button">Macro</button>
-          <button class="view-chip" data-view="youtube" type="button">Deep dive</button>
-        </section>
-
-        <section id="secondaryControls" class="secondary-controls is-hidden">
-          <div class="context-group">
-            <span class="context-label">Topic filters</span>
-            <div id="filterList" class="chip-list"></div>
-          </div>
-          <div class="context-group">
-            <span class="context-label">Source map</span>
-            <div id="sourceList" class="source-list"></div>
-          </div>
-        </section>
-
-        <section id="selectionToolbar" class="selection-toolbar is-hidden">
-          <span id="selectionStatus">0 selected</span>
-          <div class="toolbar-actions">
-            <button id="talkingPointsButton" class="inline-button" type="button">Talking points</button>
-            <button id="createNarrativeButton" class="inline-button" type="button">Narrative</button>
-          </div>
-        </section>
-
-        <section class="signal-stack">
-          <div class="section-head">
-            <h2>Feed</h2>
-            <button id="toggleControlsButton" class="text-button" type="button">Show context</button>
-            <span id="statusText" class="soft-note">Refresh the topic when you want to inspect the source-level evidence.</span>
-          </div>
-          <div id="contentList" class="article-list"></div>
         </section>
       </section>
-
-      <aside class="rail rail-right">
-        <header class="panel-header panel-header-tight">
-          <div>
-            <h2 class="panel-title panel-title-small">Script Workspace</h2>
-          </div>
-        </header>
-
-        <section id="workspaceSetup" class="workspace-setup is-hidden">
-          <div class="context-group">
-            <span class="context-label">Platform</span>
-            <select id="platformSelect" class="soft-select">
-              <option value="short">Short-form</option>
-              <option value="youtube">YouTube deep dive</option>
-            </select>
-          </div>
-          <div class="context-group">
-            <span class="context-label">Tone</span>
-            <select id="toneSelect" class="soft-select">
-              <option value="analytical">Analytical</option>
-              <option value="contrarian">Contrarian</option>
-              <option value="operator">Operator</option>
-            </select>
-          </div>
-          <div class="context-group">
-            <span class="context-label">Angle</span>
-            <select id="angleSelect" class="soft-select">
-              <option value="signal">Signal</option>
-              <option value="narrative">Narrative</option>
-              <option value="debate">Debate</option>
-            </select>
-          </div>
-          <div class="template-row">
-            <button class="template-chip" data-template="Hook" type="button">Hook</button>
-            <button class="template-chip" data-template="Key insight" type="button">Key insight</button>
-            <button class="template-chip" data-template="Market implication" type="button">Market implication</button>
-            <button class="template-chip" data-template="Contrarian angle" type="button">Contrarian angle</button>
-            <button class="template-chip" data-template="CTA" type="button">CTA</button>
-          </div>
-        </section>
-
-        <div id="groundingPanel" class="grounding-panel">
-          <div id="researchMemory" class="memory-list"></div>
-        </div>
-
-        <div id="outputBox" class="output-box" contenteditable="true"></div>
-      </aside>
     </main>
 
-    <div id="commandPalette" class="command-palette is-hidden">
-      <div class="command-dialog">
-        <div class="command-title">Command palette</div>
-        <div class="command-list">
-          <button class="command-item" data-command="refresh" type="button">Refresh feed</button>
-          <button class="command-item" data-command="generate-draft" type="button">Generate draft</button>
-          <button class="command-item" data-command="talking-points" type="button">Generate talking points</button>
-          <button class="command-item" data-command="narrative" type="button">Create narrative</button>
-          <button class="command-item" data-command="template-hook" type="button">Insert Hook block</button>
-          <button class="command-item" data-command="template-cta" type="button">Insert CTA block</button>
-          <button class="command-item" data-command="continue" type="button">AI continue</button>
-        </div>
-      </div>
-    </div>
-
-    <script src="/app.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
