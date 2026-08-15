@@ -1,8 +1,10 @@
 # Basis Point — Output Format
 
 Every run writes two files:
-- `briefs/YYYY-MM-DD-{am|pm}.md`   — the human-readable brief (source of truth)
-- `briefs/YYYY-MM-DD-{am|pm}.json` — same content, for the React UI
+- `briefs/YYYY-MM-DD.md`   — the human-readable brief (source of truth)
+- `briefs/YYYY-MM-DD.json` — same content, for the React UI
+
+One run per day. Ten ideas: nine short-form (A/B/C) plus one long-form (D).
 
 The beat structure below is carried over from the existing Basis Point app, so
 briefs drop straight into the format already in use.
@@ -12,7 +14,7 @@ briefs drop straight into the format already in use.
 ## Markdown template
 
 ```
-# Basis Point — {Weekday}, {Month D} · {AM|PM}
+# Basis Point — {Weekday}, {Month D}
 _{N} ideas · generated {HH:MM} · sources checked: {count}_
 
 ---
@@ -59,6 +61,60 @@ bucket-specific field swaps:
 
 ---
 
+## Bucket D — the long-form idea
+
+Exactly one per brief, written last, and it is a different shape from the
+shorts. Ten minutes is not a short stretched out — it needs an argument that
+develops. Same header convention, but with its own fields:
+
+```
+## D1 · LONGFORM · {four-to-seven word working title}
+
+**Hook** (0-15s, the cold open before any title card)
+> {two or three sentences. Sets the stake and makes a promise the video pays off.}
+
+**The thesis**
+{One sentence — the claim the video argues. Not a topic. "Prediction markets
+are becoming the price of truth" is a topic; "prediction markets are being
+priced by people who cannot afford to be wrong, which is why they beat polls"
+is a thesis.}
+
+**Why it holds ten minutes**
+{2-4 sentences naming the specific substance: how many distinct acts, what new
+information arrives in the back half, why a viewer stays past minute four. If
+the honest answer is "it doesn't," cut the idea.}
+
+**The chapters**
+- 0:00-0:45 — {cold open — the concrete scene or number}
+- 0:45-2:00 — {the setup: what the viewer needs to believe the rest}
+- 2:00-4:00 — {act one — the first mechanism, with its own small payoff}
+- 4:00-6:30 — {act two — the complication, the thing that breaks the tidy story}
+- 6:30-8:30 — {act three — the consequence, who wins and loses}
+- 8:30-10:00 — {the turn — what this predicts, and the honest uncertainty}
+
+**What you'd need**
+{Footage, charts, screen recordings, filings to put on screen. Be specific —
+"the S-1 page where the compute line item appears," not "some visuals."}
+
+**Title options**
+- {YouTube title, written to be clicked, not to be accurate-sounding}
+- {a second, different angle}
+
+**Thumbnail**
+{The single image. One subject, readable at small size.}
+
+**Sources**
+- {at least four, weighted toward primary}
+
+**Freshness** {N}h ago | evergreen · **Saturation** low | medium | high
+
+`rate: `
+```
+
+Chapter timestamps use `M:SS-M:SS`; short-form beats keep `Ns-Ns`. Both parse.
+
+---
+
 ## Rules
 
 - Hooks are written to be **spoken**, not read. No "In this video." No "Ever
@@ -67,4 +123,6 @@ bucket-specific field swaps:
   If a bucket only yields two, ship two and say why in a `> note:` line.
 - Every factual claim carries a source link. Unverifiable claim = cut the idea.
 - No emoji in briefs. No exclamation marks.
-- Titles are four to six words, concrete nouns, no colons.
+- Short-form titles are four to six words, concrete nouns, no colons. The
+  Bucket D working title may run to seven; its **Title options** are the ones
+  written for the platform and play by YouTube's rules instead.

@@ -1,14 +1,14 @@
 # Basis Point
 
-A content-ideas agent. Twice a day it researches and writes nine social content
-ideas — three news, three tutorials, three explainers — into a dated brief,
-emails it, and learns from how the ideas get rated.
+A content-ideas agent. Once a day it researches and writes ten content ideas —
+three news, three tutorials, three explainers, and one long-form YouTube idea —
+into a dated brief, emails it, and learns from how the ideas get rated.
 
 ## How it works
 
 ```
 agent/taste.md ──┐
-agent/format.md ─┼─→ /basis-point-scan ─→ briefs/YYYY-MM-DD-{am|pm}.md  (source of truth)
+agent/format.md ─┼─→ /basis-point-scan ─→ briefs/YYYY-MM-DD.md  (source of truth)
 last 6 briefs ───┘                          │
                                             ├─→ .json  (React UI reads this)
                                             └─→ email  (Resend)
@@ -18,6 +18,16 @@ briefs/*.md  ──rate ideas──→ /basis-point-learn ──→ rewrites LEA
 
 The markdown brief is the single source of truth. The JSON is derived from it,
 and ratings made in the UI are written back into the markdown.
+
+Ideas are `A1..A3` news, `B1..B3` tutorials, `C1..C3` explainers, `D1` long-form.
+Bucket D is the ~10-minute YouTube idea: it is researched as its own hunt on a
+subject the nine shorts don't cover, and has to pass a substance test — three
+acts, new material in the back half, and something specific to put on screen —
+before it ships. If nothing clears that bar the brief runs nine plus a note,
+which is a real result rather than a failed run.
+
+Briefs from before August 2026 are named `YYYY-MM-DD-am.md` / `-pm.md`, from
+when the scan ran twice daily. Both name shapes load in the reader.
 
 ## Commands
 

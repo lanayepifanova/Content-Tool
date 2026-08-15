@@ -223,6 +223,27 @@ button {
   color: var(--ink);
 }
 
+/* Bucket D only — the candidate YouTube titles, read as a shortlist. */
+.idea-titles {
+  margin: 12px 0 0;
+  padding: 10px 14px 10px 30px;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.035);
+  list-style: decimal;
+}
+
+.idea-titles li {
+  margin-bottom: 5px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.idea-titles li:last-child {
+  margin-bottom: 0;
+}
+
 .idea-note {
   margin: 12px 0;
   padding: 9px 13px;

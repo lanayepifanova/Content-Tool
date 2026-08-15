@@ -4,6 +4,7 @@ const BUCKETS = [
   { key: "news", label: "News", blurb: "tech · startups · markets · finance" },
   { key: "tutorial", label: "Tutorials", blurb: "AI workflows & tools" },
   { key: "explainer", label: "Explainers", blurb: "technical → non-technical" },
+  { key: "longform", label: "Long-form", blurb: "YouTube · ~10 minutes" },
 ];
 
 function Sources({ sources }) {
@@ -65,12 +66,21 @@ function Idea({ idea, slug, onRated }) {
         </p>
       ))}
 
+      {idea.titleOptions?.length > 0 && (
+        <ul className="idea-titles">
+          {idea.titleOptions.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+      )}
+
       {idea.note && <p className="idea-note">{idea.note}</p>}
 
       {idea.beats?.length > 0 && (
         <>
           <button className="beats-toggle" type="button" onClick={() => setOpen(!open)}>
-            {open ? "Hide beats" : "Show beats"}
+            {open ? "Hide " : "Show "}
+            {idea.bucket === "longform" ? "chapters" : "beats"}
           </button>
           {open && (
             <ol className="idea-beats">

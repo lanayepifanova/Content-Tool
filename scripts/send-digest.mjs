@@ -4,6 +4,10 @@
 import { readFileSync } from "node:fs";
 import { basename } from "node:path";
 
+const KEYS = ["RESEND_API_KEY", "DIGEST_TO", "DIGEST_FROM"];
+
+// Locally the values live in .env; in the cloud runner there is no .env, so
+// real environment variables win and the file is only a fallback.
 function loadEnv() {
   const env = {};
   try {
@@ -12,10 +16,16 @@ function loadEnv() {
       if (m) env[m[1]] = m[2].trim();
     }
   } catch {
-    throw new Error("No .env found. Needs RESEND_API_KEY, DIGEST_TO, DIGEST_FROM.");
+    // No .env — fine as long as the environment carries the keys.
   }
-  for (const k of ["RESEND_API_KEY", "DIGEST_TO", "DIGEST_FROM"]) {
-    if (!env[k]) throw new Error(`.env is missing ${k}`);
+  for (const k of KEYS) if (process.env[k]) env[k] = process.env[k];
+
+  const missing = KEYS.filter((k) => !env[k]);
+  if (missing.length) {
+    throw new Error(
+      `Missing ${missing.join(", ")} — set them in .env locally, or as environment ` +
+        `variables on the cloud environment running the scan.`
+    );
   }
   return env;
 }

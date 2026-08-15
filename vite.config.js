@@ -36,7 +36,7 @@ function briefServer() {
         req.on("end", () => {
           try {
             const { slug, id, rating, reason = "" } = JSON.parse(raw);
-            if (!/^[\w.-]+$/.test(slug) || !/^[ABC]\d+$/.test(id)) return json(res, 400, { error: "bad request" });
+            if (!/^[\w.-]+$/.test(slug) || !/^[ABCD]\d+$/.test(id)) return json(res, 400, { error: "bad request" });
 
             const mdPath = `briefs/${slug}.md`;
             const md = readFileSync(mdPath, "utf8");
