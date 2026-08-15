@@ -6,81 +6,81 @@
     {
       "id": "A1",
       "bucket": "news",
-      "title": "The teleprompter operator's trading account",
-      "hook": "The man who loads Trump's teleprompter made a hundred grand betting on what Trump would say.",
-      "why": "This is insider trading where the inside information is a script. Gabriel Perez had run the president's teleprompter since 2016, so he knew the prepared remarks first — and Kalshi runs \"mention markets,\" contracts that pay out on whether a specific word gets said. The detail that makes it a video rather than a headline: nobody tipped off the government. Kalshi's own surveillance flagged the betting pattern as anomalous, and only then did anyone notice the account belonged to a federal employee. The exchange caught it the way an exchange catches things, which is the strongest argument Kalshi has that it is market infrastructure rather than a casino — and it emerged from the worst week of its life.",
+      "title": "Wall Street trades GPU hours",
+      "hook": "On October 5th you will be able to trade the price of renting a graphics card, on the same exchange that trades crude oil.",
+      "why": "CME is listing futures on the hourly rental price of an Nvidia H100. Not on Nvidia stock, not on a data-center REIT — on the rent, per chip, per hour, settled monthly, on NYMEX. The absurdity is the hook and the mechanism is the payload: this is exactly how oil, pork bellies and electricity became commodities. Something gets a published index, then someone writes a contract on the index, then it stops being a thing you buy and starts being a thing you hedge. The best detail is why it exists at all — the same chip rents for $2.50 an hour in one place and $7.50 in another, and nobody could tell who was overpaying.",
       "beats": [
         {
           "t": "0-3s",
-          "text": "The job title, then the number. Nothing else."
+          "text": "\"October 5th. GPU rental futures. On the oil exchange.\""
         },
         {
           "t": "3-15s",
-          "text": "What a mention market is: a contract that pays $1 if the word gets said. He had the script."
+          "text": "Two contracts, H100 and B200, one month of rental each, cash settled, listed on NYMEX."
         },
         {
           "t": "15-35s",
-          "text": "How he got caught — Kalshi's surveillance flagged the pattern, not a whistleblower. That is the tell."
+          "text": "Why: the same chip rents at $2.43-$2.63 on a neocloud and $7.40-$7.52 at a hyperscaler. A benchmark makes the gap visible, and a visible gap is tradable."
         },
         {
           "t": "35-60s",
-          "text": "August 13, the CFTC opened a review of mention markets generally. Kalshi pulled the sports ones. Trump and earnings-call markets are still live."
+          "text": "What to watch: whether anyone actually trades it. Most new futures contracts die of thin liquidity, and CME's own CEO called their first stock futures a \"complete failure.\""
         }
       ],
       "material": [
-        "Gabriel Perez ran the teleprompter for Trump since 2016 (NPR, ABC News).",
-        "He made \"more than $100,000\" on Kalshi betting on the president's speeches (ABC News, CBS News).",
-        "Kalshi froze roughly $90,000 of his profits and banned him from the platform (Daily Beast). The $100k earned and ~$90k frozen are different numbers — do not merge them.",
-        "Investigators believe he wagered on the February State of the Union plus more than a dozen other speeches across a roughly three-month period (ABC News).",
-        "Named appearances include the World Economic Forum in Davos and a Medal of Honor ceremony (ABC News).",
-        "Kalshi's surveillance systems detected betting on presidential mention markets that \"did not follow typical behavior\"; on examining the accounts, investigators saw the holder was a federal employee (ABC News). The referral to the CFTC came from Kalshi.",
-        "Press Secretary Karoline Leavitt said Perez was placed on unpaid administrative leave and that the president \"believes it's deeply unfortunate and frankly a disgrace\" (PBS NewsHour, CNBC).",
-        "He is no longer in the job (Washington Post, July 28).",
-        "CFTC regulators have discussed settlement terms requiring him to return profits and refrain from similar trades (NPR).",
-        "A mention market pays out on whether a named person says a specific word or phrase. Sports versions included whether broadcasters would say \"MVP,\" \"ankle\" or \"redshirt\" (NPR).",
-        "August 13, 2026: the CFTC opened a review of mention markets as a category, on manipulation-risk grounds — reported as \"potentially very easy to manipulate\" (NPR).",
-        "Kalshi removed all sports mention markets in response (Benzinga, news.bitcoin.com, Aug 14).",
-        "Still live at time of writing: contracts tied to Trump, political appearances and corporate earnings calls — including a Klarna earnings market on whether executives mention specific companies (NPR).",
-        "Precedent, same platform, three weeks earlier: the CFTC ordered George Santos to pay $35,069.98 in disgorgement and penalties and banned him from CFTC-regulated markets for three years, over a market on whether he would attend the 2026 State of the Union. He posted that he was \"going to be there,\" did not attend, and profited from predicting he would not (Axios, Bloomberg, July 31). He neither admitted nor denied the findings.",
-        "Counter-argument to have ready: this cuts both ways for Kalshi. The surveillance working is a genuine point in its favour, and its defenders will say a sportsbook would have had no comparable obligation to report a winning customer. The rebuttal is that the CFTC still opened a category-wide review afterwards, which implies the regulator does not think self-policing settles it.",
-        "Scale check: $100,000 is trivially small against Kalshi's volumes — the platform processed over $27 billion in World Cup trading across 33,000 event contracts (CFTC advisory context, July). This story matters for what it reveals about the contract design, not the sum."
+        "CME Group and Silicon Data announced on August 11, 2026 that two compute futures contracts will launch on October 5, 2026, pending regulatory review (CME Group press release).",
+        "The contracts are the Silicon Data H100 Rental Index Futures and the Silicon Data B200 Rental Index Futures, both listed on NYMEX and subject to NYMEX rules (CME Group).",
+        "Each contract represents one month's worth of GPU rental cost for the respective chip (CME Group).",
+        "Pete Keavey, CME Group's Global Head of Energy and Environmental Products: \"Compute has become the currency of the AI age, and this innovative market will bring transparency to the current and future costs that AI builders and hyperscalers need to hedge as they grow.\"",
+        "Keavey's oil framing, per Finance Magnates: \"Just as oil fueled the 20th century economy and evolved from spot trading into a global derivatives market, our futures contracts will now turn compute into a standardised, tradable commodity that will provide global businesses with a reliable, regulated venue to manage price risk.\"",
+        "Carmen Li, CEO of Silicon Data: \"For years, two companies buying the exact same GPU capacity could pay wildly different prices with no way to know who got the better deal. They will now have a benchmark to check that against.\"",
+        "Silicon Data, the index provider, is backed by the trading firm DRW (Finance Magnates).",
+        "The price gap that motivates the whole thing: in March 2026 Silicon Data's H100 neocloud index sat at $2.43-$2.63 per GPU-hour while the H100 hyperscaler on-demand index sat at $7.40-$7.52 — roughly a 3x spread on identical silicon (Silicon Data).",
+        "The inconvenient fact: the index has recently been almost motionless. Between March 1 and April 20, 2026 the H100 hyperscaler index was unchanged on 39 of 50 daily transitions, with a net change of −0.27% and a coefficient of variation of 0.47% (Silicon Data).",
+        "A flat price is a bad advertisement for a hedging product — you do not need to hedge something that does not move.",
+        "CME is not alone. Architect Financial Technologies announced on May 28, 2026 that it will launch the \"American Innovation Exchange,\" a CFTC-regulated exchange for compute and AI-supply-chain futures, after acquiring the designated contract market IMX Health LLC (PR Newswire).",
+        "On July 8, 2026 Architect announced a partnership with Compute Desk to build an exchange-for-physical market linking cash-settled compute derivatives to physical delivery of GPU capacity (PR Newswire).",
+        "Architect's contracts are specified down to SKU level — GPU model, configuration and geography — on IOSCO- and EU BMR-certified indexes (PR Newswire).",
+        "The strongest objection, from Dave Friedman: compute is not fungible, so a contract indexed to H100 and B200 leaves anyone renting H200s, MI300s or a mixed fleet exposed to basis risk between their hardware and the benchmark.",
+        "The rebuttal to that objection: nearly every commodity hedge carries basis risk, and a hedge does not have to eliminate risk to be worth putting on — it only has to capture the dominant move.",
+        "Precedent for failure: CME Chairman and CEO Terry Duffy has described the exchange's early single-stock futures as a \"complete failure,\" and new derivatives most often die from thin liquidity and wide bid-ask impact costs rather than from a bad idea."
       ],
       "sources": [
         {
-          "name": "NPR, CFTC probe of mention markets (Aug 13)",
-          "url": "https://www.npr.org/2026/08/13/nx-s1-5930689/cftc-probe-mention-markets-prediction-markets-kalshi"
+          "name": "CME Group press release (primary)",
+          "url": "https://www.cmegroup.com/media-room/press-releases/2026/8/11/cme_group_and_silicondatatolaunchcomputefuturesonoctober5tounloc.html"
         },
         {
-          "name": "NPR, original teleprompter report (Jul 16)",
-          "url": "https://www.npr.org/2026/07/16/nx-s1-5896223/kalshi-trump-white-house-teleprompter-operator-bet"
+          "name": "CME Group release on PR Newswire (primary mirror)",
+          "url": "https://www.prnewswire.com/news-releases/cme-group-and-silicon-data-to-launch-compute-futures-on-october-5-to-unlock-new-way-to-hedge-ai-risks-302848593.html"
         },
         {
-          "name": "ABC News, the $100k figure and how Kalshi detected it",
-          "url": "https://abcnews.com/US/white-house-teleprompter-operator-made-100k-betting-trumps/story?id=134764573"
+          "name": "Finance Magnates",
+          "url": "https://www.financemagnates.com/institutional-forex/cme-group-says-it-will-launch-first-regulated-compute-futures-contracts/"
         },
         {
-          "name": "CBS News, corroborating the figure",
-          "url": "https://www.cbsnews.com/news/white-house-teleprompter-operator-kalshi-bets/"
+          "name": "Silicon Data H100 Rental Price Index (primary)",
+          "url": "https://www.silicondata.com/products/silicon-index/h100"
         },
         {
-          "name": "CNBC, suspension and White House response",
-          "url": "https://www.cnbc.com/2026/07/16/trump-kalshi-teleprompter-cftc-investigation.html"
+          "name": "Silicon Data, H100 Hyperscaler Index April 2026",
+          "url": "https://www.silicondata.com/blog/h100-hyperscaler-index-april-2026"
         },
         {
-          "name": "Washington Post, he is out of the job",
-          "url": "https://www.washingtonpost.com/politics/2026/07/28/white-house-teleprompter-operator-kalshi/565eb822-8acf-11f1-8912-d71e69d679d7_story.html"
+          "name": "Architect Financial Technologies, exchange launch (primary)",
+          "url": "https://www.prnewswire.com/news-releases/architect-financial-technologies-to-launch-us-futures-exchange-for-compute-and-ai-commodities-following-dcm-acquisition-302784564.html"
         },
         {
-          "name": "Axios, the Santos order",
-          "url": "https://www.axios.com/2026/07/31/george-santos-kalshi-prediction-market-cftc"
+          "name": "Architect and Compute Desk, exchange-for-physical (primary)",
+          "url": "https://www.prnewswire.com/news-releases/architect-financial-technologies-partners-with-compute-desk-to-launch-exchange-for-physical-market-for-gpu-compute-302820762.html"
         },
         {
-          "name": "Benzinga, Kalshi pulling sports mention markets",
-          "url": "https://www.benzinga.com/markets/prediction-markets/26/08/61207428/kalshi-suspends-mention-markets-as-cftc-reportedly-investigates-prediction-market-betting-on-trump-sports-commentators"
+          "name": "Dave Friedman, the counter-argument",
+          "url": "https://davefriedman.substack.com/p/compute-futures-wont-make-compute"
         }
       ],
-      "freshness": "~2 days (CFTC review)",
-      "saturation": "medium — the July teleprompter story ran widely, the regulatory turn this week is fresh and the \"the exchange caught him itself\" framing is unused",
+      "freshness": "4 days",
+      "saturation": "low — trade press covered the announcement, the \"why does the same chip cost 3x\" angle is unused",
       "note": null,
       "rating": null,
       "ratingReason": null,
@@ -89,71 +89,73 @@
     {
       "id": "A2",
       "bucket": "news",
-      "title": "Six grid operators, one deadline",
-      "hook": "On Monday, six companies have to explain why your power bill should pay for a data center.",
-      "why": "There is a clock on this and almost nobody outside energy law is watching it. On June 18 FERC issued Section 206 show-cause orders to all six US grid operators at once, and did something unusual: it put the burden of proof on them. Normally a regulator has to demonstrate a rule is unjust; here the operators have 60 days to demonstrate theirs is not. Sixty days from June 18 is August 17. The question they have to answer is who pays for the substations and transmission when an enormous new load shows up, and the honest answer for the last two years has been \"everyone else's bill.\" These orders reach about two-thirds of all load served under FERC-jurisdictional rates.",
+      "title": "Index funds must buy Reddit",
+      "hook": "On Monday, index funds have to buy sixteen million shares of Reddit whether they want to or not.",
+      "why": "Reddit beat earnings on July 30 and the stock fell 12.5%. Two weeks later a committee added it to a list, and it rose 15% — because roughly a third of the US stock market is now run by funds that are contractually forbidden from having an opinion. The number does the work: 16.7 million shares, about three times a normal day's volume, bought by people who are not allowed to care about the price. And the honest ending is the good bit — this used to be free money and it isn't any more, which tells you something about what happens to any edge everyone can see.",
       "beats": [
         {
           "t": "0-3s",
-          "text": "The deadline and what is being asked."
+          "text": "The forced-buying number, flat."
         },
         {
           "t": "3-15s",
-          "text": "Six orders, six dockets, one day, unanimous. This covers roughly 200 million people."
+          "text": "Added before the open on August 18, replacing AvalonBay. J.P. Morgan says index funds need about 16.7 million shares, roughly 3x average daily volume."
         },
         {
           "t": "15-35s",
-          "text": "What a show-cause order does: FERC did not ask them to consider a change, it made them defend the status quo."
+          "text": "The buyers are Vanguard, iShares, Fidelity, Schwab. None of them decided Reddit was a good company. A committee decided it was a big one."
         },
         {
           "t": "35-60s",
-          "text": "Watch what actually gets filed. A defence means your bill keeps absorbing it; a reform filing means data centers start paying their own interconnection costs."
+          "text": "The turn: the index effect has been fading for two decades. Greenwood and Sammon's NBER paper is literally titled \"The Disappearing Index Effect.\""
         }
       ],
       "material": [
-        "June 18, 2026: FERC issued Section 206 show-cause orders to all six US RTOs/ISOs — PJM, MISO, SPP, CAISO, ISO-NE and NYISO (McGuireWoods, Day Pitney, FERC).",
-        "Dockets: PJM EL26-67-000, SPP EL26-68-000, NYISO EL26-69-000, MISO EL26-70-000, CAISO EL26-71-000, ISO-NE EL26-72-000 (McGuireWoods).",
-        "The orders were unanimous (Utility Dive, Duane Morris).",
-        "Two deadlines, not one: a generation-adequacy informational report due within 30 days, which fell on July 20, 2026; and the tariff justification or reform filing due within 60 days, which falls August 17, 2026 (Day Pitney, White & Case).",
-        "Threshold precision — this matters, get it right on camera: in the show-cause orders FERC defined large loads as peak load above 50 MW interconnecting to transmission above 69 kV (Bracewell). The widely quoted 20 MW figure comes from the parallel rulemaking, Docket RM26-4, which is where FERC is taking comment on a generic rule (FERC RM26-4, Utility Dive). Saying \"20 MW\" while showing the show-cause orders is the error a comment will catch.",
-        "Reach: the six regions cover roughly 200 million people across more than 30 states plus Washington DC, about two-thirds of the load served under FERC-jurisdictional rates (Duane Morris).",
-        "Section 206 of the Federal Power Act is the provision that lets FERC find an existing rate unjust and unreasonable; a show-cause order under it flips the ordinary burden onto the incumbent to justify what it already does (McGuireWoods).",
-        "Each operator must address: available spare generating capacity, how interconnection queues will be managed, how to keep new substation and transmission costs off residential bills, and how data centers will cover the full cost of grid work tied to their own connection (FERC).",
-        "The last of those — full cost responsibility for the connecting load — is the point utilities and consumer advocates have fought over for two years, and FERC has now made it a federal question (FERC).",
-        "Related context: the orders advance objectives set out in the Secretary of Energy's October 2025 Advance Notice of Proposed Rulemaking (McGuireWoods).",
-        "Counter-argument to have ready: FERC framed this as speeding data centers up, not slowing them down — the stated goal is faster large-load interconnection, and the trade press headline is \"accelerate,\" not \"crack down\" (FERC, American Action Forum). Anyone arguing this is FERC protecting ratepayers is only reading half the order. The honest framing is that it forces the cost question to be answered, in either direction.",
-        "Second counter-argument: FERC deliberately did not impose a one-size-fits-all fix. Each region has different requirements and latitude to choose its path, so \"six operators, one deadline\" is true of the date but not of the substance (Bracewell).",
-        "What to watch after Monday: whether operators file defences or reforms, and whether the generic RM26-4 rulemaking then supersedes whatever they file.",
-        "Scale anchor for why 50 MW is nothing: a single large AI data center campus is planned in the hundreds of megawatts to over a gigawatt, so the threshold catches essentially every facility in the current build-out."
+        "S&P Dow Jones Indices announced that Reddit joins the S&P 500 before trading opens on August 18, 2026, replacing AvalonBay Communities (Reuters).",
+        "The announcement landed after the close on Thursday August 13; Reddit rose more than 12% in Friday premarket and traded around $182, up about 15% (Reuters, Forbes).",
+        "J.P. Morgan analysts estimate index funds tracking the S&P 500 will need to buy about 16.7 million Reddit shares to match the new weighting (Reuters).",
+        "That is nearly three times Reddit's average daily trading volume of about 5.98 million shares since its March 2024 IPO (Reuters).",
+        "AvalonBay is leaving because of its all-stock merger with Equity Residential, agreed in May 2026, at an enterprise value of about $69 billion (Reuters).",
+        "The merged company, to be called Vivmark Residential, stays in the S&P 500 — so the index is not shrinking its real-estate exposure, it is consolidating it (S&P Dow Jones Indices, per Reuters).",
+        "Reddit's Q2 2026, reported July 30: revenue of $805 million, up 61% from $500 million a year earlier, against roughly $730 million expected (Reddit earnings release).",
+        "Q2 net income was $253 million, or $1.25 a share, up from $89 million and 45 cents a year earlier (Reddit earnings release).",
+        "Global daily active uniques reached 130.3 million, up 18% year over year; US daily active uniques were 53.2 million, up only 6% (Reddit earnings release).",
+        "It was the eighth straight quarter of revenue growth above 60% (CNBC).",
+        "Despite the beat, the stock fell about 12.5% after those results on concern about slowing US user growth (Investing.com earnings-call coverage).",
+        "The passive buyers named in coverage: Vanguard S&P 500 ETF, iShares Core S&P 500 ETF, Fidelity 500 Index Fund, Schwab S&P 500 Index Fund (Forbes).",
+        "The counter-argument, and it is a strong one: Robin Greenwood and Marco Sammon's NBER working paper w30748, \"The Disappearing Index Effect,\" documents that abnormal returns around S&P 500 additions have fallen toward zero even as mechanical index demand has grown.",
+        "Morningstar's version of the same finding: comparing additions in 1995-99, 2000-10 and 2011-20, the once-pronounced pattern \"resembles a flat line\" running from announcement through the weeks after inclusion.",
+        "Precedent, both directions: Tesla rose about 60% between its inclusion announcement and its addition in December 2020; Workday gained 10% on the news and then fell 19% from its peak after joining in December 2024 (Forbes).",
+        "The mechanism worth stating plainly: index funds do not buy because Reddit is good, they buy because tracking error is the only thing they are measured on."
       ],
       "sources": [
         {
-          "name": "FERC, the announcement",
-          "url": "https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration"
+          "name": "Reuters, via The Globe and Mail",
+          "url": "https://www.theglobeandmail.com/investing/article-reddit-sp-500-inclusion/"
         },
         {
-          "name": "FERC, Docket RM26-4 landing page (the 20 MW rulemaking)",
-          "url": "https://www.ferc.gov/rm26-4"
+          "name": "Forbes",
+          "url": "https://www.forbes.com/sites/tylerroush/2026/08/14/reddit-joins-the-sp-500-next-week-heres-what-that-means-for-shares/"
         },
         {
-          "name": "McGuireWoods, dockets and section 206 mechanics",
-          "url": "https://www.mcguirewoods.com/client-resources/alerts/2026/6/ferc-issues-section-206-show-cause-orders-directing-all-six-rtos-isos-to-justify-or-reform-large-load-integration-rules/"
+          "name": "Reddit Q2 2026 earnings release (primary)",
+          "url": "https://s203.q4cdn.com/380862485/files/doc_financials/2026/q2/Q2-26-Earnings-Press-Release.pdf"
         },
         {
-          "name": "Bracewell, the 50 MW / 69 kV definition",
-          "url": "https://www.bracewell.com/resources/ferc-show-cause-orders-data-center-interconnection/"
+          "name": "CNBC on Q2 results",
+          "url": "https://www.cnbc.com/2026/07/30/reddit-rddt-q2-2026-earnings-report.html"
         },
         {
-          "name": "Day Pitney, the 30-day and 60-day deadlines",
-          "url": "https://www.daypitney.com/ferc-issues-show-cause-orders-to-six-rtos/isos-on-large-load-integration"
+          "name": "Greenwood and Sammon, The Disappearing Index Effect, NBER w30748 (primary)",
+          "url": "https://www.nber.org/system/files/working_papers/w30748/w30748.pdf"
         },
         {
-          "name": "Utility Dive, what developers need to know",
-          "url": "https://www.utilitydive.com/news/data-center-interconnection-ferc-large-load-show-cause/824501/"
+          "name": "Morningstar",
+          "url": "https://www.morningstar.com/funds/sp-500-bump-that-doesnt-last"
         }
       ],
-      "freshness": "deadline lands in 2 days",
-      "saturation": "low — thorough coverage in energy trade press, essentially none for a general audience",
+      "freshness": "~26h",
+      "saturation": "medium — the stock move was covered everywhere, the disappearing-index-effect turn was not",
       "note": null,
       "rating": null,
       "ratingReason": null,
@@ -162,76 +164,74 @@
     {
       "id": "A3",
       "bucket": "news",
-      "title": "DeepSeek starts charging peak rates",
-      "hook": "Starting Monday, the cheap AI costs more at busy times of day. Like electricity.",
-      "why": "Everyone will cover this as \"DeepSeek raised prices.\" The actual news is stranger and better: DeepSeek introduced time-of-use pricing. Peak hours cost double off-peak, on the stated reasoning of allocating resources \"more reasonably\" and pushing developers into quieter windows. That is not how software has ever been priced — it is how a utility prices electricity, and it appears the moment a token stops being a software product and becomes a claim on a fixed amount of hardware. The inversion is the hook and the pricing model is the payload: DeepSeek won the price war, could not buy its way out of the demand it created, and the US labs cut prices in the same window because they can still add capacity.",
+      "title": "The SEC cancels its own vote",
+      "hook": "The SEC wrote a four-hundred-page rule that lets a token stop being a security. Then it cancelled its own vote on it the day before.",
+      "why": "Not the cancellation — the contents. Regulation Crypto contains a provision where a token that becomes \"sufficiently decentralized\" exits securities classification entirely, meaning the issuer stops being regulated by the SEC by successfully giving away control. That idea has been sitting in a commissioner's drawer since 2020. It got four days' notice, a Friday morning slot, and then an \"unforeseen scheduling issue.\" A regulator pulling its own agenda item at the last minute is the tell that something is unresolved inside the building.",
       "beats": [
         {
           "t": "0-3s",
-          "text": "Peak and off-peak pricing. For an AI."
+          "text": "The safe-harbour idea, stated flatly: you can stop being a security by decentralizing enough."
         },
         {
           "t": "3-15s",
-          "text": "Takes effect Aug 16-17, up to 1,100% higher depending on model and time. OpenAI cut Luna by 80% two weeks ago."
+          "text": "Meeting noticed August 10 for Friday August 14 at 10am. Single agenda item. Cancelled Thursday."
         },
         {
           "t": "15-35s",
-          "text": "Why a utility model appears: fixed fleet, demand at roughly seven trillion tokens a week, and no way to buy more chips. Price becomes the only lever."
+          "text": "What's in it: $5M on a whitepaper, $75M with audited financials, and the decentralization off-ramp out of SEC jurisdiction."
         },
         {
           "t": "35-60s",
-          "text": "The thing to carry: a token price is a compute-access price wearing a software costume. Watch whether the US cuts survive the memory and power squeeze."
+          "text": "Why now: Congress's CLARITY Act is stalling, the Senate went to recess without voting, and Atkins has said the agency will write the rules itself if Congress won't."
         }
       ],
       "material": [
-        "August 6, 2026: DeepSeek warned developers of a significant API price increase without giving rates or a date (Dataconomy).",
-        "August 13, 2026: the actual rates landed. Increases range from 50% to 1,100% depending on model, token type and time of day (Quartz, Reuters via Investing.com, Fortune).",
-        "Effective date is reported as August 16 by Quartz and August 17 by other outlets — check DeepSeek's own notice before stating it. Say \"early next week\" if unsure.",
-        "V4-Flash old pricing: $0.14 per million input tokens, $0.28 per million output (Quartz, BenchLM).",
-        "V4-Flash new peak pricing: $0.44 per million cache-miss input, $1.32 per million output. Off-peak is half the peak rate (Quartz).",
-        "V4-Pro old pricing: $0.435 per million input, $0.87 per million output. New peak cache-miss input: $1.32 per million (Quartz).",
-        "DeepSeek's stated reason, quoted: it is adjusting pricing \"to allocate resources more reasonably,\" with the tiered structure intended to shift workloads to less congested periods (Reuters).",
-        "The peak/off-peak split is the genuinely novel part. Note that the cache-miss distinction is also doing work — cached input stays cheaper, so the pricing punishes exactly the traffic that is most expensive to serve.",
-        "Demand context: DeepSeek matched an 80% OpenAI price cut within hours, then hit a surge reported at around 7 trillion tokens a week against a fleet reported at roughly 20,000 GPUs (XenoSpectrum). Both figures come from secondary reporting — attribute them or drop them.",
-        "The other direction, same window: OpenAI cut GPT-5.6 Luna by 80% on July 30, three weeks after the 5.6 family launched, from $1/$6 to $0.20/$1.20 per million input/output tokens. Terra dropped 20%. The flagship Sol tier was unchanged (VentureBeat, Forbes, Unite.AI).",
-        "Anthropic launched Claude Opus 5 on July 24 at $5/$25 per million input/output tokens (Unite.AI, note.com roundup).",
-        "Flagship comparison for the \"expensive ones got cheaper\" line: GPT-5.6 Sol and Claude Opus 5 both sit at $5 per million input; Opus 5's output is $25 against Sol's $30 (Unite.AI).",
-        "Counter-argument to have ready: this is not straightforwardly \"China loses.\" DeepSeek raising prices while preparing for a possible IPO is also what a company does when it stops buying market share and starts demonstrating unit economics (edenai, explainx). A price rise driven by demand you cannot serve is a very different signal from a price rise driven by weak demand, and the honest read is that it is both a constraint and a choice.",
-        "Second caveat: even after an 1,100% increase at the top end, V4-Flash peak input at $0.44 per million is still far below the US flagship tier at $5. \"The cheap one got expensive\" is a relative claim, not an absolute one — say so or the correction will arrive in the comments.",
-        "Precedent worth naming: time-of-use pricing is standard in electricity and in cloud spot markets. The interesting claim is not that it is unprecedented, but that inference has now joined the category of things priced like a scarce physical resource."
+        "The SEC noticed an open meeting for Friday August 14, 2026 at 10:00 a.m. ET with a single agenda item — whether to propose \"a tailored offering regime for certain investment contracts involving crypto assets\" (SEC meeting notice, reported by CoinDesk on August 11).",
+        "The notice went out on August 10, four days ahead, against the Sunshine Act's usual one-week requirement (Blockhead).",
+        "The commission cancelled on Thursday August 13; an SEC spokesperson said the meeting was being moved \"due to an unforeseen scheduling issue\" (Reuters, reported by Hannah Lang).",
+        "No new date has been announced (Blockhead).",
+        "The proposal, Regulation Crypto, runs about 400 pages (crypto.news).",
+        "Pathway one, the startup exemption: raise roughly $5 million over four years on whitepaper-style disclosure in place of audited financials (crypto.news).",
+        "Pathway two, the fundraising exemption: up to $75 million in any 12-month period, with audited financials and semiannual reporting, structured like the existing Regulation A+ regime (crypto.news).",
+        "Pathway three, the investment contract safe harbor: a token whose network has reached \"sufficient decentralization\" — founders stepped back, protocol runs autonomously — leaves securities classification entirely (crypto.news).",
+        "That safe harbor descends directly from Commissioner Hester Peirce's \"Token Safe Harbor\" proposal, first published in 2020 and never adopted (crypto.news).",
+        "The commission currently has three members: Chair Paul Atkins and Commissioners Hester Peirce and Mark Uyeda (CoinDesk).",
+        "This would be the SEC's first attempt to regulate crypto through formal rulemaking rather than through enforcement actions (crypto.news).",
+        "Atkins has said publicly that the agency is prepared to write crypto rules itself if Congress cannot act, and has run the agenda under the banner \"Project Crypto\" since 2025 (SEC.gov).",
+        "Congress's parallel vehicle, the CLARITY Act, slipped to a September 15 procedural vote, and Galaxy Research cut its odds of passage from 50% to 30% (crypto.news).",
+        "The Senate began its August recess without voting on the CLARITY Act (Reuters).",
+        "The first caveat that would embarrass her in a comment: this is a proposal to propose. Even if the commission votes yes, it goes out for public comment, and a final rule is realistically a year or more away.",
+        "The second caveat: \"sufficiently decentralized\" has never had a settled legal test, which is precisely why Peirce's 2020 version went nowhere. Writing that definition down is the hard part, and it is the part nobody has seen yet.",
+        "The related delay in the same week: a separate tokenization exemption also slipped, per reporting on the cancellation (crypto.news)."
       ],
       "sources": [
         {
-          "name": "Quartz, the peak/off-peak rates and the 1,100% figure",
-          "url": "https://qz.com/deepseek-api-price-increase-v4-peak-off-peak-081326"
+          "name": "Reuters, via The Star",
+          "url": "https://www.thestar.com.my/tech/tech-news/2026/08/14/us-securities-regulator-cancels-meeting-to-vote-on-crypto-rules"
         },
         {
-          "name": "Reuters via Investing.com, DeepSeek raises V4 API pricing",
-          "url": "https://www.investing.com/news/economy-news/deepseek-raises-api-pricing-for-its-v4-models-4857662"
+          "name": "CoinDesk on the meeting notice",
+          "url": "https://www.coindesk.com/policy/2026/08/11/u-s-sec-sets-meeting-to-propose-reg-crypto-to-support-certain-digital-assets-offerings"
         },
         {
-          "name": "Fortune, price increase confirmation",
-          "url": "https://fortune.com/2026/08/13/deepseek-increases-prices-for-ai-services-by-multiple-times/"
+          "name": "crypto.news, what the 400-page proposal says",
+          "url": "https://crypto.news/sec-regulation-crypto-safe-harbor-token-exemption/"
         },
         {
-          "name": "Dataconomy, the August 6 developer warning",
-          "url": "https://dataconomy.com/2026/08/06/deepseek-significant-api-price-increase-2026/"
+          "name": "crypto.news, the cancellation",
+          "url": "https://crypto.news/sec-pulled-crypto-vote-regulation-cancelled/"
         },
         {
-          "name": "VentureBeat, the GPT-5.6 Luna 80% cut",
-          "url": "https://venturebeat.com/technology/ai-price-wars-openai-cuts-gpt-5-6-luna-prices-by-80-as-model-competition-shifts-toward-cost"
+          "name": "SEC, Project Crypto (primary)",
+          "url": "https://www.sec.gov/about/sec-launches-project-crypto"
         },
         {
-          "name": "Unite.AI, tier-by-tier pricing including Opus 5",
-          "url": "https://www.unite.ai/openai-cuts-api-prices-on-its-two-cheaper-gpt-5-6-tiers/"
-        },
-        {
-          "name": "XenoSpectrum, demand versus fleet mechanics",
-          "url": "https://xenospectrum.com/en/deepseek-forced-price-hike-demand-overwhelms-20000-gpu-fleet/"
+          "name": "SEC, Atkins remarks on a token safe harbor (primary)",
+          "url": "https://www.sec.gov/newsroom/speeches-statements/atkins-remarks-regulation-crypto-assets-031726"
         }
       ],
-      "freshness": "~2 days, takes effect in 1-2 days",
-      "saturation": "medium on the price rise, low on the time-of-use framing",
+      "freshness": "~30h",
+      "saturation": "medium in crypto press, low everywhere else",
       "note": null,
       "rating": null,
       "ratingReason": null,
@@ -240,552 +240,577 @@
     {
       "id": "B1",
       "bucket": "tutorial",
-      "title": "Build a video pipeline once",
-      "hook": "I built this shot once. Then I made forty more without touching it again.",
+      "title": "An agent driving your real browser",
+      "hook": "This isn't a screenshot. That's my real Chrome, logged into my real account, and I'm not touching it.",
       "why": null,
       "beats": [
         {
           "t": "0-3s",
-          "text": "Ten finished clips in a grid. They all match."
+          "text": "Chrome moving by itself, no narration."
         },
         {
           "t": "3-15s",
-          "text": "Back to one node graph. This is the entire thing."
+          "text": "`uv add browser-use`, then `browser-use skill install`. Two commands, no keys."
         },
         {
           "t": "15-35s",
-          "text": "Build it live: extract, mask, colour match, image-to-video. Every layer stays editable, unlike a single text prompt."
+          "text": "Point it at your existing Chrome profile so it inherits your logins, then give it one sentence of instruction."
         },
         {
           "t": "35-60s",
-          "text": "Swap the input, run again. The pipeline is the asset, not the output."
+          "text": "The honest part: this thing can act as you. Separate profile, read-only tasks, and never leave it running unattended."
         }
       ],
       "material": [
-        "Figma Weave is a node-based creative canvas, formerly the standalone product Weavy, now a Figma product with separate billing (Figma, help.weavy.ai).",
-        "Billing separation, exact: Weave credits and Figma credits do not transfer in either direction, and a paid Figma plan does not include Weave (help.weavy.ai).",
-        "Free tier: 150 credits per month, capped at 5 workflows (help.weavy.ai, scopeful).",
-        "Starter: $24/month for 1,500 credits with unlimited workflow creation (help.weavy.ai).",
-        "Team tier is quoted at both $48 and $60 per user per month for 4,500 credits across different trackers — check the live pricing page on camera rather than stating it (help.weavy.ai vs scopeful).",
-        "Credit burn rate: roughly 0.39 credits per second of GPU workflow time, about 23 credits per minute, about 1,400 per hour (scopeful).",
-        "That makes the free tier about 6.4 minutes of generation per month. This is the single most important practical number in the video.",
-        "Top-ups run about $10 per 1,000-1,200 credits depending on plan (scopeful).",
-        "Weave tools inside Figma Design are currently free during open beta for paid Figma subscribers — Professional, Organization and Enterprise (search summary of Figma docs). Worth saying on screen that beta pricing does not last.",
-        "Video models available as nodes include Kling, Veo, Seedance, Runway Gen, Wan, Luma Ray and LTX (scopeful, everydev).",
-        "Clip length is capped around 12 seconds per generation (scopeful). Plan the demo around that — it rules out \"generate a whole scene\" and pushes toward the batch-of-shots framing this video uses.",
-        "Different models cost different credit amounts per generation; Flux is cheaper than Veo 3 (scopeful). Pick the cheap model for the on-camera build and say why.",
-        "The node graph exposes compositing steps individually — extraction, masking, colour matching, blending — rather than hiding them behind one prompt (Figma).",
-        "Workflows are saveable and re-runnable against different inputs, which is the actual feature this video is about (Figma).",
-        "Counter-argument to have ready: node-based AI canvases are not new — ComfyUI has done this free and open-source for years, and someone will say so in the first comment. The honest answer is that Weave's differentiator is the hosted model access and the Figma integration, not the node paradigm. Address it in the video rather than being corrected.",
-        "Second caveat: the free tier caps output count, resolution or commercial use depending on the plan, so anything filmed on free credits may not be licensed for a monetised video. Check before publishing."
+        "browser-use has 109.3k stars on GitHub as of August 2026 (repository page).",
+        "Latest release is 0.13.6, published July 17, 2026 (GitHub releases).",
+        "Install with `uv add browser-use` or `pip install browser-use`; requires Python 3.11 or newer, with 3.12 recommended for the agent integration.",
+        "`browser-use skill install` registers it as a skill and connects it to your browser (browser-use docs).",
+        "The \"Using real browser profiles\" path reuses your existing Chrome profile with saved logins, so the agent never has to handle a password (browser-use docs).",
+        "For remote browsers you install `profile-use` from the official releases and follow the profile sync guide (browser-use docs).",
+        "Supported model providers: ChatBrowserUse (their browser-tuned model), OpenAI, Anthropic, Google, local models via Ollama, plus custom providers (browser-use docs).",
+        "Documented limitation, verbatim from the repo: \"Chrome can consume a lot of memory, and running many agents in parallel can be tricky to manage.\"",
+        "The open-source version is free; CAPTCHA handling, proxy rotation and stealth are cloud-only features, which is the upsell (browser-use docs).",
+        "Vendor-reported and worth flagging as such on screen: a custom Chromium fork with OS-level stealth patches, an 81% success rate on stealth benchmarks, and bypasses of Cloudflare, Akamai and DataDome.",
+        "Sibling repos in the same org if she wants a GUI: browser-use/desktop (a desktop app) and browser-use/web-ui (runs the agent in a browser tab).",
+        "The alternative worth naming for one line of comparison: Playwright MCP, installed with `claude mcp add playwright npx @playwright/mcp@latest`, 36.2k stars, Node.js 18 or newer.",
+        "Playwright MCP drives the accessibility tree rather than pixels, so it needs no vision model — a genuinely different design from Browser Use (Playwright MCP README).",
+        "Playwright MCP's own README carries the warning: \"Playwright MCP is not a security boundary.\"",
+        "Playwright MCP's Docker image only supports headless Chromium, and persistent profiles can only be used by one browser instance at a time — concurrent clients sharing a workspace will conflict (README).",
+        "The tool she should not use: XActions, the X automation toolkit with 449 stars, has an open issue from July 11, 2026 reporting that `npm install` fails on latest main with ETARGET, plus a CLI crash on load and an authentication path that never auto-logs-in. Eight open issues, several of them blocking basic startup. Mention only as a contrast if useful."
       ],
       "sources": [
         {
-          "name": "Figma, node-based AI video compositing",
-          "url": "https://www.figma.com/solutions/ai-video-compositing/"
+          "name": "browser-use repository (primary)",
+          "url": "https://github.com/browser-use/browser-use"
         },
         {
-          "name": "Weave subscription plans and credit caps",
-          "url": "https://help.weavy.ai/en/articles/12267070-figma-weave-s-subscription-plans"
+          "name": "browser-use docs (primary)",
+          "url": "https://docs.browser-use.com/open-source/introduction"
         },
         {
-          "name": "Weave pricing page",
-          "url": "https://weave.figma.com/pricing"
+          "name": "browser-use releases (primary)",
+          "url": "https://github.com/browser-use/browser-use/releases"
         },
         {
-          "name": "Scopeful, credit burn rates and model list",
-          "url": "https://www.scopeful.org/tools/figma-weave"
+          "name": "Playwright MCP repository (primary)",
+          "url": "https://github.com/microsoft/playwright-mcp"
+        },
+        {
+          "name": "XActions repository and issues (primary)",
+          "url": "https://github.com/nirholas/XActions/issues"
         }
       ],
-      "freshness": "current, open beta",
-      "saturation": "low — plenty of \"look, AI video,\" almost nothing on reusable pipelines",
+      "freshness": "current",
+      "saturation": "medium — plenty of Browser Use demos, almost none using your own logged-in profile as a feed reader",
       "note": null,
       "rating": null,
       "ratingReason": null,
       "extra": {
-        "What you build": "A reusable node graph in Figma Weave that takes a still image and runs it through the same extract, mask, colour-match and animate chain every time — then you drop in ten different images and get ten consistent clips out.",
-        "Time to build": "30-40 minutes for the first graph, seconds per asset after that",
-        "The money shot": "The graph itself, running. Every compositing step is a visible node, so you can pull one out on camera and watch the output change — then the batch: the same pipeline chewing through a folder of stills and producing clips that actually match each other. Consistency at volume is what AI video is worst at, so showing it is the whole video.",
-        "Gotchas": "Weave bills separately from Figma — credits do not transfer in either direction and a paid Figma plan does not include Weave. Budget the credits before filming: GPU workflow time runs about 0.39 credits per second, so the free tier's 150 monthly credits is roughly six minutes of generation. Film the build in one take."
+        "What you build": "Browser Use installed as a Claude Code skill, pointed at your actual logged-in Chrome profile, so an agent can scroll X, read your feed and pull out what matters without a single API key.",
+        "Time to build": "20-30 minutes, most of it profile setup",
+        "The money shot": "Full-screen recording of Chrome opening X on its own, scrolling the timeline, and a terminal beside it filling with structured output — the ten things worth reading, with links. The reason it lands is that there is no API, no developer account, no scraping proxy. It is your browser, doing what you would have done, at 3am.",
+        "Gotchas": "It runs as you. On your logged-in profile it can post, DM and delete — film with a separate Chrome profile. The bill is LLM tokens, not the library: a long browsing session is a lot of screenshots and accessibility snapshots. And automated interaction with X can get an account restricted, so keep the demo read-only."
       }
     },
     {
       "id": "B2",
       "bucket": "tutorial",
-      "title": "An agent that reads X",
-      "hook": "No API key. No login. Watch it pull a profile in about four seconds.",
+      "title": "One prompt scrapes thirty websites",
+      "hook": "I gave it one sentence and thirty URLs. It came back with a finished spreadsheet.",
       "why": null,
       "beats": [
         {
           "t": "0-3s",
-          "text": "One command in a bare terminal. Real data comes back."
+          "text": "The finished table, then cut back to the one line that made it."
         },
         {
           "t": "3-15s",
-          "text": "Add it to Claude as an MCP server. Four lines of config."
+          "text": "POST to `/v2/agent` with `prompt`, `urls` and `schema`. That is the whole integration."
         },
         {
           "t": "15-35s",
-          "text": "Ask for something a human would hate doing: read these fifteen accounts, tell me what is actually new."
+          "text": "Why it beats a scraper: no site-specific parser to break when someone redesigns their pricing page."
         },
         {
           "t": "35-60s",
-          "text": "The honest boundary — this is for reading, not auto-posting. Say why you are not showing the follow bots."
+          "text": "The cost trap: set `maxCredits` yourself, because the default is 2,500 and failures still bill."
         }
       ],
       "material": [
-        "Repo: github.com/nirholas/XActions, 449 stars at time of checking (opened directly).",
-        "Last commits August 4, 2026 — actively developed (commit history, opened directly).",
-        "Recent commit titles include \"feat(cli): group 53 commands by task, add quickstart and shell completions\" and \"feat(report): account analytics and a plain-English query translator, on CLI and MCP\" (commit history).",
-        "July 21, 2026 commit: \"Add 40 browser tools; Command Center now covers 108 across 11 categories\" (commit history).",
-        "The README claims 145 MCP tools and 53 CLI commands (repo).",
-        "Stated positioning, verbatim from the README: \"No API keys. No monthly fees. 100% open source.\"",
-        "The 30-second demo in the README is `npx xactions profile nasa`, which returns real profile data with, in the repo's words, \"No API key. No account. No browser.\"",
-        "MCP config for Claude Desktop, exact, goes in `claude_desktop_config.json`: server name `xactions`, command `npx`, args `[\"-y\", \"xactions-mcp\"]` (repo).",
-        "Most read functions work unauthenticated; logging in unlocks search, followers and DMs (repo).",
-        "8 open issues and 8 open pull requests at time of checking (issues tab, opened directly).",
-        "Open issue categories: 5 bug reports, 2 enhancement requests, 1 general (issues tab).",
-        "Specific open bugs worth knowing before filming: npm install failing on latest main with ETARGET; missing `search.js` and `parsers.js` in the package distribution causing startup failures; an \"await in non-async SIGINT handler\" crash in the CLI; `ensureBrowser()` failing to auto-login so search and analysis silently return empty; a Blocknative API shutdown requiring migration (issues tab).",
-        "The repo also ships engagement automation — follow bots, auto-like, auto-comment, unfollow-non-followers (repo description). These are against X's rules and will get an account actioned.",
-        "Counter-argument to have ready: \"this is a scraper, X will block it or sue.\" Both are live risks — unauthenticated scraping is fragile by construction and terms-of-service exposure is real. The defensible framing is a research and reading tool you run for yourself, and saying so up front is better than being told.",
-        "Second caveat: a tool with 145 tools and 8 open bugs is not a stable dependency. Frame the video as \"here is what this can do today,\" not \"build your workflow on this.\"",
-        "Practical note for the shoot: the no-auth demo is the strongest 10 seconds you have, and it is also the part most likely to break between filming and publishing. Record it last and re-record it the morning you post."
+        "The endpoint is `POST https://api.firecrawl.dev/v2/agent`, using bearer token authentication (Firecrawl API reference).",
+        "`prompt` is the only required parameter, capped at 10,000 characters — the documented example is \"extract all pricing tiers from this page.\"",
+        "Optional `urls` constrains the agent to an array of pages; `strictConstrainToURLs` forces it to stay on exactly those URLs.",
+        "Optional `schema` takes a JSON schema, which is what turns the output from prose into a table.",
+        "Two models: `spark-1-mini`, the default and about 60% cheaper, and `spark-1-pro` for higher accuracy.",
+        "`maxCredits` sets a spend limit and defaults to 2,500 if you leave it out; values above 2,500 are always billed as paid requests (Firecrawl API reference).",
+        "`threatProtection` adds 2 credits per URL scanned.",
+        "The old `/extract` endpoint is deprecated in favour of `/agent` — anything written against `/extract` needs migrating (Firecrawl changelog).",
+        "Free tier: 1,000 credits per month, renewing monthly, with 2 concurrent requests.",
+        "Paid tiers billed yearly: Hobby $16/mo for 5,000 credits, Standard $83/mo for 100,000, Growth $333/mo for 500,000, Scale $599/mo for 1,000,000.",
+        "Per-endpoint pricing: Scrape, Crawl, Map and Monitor cost 1 credit per page; Search costs 2 per 10 results; Interact costs 2 per browser minute; Stealth Mode costs 5 per page.",
+        "Credits do not roll over — unused credits are forfeited at the end of each billing cycle.",
+        "Agent requests are billed even on failure, which is the line that belongs on screen.",
+        "New in 2026: `GET /v2/team/activity` lists recent scrape, crawl and extract jobs from the last 24 hours, up to 100 per page, filterable by endpoint type.",
+        "Breaking rename to warn about: `persistentSession` became `profile` on browser and interact requests, and `writeMode` became `saveChanges` — old scripts fail silently on the old names (Firecrawl changelog).",
+        "Also added in 2026: `regexOnFullURL` on crawl requests, which applies includePaths and excludePaths against the full URL including query parameters, and `deduplicateSimilarURLs`.",
+        "Official SDKs now include Ruby alongside JavaScript, Python, Java and Elixir."
       ],
       "sources": [
         {
-          "name": "XActions repo, README, MCP config and demo command",
-          "url": "https://github.com/nirholas/XActions"
+          "name": "Firecrawl /agent API reference (primary)",
+          "url": "https://docs.firecrawl.dev/api-reference/endpoint/agent"
         },
         {
-          "name": "XActions open issues",
-          "url": "https://github.com/nirholas/XActions/issues"
+          "name": "Firecrawl releases and changelog (primary)",
+          "url": "https://github.com/firecrawl/firecrawl/releases"
+        },
+        {
+          "name": "Firecrawl pricing teardown",
+          "url": "https://dev.to/beton/firecrawl-pricing-teardown-2026-2eh8"
+        },
+        {
+          "name": "eesel AI, pricing analysis and gotchas",
+          "url": "https://www.eesel.ai/blog/firecrawl-pricing"
         }
       ],
-      "freshness": "current, commits through Aug 4",
-      "saturation": "low",
+      "freshness": "current",
+      "saturation": "low — Firecrawl is well covered, the `/agent` endpoint replacing `/extract` is barely covered at all",
       "note": null,
       "rating": null,
       "ratingReason": null,
       "extra": {
-        "What you build": "XActions wired into Claude as an MCP server, so an agent can read X — profiles, timelines, search — and hand you a written brief instead of you scrolling for forty minutes.",
+        "What you build": "A single Firecrawl `/agent` call that takes one English sentence and a JSON schema and returns a filled table from thirty competitor sites — no selectors, no per-site parser, no maintenance.",
         "Time to build": "15 minutes",
-        "The money shot": "Open with the proof, on camera, before any setup: `npx xactions profile nasa` and real data comes back with no account, no key, no browser. Then the payoff — the agent reads a list of accounts and writes you a morning brief, shown next to the raw timeline it replaced.",
-        "Gotchas": "Install from npm, not from main — there are open issues reporting `npm install` failing on latest main with ETARGET for unresolved dependency versions, and missing `search.js` / `parsers.js` files causing startup failures. Anything needing login (search, followers, DMs) goes through `ensureBrowser()`, which has an open issue where auto-login fails and dependent features silently return empty rather than erroring. Budget for that on camera."
+        "The money shot": "Split screen. Left: one line of code containing a plain English sentence and a schema. Right: a table filling in, row by row, with pricing tiers pulled from thirty different sites that share no HTML in common. The payoff is the absence of work — no CSS selectors anywhere on screen.",
+        "Gotchas": "1,000 free credits a month and they do not roll over. Agent requests are billed even when they fail. `maxCredits` silently defaults to 2,500, and anything above 2,500 is always billed as a paid request — set it explicitly before you run anything wide."
       }
     },
     {
       "id": "B3",
       "bucket": "tutorial",
-      "title": "Memory your coding agent can't fake",
-      "hook": "I renamed a function last week. Watch my agent confidently tell me the old name.",
+      "title": "Twenty Claude agents at once",
+      "hook": "Twenty of them. Working at the same time. On one instruction.",
       "why": null,
       "beats": [
         {
           "t": "0-3s",
-          "text": "The wrong answer, delivered confidently."
+          "text": "The tree, filling in."
         },
         {
           "t": "3-15s",
-          "text": "Why: agent memory is usually a text file that nothing ever re-checks."
+          "text": "A subagent is a Markdown file with YAML frontmatter in `.claude/agents/`. Two required fields."
         },
         {
           "t": "15-35s",
-          "text": "One install command. It builds a code graph and wires itself into the agent."
+          "text": "`model` and `effort` per agent: cheap fast ones for mechanical work, expensive ones for the judgment calls, in the same fleet."
         },
         {
           "t": "35-60s",
-          "text": "Same question, correct answer. Then the team part: it is committed to the repo, so it travels through git."
+          "text": "The limits nobody reads: 20 concurrent by default, 3 layers of nesting, and nested results never surface."
         }
       ],
       "material": [
-        "Repo: github.com/kage-core/Kage, 32 stars, 766 commits on master (opened directly).",
-        "Install command, exact: `npx -y @kage-core/kage-graph-mcp install` (README).",
-        "Requires Node.js 18+. No account, no API key, no database (README).",
-        "License is GPL-3.0-only; the README notes earlier releases were MIT (repo).",
-        "What the installer does: creates directories, builds a code graph, configures agent policies, auto-detects compatible agents and sets up git integration (README).",
-        "Memories are stored as plain Markdown concept files in your repo, in Google's Open Knowledge Format (OKF), readable by any OKF consumer (README).",
-        "The differentiating claim: every memory is validated against the actual code before being served, so stale or hallucinated facts are not recalled (README, kage-core.com).",
-        "README metrics, all self-reported: 96% R@5 recall, 0% stale served, 18% faster than grep, 0 dependencies, 340+ tests passing, 15 agents supported. Treat these as vendor claims on camera — the \"0% stale served\" number is exactly what your trap demo is testing, which is why the demo is worth more than the metric.",
-        "Supported clients listed: Claude Code, Codex, Cursor, Windsurf, Gemini CLI, Cline, Goose, Roo Code and other MCP clients (README).",
-        "The README's visual is an animated GIF of a \"kage viewer\" dashboard showing a team's captured decisions, runbooks and bug fixes mapped to the code they are grounded in (repo).",
-        "6 open issues at time of checking. They are mostly feature requests and polish — a proposed new scan finding type, light-mode and compact SVG scorecard variants, stale README sections, better error messages for common failure paths, a translation request, and a Kage Cloud waitlist thread (issues tab, opened directly). Notably, no open issue reports the install being broken.",
-        "Kage Cloud offers memory across machines behind one private MCP link and is waitlisted (kage-core.com).",
-        "Counter-argument to have ready: the agent-memory category is crowded and mostly undifferentiated — agent-memory, memory-mcp, ai-memory, codebase-memory-mcp, agentmemory all exist and several have more stars. The honest differentiator is verification against code, not persistence, and the video should be built on that one claim rather than on \"agent memory is useful.\"",
-        "Second caveat, and be fair about it: 32 stars is small. Do not present this as adopted. Present it as early and testable, and let the trap demo carry the argument.",
-        "Third: GPL-3.0 on something that writes files into your repo deserves a sentence on camera for anyone working in a commercial codebase."
+        "Subagents are Markdown files with YAML frontmatter; the frontmatter is configuration and the Markdown body becomes the agent's system prompt (Claude Code documentation).",
+        "Project subagents live in `.claude/agents/` and are meant to be checked into version control; personal ones live in `~/.claude/agents/`. Both directories are scanned recursively.",
+        "Resolution priority, highest to lowest: managed settings, the `--agents` CLI flag, `.claude/agents/`, `~/.claude/agents/`, then plugin `agents/` directories.",
+        "Only two frontmatter fields are required: `name` (lowercase letters and hyphens, used as the agent type when delegating) and `description` (when Claude should delegate to it).",
+        "Optional fields: `tools`, `disallowedTools`, `model`, `permissionMode`, `maxTurns`, `skills`, `mcpServers`, `hooks`, `memory`, `background`, `effort`, `isolation`, `color`, `initialPrompt`.",
+        "`model` accepts `sonnet`, `opus`, `haiku`, `fable`, a full model ID, or `inherit` — and `inherit` is the default.",
+        "`effort` accepts `low`, `medium`, `high`, `xhigh` or `max`, so a single fleet can mix cheap mechanical workers with expensive reasoners.",
+        "`disallowedTools` is applied before `tools`, so a denylist beats an allowlist when both are present.",
+        "`isolation: worktree` runs an agent in its own git worktree — the fix for parallel agents editing the same files.",
+        "The default concurrency cap is 20 concurrent subagents; going over fails with \"Concurrent subagent limit reached,\" and the documentation notes the error prevents retries.",
+        "The cap is raised with the `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` environment variable, set to any positive whole number.",
+        "Default nesting depth is 3 layers below the main conversation. At the limit Claude Code withholds the Agent tool so the deepest agents do the work themselves and return one summary.",
+        "Set `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` to 1 to disable nesting entirely.",
+        "The surprise worth filming: nested subagent results never reach the main conversation — only the top-level summary does (Claude Code documentation).",
+        "To stop a specific agent from spawning others, omit `Agent` from its `tools` or add it to `disallowedTools`.",
+        "The subagent panel below the prompt input renders the fleet as a tree, and rows with descendants are marked with a `(+N)` count you can expand.",
+        "The honest cost line: each subagent carries its own context window, so a twenty-agent fan-out is roughly twenty times the token spend of doing it once."
       ],
       "sources": [
         {
-          "name": "Kage repo and README",
-          "url": "https://github.com/kage-core/Kage"
+          "name": "Claude Code subagents documentation (primary)",
+          "url": "https://code.claude.com/docs/en/sub-agents"
         },
         {
-          "name": "Kage open issues",
-          "url": "https://github.com/kage-core/Kage/issues"
+          "name": "Claude Code subagents production playbook",
+          "url": "https://www.totalum.app/blog/claude-code-subagents-totalum"
         },
         {
-          "name": "Project site",
-          "url": "https://kage-core.com/"
+          "name": "Claude Code skills, hooks and subagents compared",
+          "url": "https://www.totalum.app/blog/claude-code-skills-totalum"
         }
       ],
       "freshness": "current",
-      "saturation": "very low — genuinely uncovered",
+      "saturation": "low — written about in text, almost never filmed, and the tree view is the reason to film it",
       "note": null,
       "rating": null,
       "ratingReason": null,
       "extra": {
-        "What you build": "Kage — persistent memory for a coding agent that lives in your repo as plain Markdown and gets checked against the actual code before it is ever served back.",
-        "Time to build": "20 minutes, one command",
-        "The money shot": "Set a trap and spring it. Rename something, let the agent's memory file go stale, then ask about it — it answers confidently and wrongly. Install Kage, ask again, and the stale memory does not come back, because it was validated against the code and failed. Most memory tools cannot show you this demo because they cannot detect the staleness in the first place.",
-        "Gotchas": "Early-stage — 32 stars, though 766 commits and a claimed 340+ tests behind it, so it is real work rather than a weekend wrapper. GPL-3.0-only, which matters if you are putting it in a commercial repo; earlier releases were MIT and that change is worth mentioning. Kage Cloud is waitlisted, so do not build the video around it."
+        "What you build": "A fleet of custom subagents in `.claude/agents/`, each a Markdown file with a few lines of frontmatter, then one instruction that fans the work out across twenty of them in parallel.",
+        "Time to build": "20 minutes to a working fleet",
+        "The money shot": "The subagent tree in the panel below the prompt, twenty rows deep, statuses flipping to done out of order, then collapsing into one answer. It is the rare agent demo where the parallelism is literally visible — you can watch the work being divided.",
+        "Gotchas": "Twenty agents means roughly twenty context windows, so this is the expensive way to work — say the cost out loud. Nested subagent results never reach your main conversation, only the top-level summary does, which is the single most common surprise. And without `isolation: worktree`, parallel agents editing the same files will clobber each other."
       }
     },
     {
       "id": "C1",
       "bucket": "explainer",
-      "title": "A data center is a heater",
-      "hook": "A data center turns almost one hundred percent of its electricity into heat. The thinking is a side effect.",
+      "title": "Why models cannot count letters",
+      "hook": "Everyone tells you the model can't see the letters. It can see them. It just can't keep count.",
       "why": null,
       "beats": [
         {
           "t": "0-3s",
-          "text": "The claim, flat."
+          "text": "\"It can see the letters. It can't keep count.\""
         },
         {
           "t": "3-15s",
-          "text": "Follow one watt in. Show where it can possibly go. There is nowhere else."
+          "text": "The popular answer: tokenization chops the word into chunks. The paper's finding: word and token frequency don't significantly predict the errors."
         },
         {
           "t": "15-35s",
-          "text": "So cooling is not a tax on the power bill, it is the second half of the same watt. That is why siting is about water and air, not land."
+          "text": "What does predict them: repeated letters. Most models tested could not correctly count words where a letter appears more than twice."
         },
         {
           "t": "35-60s",
-          "text": "Pairs to the news: this is what the grid operators are arguing about on Monday."
+          "text": "Which is why reasoning models get it right now — not better tokenization, just somewhere to write the tally down."
         }
       ],
       "material": [
-        "The core physical claim: almost all electrical energy consumed in a data center is released as heat, via resistance in circuits and other dissipative processes (IEEE, \"Thermodynamics of information technology data centers\").",
-        "Consequence, stated in the same literature: because nearly all input energy becomes heat, cooling energy is a major fraction of total data center energy consumption.",
-        "PUE — Power Usage Effectiveness — is total facility energy divided by IT equipment energy. A PUE of 1.0 would mean zero overhead.",
-        "Efficient facilities today run PUE between 1.2 and 1.4 depending on location, cooling design and heat reuse (Score Group).",
-        "State-of-the-art liquid-cooled deployments are quoted at PUE 1.03-1.08 for NVIDIA H100/Blackwell thermal management (industry analysis) — attribute this one, it is a best-case vendor-adjacent figure, not a fleet average.",
-        "Liquid-cooled Blackwell racks operate at 120-150 kW per rack, with coolant exit temperatures of 55-65°C (industry analysis). For scale: a domestic electric shower is about 10 kW, so one rack is roughly a dozen showers running continuously.",
-        "Those exit temperatures are directly injectable into 4th-generation district heating networks without industrial heat pumps — which is why heat reuse suddenly became practical rather than theoretical.",
-        "Regulation making this concrete: newly built data centers in Germany face a waste-heat reuse obligation from July 1, 2026, though the required share is only 10-20%. Germany's Energy Reuse Factor mandate requires 10% ERF from July 2026 (velasolaris, techplustrends).",
-        "Reported economics of heat reuse: on the order of €62,000+ per MW per year (techplustrends). Single-source figure — attribute or omit.",
-        "Stockholm and Helsinki are the standing examples of data centers feeding municipal district heating networks (multiple).",
-        "The physics floor for the \"where it breaks\" beat: Landauer's principle sets the minimum energy to erase one bit at kT·ln2, which is about 3 × 10⁻²¹ joules at room temperature. Real processors operate many orders of magnitude above this. State it as \"roughly a billion times\" rather than giving a false-precision multiplier.",
-        "Counter-argument to have ready: \"almost 100%\" is doing real work in that sentence and a physicist will poke it. Small amounts of energy genuinely leave as light down fibre, as electromagnetic radiation, and as chemical change in batteries. The figure is a very good approximation, not an identity — say \"essentially all,\" not \"exactly all.\"",
-        "Second counter-argument: someone will say PUE proves cooling is only 20-40% overhead, not \"the same watt twice.\" They are right about the arithmetic and it does not damage the point — PUE measures the extra energy to move the heat, while the claim here is about where the IT energy itself ends up. Keep the two separate on camera.",
-        "Connection to A2: this is why the FERC fight is about siting near water and generation rather than near users. The constraint is thermal, not computational."
+        "The paper is \"Why Do Large Language Models (LLMs) Struggle to Count Letters?\" by Tairan Fu, Raquel Ferrando, Javier Conde, Carlos Arriaga and Pedro Reviriego, arXiv:2412.18626, submitted December 19, 2024.",
+        "Finding one, verbatim from the abstract: \"models are capable of recognizing the letters but not counting them.\"",
+        "Finding two, verbatim: \"the frequency of the word and tokens in the word does not have a significant impact on the LLM errors.\"",
+        "Finding three, verbatim: \"there is a positive correlation of letter frequency with errors, more frequent letters tend to have more counting errors.\"",
+        "Finding four: errors correlate strongly with the number of letters or tokens in a word.",
+        "Finding five, the strongest predictor, verbatim: \"the strongest correlation occurs with the number of letters with counts larger than one, with most models being unable to correctly count words in which letters appear more than twice.\"",
+        "The paper explicitly lists the three explanations that were already circulating — tokenization, limits of the attention mechanism, and lack of character-level training data — and tests against frequency and complexity instead.",
+        "The load-bearing logical move for the video: if tokenization were the whole story, rare words with unusual token splits would fail more often. They do not.",
+        "The popular version being corrected: byte-pair encoding groups characters into tokens, creating a mismatch between the unit being counted (letters) and the unit being processed (BPE tokens).",
+        "A companion paper worth citing for the tokenization half of the story: \"Counting Ability of Large Language Models and Impact of Tokenization,\" arXiv:2410.19730.",
+        "Andrew Marble's sharper version of the objection: an LLM has no mechanism to count anything — it is picking the next token — so blaming tokenization was always a category error, since it implies the model would count correctly if only it could see.",
+        "The on-camera test that actually reproduces the finding: ask for a letter appearing three or more times. \"Mississippi,\" \"possessions,\" \"bookkeeper\" — not \"strawberry,\" which most current models now handle.",
+        "The honest caveat, which belongs in the video: the paper is from December 2024 and model behaviour on this specific task has improved a lot since. What survives is the mechanism, not the failure rate.",
+        "Why it improved: chain-of-thought training, process supervision and code-tool integration, all of which give the model intermediate tokens to work in rather than forcing the answer out in one shot.",
+        "The generalizable point: when a model spends all its compute producing a single token, there is no room for an intermediate result. Reasoning models are, mechanically, models that have been given room.",
+        "The thing that makes this satisfying rather than pedantic: the correction is a correction of a correction. The pop explanation replaced \"it's dumb\" with \"it's tokenization,\" and the research replaced that with \"it has no scratch paper.\""
       ],
       "sources": [
         {
-          "name": "IEEE, thermodynamics of IT data centers",
-          "url": "https://ieeexplore.ieee.org/document/5429022/"
+          "name": "Fu et al., Why Do LLMs Struggle to Count Letters?, arXiv:2412.18626 (primary)",
+          "url": "https://arxiv.org/abs/2412.18626"
         },
         {
-          "name": "Score Group, PUE in 2026",
-          "url": "https://www.score-grp.com/en/post/data-center-pue-in-2026-understanding-measuring-and-improving-power-usage-effectiveness"
+          "name": "Counting Ability of Large Language Models and Impact of Tokenization, arXiv:2410.19730 (primary)",
+          "url": "https://arxiv.org/pdf/2410.19730"
         },
         {
-          "name": "Velasolaris, heat reuse regulatory requirements including the German mandate",
-          "url": "https://www.velasolaris.com/en/data-center-heat-reuse/"
+          "name": "Andrew Marble, Counting Letters With LLMs",
+          "url": "https://www.marble.onl/posts/counting_letters.html"
         },
         {
-          "name": "TechRadar, the AI heat trap",
-          "url": "https://www.techradar.com/pro/the-ai-heat-trap-why-data-centers-must-rethink-thermodynamics"
+          "name": "VentureBeat on the strawberry problem",
+          "url": "https://venturebeat.com/ai/the-strawberrry-problem-how-to-overcome-ais-limitations"
         }
       ],
-      "freshness": "evergreen, with a live regulatory hook",
-      "saturation": "low",
+      "freshness": "evergreen",
+      "saturation": "high for the strawberry question, low for the finding that the standard explanation is wrong",
       "note": null,
       "rating": null,
       "ratingReason": null,
       "extra": {
-        "The misconception": "That a data center uses electricity to do computing, and cooling is an unfortunate cost on top. It is closer to the reverse: essentially all the electricity becomes heat, and the computing is something that happens on the way.",
-        "The analogy": "An electric space heater is 100% efficient by definition — every watt in becomes a watt of heat out. A data center is the same device with better manners. Nothing leaves the building as \"computation\"; a rounding error leaves as light down a fibre. The rest leaves as warm air, which is why cooling is not overhead sitting beside the power bill — it is the same watt showing up on the bill a second time.",
-        "Where the analogy breaks": "It does not mean computing is wasteful. The physical floor for erasing one bit is real but sits roughly a billion times below what actual chips use, so thermodynamics is not the binding constraint — engineering is. And the heat is not always wasted: some sites now sell it into district heating, which is the one case where the space-heater framing becomes literally the business model.",
-        "Pairs with": "A2 — film them back to back."
+        "The misconception": "That an LLM gets \"strawberry\" wrong because tokenization hides the letters from it — it sees [\"straw\", \"berry\"] and never sees the r's. That explanation is everywhere, and it is not what the research found.",
+        "The analogy": "Someone reading a list of names aloud to you while you have no pen and no fingers to raise. You can hear every name perfectly. Ask how many times \"Anna\" came up and you are guessing, because hearing and tallying are different jobs and you were only given the first one.",
+        "Where the analogy breaks": "A person can close their eyes and count internally; a model producing one token has nowhere to put a running total. Which is why chain-of-thought fixes it — spelling the word out one letter per token gives the model the pen. The fix was never better eyesight, it was scratch paper."
       }
     },
     {
       "id": "C2",
       "bucket": "explainer",
-      "title": "Why long chats get expensive",
-      "hook": null,
+      "title": "The dollar that keeps your interest",
+      "hook": "Every dollar you hold in a stablecoin earns about four percent. Not for you.",
       "why": null,
       "beats": [
         {
           "t": "0-3s",
-          "text": "The reframe: it re-reads everything, every time."
+          "text": "The four percent line, then silence."
         },
         {
           "t": "3-15s",
-          "text": "The handshake table. Draw it growing."
+          "text": "It is written into law: the GENIUS Act bars issuers from paying holders any interest or yield."
         },
         {
           "t": "15-35s",
-          "text": "Why you feel it: the long thread that got slow, the bill that grew faster than the transcript."
+          "text": "The scale: 95% of Circle's revenue last quarter was interest on the reserves. Tether made over $10 billion in 2025."
         },
         {
           "t": "35-60s",
-          "text": "Then the honest correction — caching. And why it matters this week, with compute scarcity showing up directly in prices."
+          "text": "The loophole: the statute binds issuers, not exchanges. The OCC has proposed closing it."
         }
       ],
       "material": [
-        "Attention cost in the prefill stage scales quadratically with input length (FastKV, arXiv 2502.01068, and the broader long-context literature).",
-        "Concrete scale figure: processing 1 million tokens requires roughly 250x the attention computation of a 4,000-token context (Introl long-context analysis). Note this is 250x, not 62,500x — the quadratic term is on attention specifically, not on total model FLOPs, which is exactly the nuance most explainers get wrong.",
-        "The KV cache stores key and value vectors from all previous tokens and reuses them, making generation incremental. Memory then grows linearly with sequence length and batch size (multiple).",
-        "Reported KV cache memory cost: on the order of 0.3125 MB of VRAM per token in typical configurations (InventiveHQ). Attribute — it is highly configuration-dependent.",
-        "The scale that makes it vivid: past roughly 128K tokens on a 70B model, the KV cache becomes larger than the model weights themselves (DigitalOcean).",
-        "Prompt caching pricing, Anthropic: cache reads billed at 0.10x the base input rate, a 90% discount. Cache writes are billed at 1.25x base for a 5-minute TTL and 2.0x for a 1-hour TTL (Tokonomics, OpenRouter docs summary).",
-        "Worked example to use on screen: Claude Sonnet 4.6 input at $3.00 per million drops to $0.30 per million on a cache read.",
-        "Cache entries require an explicit `cache_control: ephemeral` marker and a minimum of about 1,024 tokens for most models — caching is opt-in, not automatic, which is why many people never see the discount.",
-        "OpenAI's cached input discount has historically been 50%, though newest flagships are now also billing cached reads at 10% of standard input (multiple, and the figure differs by model — check the live pricing page before quoting).",
-        "The quotable line for the caching beat: prefix caching \"is the only optimization on this list that gets cheaper the longer the context\" (industry guide).",
-        "Counter-argument to have ready, and it is the strong one: modern serving means users rarely pay the raw quadratic cost. With KV caching, generating each new token is linear in context length, and the quadratic appears in total prefill work, not in the per-token experience. If the video says \"your chat costs grow quadratically\" without qualification, someone who serves models for a living will correct it, and they will be right.",
-        "Second counter-argument: linear-attention and state-space architectures exist specifically to remove the quadratic term. The claim is about the dominant transformer architecture, not about all sequence models.",
-        "Third: on a hosted API, the user-visible cost driver is usually that the whole conversation is re-sent and re-billed as input each turn — which is linear per turn and quadratic across the conversation. That is the version most viewers actually experience, and it is worth being the one you lead with, because it is both true and felt.",
-        "Connection to A3: this is the machinery underneath DeepSeek's cache-miss pricing. It charges more for exactly the traffic that cannot reuse a cache."
+        "GENIUS Act Section 4(a)(11), verbatim: \"No permitted payment stablecoin issuer or foreign payment stablecoin issuer shall pay the holder of any payment stablecoin any form of interest or yield (whether in cash, tokens, or other consideration) solely in connection with the holding, use, or retention of such payment stablecoin.\"",
+        "The GENIUS Act was signed into law in July 2025.",
+        "Congress's stated reasoning: these are \"payment stablecoins,\" intended as a means of payment rather than a deposit substitute (Congressional Research Service, IF13174).",
+        "Circle's Q2 2026, reported August 5, 2026: total revenue and reserve income of $701 million, up 7% year over year (Circle press release).",
+        "Of that, $668 million was reserve income — about 95% of the top line is interest earned on the assets backing USDC (Circle).",
+        "USDC in circulation was $73.3 billion at quarter end, up 19% year over year; average circulation hit an all-time high of $76.5 billion in the quarter (Circle).",
+        "Circle's reserve return rate fell 66 basis points year over year — the business is a leveraged bet on short-term rates staying high (Circle).",
+        "Circle's distribution, transaction and other costs were $412 million in the quarter, up 1%, and most of it goes to distribution partners rather than to holders (Circle).",
+        "30% of USDC sat on Coinbase's platform at quarter end, with Hyperliquid at roughly 6% (Circle).",
+        "Tether reported more than $10 billion in net profit for 2025 (Tether attestation, January 2026).",
+        "Tether reported $122 billion in direct US Treasury holdings and $141 billion of total exposure including overnight reverse repo — roughly the 17th largest holder of US government debt globally as of Q1 2026 (Tether).",
+        "Tether's Q1 2026 net profit was $1.04 billion, with excess reserves at a record $8.23 billion (Tether).",
+        "Tether's reserves also included about $20 billion of physical gold and around $7 billion of bitcoin (Tether).",
+        "The loophole, stated precisely: the statute binds issuers and is silent on affiliates and third parties, so exchanges can pay rewards on balances the issuer is legally barred from paying on (Columbia Law School Blue Sky Blog).",
+        "The OCC has proposed rules extending the prohibition to affiliates and third parties, not just issuers — which would close the side door (Perkins Coie).",
+        "The strongest counter-argument: holders are being paid, just not in cash. USDC onchain transaction volume was $14.8 trillion in Q2 2026, up 151% year over year — settlement in seconds is the product, and the float is the price.",
+        "The second counter: the issuer is not getting free money. It carries redemption risk, reserve management costs and a revenue line that shrinks the moment rates fall, as Circle's 66bp decline shows."
       ],
       "sources": [
         {
-          "name": "DigitalOcean, long-context inference cost in production",
-          "url": "https://www.digitalocean.com/community/tutorials/long-context-inference-production-cost"
+          "name": "Circle Q2 2026 results (primary)",
+          "url": "https://www.circle.com/pressroom/circle-reports-second-quarter-2026-results"
         },
         {
-          "name": "FastKV, prefill and KV-cache costs",
-          "url": "https://arxiv.org/pdf/2502.01068"
+          "name": "Circle Q2 2026 release PDF (primary)",
+          "url": "https://s206.q4cdn.com/265218871/files/doc_news/2026/Aug/05/CIRCLE_Q2-2026.pdf"
         },
         {
-          "name": "Tokonomics, prompt caching multipliers for OpenAI and Anthropic",
-          "url": "https://tokonomics.ca/blog/prompt-caching-guide-openai-anthropic"
+          "name": "Tether 2025 results and Treasury exposure (primary)",
+          "url": "https://tether.io/news/tether-delivers-10b-profits-in-2025-6-3b-in-excess-reserves-and-record-141-billion-exposure-in-u-s-treasury-holdings/"
         },
         {
-          "name": "Introl, KV cache and long-context infrastructure",
-          "url": "https://introl.com/blog/kv-cache-optimization-memory-efficiency-production-llms-guide"
+          "name": "Congressional Research Service, The Stablecoin Yield Debate (primary)",
+          "url": "https://www.congress.gov/crs-product/IF13174"
+        },
+        {
+          "name": "Columbia Law School Blue Sky Blog on the interest prohibition",
+          "url": "https://clsbluesky.law.columbia.edu/2025/12/11/circle-coinbase-and-the-prohibition-on-interest-under-the-genius-act/"
+        },
+        {
+          "name": "Perkins Coie on the OCC's proposed rules",
+          "url": "https://perkinscoie.com/insights/update/stablecoin-interest-yield-and-rewards-occ-proposes-sweeping-regulations-under"
         }
       ],
       "freshness": "evergreen",
-      "saturation": "medium — widely explained, rarely with the caching correction attached, which is the part that makes it honest",
+      "saturation": "low — the profits get covered, the statutory reason they exist almost never does",
       "note": null,
       "rating": null,
       "ratingReason": null,
       "extra": {
-        "The misconception": "That a model reads your message once, the way you read a message once. It re-reads the entire conversation from the beginning to produce every single word it says back.",
-        "The analogy": "A dinner party where, before anyone can speak, every guest has to shake hands with every other guest. Ten guests is manageable. A hundred guests is not ten times worse, it is a hundred times worse — the handshakes grow with the square of the table. That is attention. Each new token consults every token before it, so the cost of a conversation grows not with its length but with the square of its length.",
-        "Where the analogy breaks": "Real systems cheat, legitimately. The key-value cache means the model does not redo every handshake for every new word — earlier work is stored and reused, pulling per-token generation cost down to linear. Prompt caching goes further and is the one optimisation that gets cheaper the longer the context runs. So the honest version is: the quadratic term is real and it is why long context was hard, but the industry has spent years building machinery specifically to avoid paying it.",
-        "Pairs with": "A3."
+        "The misconception": "That a stablecoin is a digital dollar you happen to hold on a different rail. It is closer to a gift card: you hand over a real dollar, you get a claim back, and the interest on the real dollar is now someone else's income — by federal law.",
+        "The analogy": "A gift card. You pay $100 today, the shop holds $100, and the shop earns interest on your $100 until you spend it. Nobody thinks the gift card is a scam — but nobody pretends the float belongs to the cardholder either. A stablecoin is a gift card denominated in dollars, redeemable anywhere, with the float running to hundreds of billions.",
+        "Where the analogy breaks": "A gift card is trapped at one shop; a stablecoin settles anywhere in seconds, and that convenience is genuinely what holders are being paid in. The other break: the ban applies to the issuer, not to everyone. Exchanges pay \"rewards\" on the same balances, so some holders do get the yield — through a side door Congress has not closed."
       }
     },
     {
       "id": "C3",
       "bucket": "explainer",
-      "title": "The digit that catches fraud",
-      "hook": null,
+      "title": "A data center is a heater",
+      "hook": "A one-gigawatt data center is a space heater. It's about six hundred and seventy thousand space heaters, and it also happens to do arithmetic.",
       "why": null,
       "beats": [
         {
           "t": "0-3s",
-          "text": "Fake numbers do not look random enough. That is how they get caught."
+          "text": "The space-heater count."
         },
         {
           "t": "3-15s",
-          "text": "The 30.1% / 4.6% split. Show the curve."
+          "text": "Every watt in comes out as heat. That is conservation of energy, not an engineering failure."
         },
         {
           "t": "15-35s",
-          "text": "Why it happens: percentage growth spends longer in the low digits. The 1,000-to-2,000 versus 9,000-to-10,000 image."
+          "text": "Landauer's limit: erasing one bit costs about 2.8 × 10⁻²¹ joules. A real transistor switch burns around 10⁻¹⁵. We are nowhere near the floor."
         },
         {
           "t": "35-60s",
-          "text": "Where it fails, and the live example — a bank was told this month that invoices behind its financing were not genuine."
+          "text": "So why is it hard? Not physics. PUE, the grid, and who pays for the substation."
         }
       ],
       "material": [
-        "The full first-digit distribution, for the on-screen chart: 1 at 30.1%, 2 at 17.6%, 3 at 12.5%, 4 at 9.7%, 5 at 7.9%, 6 at 6.7%, 7 at 5.8%, 8 at 5.1%, 9 at 4.6%.",
-        "The mechanism in one line: the law holds for data spanning several orders of magnitude that grows multiplicatively — the distribution is uniform in the logarithm, not in the number.",
-        "The classic fraud framing, near-verbatim from the ACFE: a fraudster submitting fake invoices will not submit them for $100 or $200, he will \"go big\" and submit for $800 or $900, and doing that enough times upsets the natural order of the digits.",
-        "Named after Frank Benford, who published in 1938, though Simon Newcomb observed the pattern in 1881 — the wrong-name detail is a nice fifteen-second aside if you need one.",
-        "Scale of the problem it is used on: the ACFE's Occupational Fraud 2026 report analysed 2,402 real cases across 143 countries with documented losses over $3.4 billion (ACFE).",
-        "Median loss per case in the 2026 report: $104,000, down from $145,000 in 2024 (ACFE).",
-        "Billing schemes remain among the most significant fraud risks by combined frequency and financial damage (ACFE) — billing schemes are precisely the invoice-population case Benford's law is built for.",
-        "Admissibility: Benford's law is accepted as evidence in US criminal cases at federal, state and local level, but a goodness-of-fit test alone is explicitly not conclusive and is one of several investigative tools (forensic accounting literature).",
-        "Documented limitations to state on camera: it fails on data with built-in maximums and minimums; it cannot detect a one-off embezzlement or a handful of amended entries; and non-conformity has innocent explanations as often as guilty ones.",
-        "The live hook, with the caveat attached: on August 4, 2026, Bloomberg reported that Jefferies was told some invoices underpinning its financing to iron ore trader Sapphire Minmetals were not genuine, after Jefferies checked them with Vitol Group.",
-        "Sapphire Minmetals is ultimately owned by Rakesh Sethi through the Singapore company Sino Global Holdings Pte (Bloomberg).",
-        "The denial, exact: \"We categorically and strongly deny the above rumors,\" Sapphire Minmetals chairman Sethi said in an email, adding \"This is untrue and unsubstantiated.\" Include this. It is an unproven allegation and saying so costs nothing.",
-        "Context: the exposure sits in Jefferies' Point Bonita fund, which previously disclosed exposure to bankrupt auto-parts maker First Brands Group (Bloomberg).",
-        "Important honesty point for the script: there is no public reporting that Benford's law was used to detect the Sapphire invoices. It was invoice verification with a counterparty. Use the story as an illustration of the category of fraud the law is designed for, not as a claim about how this case broke — that distinction is the difference between a good explainer and a false one.",
-        "Counter-argument to have ready: Benford's law has been badly misused in public, particularly in election-fraud claims, where it does not apply well because vote counts per precinct are bounded and do not span enough orders of magnitude. Naming this pre-empts the most common bad-faith comment and demonstrates you understand the limits."
+        "Landauer's principle: erasing one bit of information dissipates at least kT ln 2, about 2.8 × 10⁻²¹ joules at room temperature (20°C).",
+        "A modern silicon transistor dissipates on the order of 10⁻¹⁵ joules per switching operation.",
+        "That ratio is roughly 10⁵ to 10⁶ — a real switch burns something like a hundred thousand to a million times the thermodynamic floor.",
+        "Flag the discrepancy on screen rather than picking a side: some popular write-ups say computers use \"a billion times\" more than the Landauer bound. That figure refers to whole-system energy per useful operation, not one transistor switch. Do not quote it as if it were the per-switch number.",
+        "The estimated ceiling for CMOS is roughly 4.7 × 10¹⁵ FLOP per joule for low-precision operations, about 200 times more efficient than current microprocessors (arXiv:2312.08595).",
+        "Average data centre PUE is about 1.56; the best hyperscale facilities reach 1.09.",
+        "A PUE of 1.56 means that for every watt reaching the servers, another 0.56 watts goes to cooling and overhead.",
+        "Cooling accounts for 30-40% of total facility energy use; IT equipment accounts for 40-60%.",
+        "IEA central case: global data centre electricity demand of about 950 TWh by 2030, nearly double the 485 TWh consumed in 2025.",
+        "The arithmetic for the hook: a domestic space heater is about 1,500 watts, so a 1 GW campus dissipates the heat of roughly 667,000 of them, continuously.",
+        "Real example of that scale: Meta's Hyperion campus in Louisiana is planned for more than 2 GW across about 4 million square feet on 2,250 acres, targeted to go live by 2030.",
+        "The counter-argument to the whole framing: \"it's all heat\" is true but incomplete — a heater converts electricity to heat and nothing else, while a data centre converts electricity to heat *and* computation. The energy accounting is identical; the output is not.",
+        "The second counter: at the facility level this is largely a solved problem. A hyperscale PUE of 1.09 means only 9% overhead, so the binding constraint has moved off the building and onto the grid.",
+        "Where it lands on bills: a 2026 study from NC State, Carnegie Mellon and others modelled demand-weighted wholesale electricity prices rising 6% to 29% nationally by 2030, and as much as 57% in the hardest-hit regions.",
+        "Goldman Sachs projects the AI infrastructure buildout adds about 6% to electricity costs between 2026 and 2027, and a further 3% by 2028.",
+        "NERC issued a rare Level 3 alert on May 4, 2026 and moved data centres from an \"emerging\" risk to a formal reliability-planning obligation.",
+        "A YouGov poll of 1,000 Americans found more than two-thirds expected electricity prices to rise if a data centre was built in their area."
       ],
       "sources": [
         {
-          "name": "ACFE, why fraud examiners use Benford's law",
-          "url": "https://www.acfe.com/acfe-insights-blog/blog-detail?s=what-is-benfords-law-and-why-fraud-examiners-use-it"
+          "name": "Limits to the Energy Efficiency of CMOS Microprocessors, arXiv:2312.08595 (primary)",
+          "url": "https://arxiv.org/pdf/2312.08595"
         },
         {
-          "name": "ACFE, Occupational Fraud 2026 key findings",
-          "url": "https://www.acfe.com/acfe-insights-blog/blog-detail?s=key-findings-report-to-the-nations-2026"
+          "name": "Landauer limit explainer",
+          "url": "https://quantumzeitgeist.com/landauer-limit-why-erasing-a-bit-generates-heat/"
         },
         {
-          "name": "Significance (Royal Statistical Society), detecting the dubious digits",
-          "url": "https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2007.00234.x"
+          "name": "IEA, Energy demand from AI (primary)",
+          "url": "https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai"
         },
         {
-          "name": "Benford's law, distribution and limits",
-          "url": "https://en.wikipedia.org/wiki/Benford's_law"
+          "name": "Belfer Center, AI, Data Centers and the U.S. Electric Grid",
+          "url": "https://www.belfercenter.org/research-analysis/ai-data-centers-us-electric-grid"
         },
         {
-          "name": "Bloomberg, the Jefferies fake-invoice report",
-          "url": "https://www.bloomberg.com/news/articles/2026-08-04/jefferies-gets-new-evidence-of-fake-invoices-at-beleaguered-fund"
+          "name": "Forbes, who pays the AI electricity bill",
+          "url": "https://www.forbes.com/sites/jasonkirsch/2026/08/11/the-ai-buildout-has-an-electricity-bill-and-someone-has-to-pay-it/"
+        },
+        {
+          "name": "Consumer Reports on data centre impacts",
+          "url": "https://www.consumerreports.org/data-centers/ai-data-centers-impact-on-electric-bills-water-and-more-a1040338678/"
         }
       ],
-      "freshness": "evergreen, with a live hook",
-      "saturation": "medium — the law is well covered, the \"too evenly spread\" framing and the honest limits usually are not",
+      "freshness": "evergreen with a live peg",
+      "saturation": "medium for the electricity-bill story, low for the thermodynamics",
       "note": null,
       "rating": null,
       "ratingReason": null,
       "extra": {
-        "The misconception": "That made-up numbers look random, and that looking random is what makes them convincing. It is the opposite — real-world numbers are lopsided in a very specific way, and fabricated ones are usually too evenly spread.",
-        "The analogy": "Watch a number grow by percentages rather than by addition. To climb from 1,000 to 2,000 it has to gain 100%, so it spends a long time starting with a 1. To get from 9,000 to 10,000 it needs only 11%, so it barely pauses on 9. Anything that grows this way — invoices, populations, river lengths, expenses — piles up on the low digits. First digit 1 appears about 30.1% of the time; 9 appears about 4.6%. A fraudster inventing invoices reaches for 800 and 900 because they want the money, and flattens the curve.",
-        "Where the analogy breaks": "It is a red flag, not a verdict, and it fails cleanly in predictable places: numbers with hard floors and ceilings, assigned numbers like ZIP codes, and prices deliberately set at $9.99. It also cannot catch a single theft — it needs a population of numbers to test. US courts do accept it, but as one tool among several, never as proof on its own. The honest ending is that Benford's law tells you where to look, and a human still has to go look."
+        "The misconception": "That a data center's electricity is consumed by computing, and the heat is an unfortunate side effect. It is the other way round. Essentially all of the electricity becomes heat — the computation is thermodynamically almost free, and the heat is the actual product being managed.",
+        "The analogy": "A space heater turns 1,500 watts of electricity into 1,500 watts of heat, and everyone accepts that as the whole story. A data center does exactly the same conversion, at a million times the scale, and produces computation on the way through. The electricity is not divided between \"computing\" and \"heating.\" It all ends up as heat. Computing is what happens in transit.",
+        "Where the analogy breaks": "The heater does one thing; the data center does two, and the second one is the point. And thermodynamics is not the binding constraint — the theoretical floor for erasing a bit is about a hundred thousand times below what a real transistor burns, so there is enormous headroom in principle. The real limits are the grid connection and the cooling loop, not physics."
       }
     },
     {
       "id": "D1",
       "bucket": "longform",
-      "title": "The rating nobody was meant to read",
-      "hook": "There is a credit rating agency with about twenty analysts that graded more than three thousand private credit investments in a single year. American insurers are holding roughly forty billion dollars of debt it graded. And you cannot read a single one of those ratings, because they were never published. They were never meant to be.",
-      "why": "Private letter ratings did not inflate because someone was deceiving investors — there are no investors reading them. They inflated because the only audience is a regulatory capital formula, and the company buying the rating is the same company the rating lets hold less capital against.",
+      "title": "Who actually pays for the GPUs",
+      "hook": "On August 10th, Nvidia announced that six of the largest asset managers on earth would raise more than five hundred billion dollars to buy its chips. Every headline called it circular financing — Nvidia funding its own customers, 1999 all over again. That reading is wrong, and the truth is more uncomfortable. The money is real, it is third-party, and a lot of it is yours.",
+      "why": "The AI buildout has stopped being funded by technology companies' cash flow and started being funded by pension and insurance capital through structures that keep the debt off the buyers' balance sheets — and the assumption holding the whole arrangement up is not demand for AI, it is how much a used GPU is worth in year five.",
       "beats": [
         {
           "t": "0:00-0:45",
-          "text": "Twenty analysts, three thousand ratings, forty billion dollars, zero published pages. Sit on the arithmetic."
+          "text": "The August 10 press release on screen. Six names: Apollo, BlackRock, Blackstone, Brookfield, Goldman Sachs, KKR. The figure: over $500 billion."
         },
         {
           "t": "0:45-2:00",
-          "text": "What a private letter rating is and why it exists: insurers must hold capital against what they own, and how much depends on a letter grade. No grade, no cheap capital. Nobody outside the insurer and the regulator ever sees it."
+          "text": "The setup: why an AI data centre cannot be bought out of cash flow, and what \"mobilize third-party capital\" actually means in practice."
         },
         {
           "t": "2:00-4:00",
-          "text": "Act one, the story you think this is. Egan-Jones: two senior executives fired and suing, an SEC probe, Bermuda dropping the firm from its recognised list in January, and — three days ago — the SEC refusing its application to rate government and asset-backed debt. The firm denies wrongdoing throughout."
+          "text": "Act one, the tidy story. Lucent's $8.1 billion of vendor financing, Nortel's $3.1 billion, Cisco's $2.4 billion, and the $3.5 billion Lucent eventually wrote off. Everyone's first instinct."
         },
         {
           "t": "4:00-6:30",
-          "text": "Act two, the turn. These ratings are unpublished, so there is no investor to defraud. The audience is a formula. Then the NAIC's own numbers: 106 of 109 above its analysts' assessment, six notches at the extreme, and a roughly 84% cut in the capital charge that follows. Then the detail that reframes everything before it — the regulator that found this withdrew its own report."
+          "text": "Act two, the complication. This is not that. The capital is genuinely third-party; Joseph Moore at Morgan Stanley says so explicitly. But follow it one step further and it comes from insurers and pension funds — AI-related debt has gone from 1% of US investment-grade issuance in 2024 to roughly 23% now."
         },
         {
           "t": "6:30-8:30",
-          "text": "Act three, follow it offshore. Roughly two trillion dollars of US life liabilities ceded to offshore and captive reinsurers; Bermuda's long-term reinsurers holding $1.52 trillion with more than 80% originating in the US. The privately graded paper backs retirement annuities, and increasingly it is not in the country that sold them."
+          "text": "Act three, the term nobody covered. Nvidia's residual-value support of up to 25%. Ben Thompson's reading: \"in a certain sense, a price cut.\" Then the Meta-Blue Owl Hyperion structure — $27 billion of A+ debt through an SPV, 80/20, leased back, auditor questions and all."
         },
         {
           "t": "8:30-10:00",
-          "text": "The turn to now: AG 55 filings, the Treasury Secretary meeting state regulators, and the honest uncertainty. None of this has broken. Defaults are low. The open question is not whether the number was a lie — it is whether the number was ever measuring anything."
+          "text": "The turn: none of it depends on AI demand. It depends on GPU useful life. Amazon cut to five years; Google, Microsoft and Meta went the other way. Burry says $176 billion of understated depreciation. The honest uncertainty: the H100 rental index has been flat, which is evidence the bears are early or wrong."
         }
       ],
       "material": [
-        "Egan-Jones describes itself as the market's most prolific grader of private credit and rated more than 3,000 private credit investments in 2024 with a staff of roughly 20 analysts (NAIC-adjacent reporting, USA Herald). That is over 150 ratings per analyst per year — do the division on screen.",
-        "US insurers hold roughly $40 billion of debt privately graded by Egan-Jones (Bloomberg via USA Herald).",
-        "The firm is based in King of Prussia, Pennsylvania.",
-        "The whistleblower case: Michael Brawer, former chief risk officer, and Philip Galgano, former head of ratings, were fired on January 3, 2024 and sued, alleging retaliation for reporting conflicts of interest to securities regulators (MarketScreener, Reuters).",
-        "Legal basis of the claim: the Dodd-Frank Act's whistleblower protection provision and New York labour law. Case is Brawer et al v. Egan-Jones Ratings Company, No. 1:24-cv-01895 (S.D.N.Y.) (Justia, FindLaw).",
-        "The central allegation, and it is the mechanism of the whole video: that founders Sean Egan and Wenrong Hu pressured analysts to alter early, indicative ratings in order to motivate prospective clients to pay for final ones (MarketScreener).",
-        "Egan-Jones denies the allegations and has argued the pair were terminated for performance reasons; the plaintiffs say neither had received an adverse performance review.",
-        "November 2025: Bloomberg reported SEC enforcement attorneys were examining whether the firm and its senior executives exerted improper commercial influence on ratings procedures. The probe began under the Biden administration (Bloomberg Law, FA-Mag).",
-        "Precedent, and it is important: this is not the first time. In 2022 the SEC charged Egan-Jones Ratings Co. and its CEO with conflict-of-interest violations (SEC press release 2022-111).",
-        "January 2026: the Bermuda Monetary Authority removed Egan-Jones from its list of recognised credit ratings providers. Recognised providers feed insurers' solvency capital requirements, so the removal has direct capital consequences (Royal Gazette Jan 28, Insurance Journal Jan 23, Bloomberg Jan 22).",
-        "March 23, 2026: the SEC ordered a formal review of Egan-Jones' application to resume rating asset-backed and government securities — classes it held and lost after the 2008 crisis. It had applied on October 7, 2025 and supplemented on January 14, 2026 (PR Newswire, Bloomberg Law).",
-        "The SEC's stated concern, quoted: the application \"raises questions about the adequacy of EJR's financial and managerial resources to consistently produce credit ratings with integrity.\"",
-        "Egan-Jones' response, quoted: it had \"made great strides in our internal and compliance processes\" and was \"confident that our progress will be evident to the Commission.\" Its outside counsel called the SEC's \"unfair and demonstrably harmful allegation\" damaging to the firm's reputation and finances (Alternative Credit Investor, FStech).",
-        "THE LIVE PEG: on August 12, 2026 — three days before this brief — the SEC issued an order declining the application, ruling that it contained inaccurate information about the firm's ABS offerings (Law360). Egan-Jones has issued a response outlining its \"path to registration\" (PR Newswire).",
-        "The NAIC's June 2024 Capital Markets Bureau special report: a sample of 109 private letter ratings received in 2023 found 106 rated higher than the NAIC's own internal assessment.",
-        "In 17 extreme cases, assets the NAIC's analysts read as junk were rated investment-grade by smaller rating firms, with some inflated by as many as six notches.",
-        "The arithmetic that makes it worth doing: lifting a single-B credit six notches to triple-B cuts a life insurer's pre-tax risk-based capital charge by approximately 84%, before diversification adjustments.",
-        "May 2025: the NAIC pulled the report from its website, saying it needed to \"clarify its findings\" and that it required \"further editorial work.\" Bloomberg reported the retraction followed industry pushback. No revised version has been published since.",
-        "July 17, 2025: Senator Elizabeth Warren wrote to eight rating agencies active in private credit, Egan-Jones among them, demanding answers on ratings practices and conflict-of-interest management (Senate Banking Committee).",
-        "Start of 2026: the NAIC's Invested Assets Task Force implemented a process to stress-test private ratings that diverge from regulator-determined assessments. If the task force overrides a private letter rating, the insurer's required capital goes up (beinsure).",
-        "Scale of the underlying shift: US life insurers have moved on the order of $2 trillion in liabilities to offshore and captive reinsurers.",
-        "Bermuda's long-term reinsurance sector held $1.52 trillion in assets as of September 2025, with more than 80% of ceded business originating in the US (Insurance Business).",
-        "Insurer private credit exposure is now discussed in the trillion-dollar range, with the WSJ framing it as \"leaving regulators in the dust.\"",
-        "AG 55 timing — get this right, it is easy to garble: Actuarial Guideline LV was adopted by the NAIC Executive Committee and Plenary on August 13, 2025, not 2026. It brings asset-intensive reinsurance within asset adequacy testing, requires disclosure beginning with the December 31, 2025 annual statement, and reports are due April 1 each year starting April 1, 2026. So the first AG 55 filings landed four months ago — that is the live element, not a recent adoption (WTW, Debevoise, Milliman).",
-        "August 7, 2026: reporting that US regulators are seeking tighter rules for offshore life reinsurance, including changes to the risk-based capital formula to reflect differences in reinsurance risk (Royal Gazette).",
-        "Treasury Secretary Scott Bessent has met state insurance regulators about the industry's growing exposure to private credit routed through Bermuda (Royal Gazette, May 11).",
-        "Counter-argument, and the video is dishonest without it: the strongest case against the alarm is that life insurers are structurally well-matched — long-dated, illiquid liabilities funded by long-dated, illiquid assets is the correct pairing, not a mismatch, and life insurers do not face runs the way banks do. Truth on the Market argued exactly this in July 2026. Give it real airtime in the final two minutes.",
-        "Second counter-argument: private letter ratings are not inherently improper. They exist because private placements have no public market and someone has to size the capital charge. The alternative — no rating at all — is worse, not better.",
-        "Third: the NAIC study is a sample of 109, drawn from a population of many thousands, and it compares against the NAIC's own analysts rather than against realised defaults. The NAIC is not a neutral referee here; it has an institutional interest in expanding its own assessment role. That does not dissolve the finding, but a viewer who notices it and was not told will discount everything else.",
-        "Fourth, and the fairest point of all: none of this has actually broken. Private credit default rates have stayed low. The video's claim is about measurement, not about imminent collapse, and overselling it is the fastest way to be wrong on tape.",
-        "Structural note: the NAIC is a voluntary association of state regulators, not a federal agency. It sets model rules that states must individually adopt. That is why a withdrawn report matters more than it would elsewhere — there is no enforcement backstop behind it."
+        "Nvidia announced on August 10, 2026 that it is partnering with Apollo, BlackRock, Blackstone, Brookfield, Goldman Sachs and KKR to \"mobilize over $500 billion of third-party capital\" for AI infrastructure (Nvidia press release).",
+        "The release describes them as \"the first compute financing platforms of their kind at global scale\" that will create \"dedicated pools of capital at significant scale at attractive rates for NVIDIA customers.\"",
+        "The same release states the partnerships \"remain subject to execution of the final agreements\" — these are memorandums of understanding, not funded facilities.",
+        "Jensen Huang, verbatim: \"NVIDIA compute is uniquely suited for this role. It is broadly adopted, flexible across models and workloads, fungible and transferable.\"",
+        "Jim Zelter, President of Apollo, verbatim: \"Modern compute has emerged as a scarce, mission-critical asset class with compelling investment characteristics.\"",
+        "Jon Gray, President and COO of Blackstone, verbatim: \"We continue to be enormous investors globally across the NVIDIA ecosystem.\"",
+        "Larry Fink, Chairman and CEO of BlackRock, verbatim: \"This partnership deepens our relationship with NVIDIA, including through the AI Infrastructure Partnership.\"",
+        "Huang told CNBC he approached only those six firms and none of them turned him down (CNBC, August 10, 2026).",
+        "Huang's framing in the same interview: his chips are an \"investable asset.\"",
+        "The term that did not make the headlines: Nvidia may provide residual-value guarantees covering up to 25% of individual projects, covering part of the gap if the hardware is worth less at the end of the financing term than the deal assumed.",
+        "Ben Thompson's reading of that backstop, per Stratechery on August 11: it is \"in a certain sense, a price cut\" — you do not need to guarantee 25% of residual value if buyers already believe the asset holds its value. Verify the exact wording against the original before quoting it on camera; Stratechery is paywalled and this came via summaries.",
+        "Thompson on where the money comes from, same piece: \"It's one thing to spend all of your free cash flow; it's another thing to tap the debt markets...a completely new nerve-racking thing.\"",
+        "Morgan Stanley's Joseph Moore, quoted by Fortune, argued the structure \"alleviates concerns about circular financing because third-party investors would provide most of the capital, while Nvidia would participate only to a limited extent.\"",
+        "Bank of America's Vivek Arya largely agreed, on the grounds that GPUs remain moveable assets with durable software (Fortune).",
+        "AI-related debt is now roughly 23% of US investment-grade issuance, up from about 1% in 2024 and about 7% in 2025, and about 18% in the first half of 2026 (Goldman Sachs).",
+        "Goldman Sachs strategist Amanda Lynam put AI-related debt issuance at about $489 billion this year, a record.",
+        "Only about 40% of that issuance came from hyperscalers themselves — the borrowing has spread across the wider AI infrastructure ecosystem (Goldman Sachs).",
+        "Goldman expects Big Tech to fund more than a third of its AI investment with debt in 2027.",
+        "The template already exists: Meta's Hyperion campus in Louisiana sits in a joint venture with Blue Owl Capital, 80% Blue Owl and 20% Meta (Bisnow).",
+        "Hyperion was financed with $27 billion of A+-rated debt and $2.5 billion of equity through an SPV arranged by Morgan Stanley, anchored by PIMCO at $18 billion and BlackRock at $3 billion.",
+        "Meta keeps operational control and leases the finished campus back under a long-term operating lease, converting capex into opex and keeping the debt off its balance sheet (Bisnow).",
+        "Hyperion is about 4 million square feet on 2,250 acres, more than 2 GW, scheduled to go live by 2030.",
+        "Meta's auditor questioned the decision to keep the $27 billion off balance sheet, per the Wall Street Journal (reported August 2026).",
+        "Nvidia's own scale for context: Q4 FY2026 revenue of $68.1 billion, up 73% year over year, with Data Center revenue of $62.3 billion, up 75%. Full-year FY2026 revenue was $215.9 billion, up 65% (Nvidia).",
+        "Nvidia's guidance points to roughly $91.0 billion for the quarter it reports on August 26, 2026 — the next hard test of the demand assumption, eleven days after this brief.",
+        "The 1999 comparison, with real numbers: Lucent committed $8.1 billion of vendor financing, Nortel extended $3.1 billion with $1.4 billion outstanding, and Cisco promised $2.4 billion in customer loans. McKinsey counted about $25.6 billion across nine suppliers by the end of 2000.",
+        "Lucent wrote off $700 million of bad debt, then provisioned $2.2 billion in 2001 and $1.3 billion in 2002 — about $3.5 billion of customer-loan losses.",
+        "Nortel carried $1.6 billion of vendor financing at the end of 2000, up from $1.1 billion in 1999.",
+        "The distinction that makes the video: in 1999 the vendor lent the money. In 2026 the vendor guarantees a slice of the residual value and pension and insurance capital lends the money — the risk did not vanish, it moved.",
+        "The real load-bearing assumption is useful life. Effective January 1, 2025, Amazon shortened the useful life of a subset of servers and networking equipment from six years to five, citing \"the increased pace of technology development, particularly in the area of artificial intelligence and machine learning.\"",
+        "That change alone cut Amazon's net income by $298 million in the three months to September 30, 2025 and $677 million over nine months (Amazon filings).",
+        "Everyone else went the other way: Google moved servers and certain network equipment from four to six years in January 2023, disclosing roughly $3.4 billion less FY2023 depreciation; Microsoft extended from four to six in Q4 FY2022, worth about $3.7 billion in FY2023; Meta extended to 5.5 years, booking a $2.9 billion reduction.",
+        "Michael Burry's claim: depreciation understated by about $176 billion across 2026-2028, overstating industry profits by more than 20%.",
+        "The counter to Burry, which has to be in the video: the schedules are not fraudulent if the chips genuinely earn revenue for six years, just not at the frontier — and Oracle, Meta and Microsoft defend these lives to auditors with utilization and failure data every year, and keep passing.",
+        "Evidence the bears are early: Silicon Data's H100 hyperscaler rental index traded in a $7.40-$7.52 band between March 1 and April 20, 2026, unchanged on 39 of 50 daily transitions. Four-year-old chips are not collapsing in value.",
+        "The strongest case against the whole thesis: none of this is leverage on Nvidia's balance sheet, Nvidia's exposure is capped at 25% of residual value on individual projects, and the counterparties are among the best-capitalized firms on earth. A structure can be novel without being fragile."
       ],
       "sources": [
         {
-          "name": "Senator Warren's letter to Egan-Jones on private credit ratings (primary)",
-          "url": "https://www.banking.senate.gov/imo/media/doc/Warren%20Letter%20to%20Egan%20on%20Private%20Credit%20Ratings%20.pdf"
+          "name": "Nvidia press release, August 10, 2026 (primary)",
+          "url": "https://nvidianews.nvidia.com/news/nvidia-partners-with-apollo-blackrock-blackstone-brookfield-goldman-sachs-and-kkr-to-establish-ai-compute-infrastructure-financing-platforms-to-mobilize-over-500-billion-of-third-party-capital"
         },
         {
-          "name": "SEC, 2022 charges against Egan-Jones and its CEO (primary)",
-          "url": "https://www.sec.gov/newsroom/press-releases/2022-111"
+          "name": "Nvidia Q4 and fiscal 2026 results (primary)",
+          "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
         },
         {
-          "name": "NAIC, private credit topic page (primary)",
-          "url": "https://content.naic.org/insurance-topics/private-credit"
+          "name": "CNBC, Huang on the $500 billion package",
+          "url": "https://www.cnbc.com/2026/08/10/nvidia-wall-street-asset-managers-500-billion-ai-push.html"
         },
         {
-          "name": "Law360, the SEC declining the application on Aug 12, 2026",
-          "url": "https://www.law360.com/securities/articles/2512819"
+          "name": "Fortune, on circular financing and retirement capital",
+          "url": "https://fortune.com/2026/08/12/nvidia-private-capital-deal-circular-financing-ai-boom/"
         },
         {
-          "name": "Justia, Brawer et al v. Egan-Jones Ratings Company docket",
-          "url": "https://law.justia.com/cases/federal/district-courts/new-york/nysdce/1:2024cv01895/617427/203/"
+          "name": "Goldman Sachs, How AI Debt Is Reshaping the Credit Market",
+          "url": "https://www.goldmansachs.com/insights/goldman-sachs-exchanges/how-ai-debt-is-reshaping-the-credit-market"
         },
         {
-          "name": "USA Herald, the $40bn figure, the whistleblower suit and the withdrawn NAIC report",
-          "url": "https://usaherald.com/guardians-for-hire-ratings-firm-accused-of-grade-inflation-vouched-for-40-billion-of-debt-held-by-u-s-insurers/"
+          "name": "Bisnow, Meta and Blue Owl's $27B joint venture",
+          "url": "https://www.bisnow.com/national/news/data-center-capital-markets/meta-pushes-its-largest-data-center-project-off-its-books-with-27b-joint-venture-131490"
         },
         {
-          "name": "Insurance Journal, Bermuda de-recognising Egan-Jones",
-          "url": "https://www.insurancejournal.com/news/international/2026/01/23/855368.htm"
+          "name": "Seeking Alpha, on the WSJ report that Meta's auditor questioned the structure",
+          "url": "https://seekingalpha.com/news/4550750-metas-auditor-questions-decision-to-keep-27b-data-center-off-balance-sheet-report"
         },
         {
-          "name": "Alternative Credit Investor, Egan-Jones defending its resources",
-          "url": "https://alternativecreditinvestor.com/2026/04/08/egan-jones-defends-resources-after-sec-questions-ratings-ability/"
+          "name": "Tomasz Tunguz, the Nortel and Lucent vendor-financing comparison",
+          "url": "https://tomtunguz.com/nvidia_nortel_vendor_financing_comparison/"
         },
         {
-          "name": "WTW, AG 55 scope and timing",
-          "url": "https://www.wtwco.com/en-us/insights/2025/09/actuarial-guideline-55-a-new-guardrail-for-asset-intensive-reinsurance"
+          "name": "Deep Quarry, Depreciation of GPUs",
+          "url": "https://deepquarry.substack.com/p/depreciation-of-gpus-between-useful"
         },
         {
-          "name": "Royal Gazette, US regulators tightening offshore life reinsurance (Aug 7)",
-          "url": "https://www.royalgazette.com/reinsurance/business/article/20260807/us-regulators-seek-tighter-rules-for-offshore-life-reinsurance/"
-        },
-        {
-          "name": "Insurance Business, Treasury and the $1.52trn Bermuda market",
-          "url": "https://www.insurancebusinessmag.com/reinsurance/news/breaking-news/us-treasury-joins-scrutiny-of-1-52-trillion-bermuda-reinsurance-market-574857.aspx"
-        },
-        {
-          "name": "Truth on the Market, the counter-case that life insurers are stronger than headlines suggest",
-          "url": "https://truthonthemarket.com/2026/07/13/private-credit-public-panic-why-life-insurers-are-stronger-than-the-headlines-suggest/"
-        },
-        {
-          "name": "Gschossmann and Li, Giving Life to Private (Rated) Credit",
-          "url": "https://ziang-li.github.io/files/Giving_Life_to_Private_Rated_Credit.pdf"
+          "name": "PacketNebula, on the 25% backstop",
+          "url": "https://packetnebula.com/articles/nvidia-500b-compute-financing-25-percent-backstop/"
         }
       ],
-      "freshness": "live peg — SEC order 3 days ago",
-      "saturation": "low for a general audience, well covered in insurance trade press",
-      "note": "the six-notch and 84% figures rest on secondary write-ups of the withdrawn NAIC",
+      "freshness": "5 days",
+      "saturation": "high for the headline, low for the residual-value clause and the depreciation link",
+      "note": "D1 sits adjacent to A1 — both involve GPUs becoming financial objects — but they are different mechanisms with different actors. A1 is hedging the rental price; D1 is who funds the hardware and who eats the residual. If you film both, film A1 first and let D1 assume it.",
       "rating": null,
       "ratingReason": null,
       "extra": {
-        "Why it holds ten minutes": "It has a genuine turn in the middle. The first three minutes look exactly like a 2008 rerun — small agency, fees for grades, fired whistleblowers — and the viewer arrives already knowing this story. The second act takes it away from them: these ratings are unpublished, so the fraud framing does not fit, and the buyer of the rating is its beneficiary. The back half brings in material almost no coverage uses: the NAIC's own 2024 study, which sampled 109 private letter ratings and found 106 rated higher than its own analysts assessed, with some inflated by six notches — then the arithmetic that makes it worth doing, and then the fact that the NAIC pulled that report off its own website and never republished it. The third act follows the money offshore, and the last two minutes are live: the SEC denied Egan-Jones' application three days ago.",
-        "What you'd need": "The Warren letter to Sean Egan (July 17, 2025) on screen as a PDF — it is public, it is short, and it names the conflict directly. The NAIC private letter ratings report is the best visual in the piece precisely because it is gone: show the citation, then the absence. A risk-based capital factor table with the single-B and triple-B rows highlighted, so the 84% is arithmetic the viewer watches rather than a claim they accept. The SEC's August 12, 2026 order declining the Egan-Jones application. The Bermuda Monetary Authority's recognised-ratings list before and after January 2026. A Bermuda company registry page for a named life reinsurer. A plain annuity statement to close on — the object at the end of the chain.",
-        "Thumbnail": "A single page of a credit rating with everything redacted except an investment-grade letter grade in the corner. One subject, readable at any size."
+        "Why it holds ten minutes": "Three acts with a genuine turn. Act one is the tidy story everyone published: vendor financing, Lucent, circularity, be afraid. Act two breaks it — the capital genuinely is third-party, Morgan Stanley and Bank of America are right that this reduces circularity, and the 1999 comparison is lazy. Act three is where the video earns the runtime: the one term nobody put in a headline is Nvidia's residual-value backstop of up to 25%, which is an admission about what the sellers actually believe, and which points at the real load-bearing number — depreciation schedules. Amazon shortened server lives while Google, Microsoft and Meta lengthened theirs, on the same hardware. That is the fight, and it arrives at minute seven, not minute one.",
+        "What you'd need": "Nvidia's August 10 press release, on screen, with the \"subject to execution of the final agreements\" line highlighted. The Nvidia Q4 FY2026 results page for the $68.1 billion revenue line. Amazon's 10-Q language on useful lives — the sentence citing \"the increased pace of technology development, particularly in the area of artificial intelligence and machine learning\" — next to Google's and Microsoft's extensions, as a three-way split screen. A chart of AI-related debt as a share of US investment-grade issuance, 2024 to 2026. The Silicon Data H100 rental index chart showing the flat March-April 2026 band. Archival: a Lucent annual report page with the bad-debt provision. Diagram: the Meta-Blue Owl SPV, drawn once, slowly.",
+        "Thumbnail": "A single H100 board photographed straight on, with a bank-style price tag hanging off it reading \"25% GUARANTEED.\" One object, one number, readable at thumbnail size."
       },
       "titleOptions": [
-        "The $40 Billion Credit Rating You're Not Allowed to Read",
-        "Nobody Was Lying. That's the Problem."
+        "Nvidia Found Someone Else To Pay For The AI Boom",
+        "The 25% Clause Nobody Read In Nvidia's $500 Billion Deal"
       ]
     }
   ]
