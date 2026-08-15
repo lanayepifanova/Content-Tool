@@ -3,3 +3,6 @@ dist/
 output/
 __pycache__/
 *.pyc
+.env
+.env.local
+briefs/*.tmp

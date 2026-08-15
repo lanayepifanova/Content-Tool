@@ -1,262 +1,200 @@
 import { useEffect, useState } from "react";
 
-const stations = {
-  "instagram-tiktok": {
-    title: "Instagram & Tiktok",
-    prompt: "Find today's strongest news angle for a high-performing Instagram or Tiktok video.",
-  },
-  youtube: {
-    title: "Youtube Channel",
-    prompt: "Find today's strongest news angle for a Youtube channel video.",
-  },
-  "uilg-format": {
-    title: "UILG Format Videos",
-    prompt: "Build a UILG-backed format video using my saved performance context.",
-  },
-};
-
-const topics = [
-  {
-    label: "AI",
-    aliases: ["ai", "artificial intelligence", "models", "agents"],
-    stories: [
-      "The AI infrastructure story that matters is shifting from model launches to who controls distribution.",
-      "Enterprise AI budgets are moving toward workflow tools instead of broad chat products.",
-      "The next debate is not whether agents work, but where reliability becomes good enough to replace manual work.",
-    ],
-  },
-  {
-    label: "Markets",
-    aliases: ["markets", "market", "finance", "macro", "rates"],
-    stories: [
-      "The market story to watch is how rate expectations are changing risk appetite.",
-      "Credit conditions are becoming the cleaner signal than equity index moves.",
-      "Investors are repricing growth stories around cash flow instead of pure expansion.",
-    ],
-  },
-  {
-    label: "Startups",
-    aliases: ["startup", "startups", "vc", "venture", "founder"],
-    stories: [
-      "The startup signal is that founders are selling efficiency before growth again.",
-      "VC attention is concentrating around companies that turn AI into measurable labor savings.",
-      "The strongest angle is how distribution is becoming more valuable than model access.",
-    ],
-  },
+const BUCKETS = [
+  { key: "news", label: "News", blurb: "tech · startups · markets · finance" },
+  { key: "tutorial", label: "Tutorials", blurb: "AI workflows & tools" },
+  { key: "explainer", label: "Explainers", blurb: "technical → non-technical" },
 ];
 
-function emptyStation() {
-  return { scratchpad: "" };
+function Sources({ sources }) {
+  if (!sources?.length) return null;
+  return (
+    <div className="idea-sources">
+      {sources.map((s) => (
+        <a key={s.url} href={s.url} target="_blank" rel="noreferrer">
+          {s.name}
+        </a>
+      ))}
+    </div>
+  );
 }
 
-function readJson(key, fallback) {
-  try {
-    return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback));
-  } catch {
-    return fallback;
-  }
-}
+function Idea({ idea, slug, onRated }) {
+  const [rating, setRating] = useState(idea.rating);
+  const [reason, setReason] = useState(idea.ratingReason || "");
+  const [saving, setSaving] = useState(false);
+  const [open, setOpen] = useState(false);
 
-function buildInitialStations() {
-  const saved = readJson("basisPointStations", {});
-  Object.keys(stations).forEach((key) => {
-    if (!saved[key]) {
-      saved[key] = emptyStation();
-    } else if (typeof saved[key].scratchpad !== "string") {
-      const oldIdeas = Array.isArray(saved[key].ideas) ? saved[key].ideas.map((idea) => idea.text).join("\n\n") : "";
-      saved[key] = { scratchpad: oldIdeas };
+  useEffect(() => {
+    setRating(idea.rating);
+    setReason(idea.ratingReason || "");
+  }, [idea.id, idea.rating, idea.ratingReason]);
+
+  async function save(next, nextReason = reason) {
+    setSaving(true);
+    setRating(next);
+    try {
+      const res = await fetch("/api/rate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug, id: idea.id, rating: next, reason: nextReason }),
+      });
+      if (!res.ok) throw new Error((await res.json()).error);
+      onRated?.();
+    } catch (err) {
+      setRating(idea.rating);
+      alert(`Could not save rating: ${err.message}`);
+    } finally {
+      setSaving(false);
     }
-  });
-  return saved;
-}
-
-function pickTopicFromPrompt(prompt, activeTopic) {
-  const normalized = prompt.toLowerCase();
-  return topics.find((topic) => topic.aliases.some((alias) => normalized.includes(alias))) || activeTopic;
-}
-
-function buildResponse(prompt, topic) {
-  return [
-    `Topic for today: ${topic.label}`,
-    "",
-    `Request: ${prompt}`,
-    "",
-    "News to cover:",
-    ...topic.stories.map((story, index) => `${index + 1}. ${story}`),
-    "",
-    "Structure:",
-    "0-3s: Open with the tension, not the headline.",
-    "3-15s: Explain what happened in plain language.",
-    "15-35s: Connect the story to money, power, timing, or behavior.",
-    "35-60s: Give the audience one thing to watch next.",
-  ].join("\n");
-}
-
-function Drawer({ isOpen, onClose, onChoose }) {
-  return (
-    <>
-      <aside className={`choice-drawer ${isOpen ? "is-open" : ""}`} aria-label="Navigation choices" aria-hidden={!isOpen}>
-        <div className="drawer-head">
-          <span>Choices</span>
-          <button type="button" aria-label="Close menu" onClick={onClose}>
-            Close
-          </button>
-        </div>
-        <div className="drawer-list">
-          {Object.entries(stations).map(([key, station]) => (
-            <button className="drawer-choice" type="button" key={key} onClick={() => onChoose(key)}>
-              {station.title}
-            </button>
-          ))}
-        </div>
-      </aside>
-      <div className={`drawer-scrim ${isOpen ? "is-visible" : ""}`} onClick={onClose} />
-    </>
-  );
-}
-
-function HomePage({ messages, prompt, setPrompt, onSubmit }) {
-  return (
-    <section className="hero page-view">
-      <div className={`intro-copy ${messages.length ? "is-compact" : ""}`}>
-        <h1>Find today's Reel topic</h1>
-      </div>
-
-      <div className={`chat-thread ${messages.length ? "has-messages" : ""}`} aria-live="polite">
-        {messages.map((message) => (
-          <article className={`message ${message.role}`} key={message.id}>
-            <div className="message-bubble">{message.content}</div>
-          </article>
-        ))}
-      </div>
-
-      <section className="prompt-card" aria-label="Prompt composer">
-        <textarea
-          rows="2"
-          placeholder="Ask Basis Point to find a Reel topic about AI, markets, startups..."
-          value={prompt}
-          onChange={(event) => setPrompt(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" && !event.shiftKey) {
-              event.preventDefault();
-              onSubmit();
-            }
-          }}
-        />
-      </section>
-    </section>
-  );
-}
-
-function WorkstationPage({ activeKey, stationData, onUpdateScratchpad }) {
-  const station = stations[activeKey];
+  }
 
   return (
-    <section className="page-view workstation-page" aria-label="Content workstation">
-      <header className="workstation-header">
-        <h1>{station.title}</h1>
+    <article className={`idea ${rating ? `is-${rating}` : ""}`}>
+      <header className="idea-head">
+        <span className="idea-id">{idea.id}</span>
+        <h3>{idea.title}</h3>
       </header>
 
-      <section className="scratch-section">
-        <div className="section-line">
-          <h2>Potential ideas</h2>
+      {idea.hook && <p className="idea-hook">{idea.hook}</p>}
+      {idea.why && <p className="idea-why">{idea.why}</p>}
+
+      {Object.entries(idea.extra || {}).map(([label, value]) => (
+        <p className="idea-field" key={label}>
+          <span>{label}</span> {value}
+        </p>
+      ))}
+
+      {idea.note && <p className="idea-note">{idea.note}</p>}
+
+      {idea.beats?.length > 0 && (
+        <>
+          <button className="beats-toggle" type="button" onClick={() => setOpen(!open)}>
+            {open ? "Hide beats" : "Show beats"}
+          </button>
+          {open && (
+            <ol className="idea-beats">
+              {idea.beats.map((b) => (
+                <li key={b.t}>
+                  <span>{b.t}</span> {b.text}
+                </li>
+              ))}
+            </ol>
+          )}
+        </>
+      )}
+
+      <Sources sources={idea.sources} />
+
+      <footer className="idea-foot">
+        <div className="rate-buttons">
+          <button
+            type="button"
+            className={rating === "up" ? "active-up" : ""}
+            disabled={saving}
+            onClick={() => save(rating === "up" ? null : "up")}
+          >
+            Keep
+          </button>
+          <button
+            type="button"
+            className={rating === "down" ? "active-down" : ""}
+            disabled={saving}
+            onClick={() => save(rating === "down" ? null : "down")}
+          >
+            Kill
+          </button>
         </div>
-        <textarea
-          className="scratchpad"
-          rows="20"
-          placeholder="Drop raw hooks, angles, references, thumbnails, or content ideas..."
-          value={stationData.scratchpad}
-          onChange={(event) => onUpdateScratchpad(event.target.value)}
+        <input
+          className="rate-reason"
+          placeholder="why? (this is what actually trains it)"
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+          onBlur={() => rating && reason !== (idea.ratingReason || "") && save(rating, reason)}
         />
-      </section>
-    </section>
+        <span className="idea-meta">
+          {idea.freshness} · {idea.saturation}
+        </span>
+      </footer>
+    </article>
   );
 }
 
 export default function App() {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [view, setView] = useState("home");
-  const [activeStationKey, setActiveStationKey] = useState("instagram-tiktok");
-  const [stationState, setStationState] = useState(buildInitialStations);
-  const [prompt, setPrompt] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [activeTopic, setActiveTopic] = useState(topics[0]);
-  const activeStationData = stationState[activeStationKey] || emptyStation();
+  const [slugs, setSlugs] = useState([]);
+  const [slug, setSlug] = useState(null);
+  const [brief, setBrief] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem("basisPointStations", JSON.stringify(stationState));
-  }, [stationState]);
-
-  useEffect(() => {
-    const closeDrawer = (event) => {
-      if (event.key === "Escape") {
-        setDrawerOpen(false);
-      }
-    };
-    document.addEventListener("keydown", closeDrawer);
-    return () => document.removeEventListener("keydown", closeDrawer);
+    fetch("/api/briefs")
+      .then((r) => r.json())
+      .then((list) => {
+        setSlugs(list);
+        setSlug((cur) => cur ?? list[0] ?? null);
+      })
+      .catch((e) => setError(String(e)));
   }, []);
 
-  function openStation(key) {
-    setActiveStationKey(key);
-    setPrompt(stations[key].prompt);
-    setView("station");
-    setDrawerOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+  const load = () => {
+    if (!slug) return;
+    fetch(`/api/brief/${slug}`)
+      .then((r) => r.json())
+      .then(setBrief)
+      .catch((e) => setError(String(e)));
+  };
+  useEffect(load, [slug]);
 
-  function submitPrompt() {
-    const request = prompt.trim() || "Find my topic for today and generate a content angle.";
-    const topic = pickTopicFromPrompt(request, activeTopic);
-    setActiveTopic(topic);
-    setPrompt("");
-    setMessages((current) => [
-      ...current,
-      { id: crypto.randomUUID(), role: "user", content: request },
-      { id: crypto.randomUUID(), role: "assistant", content: buildResponse(request, topic) },
-    ]);
-  }
-
-  function updateScratchpad(value) {
-    setStationState((current) => ({
-      ...current,
-      [activeStationKey]: {
-        ...current[activeStationKey],
-        scratchpad: value,
-      },
-    }));
-  }
+  const rated = brief?.ideas.filter((i) => i.rating).length ?? 0;
 
   return (
-    <main className="home-shell">
-      <nav className="top-nav" aria-label="Primary">
-        <a
-          className="brand"
-          href="/"
-          onClick={(event) => {
-            event.preventDefault();
-            setView("home");
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-        >
-          <span>Basis Point</span>
-        </a>
-        <button className="menu-button" type="button" aria-label="Open menu" aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
-          <span />
-          <span />
-        </button>
-      </nav>
+    <main className="reader">
+      <header className="reader-head">
+        <div>
+          <h1>Basis Point</h1>
+          {brief && <p className="reader-sub">{brief.title.replace(/^Basis Point — /, "")}</p>}
+        </div>
+        <div className="reader-controls">
+          {slugs.length > 1 && (
+            <select value={slug ?? ""} onChange={(e) => setSlug(e.target.value)}>
+              {slugs.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          )}
+          {brief && (
+            <span className="reader-count">
+              {rated}/{brief.ideas.length} rated
+            </span>
+          )}
+        </div>
+      </header>
 
-      <Drawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} onChoose={openStation} />
+      {error && <p className="reader-empty">Could not reach the brief API — is `npm run dev` running? ({error})</p>}
+      {!error && !brief && <p className="reader-empty">No briefs yet. Run the scan to generate one.</p>}
 
-      {view === "home" ? (
-        <HomePage messages={messages} prompt={prompt} setPrompt={setPrompt} onSubmit={submitPrompt} />
-      ) : (
-        <WorkstationPage
-          activeKey={activeStationKey}
-          stationData={activeStationData}
-          onUpdateScratchpad={updateScratchpad}
-        />
+      {brief &&
+        BUCKETS.map(({ key, label, blurb }) => {
+          const ideas = brief.ideas.filter((i) => i.bucket === key);
+          if (!ideas.length) return null;
+          return (
+            <section className="bucket" key={key}>
+              <h2>
+                {label} <span>{blurb}</span>
+              </h2>
+              {ideas.map((idea) => (
+                <Idea key={idea.id} idea={idea} slug={slug} onRated={load} />
+              ))}
+            </section>
+          );
+        })}
+
+      {brief && (
+        <footer className="reader-foot">
+          Rate ruthlessly, then run <code>/basis-point-learn</code> to fold it into the rubric.
+        </footer>
       )}
     </main>
   );
