@@ -35,7 +35,19 @@ for (const chunk of chunks) {
   // Short-form beats are "0-3s"; Bucket D chapters are "0:00-0:45". Both land in `beats`.
   const beats = [...chunk.matchAll(/^- (\d+:\d{2}-\d+:\d{2}|\d+-\d+s) — (.*)$/gm)]
     .map((b) => ({ t: b[1], text: b[2] }));
-  const sources = [...chunk.matchAll(/^- (.+?) — (https?:\/\/\S+)$/gm)].map((s) => ({ name: s[1], url: s[2] }));
+  // Scoped to the Sources block — the material bullets are also "- ..." lines
+  // and must not be mistaken for sources.
+  const sourceBlock = chunk.match(/\*\*Sources\*\*[^\n]*\n((?:(?!\*\*|## )[\s\S])*)/);
+  const sources = [...(sourceBlock?.[1] ?? "").matchAll(/^- (.+?) — (https?:\/\/\S+)$/gm)]
+    .map((s) => ({ name: s[1], url: s[2] }));
+
+  // The raw fact list. Deliberately long — Lana picks from it to write the script.
+  const materialBlock = chunk.match(/\*\*The material\*\*[^\n]*\n((?:- [\s\S]*?)?)(?=\n\*\*|\n## |$)/);
+  const material = (materialBlock?.[1] ?? "")
+    .split("\n")
+    .filter((l) => l.startsWith("- "))
+    .map((l) => l.slice(2).trim())
+    .filter(Boolean);
 
   const extra = {};
   for (const label of ["What you build", "Time to build", "The money shot", "Gotchas",
@@ -66,6 +78,7 @@ for (const chunk of chunks) {
     // Bucket D has no "Why it's good" — its thesis is the headline claim.
     why: field("Why it's good") || (letter === "D" ? field("The thesis") : null),
     beats,
+    material,
     sources,
     freshness: chunk.match(/\*\*Freshness\*\*\s*([^·\n]+)/)?.[1].trim() || null,
     saturation: chunk.match(/\*\*Saturation\*\*\s*([^\n]+)/)?.[1].trim() || null,

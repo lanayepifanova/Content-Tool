@@ -25,6 +25,7 @@ function Idea({ idea, slug, onRated }) {
   const [reason, setReason] = useState(idea.ratingReason || "");
   const [saving, setSaving] = useState(false);
   const [open, setOpen] = useState(false);
+  const [matOpen, setMatOpen] = useState(false);
 
   useEffect(() => {
     setRating(idea.rating);
@@ -75,6 +76,21 @@ function Idea({ idea, slug, onRated }) {
       )}
 
       {idea.note && <p className="idea-note">{idea.note}</p>}
+
+      {idea.material?.length > 0 && (
+        <>
+          <button className="beats-toggle" type="button" onClick={() => setMatOpen(!matOpen)}>
+            {matOpen ? "Hide material" : `Show material (${idea.material.length} facts)`}
+          </button>
+          {matOpen && (
+            <ul className="idea-material">
+              {idea.material.map((m, i) => (
+                <li key={i}>{m}</li>
+              ))}
+            </ul>
+          )}
+        </>
+      )}
 
       {idea.beats?.length > 0 && (
         <>

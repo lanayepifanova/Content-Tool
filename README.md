@@ -19,6 +19,12 @@ briefs/*.md  ──rate ideas──→ /basis-point-learn ──→ rewrites LEA
 The markdown brief is the single source of truth. The JSON is derived from it,
 and ratings made in the UI are written back into the markdown.
 
+Every idea carries **The material** — a long, raw list of the verified facts,
+numbers, dates and exact quotes behind it, including the counter-argument. It is
+deliberately not a script: it's everything you'd otherwise have to go and look
+up, so you can pick from it and write the reel yourself without leaving the
+brief. 10-16 bullets per short, 20-30 for the long-form.
+
 Ideas are `A1..A3` news, `B1..B3` tutorials, `C1..C3` explainers, `D1` long-form.
 Bucket D is the ~10-minute YouTube idea: it is researched as its own hunt on a
 subject the nine shorts don't cover, and has to pass a substance test — three
@@ -36,6 +42,8 @@ when the scan ran twice daily. Both name shapes load in the reader.
 | `/basis-point-scan` | Run a scan — research, write the brief, email it |
 | `/basis-point-learn` | Fold accumulated ratings into `agent/taste.md` |
 | `npm run dev` | Brief reader at localhost:5173 — read and rate |
+| `./scripts/daily-scan.sh` | Run the scan headlessly, as the daily schedule does |
+| `./scripts/daily-scan.sh --dry` | Same, but no email and no push |
 | `node scripts/send-digest.mjs briefs/X.md` | Re-send a brief by email |
 | `node scripts/brief-to-json.mjs briefs/X.md` | Regenerate JSON after hand-editing |
 

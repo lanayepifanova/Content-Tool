@@ -26,6 +26,13 @@ day. Read them the same way; new briefs are just `YYYY-MM-DD.md`.
 
 ## 2. Research
 
+Research runs in two passes. The first picks the ideas; the second is what
+makes the brief usable without any further work from Lana. Do not merge them —
+choosing an idea and mining it are different jobs, and skipping the second pass
+is the main way this run fails.
+
+### Pass one — selection
+
 Budget roughly 12-18 searches for the short-form buckets, weighted toward
 whichever looks thin, then 6-10 more for the long-form.
 
@@ -74,6 +81,43 @@ candidate survives, ship the nine shorts and write a `> note:` under a `## D1`
 heading saying what you looked at and why none held up. That is a real result,
 not a failed run.
 
+### Pass two — mining the selected ideas
+
+Once the ten ideas are chosen, go back through them one at a time and gather
+**The material**: the raw fact list defined in `agent/format.md`. Target 10-16
+bullets per short, 20-30 for the long-form.
+
+This is the expensive part of the run and it is the point of the run. Budget
+2-4 further searches or fetches per idea — call it 25-40 across the brief, on
+top of pass one. A brief with ten well-chosen ideas and thin material is worse
+than one with eight ideas mined properly.
+
+For each idea:
+
+1. **Go back to the primary source and read it,** not the coverage of it. The
+   numbers, dates and exact quotes come from the filing, the release, the repo,
+   the order. Coverage is for finding the story; primaries are for the facts.
+2. **Get the before-number.** A figure alone is not material — "$11.5B" means
+   nothing without "up from $787M." Every headline number needs its baseline,
+   its comparison, or its scale.
+3. **Pin the timeline.** Specific dates, in order, including what happens next
+   and when.
+4. **Name the actors** and what each one wanted.
+5. **Find the counter-argument.** Actively search for the strongest case
+   against the framing, and put it in the material. If a comment could embarrass
+   her with a fact, that fact goes in the brief.
+6. **Quote exactly.** Named speaker, verbatim, in quotation marks. If you cannot
+   find the exact wording, do not present it as a quote.
+
+For Bucket B the mining is hands-on rather than journalistic: read the actual
+README and recent commits, get the real install command and version numbers, the
+config that has to be right, the true cost per run, and the error people
+actually hit. Check the issues tab for what breaks.
+
+Never invent a fact to fill the list. Fewer, harder bullets beat a padded list,
+and a wrong number is far worse than a missing one — she will say it on camera.
+If something could not be verified, leave it out rather than hedging it in.
+
 ## 3. Write
 
 Follow `agent/format.md` exactly. Write:
@@ -85,6 +129,12 @@ Quality gate before writing: for each short-form idea, ask whether you'd
 genuinely stop scrolling. Cut anything that's merely informative. For the
 long-form, ask whether you'd still be watching at minute six. **Under-delivering
 is correct** — a note explaining why a bucket yielded two beats a padded third.
+
+Then the material gate, applied per idea: could Lana open this brief and start
+recording without looking anything up? If she'd still need to go find a number,
+a date, or the other side of the argument, the material isn't finished. This
+gate is about completeness, not brevity — it is the one place in the brief
+where more is better.
 
 ## 4. Deliver
 
@@ -98,5 +148,7 @@ If email fails, still commit the brief and report the failure — never lose a r
 
 ## 5. Report
 
-Print a 4-line summary: date, the strongest short, the long-form idea and the
-one sentence for why it holds ten minutes, anything notably thin.
+Print a 5-line summary: date, the strongest short, the long-form idea and the
+one sentence for why it holds ten minutes, the total material bullets gathered,
+anything notably thin — including any idea whose material you could not fill
+out properly and why.

@@ -34,6 +34,11 @@ not a summary of the news.}
 - 15-35s — {connect to money, power, timing, or behavior}
 - 35-60s — {one thing to watch next}
 
+**The material**
+- {a single verified fact, with its number, name, date or quote}
+- {another — these are raw, unordered, and there are many}
+- ...
+
 **Sources**
 - {publication} — {url}
 - {primary source, filing, or repo} — {url}
@@ -44,6 +49,46 @@ not a summary of the news.}
 
 ---
 ```
+
+### The material section
+
+This is the part that means Lana doesn't have to go research the story herself.
+It sits under every idea, short-form and long, and it carries the raw facts —
+not a script, not prose, not an argument. She writes the script; the brief
+supplies everything she'd otherwise have to go and look up.
+
+**Target 10-16 bullets per short-form idea, 20-30 for Bucket D.** Over-supply is
+the point: include facts she probably won't use. A bullet she skips costs
+nothing, a fact she has to go find costs the whole benefit.
+
+Every bullet must:
+
+- **Carry something hard** — a number, a date, a name, a dollar figure, a
+  percentage, a direct quote. A bullet with no specific in it is a sentence
+  about the topic, and doesn't belong here.
+- **Stand alone.** No "this means that" or "as a result" — each bullet is
+  independently liftable into a script in any order. Connective tissue is
+  script-writing, which is her job.
+- **Attribute inline** when the fact is contestable or the source matters:
+  `(Bloomberg)`, `(per the 10-Q)`, `(CFTC press release)`. Put the bare source
+  name in parentheses — never a bare URL, which belongs in **Sources**.
+- **Quote exactly** when quoting. Full quotation marks, named speaker, no
+  paraphrase dressed as a quote.
+
+Cover, where they exist: the core numbers and what they were before · the
+timeline with dates · who the named actors are and what each wanted · the
+mechanism, stated plainly · the scale comparison that makes a number legible ·
+the precedent or the last time this happened · the counter-argument or the
+caveat that would embarrass her if a comment pointed it out · what happens next
+and when.
+
+Include the inconvenient facts. If the tidy version of the story has a hole in
+it, the hole goes in the material — finding out from a comment is worse than
+knowing up front.
+
+For Bucket B the material is practical rather than journalistic: exact install
+commands, version numbers, the config that has to be right, real cost per run,
+the error people hit and what fixes it, star count and last-commit date.
 
 Then `B1..B3` (tutorials) and `C1..C3` (explainers), same shape with these
 bucket-specific field swaps:
@@ -96,6 +141,9 @@ the honest answer is "it doesn't," cut the idea.}
 {Footage, charts, screen recordings, filings to put on screen. Be specific —
 "the S-1 page where the compute line item appears," not "some visuals."}
 
+**The material**
+- {20-30 bullets — same rules as the shorts, more of them}
+
 **Title options**
 - {YouTube title, written to be clicked, not to be accurate-sounding}
 - {a second, different angle}
@@ -120,7 +168,9 @@ Chapter timestamps use `M:SS-M:SS`; short-form beats keep `Ns-Ns`. Both parse.
 - Hooks are written to be **spoken**, not read. No "In this video." No "Ever
   wondered." No rhetorical-question openers.
 - Never pad to hit the count. Three strong ideas beat three plus a filler.
-  If a bucket only yields two, ship two and say why in a `> note:` line.
+  If a bucket only yields two, ship two and say why in a `> note:` line. This
+  is about the number of *ideas* — **The material** is the opposite case, where
+  more is better, so long as every bullet carries a hard specific.
 - Every factual claim carries a source link. Unverifiable claim = cut the idea.
 - No emoji in briefs. No exclamation marks.
 - Short-form titles are four to six words, concrete nouns, no colons. The

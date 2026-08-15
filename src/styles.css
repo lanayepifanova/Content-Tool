@@ -282,6 +282,26 @@ button {
   font-variant-numeric: tabular-nums;
 }
 
+/* The raw fact list — long by design, so it reads as a reference block. */
+.idea-material {
+  margin: 12px 0 0;
+  padding: 12px 16px 12px 32px;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.03);
+  border-left: 2px solid rgba(20, 20, 20, 0.12);
+}
+
+.idea-material li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #2c2c2c;
+}
+
+.idea-material li:last-child {
+  margin-bottom: 0;
+}
+
 .idea-sources {
   display: flex;
   flex-wrap: wrap;
