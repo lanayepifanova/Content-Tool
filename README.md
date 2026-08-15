@@ -7,17 +7,31 @@ into a dated brief, emails it, and learns from how the ideas get rated.
 ## How it works
 
 ```
-agent/taste.md ──┐
-agent/format.md ─┼─→ /basis-point-scan ─→ briefs/YYYY-MM-DD.md  (source of truth)
-last 6 briefs ───┘                          │
-                                            ├─→ .json  (React UI reads this)
-                                            └─→ email  (Resend)
+agent/taste.md ────┐
+agent/format.md ───┼─→ /basis-point-scan ─→ briefs/YYYY-MM-DD.md  (source of truth)
+briefs/INDEX.md ───┘         │                  │
+  (de-dup)                   │                  ├─→ .json   (React UI reads this)
+                             │                  ├─→ INDEX.md (de-dup surface)
+                   pass two fans out to         └─→ email   (Resend)
+                   one subagent per idea
 
 briefs/*.md  ──rate ideas──→ /basis-point-learn ──→ rewrites LEARNED in taste.md
 ```
 
 The markdown brief is the single source of truth. The JSON is derived from it,
 and ratings made in the UI are written back into the markdown.
+
+`briefs/INDEX.md` is derived too — one line per past idea, newest first. It is
+what a scan reads for de-duplication instead of the briefs themselves. A brief
+is ~58KB once its material is in, so reading the last six cost ~87k tokens that
+then rode along in context for every turn of the run; the index is the same
+information for about 2% of that.
+
+The mining pass — gathering `The material` for each chosen idea — runs as ten
+parallel subagents on Sonnet rather than inline. Their searches live and die in
+their own contexts instead of accumulating in the main one, and the selection,
+the quality gate and the writing stay on the main model. This is the difference
+between a run costing ~$48 and ~$20.
 
 Every idea carries **The material** — a long, raw list of the verified facts,
 numbers, dates and exact quotes behind it, including the counter-argument. It is
@@ -44,11 +58,20 @@ when the scan ran twice daily. Both name shapes load in the reader.
 | `npm run dev` | Brief reader at localhost:5173 — read and rate |
 | `./scripts/daily-scan.sh` | Run the scan headlessly, as the daily schedule does |
 | `./scripts/daily-scan.sh --dry` | Same, but no email and no push |
+| `./scripts/daily-scan.sh --force` | Run even if today's brief already exists |
+| `node scripts/send-digest.mjs briefs/X.md` | Re-send a brief by email |
+| `node scripts/brief-to-json.mjs briefs/X.md` | Regenerate JSON after hand-editing |
+| `node scripts/brief-to-json.mjs --index` | Rebuild `briefs/INDEX.md` from every brief's JSON |
 
 The daily run is a launchd agent, `com.lanayepifanova.basis-point`, firing at
 06:00 local. launchd uses wall-clock time, so that stays 06:00 across the DST
 change. Logs, including cost per run, go to `~/Library/Logs/basis-point/` —
 `YYYY-MM-DD.log` for readable progress and `.jsonl` for the raw event stream.
+
+If `briefs/YYYY-MM-DD.md` already exists the script exits without running, so a
+manual scan and the scheduled one on the same day cannot both spend a run.
+`--force` overrides it.
+
 Reload after editing the plist:
 
 ```
@@ -59,8 +82,6 @@ launchctl load   ~/Library/LaunchAgents/com.lanayepifanova.basis-point.plist
 It runs on your Mac rather than in the cloud because the cloud sandbox's egress
 proxy blocks direct fetches to most news and regulator domains, which breaks the
 rule that primary sources get opened before coverage is trusted.
-| `node scripts/send-digest.mjs briefs/X.md` | Re-send a brief by email |
-| `node scripts/brief-to-json.mjs briefs/X.md` | Regenerate JSON after hand-editing |
 
 ## Tuning it
 

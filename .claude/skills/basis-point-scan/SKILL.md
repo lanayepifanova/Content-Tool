@@ -15,14 +15,24 @@ Read in this order — do not skip, the whole point is that runs improve:
 
 1. `agent/taste.md` — the rubric. This is binding, including its LEARNED section.
 2. `agent/format.md` — the output template.
-3. The **last 6 briefs** in `briefs/` — for de-duplication. An idea that repeats
-   a story or tool from the last three days is rejected unless the angle is
-   genuinely new. Note which ideas were rated `-` and avoid that shape.
-   Check the previous Bucket D ideas separately: two long-form ideas in the
-   same week on the same subject is a repeat even if the framing differs.
+3. `briefs/INDEX.md` — one line per past idea, newest first, for de-duplication.
+   Read the **most recent six dates** of it. An idea that repeats a story or
+   tool from the last three days is rejected unless the angle is genuinely new.
+   Note which ideas were rated `-` and avoid that shape. Check the previous
+   Bucket D ideas separately: two long-form ideas in the same week on the same
+   subject is a repeat even if the framing differs.
 
-Older briefs are named `YYYY-MM-DD-am.md` / `-pm.md` from when this ran twice a
-day. Read them the same way; new briefs are just `YYYY-MM-DD.md`.
+Read the index, not the briefs themselves. A brief is ~58KB because of its
+material; six of them is ~87k tokens that then get replayed on every turn of the
+run, and de-duplication only needs titles and angles. Open a full brief only if
+the index leaves a genuine question about whether today's idea repeats one — and
+then just that one, with `grep`, not a whole-file read.
+
+`briefs/INDEX.md` is generated. If it is missing or stale, rebuild it with
+`node scripts/brief-to-json.mjs --index`.
+
+Do not read `scripts/brief-to-json.mjs` or `scripts/send-digest.mjs`. They are
+run, not modified; reading them just adds context.
 
 ## 2. Research
 
@@ -83,16 +93,39 @@ not a failed run.
 
 ### Pass two — mining the selected ideas
 
-Once the ten ideas are chosen, go back through them one at a time and gather
-**The material**: the raw fact list defined in `agent/format.md`. Target 10-16
-bullets per short, 20-30 for the long-form.
+Once the ten ideas are chosen, gather **The material** for each: the raw fact
+list defined in `agent/format.md`. Target 10-16 bullets per short, 20-30 for
+the long-form.
 
 This is the expensive part of the run and it is the point of the run. Budget
 2-4 further searches or fetches per idea — call it 25-40 across the brief, on
 top of pass one. A brief with ten well-chosen ideas and thin material is worse
 than one with eight ideas mined properly.
 
-For each idea:
+**Run this pass as parallel subagents — one per idea, all dispatched in a
+single message.** Mining is ten independent extraction jobs, and doing them
+inline means all forty-odd search results stay in context for the rest of the
+run and get re-sent on every subsequent turn. A subagent's searches live and
+die in its own context; only the finished bullets come back.
+
+Use the Agent tool with `subagent_type: "general-purpose"` and
+`model: "sonnet"` — this is verification and extraction against a fixed
+standard, not judgment, and the selection you already made was the judgment
+call. Give each subagent, inline in its prompt (it does not share your context):
+
+- the idea's id, title, hook and one-line angle
+- its sources so far, as URLs
+- the six mining rules below, verbatim
+- the bullet target, and the `The material` spec from `agent/format.md`
+- the instruction to return **only** the finished bullet list as markdown
+  `- ` lines, no preamble, and to say plainly which bullets it could not verify
+
+Then check what comes back before it goes in the brief: any bullet without a
+hard number, date, name or exact quote gets cut, and an idea that came back
+thin is your problem to fix, not the subagent's. If a subagent fails or returns
+nothing, mine that idea yourself inline rather than shipping it thin.
+
+The six rules each subagent applies:
 
 1. **Go back to the primary source and read it,** not the coverage of it. The
    numbers, dates and exact quotes come from the filing, the release, the repo,
@@ -109,14 +142,16 @@ For each idea:
 6. **Quote exactly.** Named speaker, verbatim, in quotation marks. If you cannot
    find the exact wording, do not present it as a quote.
 
-For Bucket B the mining is hands-on rather than journalistic: read the actual
-README and recent commits, get the real install command and version numbers, the
-config that has to be right, the true cost per run, and the error people
-actually hit. Check the issues tab for what breaks.
+For Bucket B, say so explicitly in that subagent's prompt: its mining is
+hands-on rather than journalistic. Read the actual README and recent commits,
+get the real install command and version numbers, the config that has to be
+right, the true cost per run, and the error people actually hit. Check the
+issues tab for what breaks.
 
-Never invent a fact to fill the list. Fewer, harder bullets beat a padded list,
-and a wrong number is far worse than a missing one — she will say it on camera.
-If something could not be verified, leave it out rather than hedging it in.
+Every subagent prompt ends with this, verbatim: never invent a fact to fill the
+list. Fewer, harder bullets beat a padded list, and a wrong number is far worse
+than a missing one — she will say it on camera. If something could not be
+verified, leave it out rather than hedging it in.
 
 ## 3. Write
 

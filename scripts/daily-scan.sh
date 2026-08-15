@@ -2,6 +2,7 @@
 # Runs the Basis Point scan headlessly, for launchd to fire once a day.
 #   ./scripts/daily-scan.sh          — normal run
 #   ./scripts/daily-scan.sh --dry    — same, but skips the email and the push
+#   ./scripts/daily-scan.sh --force  — run even if today's brief already exists
 #
 # launchd starts jobs with a near-empty environment, so everything this needs
 # is resolved explicitly below rather than inherited from a login shell.
@@ -35,7 +36,23 @@ cd "$REPO" || { echo "FATAL: cannot cd to $REPO"; exit 1; }
 TODAY="$(date +%Y-%m-%d)"
 
 DRY=""
-[ "${1:-}" = "--dry" ] && DRY="
+FORCE=""
+DRY_FLAG=""
+for arg in "$@"; do
+  [ "$arg" = "--force" ] && FORCE=1
+  [ "$arg" = "--dry" ] && DRY_FLAG=1
+done
+
+# A scan costs roughly $20-50, so never spend one on a brief that already
+# exists. This fires when a manual run and the scheduled run land on the same
+# day, which has happened and cost a full duplicate run.
+if [ -z "$FORCE" ] && [ -e "$REPO/briefs/$TODAY.md" ]; then
+  echo "briefs/$TODAY.md already exists — skipping. Re-run with --force to override."
+  echo "=== $(date '+%H:%M:%S') — finished, exit 0 (skipped) ==="
+  exit 0
+fi
+
+[ -n "$DRY_FLAG" ] && DRY="
 This is a DRY RUN: write the brief and the JSON, but do NOT send the email and
 do NOT commit or push. Say clearly at the end that it was a dry run."
 
@@ -43,7 +60,10 @@ PROMPT="Run today's Basis Point content scan.
 
 Follow the repo skill \`basis-point-scan\` exactly, start to finish. Read
 \`agent/taste.md\` (binding, including its LEARNED section), \`agent/format.md\`,
-and the last 6 briefs in \`briefs/\` for de-duplication before researching.
+and the six most recent dates in \`briefs/INDEX.md\` for de-duplication before
+researching. Do not read whole past briefs — the index is the de-duplication
+surface, and a brief is ~58KB of material that then rides along in context for
+the rest of the run.
 
 Produce ten ideas: three news (A1-A3), three tutorials (B1-B3), three explainers
 (C1-C3), and one long-form YouTube idea (D1, roughly 10 minutes). D1 is its own
@@ -59,6 +79,13 @@ the raw fact list — is the point of the run, not an optional extra. Target 10-
 bullets per short and 20-30 for the long-form, every one carrying a hard number,
 date, name or exact quote, including the counter-argument. Never invent a fact
 to fill the list.
+
+Run pass two as parallel subagents, one per idea, all dispatched in a single
+message, with \`subagent_type: \"general-purpose\"\` and \`model: \"sonnet\"\`, exactly
+as the skill describes. Each subagent gets the idea and the mining rules inline
+and returns only its finished bullets. Then apply the material gate yourself
+before anything goes in the brief. Keep pass one, the quality gate and the
+writing on your own model — the judgment stays with you.
 
 Write \`briefs/$TODAY.md\`, generate the JSON with
 \`node scripts/brief-to-json.mjs\`, email it with \`node scripts/send-digest.mjs\`,
@@ -77,7 +104,7 @@ claude -p "$PROMPT" \
   --output-format stream-json \
   --verbose \
   --allowedTools \
-    "Read Write Edit Glob Grep WebSearch WebFetch Skill TodoWrite" \
+    "Read Write Edit Glob Grep WebSearch WebFetch Skill TodoWrite Agent Task" \
     "Bash(node:*)" "Bash(git:*)" "Bash(ls:*)" "Bash(cat:*)" "Bash(head:*)" \
     "Bash(tail:*)" "Bash(grep:*)" "Bash(date:*)" "Bash(wc:*)" "Bash(mkdir:*)" \
   | tee "$RAW" \
