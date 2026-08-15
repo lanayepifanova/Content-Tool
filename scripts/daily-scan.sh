@@ -65,14 +65,54 @@ Write \`briefs/$TODAY.md\`, generate the JSON with
 then commit and push the brief. If the email fails, still commit and push, and
 report the failure. Finish with a four-line report.$DRY"
 
+# Stream the run so the log shows progress instead of going silent for 20
+# minutes. The raw stream is teed to a .jsonl first, so a hiccup in the
+# readable filter below can never cost us the run's output.
+RAW="$LOG_DIR/$TODAY.jsonl"
+
+set -o pipefail
 claude -p "$PROMPT" \
   --model opus \
   --permission-mode acceptEdits \
+  --output-format stream-json \
+  --verbose \
   --allowedTools \
     "Read Write Edit Glob Grep WebSearch WebFetch Skill TodoWrite" \
     "Bash(node:*)" "Bash(git:*)" "Bash(ls:*)" "Bash(cat:*)" "Bash(head:*)" \
-    "Bash(tail:*)" "Bash(grep:*)" "Bash(date:*)" "Bash(wc:*)" "Bash(mkdir:*)"
+    "Bash(tail:*)" "Bash(grep:*)" "Bash(date:*)" "Bash(wc:*)" "Bash(mkdir:*)" \
+  | tee "$RAW" \
+  | node -e '
+      // Turn the event stream into readable progress lines. Anything
+      // unexpected is ignored rather than thrown — the raw .jsonl has it all.
+      let buf = "";
+      process.stdin.on("data", (c) => {
+        buf += c;
+        const lines = buf.split("\n");
+        buf = lines.pop();
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          let e; try { e = JSON.parse(line); } catch { continue; }
+          const stamp = () => new Date().toTimeString().slice(0, 8);
+          try {
+            for (const b of e?.message?.content ?? []) {
+              if (b.type === "tool_use") {
+                const q = b.input?.query || b.input?.url || b.input?.file_path ||
+                          b.input?.command || b.input?.skill || "";
+                console.log(`[${stamp()}] ${b.name}: ${String(q).slice(0, 110)}`);
+              } else if (b.type === "text" && b.text.trim()) {
+                console.log(`[${stamp()}] ${b.text.trim().slice(0, 400)}`);
+              }
+            }
+            if (e.type === "result") {
+              const cost = e.total_cost_usd != null ? ` · $${e.total_cost_usd.toFixed(2)}` : "";
+              const mins = e.duration_ms != null ? ` · ${Math.round(e.duration_ms / 60000)}m` : "";
+              console.log(`\n--- result (${e.subtype})${mins}${cost} ---\n${e.result ?? ""}`);
+            }
+          } catch {}
+        }
+      });
+    '
 
-STATUS=$?
+STATUS=${PIPESTATUS[0]}
 echo "=== $(date '+%H:%M:%S') — finished, exit $STATUS ==="
 exit $STATUS

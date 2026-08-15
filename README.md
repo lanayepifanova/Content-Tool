@@ -44,6 +44,21 @@ when the scan ran twice daily. Both name shapes load in the reader.
 | `npm run dev` | Brief reader at localhost:5173 — read and rate |
 | `./scripts/daily-scan.sh` | Run the scan headlessly, as the daily schedule does |
 | `./scripts/daily-scan.sh --dry` | Same, but no email and no push |
+
+The daily run is a launchd agent, `com.lanayepifanova.basis-point`, firing at
+06:00 local. launchd uses wall-clock time, so that stays 06:00 across the DST
+change. Logs, including cost per run, go to `~/Library/Logs/basis-point/` —
+`YYYY-MM-DD.log` for readable progress and `.jsonl` for the raw event stream.
+Reload after editing the plist:
+
+```
+launchctl unload ~/Library/LaunchAgents/com.lanayepifanova.basis-point.plist
+launchctl load   ~/Library/LaunchAgents/com.lanayepifanova.basis-point.plist
+```
+
+It runs on your Mac rather than in the cloud because the cloud sandbox's egress
+proxy blocks direct fetches to most news and regulator domains, which breaks the
+rule that primary sources get opened before coverage is trusted.
 | `node scripts/send-digest.mjs briefs/X.md` | Re-send a brief by email |
 | `node scripts/brief-to-json.mjs briefs/X.md` | Regenerate JSON after hand-editing |
 
