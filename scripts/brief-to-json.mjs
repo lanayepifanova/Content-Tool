@@ -13,6 +13,13 @@ if (!path) { console.error("usage: node scripts/brief-to-json.mjs <brief.md> | -
 // have already run, not their material — and briefs are ~58KB each now, so
 // reading six of them costs ~87k tokens of context that gets replayed on every
 // turn of the run. One line per idea is the same information for ~2% of that.
+//
+// Capped to the most recent dates. The index sits in the baseline context and is
+// replayed on every turn, so an uncapped one grows into exactly the cost it was
+// built to avoid — ~594KB and ~149k tokens after a year. The skill reads the six
+// most recent dates; 14 is slack on top of that.
+const KEEP_DATES = 14;
+
 function buildIndex(briefsDir) {
   const line = (s, n) => (s ?? "").replace(/\s+/g, " ").trim().slice(0, n);
   const byDate = new Map();
@@ -30,7 +37,7 @@ function buildIndex(briefsDir) {
     // Two runs can share a date (`-am`, `-cloud`); keep both under the one heading.
     byDate.set(date, (byDate.get(date) ?? []).concat(rows));
   }
-  const dates = [...byDate.keys()].sort().reverse();
+  const dates = [...byDate.keys()].sort().reverse().slice(0, KEEP_DATES);
   const out = [
     "# Brief index",
     "",
@@ -41,7 +48,7 @@ function buildIndex(briefsDir) {
   ].join("\n");
   const dest = join(briefsDir, "INDEX.md");
   writeFileSync(dest, out);
-  return { dest, dates: dates.length, ideas: [...byDate.values()].flat().length };
+  return { dest, dates: dates.length, ideas: dates.reduce((n, d) => n + byDate.get(d).length, 0) };
 }
 
 if (path === "--index") {
