@@ -30,6 +30,51 @@ function loadEnv() {
   return env;
 }
 
+// What the email carries, per bucket. The brief keeps everything — this is the
+// emailed view only, cut down to what Lana actually reads in her inbox.
+// Tutorials are the aggressive cut: the build and the links, nothing else.
+const BUCKETS = { A: "news", B: "tutorial", C: "explainer", D: "longform" };
+const EMAIL_SECTIONS = {
+  news:      { drop: ["The beats"] },
+  tutorial:  { keepOnly: ["What you build", "Sources"] },
+  explainer: { drop: ["The beats"] },
+  longform:  { drop: ["The beats"] },
+};
+
+// The fact list is front-loaded: the quotes and the headline numbers are at the
+// top, the tail is secondary-actor detail. The full list stays in the brief.
+const MATERIAL_LIMIT = 8;
+
+function forDigest(md) {
+  const out = [];
+  let policy = null, keep = true, field = null, materialSeen = 0;
+
+  for (const line of md.split("\n")) {
+    const head = line.match(/^## ([ABCD])\d+\s*·/);
+    if (head) {
+      policy = EMAIL_SECTIONS[BUCKETS[head[1]]] ?? {};
+      keep = true;
+      field = null;
+      out.push(line);
+      continue;
+    }
+    if (/^`rate:/.test(line)) continue; // a UI affordance, not digest content
+
+    const label = line.match(/^\*\*([^*]+)\*\*/);
+    if (label && policy) {
+      field = label[1].trim();
+      keep = policy.keepOnly
+        ? policy.keepOnly.includes(field)
+        : !(policy.drop ?? []).includes(field);
+      materialSeen = 0;
+    }
+    if (!keep) continue;
+    if (field === "The material" && line.startsWith("- ") && ++materialSeen > MATERIAL_LIMIT) continue;
+    out.push(line);
+  }
+  return out.join("\n");
+}
+
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 // Inline styles throughout — Gmail strips <style> blocks.
@@ -85,11 +130,12 @@ if (!path) { console.error("usage: node scripts/send-digest.mjs <brief.md>"); pr
 const env = loadEnv();
 const md = readFileSync(path, "utf8");
 const subject = (md.match(/^# (.*)/m)?.[1] ?? `Basis Point — ${basename(path, ".md")}`).trim();
+const digest = forDigest(md);
 
 const res = await fetch("https://api.resend.com/emails", {
   method: "POST",
   headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-  body: JSON.stringify({ from: env.DIGEST_FROM, to: [env.DIGEST_TO], subject, html: toHtml(md), text: md }),
+  body: JSON.stringify({ from: env.DIGEST_FROM, to: [env.DIGEST_TO], subject, html: toHtml(digest), text: digest }),
 });
 
 const body = await res.json();
