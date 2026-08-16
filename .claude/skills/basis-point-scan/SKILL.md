@@ -43,52 +43,104 @@ is the main way this run fails.
 
 ### Pass one — selection
 
-Budget roughly 12-18 searches for the short-form buckets, weighted toward
-whichever looks thin, then 6-10 more for the long-form.
+Selection is two moves: **gather** (wide, cheap, parallel) and **judge** (yours).
+Gathering is what fills a context with search results, and every result that
+lands in yours is re-sent on every later turn of the run — the same argument
+that puts pass two in subagents applies here, and pass one is where the run is
+longest. So the searching happens in subagents and only the shortlists come
+back. The judgment stays with you.
 
-**Bucket A — news.** Search for developments in the last 72 hours across tech,
-startups, semiconductors, markets and finance. Cast wide, then filter hard
-through the rubric. Good hunting grounds: exchange and regulator announcements,
-prediction markets, market-structure oddities, novel financial instruments,
-company mechanics that sound implausible, chip and foundry developments, export
-policy, and startups shipping a specific thing. Chase the strange one. Always
-open the primary source — a filing, a press release, an exchange notice — before
-trusting coverage.
+**Dispatch five gather subagents in a single message** — three for bucket A,
+one each for B and C — with `subagent_type: "general-purpose"` and
+`model: "sonnet"`. Bucket A is split across three separate beats on purpose:
+one agent hunting all of "news" reliably comes back with three variations on
+market plumbing, and three agents on three beats cannot. Do not search the
+short-form buckets yourself. Give each one, inline in its prompt (it does not
+share your context):
 
-Spread the three across that range rather than filing three market-plumbing
-stories; `agent/taste.md` sets the mix. Search the hardware and startup beats
-explicitly, because they are the ones a market-structure hunt walks past.
+- its bucket's hunting grounds, verbatim from below
+- the filter criteria from `agent/taste.md` that apply to that bucket
+- the titles and angles from the six most recent dates in `briefs/INDEX.md`,
+  as an explicit do-not-repeat list
+- a budget of 6-10 searches, and the instruction to open the primary source
+  before trusting coverage
+- the return format below, and the instruction to return **only** that — no
+  preamble, no ranking, no recommendation
 
-**Bucket B — tutorials.** Look for AI tools and workflows worth demoing: newly
-trending open-source repos, new MCP servers, agent frameworks, automation
-pipelines. Verify the thing actually works — check the repo has recent commits
-and a real README, not just stars. Prefer tools where a screen recording carries
-the whole story. Lana already runs a Premiere Pro MCP, so video-automation
-angles are especially live.
+Each B and C agent returns **6-8 candidates**; each bucket A beat agent returns
+**4-5**. This shape and nothing else:
+
+```
+- **Title** — one line on the angle
+  - carries it: one hard number, date, name or exact quote
+  - primary: URL
+  - freshness: how old · saturation: who has already covered it
+  - weakest point: why this might fail the rubric
+```
+
+Then **you** pick three per bucket against `agent/taste.md`. Cast wide, filter
+hard — the subagents cast, you filter. Chase the strange one. If a bucket comes
+back thin or samey, re-dispatch that one agent with what was missing rather
+than settling for it; that is cheaper than shipping a weak three.
+
+**Bucket A's three must come from three different beats** — one markets, one
+hardware, one startups and product — unless one beat turned up something
+genuinely exceptional, and then say so in the report. Three market-structure
+stories in one brief is the specific failure this split exists to prevent: the
+trading and exchange material is good, but it cannot be the whole bucket.
+
+The hunting grounds to hand each subagent:
+
+**Bucket A — news**, as three separate beats, one agent each. All three cover
+the last 72 hours, and all three open the primary source — a filing, a press
+release, an exchange notice, a repo — before trusting coverage.
+
+- **A/markets.** Exchange and regulator announcements, prediction markets,
+  market-structure oddities, novel financial instruments, index and listing
+  mechanics, company financial mechanics that sound implausible.
+- **A/hardware.** Semiconductors, foundries and packaging, memory, chip supply
+  agreements, export policy and licensing, data-center and power build-outs,
+  the physical constraints under the AI trade.
+- **A/startups and product.** Startups shipping a specific thing, funding
+  rounds with an odd structure, product launches with a strange mechanic, big
+  tech shipping or killing something, developer-tool and platform moves. This
+  beat is the one a finance-led hunt walks past — do not let it come back
+  filled with market stories.
+
+**Bucket B — tutorials.** AI tools and workflows worth demoing: newly trending
+open-source repos, new MCP servers, agent frameworks, automation pipelines.
+Verify the thing actually works — check the repo has recent commits and a real
+README, not just stars. Prefer tools where a screen recording carries the whole
+story. Lana already runs a Premiere Pro MCP, so video-automation angles are
+especially live.
 
 **Bucket C — explainers.** These don't require news, but a concept that connects
 to something in the current cycle is stronger. Pick concepts where the honest
 explanation beats the pop-science one. Verify the technical claim — an explainer
 built on a subtly wrong analogy is worse than no explainer.
 
-**Bucket D — the long-form idea.** Research this as its own hunt, after the
-nine are settled, on a subject the shorts don't already cover. Same instincts,
-different depth target: you are looking for an argument that survives ten
-minutes, not a fact that lands in ten seconds.
+**Bucket D — the long-form idea.** Its own hunt, after the nine are settled, on
+a subject the shorts don't already cover. Same instincts, different depth
+target: you are looking for an argument that survives ten minutes, not a fact
+that lands in ten seconds.
 
 Work it in this order:
 
-1. **Pick two or three candidates** from the day's research — including threads
-   you found interesting but rejected as shorts because they needed too much
-   setup. That rejection reason is often exactly what makes a good long-form.
-2. **Try to break each one.** Read the primary sources properly, not just the
-   coverage. The candidate survives only if reading further made it *more*
-   interesting rather than less. If the second source flattens the story into
-   something ordinary, drop it and move to the next candidate.
-3. **Run the substance test** from `agent/taste.md` — all four questions,
-   answered concretely. Write the chapter breakdown before deciding it works:
-   if the middle chapters are vague, the idea is thin and you have found that
-   out cheaply.
+1. **Pick two or three candidates** from the shortlists — including threads you
+   rejected as shorts because they needed too much setup. That rejection reason
+   is often exactly what makes a good long-form. If the shortlists give you
+   nothing, dispatch one more gather subagent aimed at D specifically.
+2. **Try to break each one.** Dispatch one subagent per candidate, all in a
+   single message, same type and model as above. Each reads the primary sources
+   properly — not just the coverage — and returns, in under 20 lines: whether
+   reading further made the story *more* interesting or less, the two or three
+   facts that decide it, the strongest case against, and the sources it opened.
+   A candidate survives only if reading further made it more interesting. If the
+   second source flattens the story into something ordinary, it is dead.
+3. **Run the substance test** from `agent/taste.md` yourself — all four
+   questions, answered concretely, on what came back. Write the chapter
+   breakdown before deciding it works: if the middle chapters are vague, the
+   idea is thin and you have found that out cheaply.
 4. **Check what goes on screen.** Name the specific documents, charts, or
    recordings. An idea with no visual plan is not ready.
 

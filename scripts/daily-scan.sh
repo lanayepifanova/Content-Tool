@@ -80,12 +80,23 @@ bullets per short and 20-30 for the long-form, every one carrying a hard number,
 date, name or exact quote, including the counter-argument. Never invent a fact
 to fill the list.
 
-Run pass two as parallel subagents, one per idea, all dispatched in a single
-message, with \`subagent_type: \"general-purpose\"\` and \`model: \"sonnet\"\`, exactly
-as the skill describes. Each subagent gets the idea and the mining rules inline
-and returns only its finished bullets. Then apply the material gate yourself
-before anything goes in the brief. Keep pass one, the quality gate and the
-writing on your own model — the judgment stays with you.
+Run BOTH passes as parallel subagents, with \`subagent_type: \"general-purpose\"\`
+and \`model: \"sonnet\"\`, exactly as the skill describes.
+
+Pass one: five gather subagents in a single message — three for news (markets,
+hardware, startups and product), one for tutorials, one for explainers — each
+returning only a short candidate list, never raw search results. Pass two: one
+mining subagent per chosen idea, all in a single message, each returning only
+its finished bullets.
+
+Do not run searches yourself in either pass; search results that land in your
+context are re-sent on every later turn. The judgment stays with you: you pick
+from the shortlists, you apply the quality and material gates, you write.
+
+The three news ideas must come from three different beats — one markets, one
+hardware, one startups and product. Three market-structure stories in one brief
+is the failure mode: the trading and exchange material is good, but it cannot
+be the whole bucket.
 
 Write \`briefs/$TODAY.md\`, generate the JSON with
 \`node scripts/brief-to-json.mjs\`, email it with \`node scripts/send-digest.mjs\`,
