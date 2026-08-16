@@ -26,6 +26,13 @@ if [ -s "$HOME/.nvm/nvm.sh" ]; then
 fi
 export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
+# Headless runs otherwise wait only 600s for background tasks and then kill
+# them. Pass one dispatches five gather subagents and pass two ten mining ones;
+# a single mining agent has taken over 400s on its own, so the ceiling fires
+# mid-pass and the run returns "the agents are still out" with no brief written
+# and exit 0. This is what silently lost the 2026-08-16 run.
+export CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS=0
+
 for bin in claude node git; do
   command -v "$bin" >/dev/null || { echo "FATAL: $bin not on PATH"; exit 1; }
 done
@@ -120,8 +127,15 @@ report the failure. Finish with a four-line report.$DRY"
 # readable filter below can never cost us the run's output.
 RAW="$LOG_DIR/$TODAY.jsonl"
 
+# A scan runs for tens of minutes with long quiet stretches while subagents
+# work, so the Mac idle-sleeps underneath it and the API call dies with
+# "your computer went to sleep mid-response." caffeinate -is holds sleep off
+# for exactly as long as the run takes. The display is left alone.
+CAFFEINATE=""
+command -v caffeinate >/dev/null && CAFFEINATE="caffeinate -is"
+
 set -o pipefail
-claude -p "$PROMPT" \
+$CAFFEINATE claude -p "$PROMPT" \
   --model opus \
   --permission-mode acceptEdits \
   --output-format stream-json \
@@ -164,5 +178,16 @@ claude -p "$PROMPT" \
     '
 
 STATUS=${PIPESTATUS[0]}
+
+# claude can exit 0 having written nothing — a killed background task or an
+# interrupted response both end that way, and a silent exit 0 reads as a
+# successful run in launchd and in the log. The brief file is the only honest
+# success signal, so check for it.
+if [ ! -e "$REPO/briefs/$TODAY.md" ]; then
+  echo "FATAL: run ended with exit $STATUS but briefs/$TODAY.md was never written."
+  echo "Check $LOG_DIR/$TODAY.jsonl for where it stopped, then re-run."
+  [ "$STATUS" -eq 0 ] && STATUS=1
+fi
+
 echo "=== $(date '+%H:%M:%S') — finished, exit $STATUS ==="
 exit $STATUS
