@@ -14,8 +14,8 @@ An idea must survive all five to make the brief:
 
 1. **The "wait, what?" test.** Does the one-line version make someone stop
    scrolling? If the opening line needs setup to land, it's weak.
-2. **Explainable without a whiteboard** or prior context. The shorts run three
-   to four minutes now, but that is room to make one point properly, not room
+2. **Explainable without a whiteboard** or prior context. The shorts run four
+   to six minutes now, but that is room to make one point properly, not room
    for a second point: if the idea needs notation on screen or a second concept
    taught first, it fails. For Bucket D this applies to the premise only — the
    hook has to land in a sentence even though the argument takes ten minutes.

@@ -33,8 +33,8 @@ in their own contexts instead of accumulating in the main one, and the selection
 the quality gate and the writing stay on the main model. This is the difference
 between a run costing ~$48 and ~$20.
 
-**The nine short-form ideas ship as finished scripts.** Each is 400-600 words of
-spoken prose — four to six paragraphs, three to four minutes read aloud — that
+**The nine short-form ideas ship as finished scripts.** Each is 600-1000 words of
+spoken prose — five to seven paragraphs, four to six minutes read aloud — that
 can be recorded off the screen without writing a word or looking anything up. An
 entry is a title, **The script** and **Sources**; tutorials add the numbered
 setup walkthrough, because standing the thing up is a separate job from

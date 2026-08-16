@@ -237,7 +237,7 @@ verified, leave it out rather than hedging it in.
 
 ## 3. Write
 
-This is now the longest part of the run: nine finished scripts of 400-600 words
+This is now the longest part of the run: nine finished scripts of 600-1000 words
 each, plus the Bucket D pitch. Follow `agent/format.md` exactly — **The script**
 section there governs length, shape and voice, and each bucket section says how
 its five paragraphs differ. Write:
@@ -259,6 +259,10 @@ is correct** — a note explaining why a bucket yielded two beats a padded third
 
 Then read each finished script back against these, and fix what fails:
 
+- **Is it 600-1000 words?** Count them — `wc -w` on the script, not an estimate.
+  The first brief in this format self-reported 505-620 words for scripts that
+  actually ran 644-847, so the estimate is not trustworthy and the check is
+  cheap. Short of 600 usually means a missing paragraph, not a tight one.
 - **Could she record it as written?** Read it aloud in your head, start to
   finish. Anything she'd have to silently skip, reword or look up is a defect —
   a bracket, a bullet, a stage direction, a URL, an unexplained term.

@@ -62,11 +62,15 @@ sources.
 This section governs all nine short-form ideas. The bucket sections below only
 say how the shape differs.
 
-**Four to six paragraphs, 400-600 words** — roughly three to four minutes read
-aloud. The reference is ~510 words in five paragraphs of 80-130 words each. This
-is not a 60-second clip with more words in it: it is a piece of talking that has
-room to make one point properly, and the length is what lets the correction, the
-number or the walkthrough land instead of flashing past.
+**Five to seven paragraphs, 600-1000 words** — roughly four to six minutes read
+aloud, with paragraphs running 100-180 words. This is not a 60-second clip with
+more words in it: it is a piece of talking that has room to make one point
+properly, and the length is what lets the correction, the number or the
+walkthrough land instead of flashing past.
+
+**Count the words, don't estimate them.** A finished script has a checkable
+length and a run that guesses at it guesses low — the first brief in this format
+reported 505-620 words for scripts that were actually 644-847.
 
 Each paragraph is **one line in the file**, with a blank line between. The digest
 email turns every line into its own paragraph, so a hard-wrapped script arrives
@@ -302,7 +306,7 @@ knowing up front.
   openers. Bucket D's **Hook** follows the same rule.
 - Never pad to hit the count. Three strong ideas beat three plus a filler. If a
   bucket only yields two, ship two and say why in a `> note:` line. Never pad a
-  script to reach the word target either — 420 tight words beat 600 with a
+  script to reach the word target either — 620 tight words beat 1000 with a
   paragraph of throat-clearing in them.
 - Every factual claim carries a source link. Unverifiable claim = cut the idea.
 - No emoji in briefs. No exclamation marks.

@@ -81,9 +81,10 @@ in the rubric; if nothing clears that bar, ship nine plus a \`> note:\` under a
 Open primary sources before trusting coverage. Every factual claim needs a
 source link; cut anything you cannot verify.
 
-The nine short-form ideas ship as finished scripts: 400-600 words of spoken
-prose each, four to six paragraphs, written so Lana can record them off the
-screen without writing a word or looking anything up. An entry is the title,
+The nine short-form ideas ship as finished scripts: 600-1000 words of spoken
+prose each, five to seven paragraphs, written so Lana can record them off the
+screen without writing a word or looking anything up. Count the words of each
+finished script rather than estimating them. An entry is the title,
 \`The script\` and \`Sources\` — tutorials also keep the numbered setup
 walkthrough. No hook field, no \`What this is\`, no \`The material\` and no beat
 sheet on a short. D1 keeps its old shape, material included.
