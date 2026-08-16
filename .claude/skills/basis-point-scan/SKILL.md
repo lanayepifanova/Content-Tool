@@ -47,11 +47,17 @@ Budget roughly 12-18 searches for the short-form buckets, weighted toward
 whichever looks thin, then 6-10 more for the long-form.
 
 **Bucket A — news.** Search for developments in the last 72 hours across tech,
-startups, markets, finance. Cast wide, then filter hard through the rubric.
-Good hunting grounds: exchange and regulator announcements, prediction markets,
-market-structure oddities, novel financial instruments, company mechanics that
-sound implausible. Chase the strange one. Always open the primary source —
-a filing, a press release, an exchange notice — before trusting coverage.
+startups, semiconductors, markets and finance. Cast wide, then filter hard
+through the rubric. Good hunting grounds: exchange and regulator announcements,
+prediction markets, market-structure oddities, novel financial instruments,
+company mechanics that sound implausible, chip and foundry developments, export
+policy, and startups shipping a specific thing. Chase the strange one. Always
+open the primary source — a filing, a press release, an exchange notice — before
+trusting coverage.
+
+Spread the three across that range rather than filing three market-plumbing
+stories; `agent/taste.md` sets the mix. Search the hardware and startup beats
+explicitly, because they are the ones a market-structure hunt walks past.
 
 **Bucket B — tutorials.** Look for AI tools and workflows worth demoing: newly
 trending open-source repos, new MCP servers, agent frameworks, automation
@@ -147,6 +153,13 @@ hands-on rather than journalistic. Read the actual README and recent commits,
 get the real install command and version numbers, the config that has to be
 right, the true cost per run, and the error people actually hit. Check the
 issues tab for what breaks.
+
+The Bucket B subagent also returns the **How you set it up** walkthrough — the
+6-12 numbered steps specified in `agent/format.md` — and the **Where else this
+applies** list. Both come out of the same reading, so ask for them in the same
+prompt: the steps must be the real ones from the README and the repo, with
+commands and versions verbatim, not a plausible-looking reconstruction. A step
+the subagent could not verify is left out and flagged, exactly like a fact.
 
 Every subagent prompt ends with this, verbatim: never invent a fact to fill the
 list. Fewer, harder bullets beat a padded list, and a wrong number is far worse

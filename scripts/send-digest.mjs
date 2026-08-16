@@ -43,8 +43,8 @@ function toHtml(md) {
     li: "font:400 14px/1.6 -apple-system,Segoe UI,sans-serif;color:#333;margin:0 0 5px",
   };
   const out = [];
-  let inList = false;
-  const closeList = () => { if (inList) { out.push("</ul>"); inList = false; } };
+  let listTag = null; // "ul" or "ol" — setup steps arrive numbered.
+  const closeList = () => { if (listTag) { out.push(`</${listTag}>`); listTag = null; } };
 
   for (const raw of md.split("\n")) {
     const line = raw.trimEnd();
@@ -62,8 +62,13 @@ function toHtml(md) {
     else if ((m = line.match(/^## (.*)/))) { closeList(); out.push(`<h2 style="${S.h2}">${inline(m[1])}</h2>`); }
     else if ((m = line.match(/^_(.*)_$/))) { closeList(); out.push(`<p style="${S.meta}">${inline(m[1])}</p>`); }
     else if ((m = line.match(/^> (.*)/)))  { closeList(); out.push(`<p style="${S.quote}">${inline(m[1])}</p>`); }
-    else if ((m = line.match(/^[-*] (.*)/))) {
-      if (!inList) { out.push('<ul style="margin:0 0 12px;padding-left:20px">'); inList = true; }
+    else if ((m = line.match(/^(?:[-*]|\d+[.)])\s+(.*)/))) {
+      const tag = /^[-*]/.test(line) ? "ul" : "ol";
+      if (listTag !== tag) {
+        closeList();
+        out.push(`<${tag} style="margin:0 0 12px;padding-left:20px">`);
+        listTag = tag;
+      }
       out.push(`<li style="${S.li}">${inline(m[1])}</li>`);
     }
     else { closeList(); out.push(`<p style="${S.p}">${inline(line)}</p>`); }

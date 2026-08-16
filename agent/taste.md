@@ -34,8 +34,8 @@ horse-race posts, anything whose only hook is a big number.
 
 ## Bucket A — News (tech · startups · markets · finance)
 
-Looking for: the recent, real, slightly absurd thing that reveals how a system
-actually works.
+Covering: tech, startups, semiconductors, markets and finance. Looking for the
+recent, real, slightly absurd thing that reveals how a system actually works.
 
 **Gold standard:** Kalshi + SIG + Citadel writing a hedging contract on goats.
 Why it works — it's genuinely novel (first of its kind), the names are
@@ -49,7 +49,19 @@ solving something in a strange way · numbers that imply a story · prediction
 markets, exotic derivatives, weird liquidity plumbing.
 
 **Weak signals:** stock moved X% · CEO said a thing · funding round with no
-product angle · "AI is transforming Y" · earnings recaps.
+product angle · "AI is transforming Y" · earnings recaps · an institution
+following its own procedure to a foreseeable outcome, where the only news is
+that a scheduled step happened on schedule.
+
+**Coverage mix.** The three news ideas should not all be market plumbing. Aim
+for roughly one market-structure or finance story and two drawn from the wider
+tech beat — startups doing a specific thing, semiconductors and the hardware
+supply chain, chip export policy, foundries and packaging, devices, platform
+and infrastructure shifts. The rubric above still applies unchanged: a startup
+story needs a product mechanic and not a funding number, and a chip story needs
+a specific development rather than a market-size projection. This is about where
+to hunt, not a lowering of the bar — three market-plumbing stories still beat
+two plus a filler.
 
 Recency: default 72 hours. Up to 7 days if genuinely under-covered.
 
@@ -73,7 +85,10 @@ is invisible (backend-only) · it's a wrapper with no real capability · the rep
 has no working demo · already has a great official tutorial.
 
 Every Bucket B idea must include: what gets built, roughly how long it takes,
-and what the on-screen "it worked" moment looks like.
+the numbered setup walkthrough, what the on-screen "it worked" moment looks
+like, and three to five other jobs the same setup does. The walkthrough is not
+optional and not a summary — a tutorial idea that doesn't say how to actually
+stand the thing up is a tool announcement wearing a tutorial's clothes.
 
 ---
 

@@ -223,6 +223,16 @@ button {
   color: var(--ink);
 }
 
+/* Setup steps and applications — a field whose value is a list, not a line. */
+.idea-field-list {
+  margin: 6px 0 0;
+  padding-left: 20px;
+}
+
+.idea-field-list li {
+  margin: 4px 0;
+}
+
 /* Bucket D only — the candidate YouTube titles, read as a shortlist. */
 .idea-titles {
   margin: 12px 0 0;

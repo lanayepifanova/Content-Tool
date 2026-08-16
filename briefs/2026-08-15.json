@@ -82,8 +82,8 @@
       "freshness": "4 days",
       "saturation": "low — trade press covered the announcement, the \"why does the same chip cost 3x\" angle is unused",
       "note": null,
-      "rating": null,
-      "ratingReason": null,
+      "rating": "up",
+      "ratingReason": "interesting",
       "extra": {}
     },
     {
@@ -157,8 +157,8 @@
       "freshness": "~26h",
       "saturation": "medium — the stock move was covered everywhere, the disappearing-index-effect turn was not",
       "note": null,
-      "rating": null,
-      "ratingReason": null,
+      "rating": "down",
+      "ratingReason": "irrelevant, and not really a piece of news",
       "extra": {}
     },
     {
@@ -233,8 +233,8 @@
       "freshness": "~30h",
       "saturation": "medium in crypto press, low everywhere else",
       "note": null,
-      "rating": null,
-      "ratingReason": null,
+      "rating": "down",
+      "ratingReason": "kinda cool but merely ok",
       "extra": {}
     },
     {
@@ -304,8 +304,8 @@
       "freshness": "current",
       "saturation": "medium — plenty of Browser Use demos, almost none using your own logged-in profile as a feed reader",
       "note": null,
-      "rating": null,
-      "ratingReason": null,
+      "rating": "up",
+      "ratingReason": "good",
       "extra": {
         "What you build": "Browser Use installed as a Claude Code skill, pointed at your actual logged-in Chrome profile, so an agent can scroll X, read your feed and pull out what matters without a single API key.",
         "Time to build": "20-30 minutes, most of it profile setup",
@@ -377,8 +377,8 @@
       "freshness": "current",
       "saturation": "low — Firecrawl is well covered, the `/agent` endpoint replacing `/extract` is barely covered at all",
       "note": null,
-      "rating": null,
-      "ratingReason": null,
+      "rating": "up",
+      "ratingReason": "good",
       "extra": {
         "What you build": "A single Firecrawl `/agent` call that takes one English sentence and a JSON schema and returns a filled table from thirty competitor sites — no selectors, no per-site parser, no maintenance.",
         "Time to build": "15 minutes",
@@ -446,8 +446,8 @@
       "freshness": "current",
       "saturation": "low — written about in text, almost never filmed, and the tree view is the reason to film it",
       "note": null,
-      "rating": null,
-      "ratingReason": null,
+      "rating": "up",
+      "ratingReason": "good",
       "extra": {
         "What you build": "A fleet of custom subagents in `.claude/agents/`, each a Markdown file with a few lines of frontmatter, then one instruction that fans the work out across twenty of them in parallel.",
         "Time to build": "20 minutes to a working fleet",

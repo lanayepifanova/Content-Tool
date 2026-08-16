@@ -7,6 +7,36 @@ const BUCKETS = [
   { key: "longform", label: "Long-form", blurb: "YouTube · ~10 minutes" },
 ];
 
+// Most fields are a single line, but "How you set it up" and "Where else this
+// applies" arrive as a block of lines and have to stay a list to be readable.
+function Field({ label, value }) {
+  const lines = String(value)
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean);
+
+  if (lines.length < 2) {
+    return (
+      <p className="idea-field">
+        <span>{label}</span> {value}
+      </p>
+    );
+  }
+
+  const numbered = /^\d+[.)]\s/.test(lines[0]);
+  const List = numbered ? "ol" : "ul";
+  return (
+    <div className="idea-field">
+      <span>{label}</span>
+      <List className="idea-field-list">
+        {lines.map((l, i) => (
+          <li key={i}>{l.replace(/^(?:[-*]|\d+[.)])\s*/, "")}</li>
+        ))}
+      </List>
+    </div>
+  );
+}
+
 function Sources({ sources }) {
   if (!sources?.length) return null;
   return (
@@ -59,12 +89,17 @@ function Idea({ idea, slug, onRated }) {
       </header>
 
       {idea.hook && <p className="idea-hook">{idea.hook}</p>}
-      {idea.why && <p className="idea-why">{idea.why}</p>}
+
+      {/* The lead is two paragraphs, blank-line separated in the brief. */}
+      {idea.why &&
+        idea.why.split(/\n\s*\n/).map((para, i) => (
+          <p className="idea-why" key={i}>
+            {para.replace(/\s*\n\s*/g, " ")}
+          </p>
+        ))}
 
       {Object.entries(idea.extra || {}).map(([label, value]) => (
-        <p className="idea-field" key={label}>
-          <span>{label}</span> {value}
-        </p>
+        <Field key={label} label={label} value={value} />
       ))}
 
       {idea.titleOptions?.length > 0 && (

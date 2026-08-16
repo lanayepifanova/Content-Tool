@@ -93,7 +93,8 @@ for (const chunk of chunks) {
     .filter(Boolean);
 
   const extra = {};
-  for (const label of ["What you build", "Time to build", "The money shot", "Gotchas",
+  for (const label of ["What you build", "Time to build", "How you set it up",
+                       "The money shot", "Where else this applies", "Gotchas",
                        "The misconception", "The analogy", "Where it breaks",
                        "Where the analogy breaks", "Pairs with",
                        "The thesis", "Why it holds ten minutes", "What you'd need", "Thumbnail"]) {
@@ -107,19 +108,28 @@ for (const chunk of chunks) {
     ? titleBlock[1].split("\n").map((l) => l.replace(/^- /, "").trim()).filter(Boolean)
     : [];
 
-  // The thesis is promoted to `why` for Bucket D, so don't also list it as a field.
-  if (letter === "D") delete extra["The thesis"];
+  // The thesis is promoted to `why` only on older briefs that have no lead
+  // paragraphs above it. Where "What this is" leads, the thesis stays a field.
+  if (letter === "D" && !field("What this is") && !field("Why it's good")) {
+    delete extra["The thesis"];
+  }
 
-  const rateLine = chunk.match(/`rate:\s*([+-]?)([^`]*)`/);
+  // `rate: + reason` and `` `rate: +` reason `` are both in use — the reason
+  // is the point of the rating, so read it from inside or after the backticks.
+  const rateLine = chunk.match(/`rate:\s*([+-]?)([^`]*)`[ \t]*([^\n]*)/);
   const symbol = rateLine?.[1]?.trim() || null;
+  const reason = (rateLine?.[2]?.trim() || rateLine?.[3]?.trim() || "")
+    .replace(/^←.*/, "")
+    .trim();
 
   ideas.push({
     id: `${letter}${num}`,
     bucket: BUCKETS[letter],
     title: title.trim(),
     hook: field("Hook"),
-    // Bucket D has no "Why it's good" — its thesis is the headline claim.
-    why: field("Why it's good") || (letter === "D" ? field("The thesis") : null),
+    // "What this is" is the current lead field; the other two are older briefs.
+    why: field("What this is") || field("Why it's good")
+      || (letter === "D" ? field("The thesis") : null),
     beats,
     material,
     sources,
@@ -127,7 +137,7 @@ for (const chunk of chunks) {
     saturation: chunk.match(/\*\*Saturation\*\*\s*([^\n]+)/)?.[1].trim() || null,
     note: chunk.match(/^> note:\s*(.+)$/m)?.[1] || null,
     rating: symbol === "+" ? "up" : symbol === "-" ? "down" : null,
-    ratingReason: rateLine?.[2]?.trim() || null,
+    ratingReason: reason || null,
     extra,
     ...(titleOptions.length ? { titleOptions } : {}),
   });
