@@ -23,7 +23,7 @@ Read in this order — do not skip, the whole point is that runs improve:
    subject is a repeat even if the framing differs.
 
 Read the index, not the briefs themselves. A brief is ~58KB because of its
-material; six of them is ~87k tokens that then get replayed on every turn of the
+scripts; six of them is ~87k tokens that then get replayed on every turn of the
 run, and de-duplication only needs titles and angles. Open a full brief only if
 the index leaves a genuine question about whether today's idea repeats one — and
 then just that one, with `grep`, not a whole-file read.
@@ -36,10 +36,11 @@ run, not modified; reading them just adds context.
 
 ## 2. Research
 
-Research runs in two passes. The first picks the ideas; the second is what
-makes the brief usable without any further work from Lana. Do not merge them —
-choosing an idea and mining it are different jobs, and skipping the second pass
-is the main way this run fails.
+Research runs in two passes. The first picks the ideas; the second gathers the
+facts the scripts get written from. Do not merge them — choosing an idea and
+mining it are different jobs, and skipping the second pass is the main way this
+run fails: it produces nine scripts that sound like they were written from a
+headline, because they were.
 
 ### Pass one — selection
 
@@ -151,14 +152,22 @@ not a failed run.
 
 ### Pass two — mining the selected ideas
 
-Once the ten ideas are chosen, gather **The material** for each: the raw fact
-list defined in `agent/format.md`. Target 10-16 bullets per short, 20-30 for
-the long-form.
+Once the ten ideas are chosen, mine each one for the facts its script will be
+built out of. This produces a **working fact list that does not ship** for the
+nine shorts — it is the input you write the script from, and it stays in your
+context rather than in the brief. Only Bucket D's list goes into the file, as
+**The material**.
+
+Target 10-16 facts per short and 20-30 for the long-form. That is deliberately
+more than a 500-word script can hold: a script written from six facts reads
+like it was written from six facts, and the fifth paragraph — the caveat, the
+counter-argument, the thing that complicates the tidy version — is exactly the
+part that comes from the facts you didn't strictly need.
 
 This is the expensive part of the run and it is the point of the run. Budget
 2-4 further searches or fetches per idea — call it 25-40 across the brief, on
-top of pass one. A brief with ten well-chosen ideas and thin material is worse
-than one with eight ideas mined properly.
+top of pass one. Ten well-chosen ideas mined thinly produce ten scripts that
+say nothing.
 
 **Run this pass as parallel subagents — one per idea, all dispatched in a
 single message.** Mining is ten independent extraction jobs, and doing them
@@ -169,19 +178,24 @@ die in its own context; only the finished bullets come back.
 Use the Agent tool with `subagent_type: "general-purpose"` and
 `model: "sonnet"` — this is verification and extraction against a fixed
 standard, not judgment, and the selection you already made was the judgment
-call. Give each subagent, inline in its prompt (it does not share your context):
+call. **The subagents mine; you write.** Do not ask a subagent for the script:
+the voice is the product, it is consistent across the nine, and it is not
+delegable to a model that has never read a rated brief.
 
-- the idea's id, title, hook and one-line angle
+Give each subagent, inline in its prompt (it does not share your context):
+
+- the idea's id, title and one-line angle
 - its sources so far, as URLs
 - the six mining rules below, verbatim
-- the bullet target, and the `The material` spec from `agent/format.md`
+- the bullet target, and the bullet rules from **The material** in
+  `agent/format.md` — they govern the working list too, shipped or not
 - the instruction to return **only** the finished bullet list as markdown
   `- ` lines, no preamble, and to say plainly which bullets it could not verify
 
-Then check what comes back before it goes in the brief: any bullet without a
-hard number, date, name or exact quote gets cut, and an idea that came back
-thin is your problem to fix, not the subagent's. If a subagent fails or returns
-nothing, mine that idea yourself inline rather than shipping it thin.
+Then check what comes back before you write from it: any bullet without a hard
+number, date, name or exact quote gets cut, and an idea that came back thin is
+your problem to fix, not the subagent's. If a subagent fails or returns nothing,
+mine that idea yourself inline rather than writing a script off thin air.
 
 The six rules each subagent applies:
 
@@ -195,8 +209,9 @@ The six rules each subagent applies:
    and when.
 4. **Name the actors** and what each one wanted.
 5. **Find the counter-argument.** Actively search for the strongest case
-   against the framing, and put it in the material. If a comment could embarrass
-   her with a fact, that fact goes in the brief.
+   against the framing, and return it with the rest. It is not a footnote here —
+   it becomes a paragraph of the script, said out loud. If a comment could
+   embarrass her with a fact, that fact gets said before the comment can make it.
 6. **Quote exactly.** Named speaker, verbatim, in quotation marks. If you cannot
    find the exact wording, do not present it as a quote.
 
@@ -207,34 +222,56 @@ right, the true cost per run, and the error people actually hit. Check the
 issues tab for what breaks.
 
 The Bucket B subagent also returns the **How you set it up** walkthrough — the
-6-12 numbered steps specified in `agent/format.md` — and the **Where else this
-applies** list. Both come out of the same reading, so ask for them in the same
-prompt: the steps must be the real ones from the README and the repo, with
-commands and versions verbatim, not a plausible-looking reconstruction. A step
-the subagent could not verify is left out and flagged, exactly like a fact.
+6-12 numbered steps specified in `agent/format.md`, and the one short-form field
+that still ships alongside the script — plus three to five other real jobs the
+same setup does, which you fold into the script's last paragraph rather than
+listing. All of it comes out of the same reading, so ask for it in one prompt:
+the steps must be the real ones from the README and the repo, with commands and
+versions verbatim, not a plausible-looking reconstruction. A step the subagent
+could not verify is left out and flagged, exactly like a fact.
 
 Every subagent prompt ends with this, verbatim: never invent a fact to fill the
 list. Fewer, harder bullets beat a padded list, and a wrong number is far worse
-than a missing one — she will say it on camera. If something could not be
+than a missing one — it is going into a script she reads out loud as her own. If something could not be
 verified, leave it out rather than hedging it in.
 
 ## 3. Write
 
-Follow `agent/format.md` exactly. Write:
+This is now the longest part of the run: nine finished scripts of 400-600 words
+each, plus the Bucket D pitch. Follow `agent/format.md` exactly — **The script**
+section there governs length, shape and voice, and each bucket section says how
+its five paragraphs differ. Write:
+
 - `briefs/YYYY-MM-DD.md`
 - `briefs/YYYY-MM-DD.json` — generated by running
   `node scripts/brief-to-json.mjs briefs/YYYY-MM-DD.md`, not written by hand.
+
+Write the scripts yourself, one at a time, from the mined facts. Do not delegate
+them. Nine scripts written by nine subagents are nine different people talking,
+and the format only works if the voice is one voice — the hedging, the "I think,"
+the way a source gets named mid-sentence. If context is running short, cut an
+idea rather than farming out its script.
 
 Quality gate before writing: for each short-form idea, ask whether you'd
 genuinely stop scrolling. Cut anything that's merely informative. For the
 long-form, ask whether you'd still be watching at minute six. **Under-delivering
 is correct** — a note explaining why a bucket yielded two beats a padded third.
 
-Then the material gate, applied per idea: could Lana open this brief and start
-recording without looking anything up? If she'd still need to go find a number,
-a date, or the other side of the argument, the material isn't finished. This
-gate is about completeness, not brevity — it is the one place in the brief
-where more is better.
+Then read each finished script back against these, and fix what fails:
+
+- **Could she record it as written?** Read it aloud in your head, start to
+  finish. Anything she'd have to silently skip, reword or look up is a defect —
+  a bracket, a bullet, a stage direction, a URL, an unexplained term.
+- **Is every number in it verified, with its baseline?** A figure with no
+  before-number is half a fact. A figure you could not verify does not belong in
+  a sentence she says on camera.
+- **Does the fourth or fifth paragraph carry the inconvenient part?** The caveat,
+  the counter-argument, the place the analogy stops holding. A script that only
+  argues one side is the specific failure the old material section prevented.
+- **Does it end on a view rather than a recap?** If the last paragraph
+  summarises the first four, it is not written yet.
+- **Do the nine sound like one person?** Read the opening sentences of all nine
+  together. If one is in a different register, rewrite it, not the others.
 
 ## 4. Deliver
 
@@ -248,7 +285,7 @@ If email fails, still commit the brief and report the failure — never lose a r
 
 ## 5. Report
 
-Print a 5-line summary: date, the strongest short, the long-form idea and the
-one sentence for why it holds ten minutes, the total material bullets gathered,
-anything notably thin — including any idea whose material you could not fill
-out properly and why.
+Print a 5-line summary: date, the strongest short and one line on why, the
+long-form idea and the one sentence for why it holds ten minutes, the script
+word counts as a range, anything notably thin — including any script you had to
+write off facts you could not fully verify, and which sentence that is.

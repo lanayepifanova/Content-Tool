@@ -6,10 +6,20 @@ Every run writes two files:
 
 One run per day. Ten ideas: nine short-form (A/B/C) plus one long-form (D).
 
-Every idea leads with prose — two paragraphs that explain the thing and why it
-matters — and carries its detail in **The material** below that. There is no
-beat sheet: scripting is Lana's job, and a pre-chopped 0-3s/3-15s skeleton gets
-in the way of it.
+**The nine short-form ideas are finished scripts.** Not a pitch, not a fact
+list, not a beat sheet — the spoken piece, written out, in the voice Lana says
+it in. She should be able to open the brief, pick one, and record it without
+writing a word or looking anything up. That is the whole design: an entry is a
+title, **The script**, and **Sources**. Nothing else, in any of the three
+short-form buckets.
+
+There is no **Hook** field, no **What this is**, no **The material** and no beat
+sheet on a short-form idea. Every one of those was a note toward a script that
+is now written. The only extra field that survives is Bucket B's numbered setup
+walkthrough, because building the thing is a separate job from narrating it.
+
+Bucket D is the exception and keeps its old shape — ten minutes is a pitch to be
+approved, not a script to be read. See **Bucket D** below.
 
 ---
 
@@ -23,23 +33,12 @@ _{N} ideas · generated {HH:MM} · sources checked: {count}_
 
 ## A1 · NEWS · {four-to-six word title}
 
-**Hook** (0-3s, this is the actual first line of the video)
-> {one sentence, spoken aloud, no preamble}
+**The script**
+{Paragraph one — one line in the file, however long it runs.}
 
-**What this is**
-{First paragraph: the concept or the event, explained plainly to someone who has
-not been following it. Define the mechanism, name the actors, land the one
-number that anchors it. Assume no prior context and no jargon that isn't
-unpacked in the same sentence.}
+{Paragraph two.}
 
-{Second paragraph: why it matters. Who is affected, what changes because of it,
-and what makes it worth 60 seconds rather than a headline. This is where the
-specific surprising thing goes — the reason it stops a scroll.}
-
-**The material**
-- {a single verified fact, with its number, name, date or quote}
-- {another — these are raw, unordered, and there are many}
-- ...
+{...four to six paragraphs in total.}
 
 **Sources**
 - {publication} — {url}
@@ -52,68 +51,112 @@ specific surprising thing goes — the reason it stops a scroll.}
 ---
 ```
 
-### The material section
+`B1..B3` and `C1..C3` use the same three fields, with `TUTORIAL` and `EXPLAINER`
+in the header. Bucket B adds **How you set it up** between the script and the
+sources.
 
-This is the part that means Lana doesn't have to go research the story herself.
-It sits under every idea, short-form and long, and it carries the raw facts —
-not a script, not prose, not an argument. She writes the script; the brief
-supplies everything she'd otherwise have to go and look up.
+---
 
-**Target 10-16 bullets per short-form idea, 20-30 for Bucket D.** Over-supply is
-the point: include facts she probably won't use. A bullet she skips costs
-nothing, a fact she has to go find costs the whole benefit.
+## The script
 
-Every bullet must:
+This section governs all nine short-form ideas. The bucket sections below only
+say how the shape differs.
 
-- **Carry something hard** — a number, a date, a name, a dollar figure, a
-  percentage, a direct quote. A bullet with no specific in it is a sentence
-  about the topic, and doesn't belong here.
-- **Stand alone.** No "this means that" or "as a result" — each bullet is
-  independently liftable into a script in any order. Connective tissue is
-  script-writing, which is her job.
-- **Attribute inline** when the fact is contestable or the source matters:
-  `(Bloomberg)`, `(per the 10-Q)`, `(CFTC press release)`. Put the bare source
-  name in parentheses — never a bare URL, which belongs in **Sources**.
-- **Quote exactly** when quoting. Full quotation marks, named speaker, no
-  paraphrase dressed as a quote.
+**Four to six paragraphs, 400-600 words** — roughly three to four minutes read
+aloud. The reference is ~510 words in five paragraphs of 80-130 words each. This
+is not a 60-second clip with more words in it: it is a piece of talking that has
+room to make one point properly, and the length is what lets the correction, the
+number or the walkthrough land instead of flashing past.
 
-Cover, where they exist: the core numbers and what they were before · the
-timeline with dates · who the named actors are and what each wanted · the
-mechanism, stated plainly · the scale comparison that makes a number legible ·
-the precedent or the last time this happened · the counter-argument or the
-caveat that would embarrass her if a comment pointed it out · what happens next
-and when.
+Each paragraph is **one line in the file**, with a blank line between. The digest
+email turns every line into its own paragraph, so a hard-wrapped script arrives
+in her inbox as fragments.
 
-Include the inconvenient facts. If the tidy version of the story has a hole in
-it, the hole goes in the material — finding out from a comment is worse than
-knowing up front.
+It is continuous spoken prose. No headings inside it, no bullets, no bold, no
+timestamps, no stage directions, no "cut to." Nothing that has to be silently
+skipped while reading it aloud. If a sentence would not survive being said out
+loud, it is not written yet.
 
-For Bucket B the material is practical rather than journalistic: exact install
-commands, version numbers, the config that has to be right, real cost per run,
-the error people hit and what fixes it, star count and last-commit date.
+### Voice
 
-Then `B1..B3` (tutorials) and `C1..C3` (explainers), same shape — **What this
-is** stays as the lead in every bucket — with these bucket-specific additions
-underneath it:
+First person where it is a judgment — "I think," "the interesting thing about
+this is." Hedged exactly as far as the evidence hedges: "probably part of the
+story without being the entire story" is the register, not "this proves."
 
-**Bucket B adds, after "What this is":**
-- **What you build** — one sentence
-- **Time to build** — realistic estimate
-- **How you set it up** — the numbered walkthrough, see below
-- **The money shot** — the on-screen moment where it visibly works
-- **Where else this applies** — 3-5 other jobs the same setup does
-- **Gotchas** — what will break, keys needed, cost
+Name sources inside the sentence, the way you would speaking — "a 2024 paper
+called *Why Do Large Language Models Struggle to Count Letters?*", "per the
+10-Q", "in the CFTC's own press release" — and put the link in **Sources**.
+Never read a URL aloud.
 
-**Bucket C adds, after "What this is":**
-- **The misconception** — what people wrongly believe
-- **The analogy** — the single image carrying the explanation
-- **Where the analogy breaks** — stated honestly, often a good closing note
+Every jargon term is unpacked in the sentence that introduces it. No rhetorical
+questions to camera, no "let me explain," no "in this video," no "stay tuned,"
+no exclamation marks, no lists read aloud, no closing call to action.
 
-### Bucket B — how you set it up
+The last paragraph is a view, not a recap. It says what the thing means or what
+it predicts, and it carries the honest limit — the caveat, the counter-argument,
+the place the analogy stops holding. Never summarise what was just said.
 
-A tutorial idea is only useful if Lana can sit down and follow it. This field is
-the actual walkthrough, not a summary of one: numbered steps, in order, from a
-clean machine to the thing working.
+### Verification
+
+Every factual claim in the script is checked against a primary source **before**
+it is written, and every source used appears under **Sources**. The old
+**material** section was where inconvenient facts and counter-arguments lived;
+now they live in the script itself, usually in the fourth or fifth paragraph,
+stated out loud. A fact that would embarrass her if a comment raised it is not a
+fact to leave out — it is usually the most interesting sentence in the piece.
+
+A number that cannot be verified does not get softened or hedged into the
+script. It gets left out. She is saying these sentences on camera as her own, so
+a wrong figure is far more expensive here than a missing one.
+
+---
+
+## Bucket A — the news script
+
+The shape:
+
+1. **Open on the concrete thing that happened,** with its number and its date,
+   in the first two sentences. No windup, no "you may have seen." The first line
+   is the line that stops a scroll, and it is a fact rather than a tease.
+2. **Explain the mechanism** to someone with no prior context — what actually
+   moved, who the named actors are and what each one wanted. Every headline
+   number arrives with its baseline: "$11.5B, up from $787M a year earlier," not
+   "$11.5B."
+3. **Land the surprise.** The specific detail that makes this worth three
+   minutes rather than a headline — the odd structure, the thing that sounds
+   implausible until you see how it works.
+4. **Give the other side.** The strongest case against the framing, or the
+   caveat a well-informed comment would raise. Said plainly, not buried.
+5. **Close on what happens next and when,** with the honest uncertainty attached.
+
+Dates are absolute — "on Tuesday" is dead in a week; "on August 12th" is not.
+
+---
+
+## Bucket B — the tutorial script
+
+The script narrates the build for a viewer watching a screen recording. The
+shape:
+
+1. **Open on what gets built and why it is worth building** — one concrete job
+   it does, stated as a job rather than a category.
+2. **The concept:** what the tool actually is, and why this approach beats the
+   obvious alternative. This is the paragraph the numbered steps do not carry.
+3. **The build, narrated** — the arc of the setup in prose, naming the two or
+   three moments that matter, including the one where most people get stuck.
+   Not a reading of the step list: the steps are below for her hands, this is
+   for her mouth.
+4. **The money shot:** the on-screen moment where it visibly works, described so
+   she knows what has to be recorded by then.
+5. **Where else this goes** — two or three other real jobs the same setup does,
+   and the honest cost or limit: what it charges per run, what breaks, what it
+   cannot do.
+
+### How you set it up
+
+The one field that survives alongside the script, because Lana has to stand the
+thing up before she can film it, and prose is the wrong container for a command.
+Numbered steps, in order, from a clean machine to the thing working.
 
 **Target 6-12 steps.** Each step is one action, and every step that involves a
 command, a path, a package name, a model name, a setting or a config key states
@@ -123,26 +166,47 @@ result looks like so a wrong one is obvious immediately.
 
 Name the prerequisites before step 1: runtime versions, an account that has to
 exist, a key that has to be issued and where it comes from. If a step is where
-most people get stuck, mark it and say what the failure looks like.
+most people get stuck, mark it and say what the failure looks like. Keys, costs
+and version pins live here, not in the script.
 
-The two paragraphs of **What this is** carry the concept — what the tool
-actually does and why the approach is better than the obvious alternative. The
-steps carry the doing. Don't repeat the concept inside the steps.
+---
 
-### Bucket B — where else this applies
+## Bucket C — the explainer script
 
-Three to five concrete other uses for the same setup, each one sentence and each
-a real job rather than a category. "Pull every competitor's pricing page into a
-sheet weekly" is a use; "market research" is a category. This is where a
-tutorial stops being a demo of a tool and becomes something worth keeping.
+The reference case for the whole format. The shape:
+
+1. **Open by naming the subject and the wrong explanation.** "Today we are
+   talking about {X}, because the explanation you have probably heard is not
+   quite right." Then state the popular explanation properly, at its strongest,
+   before saying what the better account is. A straw man that is easy to knock
+   down makes the correction worthless.
+2. **Give the analogy a paragraph of its own.** One everyday image, developed
+   far enough that the viewer can reason inside it rather than just recognise
+   it — "One way to think about this is to imagine..." — and landing on the
+   exact distinction the analogy exists to make.
+3. **Bring the evidence.** What the paper, the measurement or the mechanism
+   actually found, with its specifics: the predictor that mattered, the one that
+   turned out not to, the number. This is the paragraph that makes the video
+   true rather than merely plausible.
+4. **Say what follows.** The consequence — why the workaround works, why the
+   thing behaves this way in practice, what someone should now expect to see.
+5. **End on the broader point,** stated as a view: "I think the broader point is
+   more interesting than..." The honest limit lives here too — where the analogy
+   stops holding, or what is still genuinely unsettled.
+
+An explainer opens by naming its subject directly, which the news script does
+not. That is allowed here because it opens three minutes of one argument rather
+than three seconds of a scroll-stopper.
 
 ---
 
 ## Bucket D — the long-form idea
 
-Exactly one per brief, written last, and it is a different shape from the
-shorts. Ten minutes is not a short stretched out — it needs an argument that
-develops. Same header convention, but with its own fields:
+Exactly one per brief, written last, and it is the one entry that is still a
+pitch rather than a script. Ten minutes is not a short stretched out — it needs
+an argument that develops, and that argument has to be worth approving before it
+is worth writing fifteen hundred words of it. Same header convention, its own
+fields:
 
 ```
 ## D1 · LONGFORM · {four-to-seven word working title}
@@ -151,10 +215,9 @@ develops. Same header convention, but with its own fields:
 > {two or three sentences. Sets the stake and makes a promise the video pays off.}
 
 **What this is**
-{Two paragraphs, same job as the shorts: the first explains the subject to
-someone with no prior context, the second says why it matters now. For Bucket D
-this is the pitch — if these two paragraphs don't make someone want ten
-minutes, the thesis below won't save it.}
+{Two paragraphs: the first explains the subject to someone with no prior
+context, the second says why it matters now. This is the pitch — if these two
+paragraphs don't make someone want ten minutes, the thesis below won't save it.}
 
 **The thesis**
 {One sentence — the claim the video argues. Not a topic. "Prediction markets
@@ -180,7 +243,7 @@ the honest answer is "it doesn't," cut the idea.}
 "the S-1 page where the compute line item appears," not "some visuals."}
 
 **The material**
-- {20-30 bullets — same rules as the shorts, more of them}
+- {20-30 bullets — the raw fact list, see below}
 
 **Title options**
 - {YouTube title, written to be clicked, not to be accurate-sounding}
@@ -197,29 +260,63 @@ the honest answer is "it doesn't," cut the idea.}
 `rate: `
 ```
 
-Chapter timestamps use `M:SS-M:SS`. Bucket D keeps its chapters because a
-ten-minute argument has to be shown to develop — that is the field proving the
-idea isn't a short. Short-form ideas have no beat sheet at all.
+Chapter timestamps use `M:SS-M:SS`. The chapters are the field that proves the
+idea isn't a short: a ten-minute argument has to be shown to develop.
+
+### The material — Bucket D only
+
+The raw facts behind the long-form, so the argument can be written without going
+back to research it. **20-30 bullets.** Over-supply is the point: a bullet she
+skips costs nothing, a fact she has to go find costs the whole benefit.
+
+Every bullet must:
+
+- **Carry something hard** — a number, a date, a name, a dollar figure, a
+  percentage, a direct quote. A bullet with no specific in it is a sentence
+  about the topic, and doesn't belong here.
+- **Stand alone.** No "this means that" or "as a result" — each bullet is
+  independently liftable into the script in any order.
+- **Attribute inline** when the fact is contestable or the source matters:
+  `(Bloomberg)`, `(per the 10-Q)`, `(CFTC press release)`. Put the bare source
+  name in parentheses — never a bare URL, which belongs in **Sources**.
+- **Quote exactly** when quoting. Full quotation marks, named speaker, no
+  paraphrase dressed as a quote.
+
+Cover, where they exist: the core numbers and what they were before · the
+timeline with dates · who the named actors are and what each wanted · the
+mechanism, stated plainly · the scale comparison that makes a number legible ·
+the precedent or the last time this happened · the counter-argument or the
+caveat that would embarrass her if a comment pointed it out · what happens next
+and when.
+
+Include the inconvenient facts. If the tidy version of the story has a hole in
+it, the hole goes in the material — finding out from a comment is worse than
+knowing up front.
 
 ---
 
 ## Rules
 
-- Hooks are written to be **spoken**, not read. No "In this video." No "Ever
-  wondered." No rhetorical-question openers.
-- Never pad to hit the count. Three strong ideas beat three plus a filler.
-  If a bucket only yields two, ship two and say why in a `> note:` line. This
-  is about the number of *ideas* — **The material** is the opposite case, where
-  more is better, so long as every bullet carries a hard specific.
+- Everything in a short-form entry is written to be **spoken**, because all of
+  it gets spoken. No "In this video." No "Ever wondered." No rhetorical-question
+  openers. Bucket D's **Hook** follows the same rule.
+- Never pad to hit the count. Three strong ideas beat three plus a filler. If a
+  bucket only yields two, ship two and say why in a `> note:` line. Never pad a
+  script to reach the word target either — 420 tight words beat 600 with a
+  paragraph of throat-clearing in them.
 - Every factual claim carries a source link. Unverifiable claim = cut the idea.
 - No emoji in briefs. No exclamation marks.
 - **Write each prose paragraph on one line**, however long, with a blank line
-  between paragraphs. The digest email turns every source line into its own
-  paragraph, so hard-wrapping the two lead paragraphs shatters them into
-  fragments in Lana's inbox. This applies to prose only — the material,
-  the setup steps and the sources stay one bullet per line.
+  between paragraphs. The digest email turns every line into its own paragraph,
+  so hard-wrapping a script shatters it into fragments in Lana's inbox. This
+  applies to prose only: the setup steps, the material and the sources stay one
+  bullet per line.
 - Setup steps are numbered `1.` `2.` `3.`; every other list is `- `. The email
   and the app both key off that distinction to render them as ordered.
+- A short-form entry carries exactly the title, **The script**, **Sources**, the
+  freshness line and the rate line — plus **How you set it up** for Bucket B.
+  Anything else under an `## A`, `## B` or `## C` heading is a leftover note and
+  gets cut.
 - Short-form titles are four to six words, concrete nouns, no colons. The
   Bucket D working title may run to seven; its **Title options** are the ones
   written for the platform and play by YouTube's rules instead.

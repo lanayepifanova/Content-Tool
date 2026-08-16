@@ -32,12 +32,17 @@ function loadEnv() {
 
 // What the email carries, per bucket. The brief keeps everything — this is the
 // emailed view only, cut down to what Lana actually reads in her inbox.
-// Tutorials are the aggressive cut: the build and the links, nothing else.
+//
+// The short-form buckets now ship the finished script, and the script is the
+// thing she reads, so it goes out whole: an email that summarised it would just
+// be a worse version of the entry. Tutorials additionally carry the numbered
+// setup, because reading the build on a phone is how she decides to do it.
+// Only the long-form still gets cut, since its material is research notes.
 const BUCKETS = { A: "news", B: "tutorial", C: "explainer", D: "longform" };
 const EMAIL_SECTIONS = {
-  news:      { drop: ["The beats"] },
-  tutorial:  { keepOnly: ["What you build", "Sources"] },
-  explainer: { drop: ["The beats"] },
+  news:      { keepOnly: ["The script", "Sources", "Freshness"] },
+  tutorial:  { keepOnly: ["The script", "How you set it up", "Sources", "Freshness"] },
+  explainer: { keepOnly: ["The script", "Sources", "Freshness"] },
   longform:  { drop: ["The beats"] },
 };
 
@@ -69,6 +74,10 @@ function forDigest(md) {
       materialSeen = 0;
     }
     if (!keep) continue;
+    // The script is the whole entry, so its label is noise in an inbox — the
+    // heading above it already says which idea this is. It stays in the brief
+    // markdown, which is a structured file the parser reads.
+    if (field === "The script" && /^\*\*The script\*\*\s*$/.test(line)) continue;
     if (field === "The material" && line.startsWith("- ") && ++materialSeen > MATERIAL_LIMIT) continue;
     out.push(line);
   }

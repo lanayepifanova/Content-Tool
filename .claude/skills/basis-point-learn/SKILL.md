@@ -11,7 +11,9 @@ Turn accumulated ratings into a sharper rubric.
 
 Scan every file in `briefs/` for `rate:` lines carrying `+` or `-`, including
 any free-text reason. Build the full rated corpus with each idea's bucket,
-title, hook, and reason.
+title, opening line, and reason. Short-form ideas now ship as finished scripts,
+so the opening line is the script's first sentence; older briefs have a `Hook`
+field instead.
 
 If fewer than 10 rated ideas exist across all buckets, say so and stop — distilling from a thin
 sample bakes in noise. Report the count and ask for more rating first.
@@ -21,7 +23,11 @@ sample bakes in noise. Report the count and ask for more rating first.
 Compare the `+` set against the `-` set **within each bucket**. Look for:
 
 - Recurring subject matter on either side
-- Hook structures that consistently win or lose
+- Opening structures that consistently win or lose
+- Script-level notes: whether a rating is about the subject or about how the
+  script was written. Now that the brief ships the finished piece, a `-` can
+  mean "wrong story" or "right story, wrong script" — those teach opposite
+  lessons, so when the reason doesn't say which, say so rather than guessing
 - Whether she prefers absurd/surprising over consequential/serious
 - Complexity tolerance — how technical before it stops landing
 - Freshness sensitivity — does she reject anything over a day old

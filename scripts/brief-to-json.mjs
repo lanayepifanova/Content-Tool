@@ -30,7 +30,9 @@ function buildIndex(briefsDir) {
     if (!date || !doc.ideas?.length) continue;
     const rows = doc.ideas.map((i) => {
       const rate = i.rating === "up" ? " · +" : i.rating === "down" ? " · -" : "";
-      const why = line(i.why || i.hook || i.note, 110);
+      // Explainers carry no lead paragraph — their script's opening sentence
+      // names the subject and the misconception, which is the angle.
+      const why = line(i.why || i.script || i.hook || i.note, 110);
       return `${i.id} ${i.bucket} · ${line(i.title, 90)}${why ? ` · ${why}` : ""}${rate}${
         i.ratingReason ? ` (${line(i.ratingReason, 70)})` : ""}`;
     });
@@ -91,6 +93,15 @@ for (const chunk of chunks) {
   const sources = [...(sourceBlock?.[1] ?? "").matchAll(/^- (.+?) — (https?:\/\/\S+)$/gm)]
     .map((s) => ({ name: s[1], url: s[2] }));
 
+  // Bucket C ships the finished script instead of material. Paragraphs are
+  // blank-line separated and stay that way — the UI and the email both split
+  // on that, and a script rendered as one block is unreadable to read from.
+  const script = (() => {
+    const m = chunk.match(/\*\*The script\*\*[^\n]*\n([\s\S]*?)(?=\n\*\*|\n## |\n---|$)/);
+    if (!m) return null;
+    return m[1].split("\n").map((l) => l.trim()).join("\n").trim() || null;
+  })();
+
   // The raw fact list. Deliberately long — Lana picks from it to write the script.
   const materialBlock = chunk.match(/\*\*The material\*\*[^\n]*\n((?:- [\s\S]*?)?)(?=\n\*\*|\n## |$)/);
   const material = (materialBlock?.[1] ?? "")
@@ -137,6 +148,7 @@ for (const chunk of chunks) {
     // "What this is" is the current lead field; the other two are older briefs.
     why: field("What this is") || field("Why it's good")
       || (letter === "D" ? field("The thesis") : null),
+    script,
     beats,
     material,
     sources,

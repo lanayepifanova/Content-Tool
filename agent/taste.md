@@ -13,10 +13,12 @@ Audience: curious people who work adjacent to tech/finance but aren't insiders.
 An idea must survive all five to make the brief:
 
 1. **The "wait, what?" test.** Does the one-line version make someone stop
-   scrolling? If the hook needs setup to land, it's weak.
-2. **Explainable in 60 seconds** without a whiteboard or prior context. For
-   Bucket D this applies to the premise only — the hook has to land in a
-   sentence even though the argument takes ten minutes.
+   scrolling? If the opening line needs setup to land, it's weak.
+2. **Explainable without a whiteboard** or prior context. The shorts run three
+   to four minutes now, but that is room to make one point properly, not room
+   for a second point: if the idea needs notation on screen or a second concept
+   taught first, it fails. For Bucket D this applies to the premise only — the
+   hook has to land in a sentence even though the argument takes ten minutes.
 3. **Specific over thematic.** A named company doing a named thing beats a trend.
 4. **Not already saturated.** If three large accounts covered it yesterday, skip
    it — unless there's a genuinely unused angle.
@@ -84,11 +86,12 @@ is new enough that nobody's covered it well · there's a real "before/after."
 is invisible (backend-only) · it's a wrapper with no real capability · the repo
 has no working demo · already has a great official tutorial.
 
-Every Bucket B idea must include: what gets built, roughly how long it takes,
-the numbered setup walkthrough, what the on-screen "it worked" moment looks
-like, and three to five other jobs the same setup does. The walkthrough is not
-optional and not a summary — a tutorial idea that doesn't say how to actually
-stand the thing up is a tool announcement wearing a tutorial's clothes.
+Every Bucket B idea ships as a script that covers what gets built, why this
+approach beats the obvious alternative, the on-screen "it worked" moment, and
+two or three other real jobs the same setup does — alongside the numbered setup
+walkthrough, the one field that still sits outside the script. The walkthrough
+is not optional and not a summary — a tutorial idea that doesn't say how to
+actually stand the thing up is a tool announcement wearing a tutorial's clothes.
 
 ---
 
@@ -109,8 +112,10 @@ something in the news this week.
 scrutiny · it's the same explanation everyone gives (no new framing) ·
 "here's what a neural network is" with no specific angle.
 
-Each Bucket C idea must name the **misconception being corrected** and the
-**single analogy** carrying the explanation. If neither is crisp, cut it.
+Each Bucket C idea must have a **misconception being corrected** and a **single
+analogy** carrying the explanation — not as named fields any more, but as the
+first and second paragraphs of the script. If neither is crisp enough to write
+that way, cut the idea.
 
 ---
 

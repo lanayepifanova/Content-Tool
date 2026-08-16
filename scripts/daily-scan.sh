@@ -62,7 +62,7 @@ Follow the repo skill \`basis-point-scan\` exactly, start to finish. Read
 \`agent/taste.md\` (binding, including its LEARNED section), \`agent/format.md\`,
 and the six most recent dates in \`briefs/INDEX.md\` for de-duplication before
 researching. Do not read whole past briefs — the index is the de-duplication
-surface, and a brief is ~58KB of material that then rides along in context for
+surface, and a brief is ~58KB of scripts that then ride along in context for
 the rest of the run.
 
 Produce ten ideas: three news (A1-A3), three tutorials (B1-B3), three explainers
@@ -74,11 +74,23 @@ in the rubric; if nothing clears that bar, ship nine plus a \`> note:\` under a
 Open primary sources before trusting coverage. Every factual claim needs a
 source link; cut anything you cannot verify.
 
-Do both research passes. Pass two — mining each chosen idea for \`The material\`,
-the raw fact list — is the point of the run, not an optional extra. Target 10-16
-bullets per short and 20-30 for the long-form, every one carrying a hard number,
-date, name or exact quote, including the counter-argument. Never invent a fact
-to fill the list.
+The nine short-form ideas ship as finished scripts: 400-600 words of spoken
+prose each, four to six paragraphs, written so Lana can record them off the
+screen without writing a word or looking anything up. An entry is the title,
+\`The script\` and \`Sources\` — tutorials also keep the numbered setup
+walkthrough. No hook field, no \`What this is\`, no \`The material\` and no beat
+sheet on a short. D1 keeps its old shape, material included.
+
+Do both research passes. Pass two — mining each chosen idea for its facts — is
+the point of the run, not an optional extra. Target 10-16 facts per short and
+20-30 for the long-form, every one carrying a hard number, date, name or exact
+quote, including the counter-argument. For the nine shorts that list is your
+working input and does not ship: you write the script from it, and the
+counter-argument becomes a paragraph said out loud. Never invent a fact to fill
+the list.
+
+Write the nine scripts yourself. Do not delegate them to subagents — the voice
+has to be one voice across the brief.
 
 Run BOTH passes as parallel subagents, with \`subagent_type: \"general-purpose\"\`
 and \`model: \"sonnet\"\`, exactly as the skill describes.
@@ -91,7 +103,7 @@ its finished bullets.
 
 Do not run searches yourself in either pass; search results that land in your
 context are re-sent on every later turn. The judgment stays with you: you pick
-from the shortlists, you apply the quality and material gates, you write.
+from the shortlists, you apply the quality gates, you write the scripts.
 
 The three news ideas must come from three different beats — one markets, one
 hardware, one startups and product. Three market-structure stories in one brief

@@ -98,6 +98,16 @@ function Idea({ idea, slug, onRated }) {
           </p>
         ))}
 
+      {/* Short-form ideas are finished scripts — paragraphs, blank-line
+          separated in the brief, read straight off the screen. */}
+      {idea.script && (
+        <div className="idea-script">
+          {idea.script.split(/\n\s*\n/).map((para, i) => (
+            <p key={i}>{para.replace(/\s*\n\s*/g, " ")}</p>
+          ))}
+        </div>
+      )}
+
       {Object.entries(idea.extra || {}).map(([label, value]) => (
         <Field key={label} label={label} value={value} />
       ))}

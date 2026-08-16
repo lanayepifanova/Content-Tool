@@ -210,6 +210,23 @@ button {
   line-height: 1.45;
 }
 
+/* The script is the entry now, not a note about it — sized to be read off the
+   screen while recording rather than skimmed. */
+.idea-script {
+  margin: 14px 0 4px;
+}
+
+.idea-script p {
+  margin: 0 0 13px;
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: #232323;
+}
+
+.idea-script p:last-child {
+  margin-bottom: 0;
+}
+
 .idea-why,
 .idea-field {
   margin: 10px 0;
