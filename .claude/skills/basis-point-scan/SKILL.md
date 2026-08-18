@@ -74,10 +74,18 @@ Each B and C agent returns **6-8 candidates**; each bucket A beat agent returns
 ```
 - **Title** — one line on the angle
   - carries it: one hard number, date, name or exact quote
+  - the argument: the one sentence two viewers would disagree about under this
   - primary: URL
   - freshness: how old · saturation: who has already covered it
   - weakest point: why this might fail the rubric
 ```
+
+The **argument** line is not optional and is not a summary. It is filter 6 from
+`agent/taste.md`, answered per candidate, and it is the field the selection
+turns on: a candidate whose argument line reads "people would find this
+interesting" has answered that it has none. Tell each subagent to write it
+honestly rather than talking a weak candidate up — a shortlist of five with two
+honest blanks is more useful than five inflated ones.
 
 Then **you** pick three per bucket against `agent/taste.md`. Cast wide, filter
 hard — the subagents cast, you filter. Chase the strange one. If a bucket comes
@@ -89,6 +97,16 @@ hardware, one startups and product — unless one beat turned up something
 genuinely exceptional, and then say so in the report. Three market-structure
 stories in one brief is the specific failure this split exists to prevent: the
 trading and exchange material is good, but it cannot be the whole bucket.
+
+**And at least one of the three is the strong-form polarizing story** — see
+*The polarization axis* in `agent/taste.md`. That is the 292k-view shape: a real
+first-of-its-kind that a general audience will fight about the meaning of. The
+two constraints are independent — the polarizing one can come from any beat —
+and where they collide, take the fight over the tidier beat spread and say so
+in the report. If no beat produced one, do not manufacture it by reframing a
+mild story loudly: re-dispatch the beat that came closest with an explicit
+instruction to hunt for what people are already arguing about, and if that also
+comes back empty, ship three good non-polarizing ideas and say so.
 
 The hunting grounds to hand each subagent:
 
@@ -108,12 +126,62 @@ release, an exchange notice, a repo — before trusting coverage.
   beat is the one a finance-led hunt walks past — do not let it come back
   filled with market stories.
 
-**Bucket B — tutorials.** AI tools and workflows worth demoing: newly trending
-open-source repos, new MCP servers, agent frameworks, automation pipelines.
-Verify the thing actually works — check the repo has recent commits and a real
-README, not just stars. Prefer tools where a screen recording carries the whole
-story. Lana already runs a Premiere Pro MCP, so video-automation angles are
-especially live.
+Tell all three beat agents, in their prompts, what the best-performing story of
+this kind looked like: an exchange announcing futures on GPU compute time. New,
+real, verifiable from a primary source, and impossible to read without forming
+an opinion about what it says about the economy. Its top comment was "Peak
+recession indicator" with 2,385 likes.
+
+Hand them the anger targets from *What people are already angry about* in
+`agent/taste.md`, verbatim, as hunting ground — data centers and what they cost
+a specific town, AI replacing somebody's craft, things built that nobody voted
+for, a named company doing the predictable thing at somebody's expense, and new
+indexes or futures on things that sound like they should not be tradable. These
+are where a live grievance is already sitting and only needs a peg. The
+A/hardware agent in particular should treat data-center power, water, grid and
+siting stories as a first-class beat rather than a footnote to chips.
+
+The bar does not move: the grievance has to exist without the framing, the facts
+have to come from a primary source, and the candidate has to carry a mechanism
+worth explaining. A story that is only infuriating is not a candidate — return
+it only if there is something underneath the anger to teach.
+
+Ask each of them to include at least one candidate whose *implications* are
+contested — something being made
+tradable, automated, priced or replaced that a normal person has a reaction to —
+and to say in the argument line what the two sides actually are. They are being
+asked to find where a real fight exists, not to make an ordinary story sound
+like one; a candidate whose controversy only appears if you frame it in bad
+faith fails filter 5 and should not be returned.
+
+**Bucket B — tutorials, Claude only.** State this at the top of that
+subagent's prompt, in these words: every candidate must be a thing **Claude**
+does. No other AI tool, model, agent framework, wrapper or third-party MCP
+server — not as the subject, not as the recommendation, not named in the title.
+Other people's products are sponsorship inventory and are not covered free.
+Software Claude operates may appear as the surface it acts on — Premiere, a
+browser, a terminal, a repo — but the capability being shown is Claude's, and a
+candidate that survives its own Claude being swapped out is a competitor's demo.
+A shortlist that comes back full of other tools is a failed dispatch: send it
+again rather than picking the least-bad entry.
+
+Hunting grounds, then: Claude Code and what it can be pointed at, driving
+Premiere Pro from Claude, Claude in Chrome working a live browser, subagents and
+orchestration, skills and hooks and scheduled runs, Claude writing and then
+running its own code, long-context and whole-repo work, and anything where
+Claude does a job that is visibly a person's job. Verify against the actual
+docs, changelog or release notes rather than coverage.
+
+Rank candidates on two things and say so in the prompt: **how visible** the
+result is on a phone in the first seconds, and **what there is to argue about**.
+The best-performing tutorial to date was a reel edited entirely by Claude that
+said so — the artifact was the proof, and the comments were people fighting
+about whether it looked good. So prefer output a general audience feels
+entitled to rate — an edit, a design, a page, a piece of writing, a UI — over a
+correct-looking terminal response, and flag which candidates could produce *the
+video itself*. A candidate whose demo is a wall of logs, or one nobody could
+disagree with, is weak here however impressive the capability, and its
+weakest-point line should say so.
 
 **Bucket C — explainers.** These don't require news, but a concept that connects
 to something in the current cycle is stronger. Pick concepts where the honest
@@ -238,13 +306,22 @@ verified, leave it out rather than hedging it in.
 ## 3. Write
 
 This is now the longest part of the run: nine finished scripts of 600-1000 words
-each, plus the Bucket D pitch. Follow `agent/format.md` exactly — **The script**
+each, their hook menus, plus the Bucket D pitch. Follow `agent/format.md` exactly — **The script**
 section there governs length, shape and voice, and each bucket section says how
 its five paragraphs differ. Write:
 
 - `briefs/YYYY-MM-DD.md`
 - `briefs/YYYY-MM-DD.json` — generated by running
   `node scripts/brief-to-json.mjs briefs/YYYY-MM-DD.md`, not written by hand.
+
+**Write the hooks after the script, not before.** Six to ten per idea, no two of
+the same type, per the **Hooks** section of `agent/format.md`. Writing them
+first produces six rewordings of the same sentence, because there is only one
+fact in mind at that point; writing them last means the whole mined fact list is
+available and the *number*, *quote* and *comparison* versions have something to
+be made of. The first hook is the script's opening sentence copied verbatim —
+if a later hook turns out to be the better opening, swap the script's first
+sentence to match and reorder, rather than letting the two disagree.
 
 Write the scripts yourself, one at a time, from the mined facts. Do not delegate
 them. Nine scripts written by nine subagents are nine different people talking,
@@ -253,8 +330,12 @@ the way a source gets named mid-sentence. If context is running short, cut an
 idea rather than farming out its script.
 
 Quality gate before writing: for each short-form idea, ask whether you'd
-genuinely stop scrolling. Cut anything that's merely informative. For the
-long-form, ask whether you'd still be watching at minute six. **Under-delivering
+genuinely stop scrolling, then write down the comment it would get — the actual
+sentence someone types under it. If the only honest answer is a variant of
+"interesting, thanks," the idea is informative and nothing else, and merely
+informative is now the thing to cut. Check too that at least one Bucket A idea
+and, where one exists, the Bucket B artifact-is-the-proof idea survived the
+selection. For the long-form, ask whether you'd still be watching at minute six. **Under-delivering
 is correct** — a note explaining why a bucket yielded two beats a padded third.
 
 Then read each finished script back against these, and fix what fails:
@@ -274,6 +355,15 @@ Then read each finished script back against these, and fix what fails:
   argues one side is the specific failure the old material section prevented.
 - **Does it end on a view rather than a recap?** If the last paragraph
   summarises the first four, it is not written yet.
+- **Does it carry six to ten hooks, of six to ten different types?** Read them
+  as a list. If two are the same sentence with the words moved around, one of
+  them is not a hook — replace it with a type the idea hasn't used. Check each
+  is under 20 words, carries a fact rather than a tease, and is true on its own:
+  a hook is the sentence most likely to be quoted back, and the one that sinks
+  the video if it overstates.
+- **Is hook one the script's first sentence, word for word?** And would every
+  other hook drop into that slot without breaking the paragraph under it? A hook
+  that needs the paragraph rewritten is a different script, not an alternate.
 - **Does it carry its tags?** Five to eight single-token lowercase hashtags on
   one line after **Sources**, every one naming something the script actually
   says. Write them while the sources are still in front of you — at upload time
@@ -294,7 +384,9 @@ If email fails, still commit the brief and report the failure — never lose a r
 
 ## 5. Report
 
-Print a 5-line summary: date, the strongest short and one line on why, the
-long-form idea and the one sentence for why it holds ten minutes, the script
-word counts as a range, anything notably thin — including any script you had to
+Print a 7-line summary: date, the strongest short and one line on why, the best
+hook in the brief quoted in full and which idea it belongs to, which
+idea is the day's polarizing one and the argument it starts, the long-form idea
+and the one sentence for why it holds ten minutes, the script word counts as a
+range, anything notably thin — including any script you had to
 write off facts you could not fully verify, and which sentence that is.

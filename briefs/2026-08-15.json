@@ -8,7 +8,9 @@
       "bucket": "news",
       "title": "Wall Street trades GPU hours",
       "hook": "On October 5th you will be able to trade the price of renting a graphics card, on the same exchange that trades crude oil.",
+      "hooks": [],
       "why": "CME is listing futures on the hourly rental price of an Nvidia H100. Not on Nvidia stock, not on a data-center REIT — on the rent, per chip, per hour, settled monthly, on NYMEX. The absurdity is the hook and the mechanism is the payload: this is exactly how oil, pork bellies and electricity became commodities. Something gets a published index, then someone writes a contract on the index, then it stops being a thing you buy and starts being a thing you hedge. The best detail is why it exists at all — the same chip rents for $2.50 an hour in one place and $7.50 in another, and nobody could tell who was overpaying.",
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -79,9 +81,11 @@
           "url": "https://davefriedman.substack.com/p/compute-futures-wont-make-compute"
         }
       ],
+      "tags": [],
       "freshness": "4 days",
       "saturation": "low — trade press covered the announcement, the \"why does the same chip cost 3x\" angle is unused",
       "note": null,
+      "status": "done",
       "rating": "up",
       "ratingReason": "interesting",
       "extra": {}
@@ -91,7 +95,9 @@
       "bucket": "news",
       "title": "Index funds must buy Reddit",
       "hook": "On Monday, index funds have to buy sixteen million shares of Reddit whether they want to or not.",
+      "hooks": [],
       "why": "Reddit beat earnings on July 30 and the stock fell 12.5%. Two weeks later a committee added it to a list, and it rose 15% — because roughly a third of the US stock market is now run by funds that are contractually forbidden from having an opinion. The number does the work: 16.7 million shares, about three times a normal day's volume, bought by people who are not allowed to care about the price. And the honest ending is the good bit — this used to be free money and it isn't any more, which tells you something about what happens to any edge everyone can see.",
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -154,9 +160,11 @@
           "url": "https://www.morningstar.com/funds/sp-500-bump-that-doesnt-last"
         }
       ],
+      "tags": [],
       "freshness": "~26h",
       "saturation": "medium — the stock move was covered everywhere, the disappearing-index-effect turn was not",
       "note": null,
+      "status": null,
       "rating": "down",
       "ratingReason": "irrelevant, and not really a piece of news",
       "extra": {}
@@ -166,7 +174,9 @@
       "bucket": "news",
       "title": "The SEC cancels its own vote",
       "hook": "The SEC wrote a four-hundred-page rule that lets a token stop being a security. Then it cancelled its own vote on it the day before.",
+      "hooks": [],
       "why": "Not the cancellation — the contents. Regulation Crypto contains a provision where a token that becomes \"sufficiently decentralized\" exits securities classification entirely, meaning the issuer stops being regulated by the SEC by successfully giving away control. That idea has been sitting in a commissioner's drawer since 2020. It got four days' notice, a Friday morning slot, and then an \"unforeseen scheduling issue.\" A regulator pulling its own agenda item at the last minute is the tell that something is unresolved inside the building.",
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -230,9 +240,11 @@
           "url": "https://www.sec.gov/newsroom/speeches-statements/atkins-remarks-regulation-crypto-assets-031726"
         }
       ],
+      "tags": [],
       "freshness": "~30h",
       "saturation": "medium in crypto press, low everywhere else",
       "note": null,
+      "status": null,
       "rating": "down",
       "ratingReason": "kinda cool but merely ok",
       "extra": {}
@@ -242,7 +254,9 @@
       "bucket": "tutorial",
       "title": "An agent driving your real browser",
       "hook": "This isn't a screenshot. That's my real Chrome, logged into my real account, and I'm not touching it.",
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -301,10 +315,12 @@
           "url": "https://github.com/nirholas/XActions/issues"
         }
       ],
+      "tags": [],
       "freshness": "current",
       "saturation": "medium — plenty of Browser Use demos, almost none using your own logged-in profile as a feed reader",
       "note": null,
-      "rating": "up",
+      "status": null,
+      "rating": "down",
       "ratingReason": "good",
       "extra": {
         "What you build": "Browser Use installed as a Claude Code skill, pointed at your actual logged-in Chrome profile, so an agent can scroll X, read your feed and pull out what matters without a single API key.",
@@ -318,7 +334,9 @@
       "bucket": "tutorial",
       "title": "One prompt scrapes thirty websites",
       "hook": "I gave it one sentence and thirty URLs. It came back with a finished spreadsheet.",
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -374,10 +392,12 @@
           "url": "https://www.eesel.ai/blog/firecrawl-pricing"
         }
       ],
+      "tags": [],
       "freshness": "current",
       "saturation": "low — Firecrawl is well covered, the `/agent` endpoint replacing `/extract` is barely covered at all",
       "note": null,
-      "rating": "up",
+      "status": null,
+      "rating": "down",
       "ratingReason": "good",
       "extra": {
         "What you build": "A single Firecrawl `/agent` call that takes one English sentence and a JSON schema and returns a filled table from thirty competitor sites — no selectors, no per-site parser, no maintenance.",
@@ -391,7 +411,9 @@
       "bucket": "tutorial",
       "title": "Twenty Claude agents at once",
       "hook": "Twenty of them. Working at the same time. On one instruction.",
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -443,10 +465,12 @@
           "url": "https://www.totalum.app/blog/claude-code-skills-totalum"
         }
       ],
+      "tags": [],
       "freshness": "current",
       "saturation": "low — written about in text, almost never filmed, and the tree view is the reason to film it",
       "note": null,
-      "rating": "up",
+      "status": null,
+      "rating": "down",
       "ratingReason": "good",
       "extra": {
         "What you build": "A fleet of custom subagents in `.claude/agents/`, each a Markdown file with a few lines of frontmatter, then one instruction that fans the work out across twenty of them in parallel.",
@@ -460,7 +484,9 @@
       "bucket": "explainer",
       "title": "Why models cannot count letters",
       "hook": "Everyone tells you the model can't see the letters. It can see them. It just can't keep count.",
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -515,10 +541,12 @@
           "url": "https://venturebeat.com/ai/the-strawberrry-problem-how-to-overcome-ais-limitations"
         }
       ],
+      "tags": [],
       "freshness": "evergreen",
       "saturation": "high for the strawberry question, low for the finding that the standard explanation is wrong",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "up",
       "ratingReason": null,
       "extra": {
         "The misconception": "That an LLM gets \"strawberry\" wrong because tokenization hides the letters from it — it sees [\"straw\", \"berry\"] and never sees the r's. That explanation is everywhere, and it is not what the research found.",
@@ -531,7 +559,9 @@
       "bucket": "explainer",
       "title": "The dollar that keeps your interest",
       "hook": "Every dollar you hold in a stablecoin earns about four percent. Not for you.",
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -595,10 +625,12 @@
           "url": "https://perkinscoie.com/insights/update/stablecoin-interest-yield-and-rewards-occ-proposes-sweeping-regulations-under"
         }
       ],
+      "tags": [],
       "freshness": "evergreen",
       "saturation": "low — the profits get covered, the statutory reason they exist almost never does",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "up",
       "ratingReason": null,
       "extra": {
         "The misconception": "That a stablecoin is a digital dollar you happen to hold on a different rail. It is closer to a gift card: you hand over a real dollar, you get a claim back, and the interest on the real dollar is now someone else's income — by federal law.",
@@ -611,7 +643,9 @@
       "bucket": "explainer",
       "title": "A data center is a heater",
       "hook": "A one-gigawatt data center is a space heater. It's about six hundred and seventy thousand space heaters, and it also happens to do arithmetic.",
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -675,10 +709,12 @@
           "url": "https://www.consumerreports.org/data-centers/ai-data-centers-impact-on-electric-bills-water-and-more-a1040338678/"
         }
       ],
+      "tags": [],
       "freshness": "evergreen with a live peg",
       "saturation": "medium for the electricity-bill story, low for the thermodynamics",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "up",
       "ratingReason": null,
       "extra": {
         "The misconception": "That a data center's electricity is consumed by computing, and the heat is an unfortunate side effect. It is the other way round. Essentially all of the electricity becomes heat — the computation is thermodynamically almost free, and the heat is the actual product being managed.",
@@ -691,7 +727,9 @@
       "bucket": "longform",
       "title": "Who actually pays for the GPUs",
       "hook": "On August 10th, Nvidia announced that six of the largest asset managers on earth would raise more than five hundred billion dollars to buy its chips. Every headline called it circular financing — Nvidia funding its own customers, 1999 all over again. That reading is wrong, and the truth is more uncomfortable. The money is real, it is third-party, and a lot of it is yours.",
+      "hooks": [],
       "why": "The AI buildout has stopped being funded by technology companies' cash flow and started being funded by pension and insurance capital through structures that keep the debt off the buyers' balance sheets — and the assumption holding the whole arrangement up is not demand for AI, it is how much a used GPU is worth in year five.",
+      "script": null,
       "beats": [
         {
           "t": "0:00-0:45",
@@ -798,10 +836,12 @@
           "url": "https://packetnebula.com/articles/nvidia-500b-compute-financing-25-percent-backstop/"
         }
       ],
+      "tags": [],
       "freshness": "5 days",
       "saturation": "high for the headline, low for the residual-value clause and the depreciation link",
       "note": "D1 sits adjacent to A1 — both involve GPUs becoming financial objects — but they are different mechanisms with different actors. A1 is hedging the rental price; D1 is who funds the hardware and who eats the residual. If you film both, film A1 first and let D1 assume it.",
-      "rating": null,
+      "status": null,
+      "rating": "up",
       "ratingReason": null,
       "extra": {
         "Why it holds ten minutes": "Three acts with a genuine turn. Act one is the tidy story everyone published: vendor financing, Lucent, circularity, be afraid. Act two breaks it — the capital genuinely is third-party, Morgan Stanley and Bank of America are right that this reduces circularity, and the 1999 comparison is lazy. Act three is where the video earns the runtime: the one term nobody put in a headline is Nvidia's residual-value backstop of up to 25%, which is an admission about what the sellers actually believe, and which points at the real load-bearing number — depreciation schedules. Amazon shortened server lives while Google, Microsoft and Meta lengthened theirs, on the same hardware. That is the fight, and it arrives at minute seven, not minute one.",

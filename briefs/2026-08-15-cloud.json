@@ -8,7 +8,9 @@
       "bucket": "news",
       "title": "The teleprompter operator's trading account",
       "hook": "The man who loads Trump's teleprompter made a hundred grand betting on what Trump would say.",
+      "hooks": [],
       "why": "This is insider trading where the inside information is a script. Gabriel Perez had run the president's teleprompter since 2016, so he knew the prepared remarks first — and Kalshi runs \"mention markets,\" contracts that pay out on whether a specific word gets said. The detail that makes it a video rather than a headline: nobody tipped off the government. Kalshi's own surveillance flagged the betting pattern as anomalous, and only then did anyone notice the account belonged to a federal employee. The exchange caught it the way an exchange catches things, which is the strongest argument Kalshi has that it is market infrastructure rather than a casino — and it emerged from the worst week of its life.",
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -79,10 +81,12 @@
           "url": "https://www.benzinga.com/markets/prediction-markets/26/08/61207428/kalshi-suspends-mention-markets-as-cftc-reportedly-investigates-prediction-market-betting-on-trump-sports-commentators"
         }
       ],
+      "tags": [],
       "freshness": "~2 days (CFTC review)",
       "saturation": "medium — the July teleprompter story ran widely, the regulatory turn this week is fresh and the \"the exchange caught him itself\" framing is unused",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "up",
       "ratingReason": null,
       "extra": {}
     },
@@ -91,7 +95,9 @@
       "bucket": "news",
       "title": "Six grid operators, one deadline",
       "hook": "On Monday, six companies have to explain why your power bill should pay for a data center.",
+      "hooks": [],
       "why": "There is a clock on this and almost nobody outside energy law is watching it. On June 18 FERC issued Section 206 show-cause orders to all six US grid operators at once, and did something unusual: it put the burden of proof on them. Normally a regulator has to demonstrate a rule is unjust; here the operators have 60 days to demonstrate theirs is not. Sixty days from June 18 is August 17. The question they have to answer is who pays for the substations and transmission when an enormous new load shows up, and the honest answer for the last two years has been \"everyone else's bill.\" These orders reach about two-thirds of all load served under FERC-jurisdictional rates.",
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -152,10 +158,12 @@
           "url": "https://www.utilitydive.com/news/data-center-interconnection-ferc-large-load-show-cause/824501/"
         }
       ],
+      "tags": [],
       "freshness": "deadline lands in 2 days",
       "saturation": "low — thorough coverage in energy trade press, essentially none for a general audience",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "up",
       "ratingReason": null,
       "extra": {}
     },
@@ -164,7 +172,9 @@
       "bucket": "news",
       "title": "DeepSeek starts charging peak rates",
       "hook": "Starting Monday, the cheap AI costs more at busy times of day. Like electricity.",
+      "hooks": [],
       "why": "Everyone will cover this as \"DeepSeek raised prices.\" The actual news is stranger and better: DeepSeek introduced time-of-use pricing. Peak hours cost double off-peak, on the stated reasoning of allocating resources \"more reasonably\" and pushing developers into quieter windows. That is not how software has ever been priced — it is how a utility prices electricity, and it appears the moment a token stops being a software product and becomes a claim on a fixed amount of hardware. The inversion is the hook and the pricing model is the payload: DeepSeek won the price war, could not buy its way out of the demand it created, and the US labs cut prices in the same window because they can still add capacity.",
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -230,10 +240,12 @@
           "url": "https://xenospectrum.com/en/deepseek-forced-price-hike-demand-overwhelms-20000-gpu-fleet/"
         }
       ],
+      "tags": [],
       "freshness": "~2 days, takes effect in 1-2 days",
       "saturation": "medium on the price rise, low on the time-of-use framing",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "up",
       "ratingReason": null,
       "extra": {}
     },
@@ -242,7 +254,9 @@
       "bucket": "tutorial",
       "title": "Build a video pipeline once",
       "hook": "I built this shot once. Then I made forty more without touching it again.",
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -297,10 +311,12 @@
           "url": "https://www.scopeful.org/tools/figma-weave"
         }
       ],
+      "tags": [],
       "freshness": "current, open beta",
       "saturation": "low — plenty of \"look, AI video,\" almost nothing on reusable pipelines",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "down",
       "ratingReason": null,
       "extra": {
         "What you build": "A reusable node graph in Figma Weave that takes a still image and runs it through the same extract, mask, colour-match and animate chain every time — then you drop in ten different images and get ten consistent clips out.",
@@ -314,7 +330,9 @@
       "bucket": "tutorial",
       "title": "An agent that reads X",
       "hook": "No API key. No login. Watch it pull a profile in about four seconds.",
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -361,10 +379,12 @@
           "url": "https://github.com/nirholas/XActions/issues"
         }
       ],
+      "tags": [],
       "freshness": "current, commits through Aug 4",
       "saturation": "low",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "down",
       "ratingReason": null,
       "extra": {
         "What you build": "XActions wired into Claude as an MCP server, so an agent can read X — profiles, timelines, search — and hand you a written brief instead of you scrolling for forty minutes.",
@@ -378,7 +398,9 @@
       "bucket": "tutorial",
       "title": "Memory your coding agent can't fake",
       "hook": "I renamed a function last week. Watch my agent confidently tell me the old name.",
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -428,10 +450,12 @@
           "url": "https://kage-core.com/"
         }
       ],
+      "tags": [],
       "freshness": "current",
       "saturation": "very low — genuinely uncovered",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "down",
       "ratingReason": null,
       "extra": {
         "What you build": "Kage — persistent memory for a coding agent that lives in your repo as plain Markdown and gets checked against the actual code before it is ever served back.",
@@ -445,7 +469,9 @@
       "bucket": "explainer",
       "title": "A data center is a heater",
       "hook": "A data center turns almost one hundred percent of its electricity into heat. The thinking is a side effect.",
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -498,10 +524,12 @@
           "url": "https://www.techradar.com/pro/the-ai-heat-trap-why-data-centers-must-rethink-thermodynamics"
         }
       ],
+      "tags": [],
       "freshness": "evergreen, with a live regulatory hook",
       "saturation": "low",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "up",
       "ratingReason": null,
       "extra": {
         "The misconception": "That a data center uses electricity to do computing, and cooling is an unfortunate cost on top. It is closer to the reverse: essentially all the electricity becomes heat, and the computing is something that happens on the way.",
@@ -515,7 +543,9 @@
       "bucket": "explainer",
       "title": "Why long chats get expensive",
       "hook": null,
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -568,10 +598,12 @@
           "url": "https://introl.com/blog/kv-cache-optimization-memory-efficiency-production-llms-guide"
         }
       ],
+      "tags": [],
       "freshness": "evergreen",
       "saturation": "medium — widely explained, rarely with the caching correction attached, which is the part that makes it honest",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "down",
       "ratingReason": null,
       "extra": {
         "The misconception": "That a model reads your message once, the way you read a message once. It re-reads the entire conversation from the beginning to produce every single word it says back.",
@@ -585,7 +617,9 @@
       "bucket": "explainer",
       "title": "The digit that catches fraud",
       "hook": null,
+      "hooks": [],
       "why": null,
+      "script": null,
       "beats": [
         {
           "t": "0-3s",
@@ -643,10 +677,12 @@
           "url": "https://www.bloomberg.com/news/articles/2026-08-04/jefferies-gets-new-evidence-of-fake-invoices-at-beleaguered-fund"
         }
       ],
+      "tags": [],
       "freshness": "evergreen, with a live hook",
       "saturation": "medium — the law is well covered, the \"too evenly spread\" framing and the honest limits usually are not",
       "note": null,
-      "rating": null,
+      "status": null,
+      "rating": "down",
       "ratingReason": null,
       "extra": {
         "The misconception": "That made-up numbers look random, and that looking random is what makes them convincing. It is the opposite — real-world numbers are lopsided in a very specific way, and fabricated ones are usually too evenly spread.",
@@ -659,7 +695,9 @@
       "bucket": "longform",
       "title": "The rating nobody was meant to read",
       "hook": "There is a credit rating agency with about twenty analysts that graded more than three thousand private credit investments in a single year. American insurers are holding roughly forty billion dollars of debt it graded. And you cannot read a single one of those ratings, because they were never published. They were never meant to be.",
+      "hooks": [],
       "why": "Private letter ratings did not inflate because someone was deceiving investors — there are no investors reading them. They inflated because the only audience is a regulatory capital formula, and the company buying the rating is the same company the rating lets hold less capital against.",
+      "script": null,
       "beats": [
         {
           "t": "0:00-0:45",
@@ -773,10 +811,12 @@
           "url": "https://ziang-li.github.io/files/Giving_Life_to_Private_Rated_Credit.pdf"
         }
       ],
+      "tags": [],
       "freshness": "live peg — SEC order 3 days ago",
       "saturation": "low for a general audience, well covered in insurance trade press",
       "note": "the six-notch and 84% figures rest on secondary write-ups of the withdrawn NAIC",
-      "rating": null,
+      "status": null,
+      "rating": "up",
       "ratingReason": null,
       "extra": {
         "Why it holds ten minutes": "It has a genuine turn in the middle. The first three minutes look exactly like a 2008 rerun — small agency, fees for grades, fired whistleblowers — and the viewer arrives already knowing this story. The second act takes it away from them: these ratings are unpublished, so the fraud framing does not fit, and the buyer of the rating is its beneficiary. The back half brings in material almost no coverage uses: the NAIC's own 2024 study, which sampled 109 private letter ratings and found 106 rated higher than its own analysts assessed, with some inflated by six notches — then the arithmetic that makes it worth doing, and then the fact that the NAIC pulled that report off its own website and never republished it. The third act follows the money offshore, and the last two minutes are live: the SEC denied Egan-Jones' application three days ago.",

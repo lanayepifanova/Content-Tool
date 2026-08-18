@@ -11,7 +11,15 @@ Turn accumulated ratings into a sharper rubric.
 
 Scan every file in `briefs/` for `rate:` lines carrying `+` or `-`, including
 any free-text reason. Build the full rated corpus with each idea's bucket,
-title, opening line, and reason. Short-form ideas now ship as finished scripts,
+title, opening line, and reason.
+
+**Read `briefs/KILLED.md` as well, and treat every line in it as a `-`.** Killing
+an idea in the reader deletes it from its brief, so the negative half of the
+signal no longer lives in the briefs at all — a run that reads only the briefs
+sees a corpus of survivors and learns that everything is good. Each line is
+`- {slug} {id} · {title} — {reason}`, and the reason is the part that teaches.
+The entry is gone, so where a killed line is ambiguous, say so rather than
+reconstructing what the idea probably was. Short-form ideas now ship as finished scripts,
 so the opening line is the script's first sentence; older briefs have a `Hook`
 field instead.
 
@@ -59,6 +67,11 @@ count for each rule, e.g. `(4 of 4 rated -)`.
 
 If evidence contradicts a rule in the main body of the rubric, don't silently
 override it — flag the conflict and propose the edit.
+
+The **What has actually worked** section is the one part of the rubric ratings
+do not get to move. It records what published videos did, and a rating is a
+prediction of that at best — where the two disagree, report the conflict and
+leave the section alone. It is updated by hand when new view counts come in.
 
 Append a dated entry to the "Distilled history" section of `agent/ratings.md`:
 how many ratings were read, what changed, what's still ambiguous.

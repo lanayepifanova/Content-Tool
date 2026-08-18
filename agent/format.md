@@ -10,13 +10,15 @@ One run per day. Ten ideas: nine short-form (A/B/C) plus one long-form (D).
 list, not a beat sheet — the spoken piece, written out, in the voice Lana says
 it in. She should be able to open the brief, pick one, and record it without
 writing a word or looking anything up. That is the whole design: an entry is a
-title, **The script**, **Sources** and **Tags**. Nothing else, in any of the
-three short-form buckets.
+title, **Hooks**, **The script**, **Sources** and **Tags**. Nothing else, in any
+of the three short-form buckets.
 
-There is no **Hook** field, no **What this is**, no **The material** and no beat
-sheet on a short-form idea. Every one of those was a note toward a script that
-is now written. The only extra field that survives is Bucket B's numbered setup
-walkthrough, because building the thing is a separate job from narrating it.
+There is no **What this is**, no **The material** and no beat sheet on a
+short-form idea. Every one of those was a note toward a script that is now
+written. Two extra fields survive: Bucket B's numbered setup walkthrough,
+because building the thing is a separate job from narrating it, and **Hooks** —
+the first line is the whole draw, it is the one sentence worth writing several
+versions of, and the choice between them is Lana's rather than the run's.
 
 Bucket D is the exception and keeps its old shape — ten minutes is a pitch to be
 approved, not a script to be read. See **Bucket D** below.
@@ -32,6 +34,11 @@ _{N} ideas · generated {HH:MM} · sources checked: {count}_
 ---
 
 ## A1 · NEWS · {four-to-six word title}
+
+**Hooks**
+- {type} — {the line, exactly as spoken}
+- {type} — {the line}
+- {...six to ten, no two of the same type}
 
 **The script**
 {Paragraph one — one line in the file, however long it runs.}
@@ -53,9 +60,83 @@ _{N} ideas · generated {HH:MM} · sources checked: {count}_
 ---
 ```
 
-`B1..B3` and `C1..C3` use the same four fields, with `TUTORIAL` and `EXPLAINER`
+`B1..B3` and `C1..C3` use the same five fields, with `TUTORIAL` and `EXPLAINER`
 in the header. Bucket B adds **How you set it up** between the script and the
 sources.
+
+---
+
+## Hooks
+
+The opening line, in six to ten versions, no two of the same type. It is the
+first field in the entry because it is the first three seconds of the video,
+and the two best-performing posts to date are both remembered as their hook —
+"Wall Street is now going to let you trade GPU hours" and "this video was edited
+100% by Claude." One line of the script did most of the work; writing one
+version of it and moving on is leaving the highest-leverage sentence in the
+brief to a first draft.
+
+**The first hook is the one the script actually opens with.** The rest are
+swaps. That keeps the promise that a script can be recorded exactly as written,
+and it means the field is a menu rather than homework.
+
+**Every hook is a drop-in replacement for the script's first sentence.** Swap
+any of them in and paragraph one still runs — same facts, same tense, nothing
+downstream left dangling by the change. A hook that requires rewriting the
+paragraph under it is not a hook, it is a different script.
+
+Each one:
+
+- **One sentence, under 20 words.** Four seconds spoken. If it needs a comma
+  splice and two clauses to land, it is the script's second sentence.
+- **Carries a fact, not a tease.** "Something strange happened in the futures
+  market this week" is a promise; "an exchange listed a futures contract on GPU
+  time on Tuesday" is the thing itself. The fact is what makes it unskippable.
+- **True standing alone,** and supported by the script under it. A hook is the
+  most-quoted sentence in the video and the one a comment screenshots — it eats
+  the whole credibility of the piece if it overstates by even a little.
+- **No rhetorical question, no "you won't believe," no "this changes
+  everything," no "let me explain,"** and nothing that reads as a title card
+  rather than a person talking.
+
+### The types
+
+Label each hook with its type, so the menu is visibly a menu of different
+approaches rather than one idea reworded. Draw from these, and use the label
+verbatim:
+
+- **flat first** — the plain sentence of new fact that sounds invented but
+  isn't. Named actor, new thing, odd object, no adjectives. *"Wall Street is now
+  going to let you trade GPU hours."* This is the reference case and every idea
+  should have one.
+- **sounds fake** — the absurd juxtaposition, stated deadpan. *"Citadel and SIG
+  just wrote a hedging contract on goats."*
+- **number** — the figure with its baseline inside the sentence, so the scale
+  lands without a second line. *"$11.5B of it, up from $787M a year ago."*
+- **artifact** — a claim about the thing being watched right now, verifiable by
+  looking. *"This video was edited 100% by Claude."* Bucket B's strongest, and
+  available to any idea where the proof is on screen.
+- **reversal** — what was true until a specific date and isn't now. *"Six months
+  ago this was illegal."*
+- **stakes** — the consequence named before its cause. *"Somebody just bought
+  insurance against a model getting worse."*
+- **correction** — the belief being overturned, stated as the viewer holds it.
+  *"You have probably heard that {X}. That is not quite right."* Bucket C's
+  default, and it needs the popular version stated fairly.
+- **quote** — exact startling words, attributed in the same breath. *"The CFTC's
+  own order uses the phrase '{...}'."*
+- **comparison** — two things put side by side that should not be comparable,
+  where the comparison is literally true. *"There is now a deeper market for
+  compute time than for most corporate bonds."*
+- **scene** — the physical detail that implies the whole story. *"There is a
+  substation in Ohio with its own dedicated gas plant."*
+- **second person** — puts the viewer inside the fact, without inventing one.
+  *"You can now take a position on how much electricity a chatbot burns."*
+
+Six to ten of these per idea, each a different type. Where a type genuinely has
+no honest version for a story, skip it rather than forcing one — eight real
+hooks beat ten with two stretched. The mix is the point: they should not be one
+sentence with the words moved around, they should be six different ways in.
 
 ---
 
@@ -101,6 +182,14 @@ no exclamation marks, no lists read aloud, no closing call to action.
 The last paragraph is a view, not a recap. It says what the thing means or what
 it predicts, and it carries the honest limit — the caveat, the counter-argument,
 the place the analogy stops holding. Never summarise what was just said.
+
+A stated view is also the only thing in the script a comment can disagree with,
+which is what the two best-performing videos were built on. Refusing to land
+one — ending on "it will be interesting to see" — turns a piece with a fight in
+it into a summary of the fight. Pick the reading you actually find more
+convincing, say why in a sentence, and keep the hedge attached: "probably part
+of the story without being the entire story" is still a position. What is not
+allowed is manufacturing a stronger view than the evidence carries.
 
 ### Verification
 
@@ -151,7 +240,10 @@ The shape:
 
 1. **Open on the concrete thing that happened,** with its number and its date,
    in the first two sentences. No windup, no "you may have seen." The first line
-   is the line that stops a scroll, and it is a fact rather than a tease.
+   is the line that stops a scroll, and it is a fact rather than a tease — it is
+   also hook one from the **Hooks** menu above, written out identically. News is
+   where the *flat first*, *sounds fake* and *reversal* types live; give it at
+   least those three among its six to ten.
 2. **Explain the mechanism** to someone with no prior context — what actually
    moved, who the named actors are and what each one wanted. Every headline
    number arrives with its baseline: "$11.5B, up from $787M a year earlier," not
@@ -163,11 +255,32 @@ The shape:
    caveat a well-informed comment would raise. Said plainly, not buried.
 5. **Close on what happens next and when,** with the honest uncertainty attached.
 
+**Where the argument goes.** For a story with a real fight in it — the kind
+filter 6 in `agent/taste.md` asks you to name — the fight belongs in paragraphs
+four and five, never in the open. The open stays a fact. Then give both
+readings at their strongest: the "this is a normal market doing a normal thing"
+one and the "this is what the top of a cycle looks like" one, each stated the
+way its own side would state it. Then say which you find more convincing and
+why. Two honest readings plus a stated preference is what sends people to the
+comments; one reading is a lecture and no reading is a summary.
+
+Say the loaded implication out loud rather than gesturing at it. If the honest
+reading of a story is that something is being financialized that probably
+should not be, that sentence goes in the script — sourced, hedged to exactly
+the width of the evidence, and said plainly. It does not go in as a rhetorical
+question, and it does not go in bigger than the facts support.
+
 Dates are absolute — "on Tuesday" is dead in a week; "on August 12th" is not.
 
 ---
 
 ## Bucket B — the tutorial script
+
+Every tutorial is a Claude capability — see **Bucket B** in `agent/taste.md`.
+Another company's tool is never the subject, never the recommendation and never
+in the title; software Claude operates appears only as the surface it works on.
+The script names Claude as the thing doing the work, in the first two sentences,
+because that is also the claim people argue with.
 
 The script narrates the build for a viewer watching a screen recording. The
 shape:
@@ -181,10 +294,32 @@ shape:
    Not a reading of the step list: the steps are below for her hands, this is
    for her mouth.
 4. **The money shot:** the on-screen moment where it visibly works, described so
-   she knows what has to be recorded by then.
+   she knows what has to be recorded by then. Name what a viewer sees in the
+   **first fifteen seconds** as well as where the payoff sits in the arc — a
+   demo whose result only becomes visible at minute four gets judged on its
+   first five seconds regardless, so the finished artifact has to be on screen
+   early even if the explanation of it comes later.
 5. **Where else this goes** — two or three other real jobs the same setup does,
    and the honest cost or limit: what it charges per run, what breaks, what it
    cannot do.
+
+Its hook menu leads with the *artifact* type wherever the build allows one, and
+carries *stakes* and *number* versions for the same idea — a tool demo can open
+on what it made, on what it costs, or on the job it just deleted, and those pull
+different audiences.
+
+**The artifact-is-the-proof variant.** When the tool's output can be the video
+itself — the edit, the graphic, the page, the clip the viewer is currently
+watching — write it that way, and make the claim in the first two sentences:
+"this video was edited entirely by Claude" and then the unretouched result. The
+claim and the evidence arrive together, everyone watching is qualified to judge
+it, and the argument about whether it is any good starts before the script is
+over. Two rules if the script takes this shape: claim it flatly, with no
+pre-emptive apology and no "obviously a human still checked it" — the hedging
+is what kills it — and then name what it did badly yourself in the last
+paragraph, before the comments do. Owning the rough edge is what makes the
+claim credible; hiding it is what makes the video look dishonest when someone
+freeze-frames the bad cut.
 
 ### How you set it up
 
@@ -228,6 +363,12 @@ The reference case for the whole format. The shape:
    more interesting than..." The honest limit lives here too — where the analogy
    stops holding, or what is still genuinely unsettled.
 
+Its hook menu leads with the *correction* type, and the alternates are where an
+explainer gets its reach: the same idea also has a *comparison*, a *number* and
+a *second person* opening, and those are usually stronger scroll-stoppers than
+the correction even though the correction is the better opening for the
+argument.
+
 An explainer opens by naming its subject directly, which the news script does
 not. That is allowed here because it opens three minutes of one argument rather
 than three seconds of a scroll-stopper.
@@ -247,6 +388,10 @@ fields:
 
 **Hook** (0-15s, the cold open before any title card)
 > {two or three sentences. Sets the stake and makes a promise the video pays off.}
+
+**Hooks**
+- {type} — {an alternate first sentence for that cold open}
+- {...six to ten, no two of the same type, same rules as the short-form menu}
 
 **What this is**
 {Two paragraphs: the first explains the subject to someone with no prior
@@ -349,10 +494,15 @@ knowing up front.
   bullet per line.
 - Setup steps are numbered `1.` `2.` `3.`; every other list is `- `. The email
   and the app both key off that distinction to render them as ordered.
-- A short-form entry carries exactly the title, **The script**, **Sources**,
-  **Tags**, the freshness line and the rate line — plus **How you set it up**
-  for Bucket B. Anything else under an `## A`, `## B` or `## C` heading is a
-  leftover note and gets cut.
+- A short-form entry carries exactly the title, **Hooks**, **The script**,
+  **Sources**, **Tags**, the freshness line and the rate line — plus **How you
+  set it up** for Bucket B. Anything else under an `## A`, `## B` or `## C`
+  heading is a leftover note and gets cut.
+- Hooks are `- {type} — {line}`, one per line, six to ten of them, no two types
+  repeated, and hook one is the script's opening sentence verbatim. The type
+  label comes from the list in **Hooks** and is written in lowercase.
+- A `**Status**` line above `rate:` is written by the reader when a video is
+  marked done. A scan never writes one, and never removes one it finds.
 - Short-form titles are four to six words, concrete nouns, no colons. The
   Bucket D working title may run to seven; its **Title options** are the ones
   written for the platform and play by YouTube's rules instead.

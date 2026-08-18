@@ -1,0 +1,74 @@
+{
+  "patterns": [
+    "**The video's job is to hand over a frame, not a fact.** The single most-liked comment on the GPU reel is three words — \"Peak recession indicator\" — and it pulled 2,385 likes and 32 replies on its own. Nobody was arguing about compute futures; they were using compute futures to say something about the economy. Pick stories that let a viewer say the thing they already wanted to say. *(2 of 2 outliers)*",
+    "**The first line is the product.** Both are remembered as their opening sentence, not their topic. Everything downstream is retention; the hook is reach. *(2 of 2 outliers)*",
+    "**Let the audience judge something they can see.** Trading compute and a roughly-cut video are both things a non-expert feels licensed to have an opinion about within three seconds. *(2 of 2 outliers)*",
+    "**Two audiences beats one.** The GPU reel ran a doom thread and a mechanism thread at once — \"lol we really are cooked\" (1,515 likes) alongside \"what is physically delivered at settlement?\" and a comment correcting neocloud versus hyperscaler pricing. The doom crowd supplies volume, the technical crowd supplies the replies that keep a thread alive. *(1 video)*",
+    "**Hostility is distribution.** On the Claude-edit reel the two highest-liked comments are both attacks — \"AI SLOP. Be creative\" (398) and \"Yea it's visible it's done by Ai, we can tell\" (317) — each out-liked by a wide margin every supportive comment on the post. The detractors carried it. *(1 video)*",
+    "**News travels by sharing, demos travel by arguing.** The GPU reel took 187 shares against the Claude reel's 31, roughly 6× on a post with under 3× the views. A story people forward and a story people fight under are different distribution mechanics, and the format should be chosen knowing which one is being bought. *(2 videos, opposite directions)*",
+    "**Pre-conceding the flaw does not defuse the criticism, and does not need to.** The Claude-edit caption said \"it's still pretty amateur\" up front and the comments called the edit garbage anyway. No evidence the concession cost anything, and it is what makes the claim honest — but do not write it expecting it to soften the reaction, because the reaction is the point. *(1 video)*",
+    "**Real beats loud.** Neither needed exaggeration; the facts were the whole draw. Nothing here is evidence that a stretched claim would have travelled further, and a wrong load-bearing fact would have been caught by exactly the comments that carried these. *(0 videos — a guard, not a finding)*"
+  ],
+  "videos": [
+    {
+      "title": "Wall Street is now letting you trade GPU hours",
+      "platform": "Instagram reel",
+      "posted": "approximately August 16, 2026 — comments were 1-2 days old when read on August 18",
+      "views": 292000,
+      "viewsLabel": "292,000",
+      "engagement": "7,427 likes · 220 comments · 187 shares",
+      "topComments": [
+        "2,385 — \"Peak recession indicator\" (32 replies)",
+        "1,515 — \"lol we really are cooked.\"",
+        "945 — \"What if we traded trades? Or traded trades that trade other trades?\" (16 replies)",
+        "287 — \"Time to rent your own GPU out\"",
+        "178 — \"Can't wait to watch the Big Short 2 starring Tom Holland\"",
+        "141 — \"An infinite supply commodity, what a great thing to trade\" (11 replies)",
+        "119 — \"Same way farmers hedge their stock with futures contracts, companies renting gpus can hedge their renting cost using these contracts\"",
+        "38 — \"The financialization of everything\"",
+        "11 — \"what is physically delivered at settlement?\""
+      ],
+      "format": [
+        "news",
+        "market structure",
+        "polarizing"
+      ],
+      "hook": "flat first — \"Wall Street is now going to let you trade GPU hours.\"",
+      "comments": "Two conversations at once. The loud one is a recession thesis: the top comment is \"Peak recession indicator,\" and under it sit \"we really are cooked,\" \"Tell me you over built without telling me you over built,\" \"Big Short 2\" and \"The financialization of everything.\" The quieter one is technical and genuinely argumentative — whether an infinitely reproducible commodity can support a futures market, what is delivered at settlement, and a correction that $2/hour on a neocloud and $7/hour on a hyperscaler are not the same product even for the same chip. The technical thread is where the replies are: 32 under the top comment, 16 under the second, 11 under the infinite-supply one.",
+      "why": "The story is a ready-made frame for an argument people were already having about the economy, and it is short enough to carry as three words. It also passes a second filter almost nothing does: someone who has never traded anything can have an opinion in three seconds, while someone who trades for a living has a genuinely contestable question to raise. The caption carried the specifics — CME Group and Silicon Data, cash-settled, October 5, 2026, H100 and B200 — so the doom take had verifiable facts underneath it and the technical crowd had something to argue with rather than about.",
+      "repeat": "Hunting for the thing being made tradable, insured, securitized or priced that was not an asset a year ago, then opening on it flat: named institution, new permission, odd object, no adjectives. Then make sure the video answers one mechanism question a specialist would ask, because that question is what generates replies rather than likes. If a story only supports the doom reading, it will get likes and no thread.",
+      "link": null
+    },
+    {
+      "title": "This video was edited 100% by Claude",
+      "platform": "Instagram reel",
+      "posted": "not recorded — fill this in",
+      "views": 101000,
+      "viewsLabel": "101,000",
+      "engagement": "2,146 likes · 87 comments · 31 shares",
+      "topComments": [
+        "398 — \"AI SLOP. Be creative\"",
+        "317 — \"Yea it's visible it's done by Ai, we can tell\"",
+        "48 — \"The motion graphics doesn't look impressive\"",
+        "39 — \"editing is a skill we all can learn why use AI to automate it? Part of content creation is the human aspect of it… if AI editors become the norm then everyone's videos will look the same\"",
+        "12 — \"Haters in the comments\"",
+        "9 — \"Just a PowerPoint presentation overlayed over a video background\"",
+        "8 — \"yo this is fye twin\"",
+        "7 — \"She's so back\"",
+        "6 — \"This is awesome\"",
+        "4 — \"decent retention, add b roll, better captions. and that's all you need\"",
+        "1 — \"What mcp or video editor is this?\""
+      ],
+      "format": [
+        "tool demo",
+        "artifact-is-the-proof",
+        "polarizing"
+      ],
+      "hook": "artifact — \"I didn't edit this. Claude did.\" The caption then gives the mechanic: it reads the audio waveform, cuts every silence two frames after she stops talking (62s to 21s), writes the captions, codes the motion graphics, and drops it onto the Premiere timeline.",
+      "comments": "Split, but not evenly: the criticism is far better liked than the praise. The two top comments are \"AI SLOP. Be creative\" (398) and \"we can tell\" (317), and no supportive comment cleared 15. Underneath the noise are two more useful groups — people making the craft argument seriously (\"editing is a skill we all can learn,\" \"a human editor can do it better for detail and controlled additions\"), and people giving specific production notes (\"add b roll, better captions,\" \"the graphics aren't great but could be refined\"). At least one person asked which MCP it was, which is a demand signal buried under the pile-on.",
+      "why": "The claim and the evidence are the same object, so there is nothing to take on trust and no setup to sit through — and every viewer is qualified to rate an edit, which is what turned the comment section into a referendum. The specific mechanic in the caption (two frames after the silence, 62s to 21s) gave the fight something concrete to be about instead of a vague AI argument. Worth noting what did *not* protect it: the caption conceded up front that the result was \"still pretty amateur,\" and the comments called it garbage anyway.",
+      "repeat": "Preferring demos where the output can be the video itself, claiming it flatly in the first two sentences, and naming the exact mechanic with a number in it — the number is what a technical viewer argues with and what a hostile viewer has to engage to dismiss. Expect the criticism to be the best-liked thing on the post and to be about craft rather than subject; that is a real cost and worth choosing knowingly, not a sign the video underperformed.",
+      "link": "https://www.instagram.com/p/DcEMm31IPjM/"
+    }
+  ]
+}

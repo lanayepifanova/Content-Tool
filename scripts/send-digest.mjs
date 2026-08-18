@@ -40,12 +40,14 @@ function loadEnv() {
 // Only the long-form still gets cut, since its material is research notes.
 //
 // Tags ride along in every bucket: they are the upload box's contents, and the
-// inbox is where an idea most often gets picked up to post.
+// inbox is where an idea most often gets picked up to post. Hooks ride along
+// for the same reason — the alternates are the field most likely to be read on
+// a phone and picked between before recording.
 const BUCKETS = { A: "news", B: "tutorial", C: "explainer", D: "longform" };
 const EMAIL_SECTIONS = {
-  news:      { keepOnly: ["The script", "Sources", "Tags", "Freshness"] },
-  tutorial:  { keepOnly: ["The script", "How you set it up", "Sources", "Tags", "Freshness"] },
-  explainer: { keepOnly: ["The script", "Sources", "Tags", "Freshness"] },
+  news:      { keepOnly: ["Hooks", "The script", "Sources", "Tags", "Freshness"] },
+  tutorial:  { keepOnly: ["Hooks", "The script", "How you set it up", "Sources", "Tags", "Freshness"] },
+  explainer: { keepOnly: ["Hooks", "The script", "Sources", "Tags", "Freshness"] },
   longform:  { drop: ["The beats"] },
 };
 

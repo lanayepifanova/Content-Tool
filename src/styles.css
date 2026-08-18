@@ -1,8 +1,10 @@
 :root {
-  --bg: #fbfaf7;
-  --ink: #191919;
-  --muted: #777777;
-  --line: #dedbd3;
+  --bg: #fbfaf9;
+  --ink: #141414;
+  --muted: #767676;
+  --line: #dcdcda;
+  --keep: #35714f;
+  --kill: #a8342c;
 }
 
 * {
@@ -14,9 +16,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle, rgba(237, 95, 211, 0.42), transparent 30%),
-    radial-gradient(circle, rgba(110, 162, 255, 0.5), transparent 34%),
-    linear-gradient(180deg, #fffdf9 0%, #fffdf9 62%, #eef4ff 86%, #f4cbef 100%);
+    radial-gradient(circle, rgba(20, 20, 20, 0.07), transparent 30%),
+    radial-gradient(circle, rgba(20, 20, 20, 0.06), transparent 34%),
+    linear-gradient(180deg, #fdfdfc 0%, #fdfdfc 62%, #f2f2f0 86%, #e8e8e6 100%);
   background-position:
     10% 94%,
     88% 84%,
@@ -159,6 +161,16 @@ button {
   color: var(--muted);
 }
 
+/* The count sits right of the blurb: a shelf is scanned for how much work is
+   in each bucket before any of it is read. */
+.bucket h2 em {
+  float: right;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
 .idea {
   padding: 22px 24px;
   margin-bottom: 16px;
@@ -170,13 +182,13 @@ button {
 }
 
 .idea.is-up {
-  border-color: #7fa87f;
-  box-shadow: inset 3px 0 0 #7fa87f;
+  border-color: rgba(53, 113, 79, 0.5);
+  box-shadow: inset 3px 0 0 var(--keep);
 }
 
 .idea.is-down {
   opacity: 0.5;
-  box-shadow: inset 3px 0 0 #c58b8b;
+  box-shadow: inset 3px 0 0 var(--kill);
 }
 
 .idea-head {
@@ -208,6 +220,79 @@ button {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.45;
+}
+
+/* The hook menu. Ordered, because the first one is the one the script opens
+   with — the numbers are the point and the rows are buttons that copy
+   themselves. Sized between the title and the script: bigger than body text,
+   since every line here is a candidate first three seconds. */
+.idea-hooks {
+  margin: 14px 0 4px;
+  padding: 0;
+  list-style: none;
+  counter-reset: hook;
+  border-top: 1px solid var(--line);
+}
+
+.idea-hooks li {
+  counter-increment: hook;
+  border-bottom: 1px solid var(--line);
+}
+
+.idea-hooks button {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  width: 100%;
+  padding: 9px 8px 9px 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.idea-hooks button::before {
+  content: counter(hook);
+  flex: none;
+  width: 17px;
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.idea-hooks button:hover {
+  background: rgba(25, 25, 25, 0.035);
+}
+
+/* Fixed width, not min-width: the labels run from "number" to "second person"
+   and a ragged left edge on the hooks themselves makes the menu hard to scan. */
+.hook-type {
+  flex: none;
+  width: 108px;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hook-text {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.idea-hooks .is-lead .hook-text {
+  font-weight: 600;
+}
+
+.hook-copy {
+  flex: none;
+  min-width: 52px;
+  text-align: right;
+  font-size: 11px;
+  color: var(--muted);
 }
 
 /* The script is the entry now, not a note about it — sized to be read off the
@@ -275,10 +360,10 @@ button {
   margin: 12px 0;
   padding: 9px 13px;
   border-radius: 8px;
-  background: rgba(200, 160, 60, 0.13);
+  background: rgba(20, 20, 20, 0.06);
   font-size: 13.5px;
   line-height: 1.55;
-  color: #5c4a1c;
+  color: #4a4a4a;
 }
 
 .beats-toggle {
@@ -418,14 +503,14 @@ button {
 }
 
 .rate-buttons .active-up {
-  background: #7fa87f;
-  border-color: #7fa87f;
+  background: var(--keep);
+  border-color: var(--keep);
   color: #fff;
 }
 
 .rate-buttons .active-down {
-  background: #c58b8b;
-  border-color: #c58b8b;
+  background: var(--kill);
+  border-color: var(--kill);
   color: #fff;
 }
 
@@ -473,4 +558,347 @@ button {
     order: 3;
     flex-basis: 100%;
   }
+}
+
+/* ---- reader tabs ---------------------------------------------------------
+   Kept is the landing surface: the shelf is what gets worked from, the brief
+   is a once-a-day triage screen. */
+.reader-tabs {
+  display: flex;
+  gap: 4px;
+  margin: 18px 0 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.reader-tabs button {
+  padding: 8px 13px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: none;
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.reader-tabs button:hover {
+  color: var(--ink);
+}
+
+.reader-tabs button.is-on {
+  border-bottom-color: var(--ink);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---- the compact card ----------------------------------------------------
+   One line to decide on, one paragraph to decide with. Everything else is
+   behind "Open it" — a brief is triaged far more often than it is read. */
+.idea-summary {
+  margin: 12px 0 8px;
+  font-size: 16.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.idea-info {
+  margin: 0 0 4px;
+  font-size: 14.5px;
+  line-height: 1.62;
+  color: #3a3a3a;
+}
+
+/* What a kept idea is for: the next thing to read before making it. */
+.idea-research {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 2px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.045);
+}
+
+.idea-research > span {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.idea-research-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.idea-research-links a {
+  font-size: 13.5px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(20, 20, 20, 0.3);
+}
+
+.idea-research-links a:hover {
+  border-bottom-color: var(--ink);
+}
+
+/* The killed strip. The entry is already out of the markdown at this point —
+   this row exists only so a misclick is one click to put back. */
+.idea.is-killed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  opacity: 0.72;
+}
+
+.killed-title {
+  font-size: 14px;
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.killed-note {
+  flex: 1;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.idea.is-killed button {
+  padding: 4px 11px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.rate-buttons .kill:hover {
+  border-color: var(--kill);
+  color: var(--kill);
+}
+
+/* ---- performance ---------------------------------------------------------
+   The read on what published, and the rules earned from it. */
+.patterns {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.patterns li {
+  margin-bottom: 9px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #2c2c2c;
+}
+
+.pattern-cite {
+  margin-left: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.perf {
+  margin-bottom: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.perf-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.perf-head h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.perf-meta {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.perf-views {
+  flex: none;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.perf-format {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 11px 0 0;
+}
+
+.perf-format span {
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(25, 25, 25, 0.05);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.perf-hook {
+  margin: 12px 0 0;
+  padding: 9px 13px;
+  border-left: 3px solid var(--ink);
+  border-radius: 0 8px 8px 0;
+  background: rgba(25, 25, 25, 0.04);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.perf-hook span {
+  margin-right: 7px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.perf-block {
+  margin-top: 13px;
+}
+
+.perf-block span {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.perf-block p {
+  margin: 4px 0 0;
+  font-size: 14.5px;
+  line-height: 1.62;
+  color: #2c2c2c;
+}
+
+.perf-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+.tab-count {
+  margin-left: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.rate-buttons .done-on {
+  border-color: rgba(53, 113, 79, 0.45);
+  background: rgba(53, 113, 79, 0.08);
+  color: var(--keep);
+}
+
+.perf-numbers {
+  flex: none;
+  text-align: right;
+}
+
+.perf-engagement {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* The comments are the evidence, so they are quoted rather than summarised —
+   the like count first, because which criticism out-performed which defence is
+   the whole finding on the tool demo. */
+.perf-comments {
+  margin: 5px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.perf-comments li {
+  margin-bottom: 6px;
+  padding-left: 58px;
+  text-indent: -58px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #2c2c2c;
+}
+
+.perf-comment-likes {
+  display: inline-block;
+  width: 50px;
+  margin-right: 8px;
+  text-align: right;
+  text-indent: 0;
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.friend-list {
+  margin: 6px 0 0;
+  padding-left: 19px;
+}
+
+.friend-list li {
+  margin-bottom: 6px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #2c2c2c;
+}
+
+.friend-list.is-posts li {
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+/* One studied video inside a channel card — the format broken down far enough
+   to rebuild it: what is on screen, what is said, and in what order. */
+.studied {
+  margin-top: 18px;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(20, 20, 20, 0.025);
+}
+
+.studied h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.studied-numbers {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.studied .perf-block {
+  margin-top: 11px;
+}
+
+.perf-block.is-steal p {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.05);
+  color: #2c2c2c;
 }

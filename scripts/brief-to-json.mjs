@@ -7,7 +7,12 @@ import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const path = process.argv[2];
-if (!path) { console.error("usage: node scripts/brief-to-json.mjs <brief.md> | --index"); process.exit(1); }
+if (!path) {
+  console.error(
+    "usage: node scripts/brief-to-json.mjs <brief.md> | --index | --performance | --friends"
+  );
+  process.exit(1);
+}
 
 // The de-duplication index. A scan only needs to know which stories and tools
 // have already run, not their material — and briefs are ~58KB each now, so
@@ -51,6 +56,187 @@ function buildIndex(briefsDir) {
   const dest = join(briefsDir, "INDEX.md");
   writeFileSync(dest, out);
   return { dest, dates: dates.length, ideas: dates.reduce((n, d) => n + byDate.get(d).length, 0) };
+}
+
+// The performance log: published videos and the read on each, plus the
+// **Patterns** block distilled from them. Same md-is-the-source-of-truth deal as
+// a brief — the reader shows this, `agent/taste.md` encodes it, and only the
+// markdown is edited by hand.
+function buildPerformance(src = "agent/performance.md") {
+  const md = readFileSync(src, "utf8");
+  const chunks = md.split(/^## /m).slice(1);
+  const videos = [];
+  let patterns = [];
+
+  for (const chunk of chunks) {
+    const title = chunk.split("\n")[0].trim();
+    const field = (label) => {
+      const m = chunk.match(
+        new RegExp(`\\*\\*${label}\\*\\*([^\\n]*)\\n((?:(?!\\*\\*|## )[^\\n]*\\n?)*)`, "i")
+      );
+      if (!m) return null;
+      // A field's prose may wrap across lines; it is one value either way. The
+      // last field in an entry runs up to the `---` rule before the next one,
+      // which is a separator rather than content.
+      return (
+        (m[1].trim() + " " + (m[2] || "").trim())
+          .replace(/\s+/g, " ")
+          .replace(/\s*-{3,}\s*$/, "")
+          .trim() || null
+      );
+    };
+
+    // An entry is a video only if it carries a view count. Everything else under
+    // a `## ` heading is prose — the Patterns block is the one that matters.
+    const rawViews = field("Views");
+    if (!rawViews) {
+      if (/^patterns/i.test(title)) {
+        // A pattern is one bullet, hard-wrapped across as many lines as it
+        // takes — the file is written to be read in an editor. Continuation
+        // lines are indented, so they fold back into the bullet above.
+        for (const raw of chunk.split("\n")) {
+          if (raw.startsWith("- ")) patterns.push(raw.slice(2).trim());
+          else if (/^\s+\S/.test(raw) && patterns.length) {
+            patterns[patterns.length - 1] += ` ${raw.trim()}`;
+          } else if (!raw.trim()) {
+            // A blank line ends the list; anything after it is prose.
+            if (patterns.length) break;
+          }
+        }
+        patterns = patterns.map((t) => t.replace(/\s+/g, " ").trim()).filter(Boolean);
+      }
+      continue;
+    }
+
+    // The quoted comments, with their like counts. They are the evidence the
+    // read is written from, so they ship alongside it rather than being
+    // summarised away.
+    const topComments = (chunk.match(/\*\*Top comments\*\*[^\n]*\n((?:- [^\n]*\n?)*)/) ?? [])[1]
+      ?.split("\n")
+      .filter((l) => l.startsWith("- "))
+      .map((l) => l.slice(2).trim())
+      .filter(Boolean) ?? [];
+
+    videos.push({
+      title,
+      platform: field("Platform"),
+      posted: field("Posted"),
+      views: Number((rawViews.match(/[\d,]+/)?.[0] ?? "").replace(/,/g, "")) || null,
+      viewsLabel: rawViews,
+      engagement: field("Engagement"),
+      topComments,
+      format: (field("Format") ?? "").split("·").map((t) => t.trim()).filter(Boolean),
+      hook: field("Hook used"),
+      comments: field("What the comments did"),
+      why: field("Why it worked"),
+      repeat: field("Repeat it by"),
+      link: field("Link"),
+    });
+  }
+
+  videos.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
+  const dest = src.replace(/\.md$/, ".json");
+  writeFileSync(dest, JSON.stringify({ patterns, videos }, null, 2));
+  return { dest, videos: videos.length, patterns: patterns.length };
+}
+
+// Channels worth learning from, and the device to take from each. Same
+// md-is-the-truth deal as the performance log.
+function buildFriends(src = "agent/friends.md") {
+  const md = readFileSync(src, "utf8");
+  const bullets = (chunk, label) =>
+    ((chunk.match(new RegExp(`\\*\\*${label}\\*\\*[^\\n]*\\n((?:- [^\\n]*\\n?)*)`)) ?? [])[1] ?? "")
+      .split("\n")
+      .filter((l) => l.startsWith("- "))
+      .map((l) => l.slice(2).trim())
+      .filter(Boolean);
+
+  const channels = [];
+  let devices = [];
+  for (const chunk of md.split(/^## /m).slice(1)) {
+    const title = chunk.split("\n")[0].trim();
+    const field = (label) => {
+      const m = chunk.match(
+        new RegExp(`\\*\\*${label}\\*\\*([^\\n]*)\\n((?:(?!\\*\\*|## |- )[^\\n]*\\n?)*)`, "i")
+      );
+      if (!m) return null;
+      return (
+        (m[1].trim() + " " + (m[2] || "").trim())
+          .replace(/\s+/g, " ")
+          .replace(/\s*-{3,}\s*$/, "")
+          .trim() || null
+      );
+    };
+    if (!field("Reach")) {
+      // The cross-channel findings live under their own heading, as one bullet
+      // each, wrapped across lines the way the file is written to be read.
+      if (/^devices/i.test(title)) {
+        const out = [];
+        for (const raw of chunk.split("\n")) {
+          if (raw.startsWith("- ")) out.push(raw.slice(2).trim());
+          else if (/^\s+\S/.test(raw) && out.length) out[out.length - 1] += ` ${raw.trim()}`;
+          else if (!raw.trim() && out.length) break;
+        }
+        devices = out.map((t) => t.replace(/\s+/g, " ").trim()).filter(Boolean);
+      }
+      continue;
+    }
+    // `### ` blocks inside a channel are individual videos, studied frame by
+    // frame. They are the point of the file — the channel fields are context.
+    const videos = chunk.split(/^### /m).slice(1).map((vc) => {
+      const vTitle = vc.split("\n")[0].trim();
+      const vField = (label) => {
+        const m = vc.match(
+          new RegExp(`\\*\\*${label}\\*\\*([^\\n]*)\\n((?:(?!\\*\\*|#{2,3} |- )[^\\n]*\\n?)*)`, "i")
+        );
+        if (!m) return null;
+        return (
+          (m[1].trim() + " " + (m[2] || "").trim())
+            .replace(/\s+/g, " ")
+            .replace(/\s*-{3,}\s*$/, "")
+            .trim() || null
+        );
+      };
+      return {
+        title: vTitle,
+        numbers: vField("Numbers"),
+        onScreen: vField("On-screen hook"),
+        spoken: vField("Spoken open") || vField("Caption"),
+        caption: vField("Spoken open") ? vField("Caption") : null,
+        what: vField("What it actually is"),
+        beats: bullets(vc, "Beats"),
+        steal: vField("Steal"),
+      };
+    });
+
+    channels.push({
+      handle: title.replace(/^@/, ""),
+      videos,
+      profile: field("Profile"),
+      reach: field("Reach"),
+      model: field("The model"),
+      steal: bullets(chunk, "Steal this"),
+      avoid: field("Don't copy"),
+      posts: bullets(chunk, "Best posts"),
+      note: field("Note"),
+      link: field("Link"),
+    });
+  }
+  const dest = src.replace(/\.md$/, ".json");
+  writeFileSync(dest, JSON.stringify({ devices, channels }, null, 2));
+  return { dest, channels: channels.length, devices: devices.length };
+}
+
+if (path === "--friends") {
+  const r = buildFriends();
+  console.log(`${r.dest} — ${r.channels} channels, ${r.devices} devices`);
+  process.exit(0);
+}
+
+if (path === "--performance") {
+  const r = buildPerformance();
+  console.log(`${r.dest} — ${r.videos} videos, ${r.patterns} patterns`);
+  process.exit(0);
 }
 
 if (path === "--index") {
@@ -111,6 +297,21 @@ for (const chunk of chunks) {
       .map((t) => t[1].toLowerCase())
   )];
 
+  // Six to ten alternate opening lines, `- {type} — {line}`. The first is the
+  // script's opening sentence; the rest are swaps, so order is meaning here and
+  // the list is not deduped or sorted. Scoped to its own block, because sources
+  // and material are `- ` lines too, and split on the first em dash only — a
+  // hook is allowed to contain one.
+  const hookBlock = chunk.match(/\*\*Hooks\*\*[^\n]*\n((?:(?!\*\*|## )[\s\S])*)/);
+  const hooks = [...(hookBlock?.[1] ?? "").matchAll(/^- (.+)$/gm)]
+    .map((h) => {
+      const parts = h[1].match(/^(.+?)\s+—\s+(.+)$/);
+      return parts
+        ? { type: parts[1].trim().toLowerCase(), text: parts[2].trim() }
+        : { type: null, text: h[1].trim() };
+    })
+    .filter((h) => h.text);
+
   // The raw fact list. Deliberately long — Lana picks from it to write the script.
   const materialBlock = chunk.match(/\*\*The material\*\*[^\n]*\n((?:- [\s\S]*?)?)(?=\n\*\*|\n## |$)/);
   const material = (materialBlock?.[1] ?? "")
@@ -153,7 +354,11 @@ for (const chunk of chunks) {
     id: `${letter}${num}`,
     bucket: BUCKETS[letter],
     title: title.trim(),
+    // Bucket D's `**Hook**` is the 0-15s cold open and stays a single field;
+    // `**Hooks**` is the menu, and every bucket carries one. The label regex
+    // below is exact, so the plural never lands in `hook`.
     hook: field("Hook"),
+    hooks,
     // "What this is" is the current lead field; the other two are older briefs.
     why: field("What this is") || field("Why it's good")
       || (letter === "D" ? field("The thesis") : null),
@@ -165,6 +370,10 @@ for (const chunk of chunks) {
     freshness: chunk.match(/\*\*Freshness\*\*\s*([^·\n]+)/)?.[1].trim() || null,
     saturation: chunk.match(/\*\*Saturation\*\*\s*([^\n]+)/)?.[1].trim() || null,
     note: chunk.match(/^> note:\s*(.+)$/m)?.[1] || null,
+    // `**Status** done` is set from the reader when a video is finished. It is
+    // deliberately separate from the rating: keeping an idea is a judgment,
+    // finishing it is a fact, and an idea can be both.
+    status: (field("Status") ?? "").toLowerCase().trim() || null,
     rating: symbol === "+" ? "up" : symbol === "-" ? "down" : null,
     ratingReason: reason || null,
     extra,
