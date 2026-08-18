@@ -11,6 +11,30 @@ function briefServer() {
       ? readdirSync("briefs").filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, "")).sort().reverse()
       : [];
 
+  // The three read-only documents the reader opens with. Hoisted out of the
+  // middlewares because the production build emits them as static files too —
+  // the deployed reader has no server, so the same data has to be baked in.
+  const allIdeas = () =>
+    listBriefs().flatMap((slug) => {
+      let doc;
+      try { doc = JSON.parse(readFileSync(`briefs/${slug}.json`, "utf8")); } catch { return []; }
+      return (doc.ideas ?? []).map((i) => ({
+        ...i,
+        slug,
+        date: (slug.match(/^\d{4}-\d{2}-\d{2}/) ?? [slug])[0],
+      }));
+    });
+
+  const performanceDoc = () =>
+    existsSync("agent/performance.json")
+      ? JSON.parse(readFileSync("agent/performance.json", "utf8"))
+      : { patterns: [], videos: [], missing: true };
+
+  const friendsDoc = () =>
+    existsSync("agent/friends.json")
+      ? JSON.parse(readFileSync("agent/friends.json", "utf8"))
+      : { devices: [], channels: [], missing: true };
+
   const json = (res, code, body) => {
     res.statusCode = code;
     res.setHeader("Content-Type", "application/json");
@@ -26,18 +50,7 @@ function briefServer() {
       // unread, kept, done — rather than one brief at a time, and which shelf an
       // idea is on is a function of its rating and status, so the split is the
       // client's to make and this stays one request.
-      server.middlewares.use("/api/ideas", (req, res) => {
-        const all = listBriefs().flatMap((slug) => {
-          let doc;
-          try { doc = JSON.parse(readFileSync(`briefs/${slug}.json`, "utf8")); } catch { return []; }
-          return (doc.ideas ?? []).map((i) => ({
-            ...i,
-            slug,
-            date: (slug.match(/^\d{4}-\d{2}-\d{2}/) ?? [slug])[0],
-          }));
-        });
-        json(res, 200, all);
-      });
+      server.middlewares.use("/api/ideas", (req, res) => json(res, 200, allIdeas()));
 
       // Marking a video done. Written as its own `**Status**` line above the
       // rate line, so the brief markdown stays the source of truth for this too.
@@ -64,19 +77,11 @@ function briefServer() {
 
       // The published-video log. Derived from agent/performance.md by
       // `node scripts/brief-to-json.mjs --performance`, same as briefs.
-      server.middlewares.use("/api/performance", (req, res) => {
-        if (!existsSync("agent/performance.json")) {
-          return json(res, 200, { patterns: [], videos: [], missing: true });
-        }
-        json(res, 200, JSON.parse(readFileSync("agent/performance.json", "utf8")));
-      });
+      server.middlewares.use("/api/performance", (req, res) => json(res, 200, performanceDoc()));
 
       // Channels worth learning from. Derived from agent/friends.md by
       // `node scripts/brief-to-json.mjs --friends`.
-      server.middlewares.use("/api/friends", (req, res) => {
-        if (!existsSync("agent/friends.json")) return json(res, 200, { devices: [], channels: [], missing: true });
-        json(res, 200, JSON.parse(readFileSync("agent/friends.json", "utf8")));
-      });
+      server.middlewares.use("/api/friends", (req, res) => json(res, 200, friendsDoc()));
 
       server.middlewares.use("/api/brief", (req, res) => {
         const slug = (req.url || "").replace(/^\//, "").split("?")[0];
@@ -176,6 +181,19 @@ function briefServer() {
           }
         });
       });
+    },
+
+    // The deployed reader is a static viewer: there is no server to answer
+    // /api/*, so the three read paths are frozen into files at build time and
+    // fetched as /api/<name>.json. The writing endpoints have no counterpart
+    // here on purpose — briefs/*.md is the source of truth and it lives on the
+    // machine the scan runs on, not on the host.
+    generateBundle() {
+      const emit = (name, doc) =>
+        this.emitFile({ type: "asset", fileName: `api/${name}.json`, source: JSON.stringify(doc) });
+      emit("ideas", allIdeas());
+      emit("performance", performanceDoc());
+      emit("friends", friendsDoc());
     },
   };
 }

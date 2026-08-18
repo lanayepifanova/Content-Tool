@@ -535,6 +535,7 @@ function Idea({ idea, slug, onRated, onKilled, onStatus }) {
       {idea.note && <p className="idea-note">{idea.note}</p>}
 
       <footer className="idea-foot">
+        {!READ_ONLY && (
         <div className="rate-buttons">
           <button
             type="button"
@@ -559,13 +560,16 @@ function Idea({ idea, slug, onRated, onKilled, onStatus }) {
             )
           )}
         </div>
-        <input
-          className="rate-reason"
-          placeholder="why? (this is what actually trains it)"
-          value={reason}
-          onChange={(e) => setReason(e.target.value)}
-          onBlur={() => rating && reason !== (idea.ratingReason || "") && save(rating, reason)}
-        />
+        )}
+        {!READ_ONLY && (
+          <input
+            className="rate-reason"
+            placeholder="why? (this is what actually trains it)"
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            onBlur={() => rating && reason !== (idea.ratingReason || "") && save(rating, reason)}
+          />
+        )}
         <span className="idea-meta">
           {[idea.date, idea.freshness, idea.saturation].filter(Boolean).join(" · ")}
         </span>
@@ -588,6 +592,12 @@ const VIEWS = [
 const shelfOf = (i) =>
   i.status === "done" ? "done" : i.rating === "up" ? "kept" : i.rating ? null : "unread";
 
+// The deployed build is a viewer. Its API is three files baked in at build
+// time, and there is nothing to write to — triage happens in `npm run dev`,
+// where the briefs live and a rating can go back into the markdown.
+const READ_ONLY = import.meta.env.PROD;
+const api = (name) => (READ_ONLY ? `/api/${name}.json` : `/api/${name}`);
+
 export default function App() {
   const [view, setView] = useState("kept");
   const [ideas, setIdeas] = useState(null);
@@ -596,18 +606,18 @@ export default function App() {
   const [error, setError] = useState(null);
 
   const loadIdeas = () =>
-    fetch("/api/ideas")
+    fetch(api("ideas"))
       .then((r) => r.json())
       .then(setIdeas)
       .catch((e) => setError(String(e)));
 
   useEffect(() => {
     loadIdeas();
-    fetch("/api/performance")
+    fetch(api("performance"))
       .then((r) => r.json())
       .then(setPerf)
       .catch(() => {});
-    fetch("/api/friends")
+    fetch(api("friends"))
       .then((r) => r.json())
       .then(setFriends)
       .catch(() => {});

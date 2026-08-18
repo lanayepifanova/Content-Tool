@@ -95,6 +95,8 @@ when the scan ran twice daily. Both name shapes load in the reader.
 | `/basis-point-performance` | Log a published video's numbers and distil the lesson |
 | `/basis-point-friends` | Analyse a creator's channel and write down what to steal |
 | `npm run dev` | Reader at localhost:5173 — kept, unread, done, my account, friends |
+| `npm run build` | Static viewer into `dist/`, briefs baked in, triage disabled |
+| `npm run preview` | Serve `dist/` exactly as a host would — check a deploy before pushing |
 | `./scripts/daily-scan.sh` | Run the scan headlessly, as the daily schedule does |
 | `./scripts/daily-scan.sh --dry` | Same, but no email and no push |
 | `./scripts/daily-scan.sh --force` | Run even if today's brief already exists |
@@ -123,6 +125,25 @@ launchctl load   ~/Library/LaunchAgents/com.lanayepifanova.basis-point.plist
 It runs on your Mac rather than in the cloud because the cloud sandbox's egress
 proxy blocks direct fetches to most news and regulator domains, which breaks the
 rule that primary sources get opened before coverage is trusted.
+
+## Deploying the reader
+
+**The deployed reader is a viewer, not the app.** `vite build` bakes the three
+read paths into static files — `dist/api/ideas.json`, `performance.json` and
+`friends.json` — and the production bundle fetches those instead of the dev
+server. Nothing else is needed: point Vercel at the repo, take the Vite preset,
+and every push the daily run makes redeploys it with the new brief.
+
+What it cannot do is triage. Keep, kill, mark-done and the reason box are hidden
+in a production build, because those endpoints write back into `briefs/*.md` and
+the markdown is the source of truth — it lives on the machine the scan runs on,
+next to the git history and the launchd agent, and a host with a read-only
+filesystem has nothing to write to. Rating stays a `npm run dev` job.
+
+The API is a Vite dev-server plugin in `vite.config.js`, not a set of serverless
+functions, so `configureServer` runs on localhost only. If a deployed reader
+ever shows an empty shelf, that is the reason: the static files did not get
+emitted, or the bundle is asking for `/api/ideas` rather than `/api/ideas.json`.
 
 ## Tuning it
 
