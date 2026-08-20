@@ -6,6 +6,10 @@ Lana's ratings accumulate. Edit it freely — it is the steering wheel.
 Voice target: smart friend who reads the primary source, not a news anchor.
 Audience: curious people who work adjacent to tech/finance but aren't insiders.
 
+Nine short-form ideas a day, in three buckets: news (A), tutorials (B),
+explainers (C). Long-form was dropped on 2026-08-20 — *"this can be for short
+form only, not for long form anymore."*
+
 ---
 
 ## What has actually worked
@@ -170,7 +174,7 @@ have to happen, not the megawatts.
 
 ---
 
-## Universal filters (apply to all four buckets)
+## Universal filters (apply to all three buckets)
 
 An idea must survive all seven to make the brief:
 
@@ -179,8 +183,7 @@ An idea must survive all seven to make the brief:
 2. **Explainable without a whiteboard** or prior context. The shorts run four
    to six minutes now, but that is room to make one point properly, not room
    for a second point: if the idea needs notation on screen or a second concept
-   taught first, it fails. For Bucket D this applies to the premise only — the
-   hook has to land in a sentence even though the argument takes ten minutes.
+   taught first, it fails.
 3. **Specific over thematic.** A named company doing a named thing beats a trend.
 4. **Not already saturated.** If three large accounts covered it yesterday, skip
    it — unless there's a genuinely unused angle.
@@ -190,7 +193,7 @@ An idea must survive all seven to make the brief:
    thing two viewers would disagree about underneath it. If the honest answer
    is "people would find it interesting," it is a scroll. This is the tie-break
    filter: between a solid idea nobody argues with and a slightly smaller idea
-   people fight over, ship the fight. It applies to all four buckets, and it
+   people fight over, ship the fight. It applies to all three buckets, and it
    never overrides filter 5 — the argument has to be about something true.
 7. **The surprise test.** Would someone who follows this beat be surprised?
    Not "is it true," not "is it timely" — is the outcome different from what
@@ -211,9 +214,6 @@ An idea must survive all seven to make the brief:
    The bar, stated positively: something genuinely new, that almost nobody is
    tracking, that makes a normal person either curious or angry. Filter 6 asks
    whether they will argue. This one asks whether they will look up at all.
-
-Filter 4 also applies across buckets: the long-form idea must not be one of the
-day's nine shorts wearing a longer runtime.
 
 Auto-reject: generic macro commentary ("rates are shifting risk appetite"),
 funding-round announcements with no product story, model-launch benchmark
@@ -381,52 +381,6 @@ Each Bucket C idea must have a **misconception being corrected** and a **single
 analogy** carrying the explanation — not as named fields any more, but as the
 first and second paragraphs of the script. If neither is crisp enough to write
 that way, cut the idea.
-
----
-
-## Bucket D — Long-form (YouTube, ~10 minutes)
-
-One per brief. This is not a short with more words in it — the short-form
-filters above still apply to the opening, but a ten-minute video lives or dies
-on whether the argument *develops*. A topic that is fully understood by minute
-two is a short, and should be filed as one.
-
-**Looking for:** a story or concept with at least three distinct acts, where
-each act changes how the viewer reads the previous one. The best version has a
-turn in the middle — the tidy explanation the audience arrived with is shown to
-be incomplete, and the second half is more interesting because of it.
-
-**The substance test.** Before an idea qualifies, answer all four concretely:
-
-1. What does the viewer believe at minute two that is wrong by minute eight?
-2. What arrives in the back half that isn't available in the first? New actor,
-   new document, a number that reframes it, a consequence nobody covered.
-3. What goes on screen? Ten minutes of talking head over stock footage is a
-   podcast. Name the filings, charts, screen recordings, or archival material.
-4. Could someone honestly cover this in ninety seconds? If yes, it is a short.
-
-If any answer is thin, it does not ship. Under-delivering is still correct —
-a brief with nine shorts and a note explaining why nothing had ten minutes in
-it beats a padded long-form idea.
-
-**Strong signals:** a mechanism with a hidden second layer · a story with
-documents to read on screen · a concept where the standard explanation is
-subtly wrong and correcting it takes real time · something with a history
-(this happened before, here is how it went) · a system whose incentives only
-become visible once you follow the money two steps out.
-
-**Weak signals:** a list ("seven tools that...") · a recap of a week's news ·
-a topic where the whole payload is in the title · a tutorial that is really
-twelve minutes of installation · anything requiring access, footage, or data
-Lana does not have and cannot get.
-
-**Source bar is higher.** Four sources minimum, weighted toward primary. A
-ten-minute video makes ten minutes of claims, and one wrong load-bearing fact
-takes the whole thing down.
-
-Recency: long-form is allowed to be evergreen. A story from two months ago is
-fine if it is under-covered and has depth. Prefer a live news peg when one
-exists, but never force one.
 
 ---
 

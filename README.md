@@ -1,8 +1,8 @@
 # Basis Point
 
-A content-ideas agent. Once a day it researches and writes ten content ideas —
-three news, three tutorials, three explainers, and one long-form YouTube idea —
-into a dated brief, emails it, and learns from how the ideas get rated.
+A content-ideas agent. Once a day it researches and pitches nine short-form
+content ideas — three news, three tutorials, three explainers — into a dated
+brief, emails it, and learns from how the ideas get rated.
 
 ## How it works
 
@@ -16,7 +16,10 @@ briefs/INDEX.md ───┘         │                  │
                    one subagent per idea
 
   reader:  unread ──keep──→ kept ──mark done──→ done
+             │        └──── ask for a script in chat, once it is worth writing
              └────kill────→ deleted from the brief, logged to briefs/KILLED.md
+
+  agent/taste.md ──→ --guidelines ─→ the reader's Guidelines tab
 
 briefs/*.md + KILLED.md ──→ /basis-point-learn ─────→ rewrites LEARNED in taste.md
 agent/performance.md    ──→ /basis-point-performance ─→ rewrites What has actually worked
@@ -29,12 +32,13 @@ back into the markdown.
 **The reader is shelves, not a stack of briefs.** *Unread* is everything not yet
 triaged. *Kept* is what is worth making, and a kept idea grows a **Research
 more** row — a news search for its subject plus the sources it was built from.
-*Done* is what has been posted. Each of those three splits into news, tutorials,
-explainers and long-form, with the date on the card. *My account* is the
-published log and the rules earned from it. *Friends* is channels worth
-learning from and the specific device to take from each. An idea shows its
-one-line summary and one paragraph; the script, hooks, material and tags sit
-behind **Open it**, because a brief is triaged far more often than it is read.
+*Done* is what has been posted. Each of those three splits by bucket, with the
+date on the card. *Killed* is everything thrown out — the ideas the Kill button
+deleted and the ones left in their briefs on a `-` line — shown with the reason,
+because that is the half of the training signal that teaches most. *Guidelines*
+renders `agent/taste.md` itself, so the bar the reader sees is the bar the scan
+obeys. *My account* is the published log and the rules earned from it. *Friends*
+is channels worth learning from and the specific device to take from each.
 
 **Kill deletes.** The entry is removed from the brief markdown outright, with
 one click of Undo while the tab is open. Its one-line record — with the reason,
@@ -44,44 +48,42 @@ only its winners teaches nothing.
 
 `briefs/INDEX.md` is derived too — one line per past idea, newest first. It is
 what a scan reads for de-duplication instead of the briefs themselves. A brief
-is ~58KB once its scripts are in, so reading the last six cost ~87k tokens that
-then rode along in context for every turn of the run; the index is the same
+with scripts written into it runs ~58KB, so reading the last six cost ~87k tokens
+that then rode along in context for every turn of the run; the index is the same
 information for about 2% of that.
 
-The mining pass — gathering the verified facts behind each chosen idea — runs as
-ten parallel subagents on Sonnet rather than inline. Their searches live and die
-in their own contexts instead of accumulating in the main one, and the selection,
-the quality gate and the writing stay on the main model. This is the difference
-between a run costing ~$48 and ~$20.
+The checking pass — verifying each chosen idea against its primary source — runs
+as nine parallel subagents on Sonnet rather than inline. Their searches live and
+die in their own contexts instead of accumulating in the main one, while the
+selection, the hooks and the quality gate stay on the main model.
 
-**The nine short-form ideas ship as finished scripts.** Each is 600-1000 words of
-spoken prose — five to seven paragraphs, four to six minutes read aloud — that
-can be recorded off the screen without writing a word or looking anything up. An
-entry is a title, **Hooks**, **The script**, **Sources** and **Tags** — the five
-to eight hashtags for the upload box, written while the sources are still open;
-tutorials add the numbered setup walkthrough, because standing the thing up is a
-separate job from narrating it.
+**An entry is a pitch, not a script.** The hooks, then two or three sentences of
+what the story is: enough to decide on, and no more. An entry is a title,
+**Hooks**, **What it is**, **Sources** and **Tags** — the five to eight hashtags
+for the upload box, written while the sources are still open; tutorials add the
+numbered setup walkthrough, because standing the thing up is a separate job from
+describing it.
+
+**The script gets written after an idea is approved,** in conversation, to the
+standard in `agent/format.md`. Nine finished scripts per run meant most of a
+run's cost went to ideas that were about to be killed.
 
 **Hooks** is the opening line in six to ten versions, each a different type —
 *flat first*, *number*, *sounds fake*, *reversal*, *artifact*, *correction* and
-the rest, listed in `agent/format.md`. The first is the sentence the script
-actually opens with and the others are drop-in swaps, so choosing between them
-is a reading decision rather than a rewrite. They are written after the script,
-from the full mined fact list, which is the only way the *number* and *quote*
-versions have anything to be made of. In the reader each row copies itself. The facts the subagents mine feed the script instead of
-shipping beside it as a bullet list.
+the rest, listed in `agent/format.md`. Hook one is the strongest, and it is the
+sentence a script written later has to open with; the others are drop-in swaps,
+so choosing between them is a reading decision rather than a rewrite. In the
+reader each row copies itself.
 
-Bucket D is the exception. Ten minutes is a pitch to be approved rather than a
-script to be read, so it keeps its thesis, chapters and **The material** — the
-raw 20-30 bullets, counter-argument included — and gets written once the idea
-clears.
+Now that there is no script under it, the hook is what an idea is triaged on —
+which makes two rules load-bearing: it has to carry a fact rather than a tease,
+and it has to land on someone outside the beat. *"The cheap AI costs more at
+busy times of day. Like electricity."* works on a person who has never heard of
+DeepSeek.
 
-Ideas are `A1..A3` news, `B1..B3` tutorials, `C1..C3` explainers, `D1` long-form.
-Bucket D is the ~10-minute YouTube idea: it is researched as its own hunt on a
-subject the nine shorts don't cover, and has to pass a substance test — three
-acts, new material in the back half, and something specific to put on screen —
-before it ships. If nothing clears that bar the brief runs nine plus a note,
-which is a real result rather than a failed run.
+Ideas are `A1..A3` news, `B1..B3` tutorials, `C1..C3` explainers. Long-form
+(`D1`) was dropped on 2026-08-20; briefs before that date still carry one and
+still load in the reader.
 
 Briefs from before August 2026 are named `YYYY-MM-DD-am.md` / `-pm.md`, from
 when the scan ran twice daily. Both name shapes load in the reader.

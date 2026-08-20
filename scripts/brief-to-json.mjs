@@ -453,8 +453,9 @@ for (const chunk of chunks) {
     // below is exact, so the plural never lands in `hook`.
     hook: field("Hook"),
     hooks,
-    // "What this is" is the current lead field; the other two are older briefs.
-    why: field("What this is") || field("Why it's good")
+    // "What it is" is the current lead field — the two or three sentences an
+    // entry is now made of. The rest are older briefs, kept so they still parse.
+    why: field("What it is") || field("What this is") || field("Why it's good")
       || (letter === "D" ? field("The thesis") : null),
     script,
     beats,

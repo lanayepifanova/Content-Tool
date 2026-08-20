@@ -33,21 +33,25 @@ function loadEnv() {
 // What the email carries, per bucket. The brief keeps everything — this is the
 // emailed view only, cut down to what Lana actually reads in her inbox.
 //
-// The short-form buckets now ship the finished script, and the script is the
-// thing she reads, so it goes out whole: an email that summarised it would just
-// be a worse version of the entry. Tutorials additionally carry the numbered
-// setup, because reading the build on a phone is how she decides to do it.
-// Only the long-form still gets cut, since its material is research notes.
+// An entry is a pitch — hooks plus two or three sentences — so the whole thing
+// goes out. There is nothing left to summarise, and the inbox is where triage
+// most often actually happens. Tutorials additionally carry the numbered setup,
+// because reading the build on a phone is how she decides to do it.
 //
-// Tags ride along in every bucket: they are the upload box's contents, and the
-// inbox is where an idea most often gets picked up to post. Hooks ride along
-// for the same reason — the alternates are the field most likely to be read on
-// a phone and picked between before recording.
+// `The script` stays in the keep lists even though a scan never writes one: a
+// script written later goes into the same entry, and a digest resent afterwards
+// should carry it. `longform` is here for the briefs from before the bucket was
+// dropped, so old briefs still render.
+//
+// Tags ride along in every bucket: they are the upload box's contents. Hooks
+// ride along for the same reason — the alternates are the field most likely to
+// be read on a phone and picked between before recording.
 const BUCKETS = { A: "news", B: "tutorial", C: "explainer", D: "longform" };
+const KEEP = ["Hooks", "What it is", "The script", "Sources", "Tags", "Freshness"];
 const EMAIL_SECTIONS = {
-  news:      { keepOnly: ["Hooks", "The script", "Sources", "Tags", "Freshness"] },
-  tutorial:  { keepOnly: ["Hooks", "The script", "How you set it up", "Sources", "Tags", "Freshness"] },
-  explainer: { keepOnly: ["Hooks", "The script", "Sources", "Tags", "Freshness"] },
+  news:      { keepOnly: KEEP },
+  tutorial:  { keepOnly: [...KEEP, "How you set it up"] },
+  explainer: { keepOnly: KEEP },
   longform:  { drop: ["The beats"] },
 };
 

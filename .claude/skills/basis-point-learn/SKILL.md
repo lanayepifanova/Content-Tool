@@ -48,15 +48,10 @@ carefully rather than pattern-matching keywords.
 Distinguish a real signal from a small sample. Three consistent `-` on the same
 shape is a rule; one is an anecdote. Say which is which.
 
-**Bucket D accumulates slowly** — one long-form idea per day against nine
-shorts, so it will be many runs before its ratings mean anything. Hold it to
-the same three-instance bar rather than reading a pattern into two. Until it
-has that, look instead at whether the long-form ideas are being rated at all:
-a run of blanks usually means they aren't landing, and is worth reporting as an
-open question rather than a rule. Note that a `-` on a Bucket D idea can mean
-two different things — the subject was wrong, or the subject was fine but it
-didn't have ten minutes in it. When her reason doesn't say which, say so
-instead of guessing.
+**Long-form is gone.** Bucket D was dropped on 2026-08-20 and briefs are nine
+short-form ideas now. Old briefs still carry `D1` entries — read their ratings
+as evidence about the subject, not about the format, and never write a rule
+about long-form into the rubric.
 
 ## 3. Rewrite
 

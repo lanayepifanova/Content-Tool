@@ -4,24 +4,30 @@ Every run writes two files:
 - `briefs/YYYY-MM-DD.md`   — the human-readable brief (source of truth)
 - `briefs/YYYY-MM-DD.json` — same content, for the React UI
 
-One run per day. Ten ideas: nine short-form (A/B/C) plus one long-form (D).
+One run per day. Nine short-form ideas: three news (A), three tutorials (B),
+three explainers (C). Short-form only — there is no long-form bucket.
 
-**The nine short-form ideas are finished scripts.** Not a pitch, not a fact
-list, not a beat sheet — the spoken piece, written out, in the voice Lana says
-it in. She should be able to open the brief, pick one, and record it without
-writing a word or looking anything up. That is the whole design: an entry is a
-title, **Hooks**, **The script**, **Sources** and **Tags**. Nothing else, in any
-of the three short-form buckets.
+**An entry is a pitch, not a script.** The hooks, then two or three sentences of
+what the story actually is, and that is the entry. Enough to decide on, and no
+more. In Lana's words: *"You don't need too much info, just like the hook or
+main idea and a couple sentences. I can expand on the script if I approve of the
+piece of news."*
 
-There is no **What this is**, no **The material** and no beat sheet on a
-short-form idea. Every one of those was a note toward a script that is now
-written. Two extra fields survive: Bucket B's numbered setup walkthrough,
-because building the thing is a separate job from narrating it, and **Hooks** —
-the first line is the whole draw, it is the one sentence worth writing several
-versions of, and the choice between them is Lana's rather than the run's.
+So an entry is a title, **Hooks**, **What it is**, **Sources** and **Tags**.
+Nothing else, in any of the three buckets — no beat sheet, no fact list, no
+script. Bucket B adds its numbered setup walkthrough, because building the thing
+is a separate job from describing it.
 
-Bucket D is the exception and keeps its old shape — ten minutes is a pitch to be
-approved, not a script to be read. See **Bucket D** below.
+**The script gets written after she approves the idea,** in conversation, not in
+the brief. Nine finished 600-1000 word scripts per run was most of the cost of a
+run spent writing for ideas that were about to be killed — eight of nine on a
+typical day. The rules for what a script has to be still live in **The script**
+below; they apply when one is asked for.
+
+**Hooks are the exception to the trimming.** The first line is the whole draw,
+it is the one sentence worth writing several versions of, and it is what an idea
+is triaged on now that the script is not there to read. Six to ten of them, and
+the choice between them is Lana's rather than the run's.
 
 ---
 
@@ -40,12 +46,10 @@ _{N} ideas · generated {HH:MM} · sources checked: {count}_
 - {type} — {the line}
 - {...six to ten, no two of the same type}
 
-**The script**
-{Paragraph one — one line in the file, however long it runs.}
-
-{Paragraph two.}
-
-{...four to six paragraphs in total.}
+**What it is**
+{Two or three sentences. What happened or what the thing does, the detail that
+makes it worth a video, and the argument it starts. Written to be decided on in
+about fifteen seconds — this is not paragraph one of the script.}
 
 **Sources**
 - {publication} — {url}
@@ -61,7 +65,7 @@ _{N} ideas · generated {HH:MM} · sources checked: {count}_
 ```
 
 `B1..B3` and `C1..C3` use the same five fields, with `TUTORIAL` and `EXPLAINER`
-in the header. Bucket B adds **How you set it up** between the script and the
+in the header. Bucket B adds **How you set it up** between **What it is** and the
 sources.
 
 ---
@@ -153,9 +157,31 @@ sentence with the words moved around, they should be six different ways in.
 
 ---
 
+## What it is
+
+Two or three sentences, and they are the entry. Their job is to let Lana decide
+in about fifteen seconds, so they are not the script's first paragraph moved up:
+
+- **Sentence one is what happened,** with the date, the named actor and the
+  number that carries it. Not the framing, the event.
+- **Sentence two is the detail that makes it a video** — the part that is
+  strange, or that reverses what the reader assumed, or that they would not have
+  guessed. If there is no such sentence, the idea failed filter 7 and should not
+  be in the brief.
+- **Sentence three, where it earns its place, is the argument it starts** — who
+  disagrees and about what. Skip it rather than writing a vague one.
+
+No stage directions, no "in this video," no promises about what the script will
+cover. It is written the way you would tell a friend the story in a sentence and
+a half, because that is the test it has to pass anyway.
+
+---
+
 ## The script
 
-This section governs all nine short-form ideas. The bucket sections below only
+**Not written during a scan.** A brief ships pitches; a script is written when
+Lana approves an idea and asks for it, in conversation. This section is the
+standard it is written to when that happens, and the bucket sections below only
 say how the shape differs.
 
 **Five to seven paragraphs, 600-1000 words** — roughly four to six minutes read
@@ -388,134 +414,31 @@ than three seconds of a scroll-stopper.
 
 ---
 
-## Bucket D — the long-form idea
-
-Exactly one per brief, written last, and it is the one entry that is still a
-pitch rather than a script. Ten minutes is not a short stretched out — it needs
-an argument that develops, and that argument has to be worth approving before it
-is worth writing fifteen hundred words of it. Same header convention, its own
-fields:
-
-```
-## D1 · LONGFORM · {four-to-seven word working title}
-
-**Hook** (0-15s, the cold open before any title card)
-> {two or three sentences. Sets the stake and makes a promise the video pays off.}
-
-**Hooks**
-- {type} — {an alternate first sentence for that cold open}
-- {...six to ten, no two of the same type, same rules as the short-form menu}
-
-**What this is**
-{Two paragraphs: the first explains the subject to someone with no prior
-context, the second says why it matters now. This is the pitch — if these two
-paragraphs don't make someone want ten minutes, the thesis below won't save it.}
-
-**The thesis**
-{One sentence — the claim the video argues. Not a topic. "Prediction markets
-are becoming the price of truth" is a topic; "prediction markets are being
-priced by people who cannot afford to be wrong, which is why they beat polls"
-is a thesis.}
-
-**Why it holds ten minutes**
-{2-4 sentences naming the specific substance: how many distinct acts, what new
-information arrives in the back half, why a viewer stays past minute four. If
-the honest answer is "it doesn't," cut the idea.}
-
-**The chapters**
-- 0:00-0:45 — {cold open — the concrete scene or number}
-- 0:45-2:00 — {the setup: what the viewer needs to believe the rest}
-- 2:00-4:00 — {act one — the first mechanism, with its own small payoff}
-- 4:00-6:30 — {act two — the complication, the thing that breaks the tidy story}
-- 6:30-8:30 — {act three — the consequence, who wins and loses}
-- 8:30-10:00 — {the turn — what this predicts, and the honest uncertainty}
-
-**What you'd need**
-{Footage, charts, screen recordings, filings to put on screen. Be specific —
-"the S-1 page where the compute line item appears," not "some visuals."}
-
-**The material**
-- {20-30 bullets — the raw fact list, see below}
-
-**Title options**
-- {YouTube title, written to be clicked, not to be accurate-sounding}
-- {a second, different angle}
-
-**Thumbnail**
-{The single image. One subject, readable at small size.}
-
-**Sources**
-- {at least four, weighted toward primary}
-
-**Tags** #{five to eight lowercase hashtags, one line, space separated}
-
-**Freshness** {N}h ago | evergreen · **Saturation** low | medium | high
-
-`rate: `
-```
-
-Chapter timestamps use `M:SS-M:SS`. The chapters are the field that proves the
-idea isn't a short: a ten-minute argument has to be shown to develop.
-
-### The material — Bucket D only
-
-The raw facts behind the long-form, so the argument can be written without going
-back to research it. **20-30 bullets.** Over-supply is the point: a bullet she
-skips costs nothing, a fact she has to go find costs the whole benefit.
-
-Every bullet must:
-
-- **Carry something hard** — a number, a date, a name, a dollar figure, a
-  percentage, a direct quote. A bullet with no specific in it is a sentence
-  about the topic, and doesn't belong here.
-- **Stand alone.** No "this means that" or "as a result" — each bullet is
-  independently liftable into the script in any order.
-- **Attribute inline** when the fact is contestable or the source matters:
-  `(Bloomberg)`, `(per the 10-Q)`, `(CFTC press release)`. Put the bare source
-  name in parentheses — never a bare URL, which belongs in **Sources**.
-- **Quote exactly** when quoting. Full quotation marks, named speaker, no
-  paraphrase dressed as a quote.
-
-Cover, where they exist: the core numbers and what they were before · the
-timeline with dates · who the named actors are and what each wanted · the
-mechanism, stated plainly · the scale comparison that makes a number legible ·
-the precedent or the last time this happened · the counter-argument or the
-caveat that would embarrass her if a comment pointed it out · what happens next
-and when.
-
-Include the inconvenient facts. If the tidy version of the story has a hole in
-it, the hole goes in the material — finding out from a comment is worse than
-knowing up front.
-
----
-
 ## Rules
 
-- Everything in a short-form entry is written to be **spoken**, because all of
-  it gets spoken. No "In this video." No "Ever wondered." No rhetorical-question
-  openers. Bucket D's **Hook** follows the same rule.
+- Hooks are written to be **spoken**, because they get spoken verbatim. No "In
+  this video." No "Ever wondered." No rhetorical-question openers. **What it is**
+  is written to be read, not said — it is the only part of an entry that is.
 - Never pad to hit the count. Three strong ideas beat three plus a filler. If a
-  bucket only yields two, ship two and say why in a `> note:` line. Never pad a
-  script to reach the word target either — 620 tight words beat 1000 with a
-  paragraph of throat-clearing in them.
+  bucket only yields two, ship two and say why in a `> note:` line.
 - Every factual claim carries a source link. Unverifiable claim = cut the idea.
 - No emoji in briefs. No exclamation marks.
 - **Write each prose paragraph on one line**, however long, with a blank line
   between paragraphs. The digest email turns every line into its own paragraph,
-  so hard-wrapping a script shatters it into fragments in Lana's inbox. This
-  applies to prose only: the setup steps, the material and the sources stay one
-  bullet per line.
+  so hard-wrapping **What it is** shatters it into fragments in Lana's inbox.
+  This applies to prose only: the setup steps and the sources stay one bullet
+  per line.
 - Setup steps are numbered `1.` `2.` `3.`; every other list is `- `. The email
   and the app both key off that distinction to render them as ordered.
-- A short-form entry carries exactly the title, **Hooks**, **The script**,
-  **Sources**, **Tags**, the freshness line and the rate line — plus **How you
-  set it up** for Bucket B. Anything else under an `## A`, `## B` or `## C`
-  heading is a leftover note and gets cut.
+- An entry carries exactly the title, **Hooks**, **What it is**, **Sources**,
+  **Tags**, the freshness line and the rate line — plus **How you set it up** for
+  Bucket B. Anything else under an `## A`, `## B` or `## C` heading is a leftover
+  note and gets cut. A script, once one is written, goes under **The script**
+  below the sources; a scan never writes one.
 - Hooks are `- {type} — {line}`, one per line, six to ten of them, no two types
-  repeated, and hook one is the script's opening sentence verbatim. The type
-  label comes from the list in **Hooks** and is written in lowercase.
+  repeated. Hook one is the strongest, and it is the sentence a script written
+  later has to open with verbatim. The type label comes from the list in
+  **Hooks** and is written in lowercase.
 - A `**Status**` line above `rate:` is written by the reader when a video is
   marked done. A scan never writes one, and never removes one it finds.
-- Short-form titles are four to six words, concrete nouns, no colons. The
-  Bucket D working title may run to seven; its **Title options** are the ones
-  written for the platform and play by YouTube's rules instead.
+- Titles are four to six words, concrete nouns, no colons.

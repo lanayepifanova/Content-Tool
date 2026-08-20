@@ -1,13 +1,20 @@
 ---
 name: basis-point-scan
-description: Run a Basis Point content scan — research and write 10 content ideas (3 news, 3 tutorials, 3 explainers, 1 long-form YouTube) into a dated brief, then email the digest. Use when asked to find content ideas, run the scan, or generate today's brief. Also invoked by the daily schedule.
+description: Run a Basis Point content scan — research and pitch 9 short-form content ideas (3 news, 3 tutorials, 3 explainers) into a dated brief, then email the digest. Use when asked to find content ideas, run the scan, or generate today's brief. Also invoked by the daily schedule.
 ---
 
 # Basis Point Scan
 
-Produce one brief: nine short-form ideas and one long-form YouTube idea. Runs
-once a day. Work in the repository root — the directory containing `agent/`,
-`briefs/`, and `scripts/`.
+Produce one brief: nine short-form ideas — three news, three tutorials, three
+explainers. Short-form only; there is no long-form bucket. Runs once a day. Work
+in the repository root — the directory containing `agent/`, `briefs/`, and
+`scripts/`.
+
+**Each idea ships as a pitch, not a script.** Hooks, then two or three sentences
+of what the story is. The 600-1000 word script is written later, in conversation,
+for the ideas Lana keeps — writing nine of them up front spent most of a run on
+ideas that were about to be killed. `agent/format.md` is the contract; follow it
+exactly.
 
 ## 1. Load context
 
@@ -18,15 +25,16 @@ Read in this order — do not skip, the whole point is that runs improve:
 3. `briefs/INDEX.md` — one line per past idea, newest first, for de-duplication.
    Read the **most recent six dates** of it. An idea that repeats a story or
    tool from the last three days is rejected unless the angle is genuinely new.
-   Note which ideas were rated `-` and avoid that shape. Check the previous
-   Bucket D ideas separately: two long-form ideas in the same week on the same
-   subject is a repeat even if the framing differs.
+   Note which ideas were rated `-` and avoid that shape.
 
-Read the index, not the briefs themselves. A brief is ~58KB because of its
-scripts; six of them is ~87k tokens that then get replayed on every turn of the
-run, and de-duplication only needs titles and angles. Open a full brief only if
-the index leaves a genuine question about whether today's idea repeats one — and
-then just that one, with `grep`, not a whole-file read.
+Read the index, not the briefs themselves — de-duplication only needs titles and
+angles, and a brief that has had scripts written into it is large enough that six
+of them cost more context than the whole rest of the run. Open a full brief only
+if the index leaves a genuine question about whether today's idea repeats one —
+and then just that one, with `grep`, not a whole-file read.
+
+Also read `briefs/KILLED.md`. It is short, it is the negative half of the
+signal, and the **Verdicts** section of `agent/taste.md` generalises from it.
 
 `briefs/INDEX.md` is generated. If it is missing or stale, rebuild it with
 `node scripts/brief-to-json.mjs --index`.
@@ -36,11 +44,11 @@ run, not modified; reading them just adds context.
 
 ## 2. Research
 
-Research runs in two passes. The first picks the ideas; the second gathers the
-facts the scripts get written from. Do not merge them — choosing an idea and
-mining it are different jobs, and skipping the second pass is the main way this
-run fails: it produces nine scripts that sound like they were written from a
-headline, because they were.
+Research runs in two passes. The first picks the ideas; the second checks that
+each one is true and finds the detail the pitch turns on. Do not merge them —
+choosing an idea and verifying it are different jobs, and skipping the second is
+how a brief ends up pitching a story that falls apart on the first primary
+source.
 
 ### Pass one — selection
 
@@ -188,84 +196,51 @@ to something in the current cycle is stronger. Pick concepts where the honest
 explanation beats the pop-science one. Verify the technical claim — an explainer
 built on a subtly wrong analogy is worse than no explainer.
 
-**Bucket D — the long-form idea.** Its own hunt, after the nine are settled, on
-a subject the shorts don't already cover. Same instincts, different depth
-target: you are looking for an argument that survives ten minutes, not a fact
-that lands in ten seconds.
+### Pass two — checking the selected ideas
 
-Work it in this order:
+Once the nine ideas are chosen, check each one against its primary source. This
+pass answers two questions and stops: **is the story true as pitched,** and
+**what is the one detail the pitch turns on** — the strange fact, the reversal,
+the number with its baseline.
 
-1. **Pick two or three candidates** from the shortlists — including threads you
-   rejected as shorts because they needed too much setup. That rejection reason
-   is often exactly what makes a good long-form. If the shortlists give you
-   nothing, dispatch one more gather subagent aimed at D specifically.
-2. **Try to break each one.** Dispatch one subagent per candidate, all in a
-   single message, same type and model as above. Each reads the primary sources
-   properly — not just the coverage — and returns, in under 20 lines: whether
-   reading further made the story *more* interesting or less, the two or three
-   facts that decide it, the strongest case against, and the sources it opened.
-   A candidate survives only if reading further made it more interesting. If the
-   second source flattens the story into something ordinary, it is dead.
-3. **Run the substance test** from `agent/taste.md` yourself — all four
-   questions, answered concretely, on what came back. Write the chapter
-   breakdown before deciding it works: if the middle chapters are vague, the
-   idea is thin and you have found that out cheaply.
-4. **Check what goes on screen.** Name the specific documents, charts, or
-   recordings. An idea with no visual plan is not ready.
+Target 5-8 verified facts per idea. That is enough to write the hooks and the
+two or three sentences honestly, and enough to know the story does not collapse
+on contact with the filing. It is deliberately less than the old mining pass:
+the deep fact list — 10-16 bullets, the counter-arguments, the timeline — is
+what a script is written from, and it gets gathered when a script is asked for,
+on the one or two ideas that survive triage rather than on all nine.
 
-Prefer a live news peg when one exists, but evergreen is allowed here. If no
-candidate survives, ship the nine shorts and write a `> note:` under a `## D1`
-heading saying what you looked at and why none held up. That is a real result,
-not a failed run.
-
-### Pass two — mining the selected ideas
-
-Once the ten ideas are chosen, mine each one for the facts its script will be
-built out of. This produces a **working fact list that does not ship** for the
-nine shorts — it is the input you write the script from, and it stays in your
-context rather than in the brief. Only Bucket D's list goes into the file, as
-**The material**.
-
-Target 10-16 facts per short and 20-30 for the long-form. That is deliberately
-more than a 500-word script can hold: a script written from six facts reads
-like it was written from six facts, and the fifth paragraph — the caveat, the
-counter-argument, the thing that complicates the tidy version — is exactly the
-part that comes from the facts you didn't strictly need.
-
-This is the expensive part of the run and it is the point of the run. Budget
-2-4 further searches or fetches per idea — call it 25-40 across the brief, on
-top of pass one. Ten well-chosen ideas mined thinly produce ten scripts that
-say nothing.
+Budget 1-2 searches or fetches per idea, call it 10-18 across the brief. **A
+hook that overstates is the failure this pass exists to prevent** — it is the
+sentence most likely to be quoted back, and the brief is now mostly hooks.
 
 **Run this pass as parallel subagents — one per idea, all dispatched in a
-single message.** Mining is ten independent extraction jobs, and doing them
-inline means all forty-odd search results stay in context for the rest of the
-run and get re-sent on every subsequent turn. A subagent's searches live and
-die in its own context; only the finished bullets come back.
+single message.** A subagent's searches live and die in its own context; only
+the finished bullets come back.
 
 Use the Agent tool with `subagent_type: "general-purpose"` and
 `model: "sonnet"` — this is verification and extraction against a fixed
 standard, not judgment, and the selection you already made was the judgment
-call. **The subagents mine; you write.** Do not ask a subagent for the script:
-the voice is the product, it is consistent across the nine, and it is not
+call. **The subagents check; you write.** Do not ask a subagent for the hooks:
+the voice is the product, it is one voice across the nine, and it is not
 delegable to a model that has never read a rated brief.
 
 Give each subagent, inline in its prompt (it does not share your context):
 
 - the idea's id, title and one-line angle
 - its sources so far, as URLs
-- the six mining rules below, verbatim
-- the bullet target, and the bullet rules from **The material** in
-  `agent/format.md` — they govern the working list too, shipped or not
+- the five checking rules below, verbatim
+- the bullet target — 5-8 verified facts
 - the instruction to return **only** the finished bullet list as markdown
   `- ` lines, no preamble, and to say plainly which bullets it could not verify
 
 Then check what comes back before you write from it: any bullet without a hard
 number, date, name or exact quote gets cut, and an idea that came back thin is
-your problem to fix, not the subagent's. If a subagent fails or returns nothing,
-mine that idea yourself inline rather than writing a script off thin air.
+your problem to fix, not the subagent's. **An idea whose central claim could not
+be verified is cut from the brief,** not pitched with a hedge — a hook is the
+one sentence that has to be true standing alone.
 
-The six rules each subagent applies:
+The five rules each subagent applies:
 
 1. **Go back to the primary source and read it,** not the coverage of it. The
    numbers, dates and exact quotes come from the filing, the release, the repo,
@@ -276,12 +251,14 @@ The six rules each subagent applies:
 3. **Pin the timeline.** Specific dates, in order, including what happens next
    and when.
 4. **Name the actors** and what each one wanted.
-5. **Find the counter-argument.** Actively search for the strongest case
-   against the framing, and return it with the rest. It is not a footnote here —
-   it becomes a paragraph of the script, said out loud. If a comment could
-   embarrass her with a fact, that fact gets said before the comment can make it.
-6. **Quote exactly.** Named speaker, verbatim, in quotation marks. If you cannot
-   find the exact wording, do not present it as a quote.
+5. **Say what would kill it.** One line: the fact that, if true, makes this
+   story ordinary. You are not writing the counter-argument out here — that
+   belongs to the script — but if reading the primary source flattened the story
+   into something predictable, say so plainly. That is the most useful thing you
+   can return.
+
+And when quoting: named speaker, verbatim, in quotation marks. If you cannot
+find the exact wording, do not present it as a quote.
 
 For Bucket B, say so explicitly in that subagent's prompt: its mining is
 hands-on rather than journalistic. Read the actual README and recent commits,
@@ -290,87 +267,75 @@ right, the true cost per run, and the error people actually hit. Check the
 issues tab for what breaks.
 
 The Bucket B subagent also returns the **How you set it up** walkthrough — the
-6-12 numbered steps specified in `agent/format.md`, and the one short-form field
-that still ships alongside the script — plus three to five other real jobs the
-same setup does, which you fold into the script's last paragraph rather than
-listing. All of it comes out of the same reading, so ask for it in one prompt:
-the steps must be the real ones from the README and the repo, with commands and
-versions verbatim, not a plausible-looking reconstruction. A step the subagent
-could not verify is left out and flagged, exactly like a fact.
+6-12 numbered steps specified in `agent/format.md`, which is the one extra field
+a tutorial entry still ships. All of it comes out of the same reading, so ask
+for it in one prompt: the steps must be the real ones from the README and the
+repo, with commands and versions verbatim, not a plausible-looking
+reconstruction. A step the subagent could not verify is left out and flagged,
+exactly like a fact.
 
 Every subagent prompt ends with this, verbatim: never invent a fact to fill the
 list. Fewer, harder bullets beat a padded list, and a wrong number is far worse
-than a missing one — it is going into a script she reads out loud as her own. If something could not be
-verified, leave it out rather than hedging it in.
+than a missing one — it is going into a hook she says on camera as her own. If
+something could not be verified, leave it out rather than hedging it in.
 
 ## 3. Write
 
-This is now the longest part of the run: nine finished scripts of 600-1000 words
-each, their hook menus, plus the Bucket D pitch. Follow `agent/format.md` exactly — **The script**
-section there governs length, shape and voice, and each bucket section says how
-its five paragraphs differ. Write:
+Follow `agent/format.md` exactly. An entry is a title, **Hooks**, **What it
+is**, **Sources** and **Tags** — plus **How you set it up** for Bucket B. No
+script. Write:
 
 - `briefs/YYYY-MM-DD.md`
 - `briefs/YYYY-MM-DD.json` — generated by running
   `node scripts/brief-to-json.mjs briefs/YYYY-MM-DD.md`, not written by hand.
 
-**Write the hooks after the script, not before.** Six to ten per idea, no two of
-the same type, per the **Hooks** section of `agent/format.md`. Writing them
-first produces six rewordings of the same sentence, because there is only one
-fact in mind at that point; writing them last means the whole mined fact list is
-available and the *number*, *quote* and *comparison* versions have something to
-be made of. The first hook is the script's opening sentence copied verbatim —
-if a later hook turns out to be the better opening, swap the script's first
-sentence to match and reorder, rather than letting the two disagree.
+**The hooks are the run's real output.** They are what an idea is triaged on now
+that there is no script under them, and they are what gets said on camera
+unchanged. Six to ten per idea, no two of the same type, per the **Hooks**
+section of `agent/format.md`. Hook one is the strongest, not the first one you
+wrote.
 
-Write the scripts yourself, one at a time, from the mined facts. Do not delegate
-them. Nine scripts written by nine subagents are nine different people talking,
-and the format only works if the voice is one voice — the hedging, the "I think,"
-the way a source gets named mid-sentence. If context is running short, cut an
-idea rather than farming out its script.
+Two rules from `agent/taste.md` bear directly on how a hook is written, and they
+are the ones most often missed:
 
-Quality gate before writing: for each short-form idea, ask whether you'd
-genuinely stop scrolling, then write down the comment it would get — the actual
-sentence someone types under it. If the only honest answer is a variant of
-"interesting, thanks," the idea is informative and nothing else, and merely
-informative is now the thing to cut. Check too that at least one Bucket A idea
-and, where one exists, the Bucket B artifact-is-the-proof idea survived the
-selection. For the long-form, ask whether you'd still be watching at minute six. **Under-delivering
-is correct** — a note explaining why a bucket yielded two beats a padded third.
+- **It has to land on someone outside the beat.** Every noun a stranger already
+  owns. "The cheap AI costs more at busy times of day" works on someone who has
+  never heard of DeepSeek; "DeepSeek introduced off-peak API pricing" only works
+  on someone who was going to watch anyway. Where the mechanism has no everyday
+  name, borrow one — the *familiar thing* type exists for exactly this.
+- **It carries a fact, not a tease.** The line is the thing itself, stated
+  plainly, and it is true standing alone. This is the constraint that separates
+  a hook that travels from a headline that gets fact-checked in the replies.
 
-Then read each finished script back against these, and fix what fails:
+Write **What it is** after the hooks: two or three sentences, per the spec in
+`agent/format.md`. What happened, the detail that makes it a video, and where it
+earns one, the argument it starts.
 
-- **Is it 600-1000 words?** Count them — `wc -w` on the script, not an estimate.
-  The first brief in this format self-reported 505-620 words for scripts that
-  actually ran 644-847, so the estimate is not trustworthy and the check is
-  cheap. Short of 600 usually means a missing paragraph, not a tight one.
-- **Could she record it as written?** Read it aloud in your head, start to
-  finish. Anything she'd have to silently skip, reword or look up is a defect —
-  a bracket, a bullet, a stage direction, a URL, an unexplained term.
-- **Is every number in it verified, with its baseline?** A figure with no
-  before-number is half a fact. A figure you could not verify does not belong in
-  a sentence she says on camera.
-- **Does the fourth or fifth paragraph carry the inconvenient part?** The caveat,
-  the counter-argument, the place the analogy stops holding. A script that only
-  argues one side is the specific failure the old material section prevented.
-- **Does it end on a view rather than a recap?** If the last paragraph
-  summarises the first four, it is not written yet.
-- **Does it carry six to ten hooks, of six to ten different types?** Read them
-  as a list. If two are the same sentence with the words moved around, one of
-  them is not a hook — replace it with a type the idea hasn't used. Check each
-  is under 20 words, carries a fact rather than a tease, and is true on its own:
-  a hook is the sentence most likely to be quoted back, and the one that sinks
-  the video if it overstates.
-- **Is hook one the script's first sentence, word for word?** And would every
-  other hook drop into that slot without breaking the paragraph under it? A hook
-  that needs the paragraph rewritten is a different script, not an alternate.
+Quality gate, per idea, before it goes in the brief:
+
+- **Would you stop scrolling?** Then write down the comment it would get — the
+  actual sentence someone types under it. If the only honest answer is a variant
+  of "interesting, thanks," the idea is informative and nothing else, and merely
+  informative is the thing to cut.
+- **Does it pass filter 7?** Name what a person who follows this beat would have
+  guessed, and how the story differs. If it does not differ, cut it — this is
+  the filter that killed the chip-plant story, the model-licence story and the
+  hockey-futures story, and predictable ideas arrive dressed as trending ones.
+- **Is hook one under 20 words, factual, and true alone?** Read it cold.
+- **Are the hooks six different ways in, or one sentence six times?** If two are
+  the same fact reworded, one is not a hook — replace it with a type the idea
+  has not used.
+- **Is every number in a hook verified, with its baseline?** A figure with no
+  before-number is half a fact, and it is going on camera.
+- **Do the nine sound like one person?** Read the nine hook-ones together. If
+  one is in a different register, rewrite it, not the others.
 - **Does it carry its tags?** Five to eight single-token lowercase hashtags on
-  one line after **Sources**, every one naming something the script actually
-  says. Write them while the sources are still in front of you — at upload time
-  they get reconstructed from memory, which is how a video ends up tagged
-  `#ai #tech #news`.
-- **Do the nine sound like one person?** Read the opening sentences of all nine
-  together. If one is in a different register, rewrite it, not the others.
+  one line after **Sources**, every one naming something the idea actually
+  involves. Write them while the sources are still in front of you.
+
+Check that at least one Bucket A idea is the day's polarizing one, and that the
+Bucket B artifact-is-the-proof idea survived where one exists. **Under-delivering
+is correct** — a note explaining why a bucket yielded two beats a padded third.
 
 ## 4. Deliver
 
@@ -384,9 +349,10 @@ If email fails, still commit the brief and report the failure — never lose a r
 
 ## 5. Report
 
-Print a 7-line summary: date, the strongest short and one line on why, the best
-hook in the brief quoted in full and which idea it belongs to, which
-idea is the day's polarizing one and the argument it starts, the long-form idea
-and the one sentence for why it holds ten minutes, the script word counts as a
-range, anything notably thin — including any script you had to
-write off facts you could not fully verify, and which sentence that is.
+Print a 6-line summary: date, the strongest idea and one line on why, the best
+hook in the brief quoted in full and which idea it belongs to, which idea is the
+day's polarizing one and the argument it starts, any bucket that under-delivered
+and why, and anything notably thin — including any idea whose central claim you
+could only partly verify, and which claim that is.
+
+Do not offer to write scripts. Lana asks for those on the ideas she keeps.
