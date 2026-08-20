@@ -529,6 +529,21 @@ button {
   color: #a8a8a8;
 }
 
+.rate-reason:disabled {
+  opacity: 0.6;
+}
+
+/* Enter writes the note straight into the brief, which is silent — so the box
+   says so for a moment, or the keystroke reads as having done nothing. */
+.rate-reason.is-saved {
+  border-color: var(--keep);
+  box-shadow: 0 0 0 2px rgba(53, 113, 79, 0.14);
+}
+
+.rate-reason.is-saved::placeholder {
+  color: var(--keep);
+}
+
 .idea-meta {
   font-size: 12px;
   color: var(--muted);

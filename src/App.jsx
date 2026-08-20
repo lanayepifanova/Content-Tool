@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const BUCKETS = [
   { key: "news", label: "News", blurb: "tech · startups · markets · finance" },
@@ -335,16 +335,26 @@ function Friend({ friend }) {
 function Idea({ idea, slug, onRated, onKilled, onStatus }) {
   const [rating, setRating] = useState(idea.rating);
   const [reason, setReason] = useState(idea.ratingReason || "");
+  const [saved, setSaved] = useState(false); // flashes "saved" after the reason lands
   const [saving, setSaving] = useState(false);
   const [killed, setKilled] = useState(null); // the removed markdown, held for undo
   const [open, setOpen] = useState(false);
   const [matOpen, setMatOpen] = useState(false);
   const [deep, setDeep] = useState(false);
 
+  const committed = useRef(idea.ratingReason || "");
+
   useEffect(() => {
     setRating(idea.rating);
     setReason(idea.ratingReason || "");
+    committed.current = idea.ratingReason || "";
   }, [idea.id, idea.rating, idea.ratingReason]);
+
+  useEffect(() => {
+    if (!saved) return;
+    const t = setTimeout(() => setSaved(false), 1800);
+    return () => clearTimeout(t);
+  }, [saved]);
 
   async function post(url, body) {
     const res = await fetch(url, {
@@ -361,13 +371,24 @@ function Idea({ idea, slug, onRated, onKilled, onStatus }) {
     setRating(next);
     try {
       await post("/api/rate", { slug, id: idea.id, rating: next, reason: nextReason });
+      committed.current = nextReason;
       onRated?.();
+      return true;
     } catch (err) {
       setRating(idea.rating);
       alert(`Could not save rating: ${err.message}`);
+      return false;
     } finally {
       setSaving(false);
     }
+  }
+
+  // The reason is worth keeping before a keep/kill decision as well — a note on
+  // an untriaged idea is still a note, and the brief stores it on the same
+  // `rate:` line with no symbol. Enter commits it; blur catches the rest.
+  async function commitReason() {
+    if (reason === committed.current) return;
+    if (await save(rating, reason)) setSaved(true);
   }
 
   // Kill removes the entry from the brief markdown. The reason is written to
@@ -563,11 +584,20 @@ function Idea({ idea, slug, onRated, onKilled, onStatus }) {
         )}
         {!READ_ONLY && (
           <input
-            className="rate-reason"
-            placeholder="why? (this is what actually trains it)"
+            className={`rate-reason${saved ? " is-saved" : ""}`}
+            placeholder={saved ? "saved" : "why? (this is what actually trains it) — enter to save"}
             value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            onBlur={() => rating && reason !== (idea.ratingReason || "") && save(rating, reason)}
+            disabled={saving}
+            onChange={(e) => {
+              setReason(e.target.value);
+              setSaved(false);
+            }}
+            onKeyDown={(e) => {
+              if (e.key !== "Enter") return;
+              e.preventDefault();
+              commitReason();
+            }}
+            onBlur={commitReason}
           />
         )}
         <span className="idea-meta">
