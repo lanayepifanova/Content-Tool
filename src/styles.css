@@ -917,3 +917,122 @@ button {
   background: rgba(20, 20, 20, 0.05);
   color: #2c2c2c;
 }
+
+/* Guidelines — the rubric rendered as the scan reads it. Set as a document
+   rather than as cards: this tab is read start to finish once and then
+   consulted, which is the opposite of how a shelf is used. */
+.rule {
+  margin-top: 40px;
+  max-width: 62ch;
+}
+
+.rule h3 {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.rule-nested {
+  margin-top: 30px;
+  padding-left: 18px;
+  border-left: 2px solid var(--line);
+}
+
+.rule-nested h3 {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 14.5px;
+  color: var(--muted);
+}
+
+.rule p {
+  margin: 0 0 14px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #2c2c2c;
+}
+
+.rule-list {
+  margin: 0 0 16px;
+  padding-left: 20px;
+}
+
+.rule-list li {
+  margin-bottom: 11px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #2c2c2c;
+}
+
+.rule-sub {
+  margin-top: 9px;
+  margin-bottom: 0;
+}
+
+.rule code {
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: rgba(25, 25, 25, 0.06);
+  font-size: 13px;
+}
+
+/* Killed — one line each, because the entry itself is gone from the brief.
+   The reason is the widest column: it is the only part worth re-reading. */
+.killed-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.killed {
+  display: grid;
+  grid-template-columns: minmax(0, 15em) minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 13px 4px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.killed-title {
+  color: #2c2c2c;
+  text-decoration: line-through;
+  text-decoration-color: rgba(168, 52, 44, 0.5);
+}
+
+.killed-why {
+  color: var(--kill);
+  line-height: 1.55;
+}
+
+.killed-meta {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .killed {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+}
+
+.killed-noreason {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Deleted from the brief, rather than left in it on a `-` line. The difference
+   matters when re-reading: one of these can still be reopened. */
+.killed-tag {
+  margin-left: 8px;
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-style: normal;
+  font-size: 11px;
+  color: var(--kill);
+}

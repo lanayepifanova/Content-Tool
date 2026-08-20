@@ -104,9 +104,75 @@ counts say something the points above do not.
 
 ---
 
+## Standing instructions
+
+Process rules Lana has given directly. They are not about which story to pick —
+they are about how the work arrives — and they hold until she says otherwise.
+
+**Write every piece of feedback down.** *"Whenever I give you feedback for
+certain things it needs to be noted down."* A reaction spoken in a chat window
+gets applied to the idea in front of it and then lost. It belongs in this file,
+in **Verdicts** if it is a call on a story and here if it is a rule about the
+work, and it lands there in the same session it was given.
+
+**A brief entry is a pitch, not a script.** *"You don't need too much info, just
+like the hook or main idea and a couple sentences. I can expand on the script if
+I approve of the piece of news."* Triage happens on the hook. An entry should be
+the title, the hook, and two or three sentences of what the story actually is —
+enough to decide, and no more. The 600-1000 word script is work done on an idea
+that has already been approved, not work done on ten ideas in the hope that one
+survives. Nine full scripts per brief was most of a run's cost spent on ideas
+that were about to be killed.
+
+---
+
+## Verdicts
+
+Lana's calls on specific briefed ideas, in her words where possible. This
+section is the record — every time she says why something did or did not work,
+it lands here, because a reason that only exists in a chat window gets applied
+once and then forgotten. The filters above are the generalisation; these are
+the cases they were generalised from.
+
+**Yes — Wall Street trades GPU hours.** *"The GPU futures are interesting. The
+hook was good."* An exchange nobody thinks about listing a contract on a thing
+nobody thought was a commodity. New, unwatched, and it makes a normal person
+either curious or furious. This is the reference case for Bucket A.
+
+**Yes — DeepSeek starts charging peak rates.** *"This is really good."* The
+title plus the line under it: *"Starting Monday, the cheap AI costs more at busy
+times of day. Like electricity."* Everything a hook needs — a date the viewer
+can feel, a consequence in words a stranger already owns, and an analogy to
+something everybody has a bill for. No jargon and no setup. This is the
+reference case for the one-line hook.
+
+**No — TSMC as the junior partner (Sony/TSMC chip plant).** *"Not interesting at
+all."* Two companies agreeing to build a factory. The ownership split is a real
+detail, but the story ends where a reader assumed it would, and the payoff is a
+corporate-structure observation rather than a shock. Fails filter 7,
+predictable.
+
+**No — Open weights with a revenue clause (Alibaba).** *"Nobody cares about
+Alibaba's weights for the biggest models."* Licensing terms on a model release.
+It is inside baseball twice over: the audience has to care about the lab, and
+then about the licence. Even written well it has no general-audience surface.
+
+**No — The NHL gets a futures curve.** *"Kinda irrelevant and isn't shocking,
+because sports betting is already a thing."* Fails filter 7, already normal.
+The tell: the idea's novelty rests on a mechanism the viewer stopped finding
+novel years ago.
+
+**Careful — data centres.** *"A good topic because they are trending right now,
+but it's not surprising at all, it's very predictable."* The beat is live and
+worth hunting in, and that is exactly why weak stories get filed from it. A
+data-centre idea has to clear filter 7 on its own: name the thing that did not
+have to happen, not the megawatts.
+
+---
+
 ## Universal filters (apply to all four buckets)
 
-An idea must survive all six to make the brief:
+An idea must survive all seven to make the brief:
 
 1. **The "wait, what?" test.** Does the one-line version make someone stop
    scrolling? If the opening line needs setup to land, it's weak.
@@ -126,6 +192,25 @@ An idea must survive all six to make the brief:
    filter: between a solid idea nobody argues with and a slightly smaller idea
    people fight over, ship the fight. It applies to all four buckets, and it
    never overrides filter 5 — the argument has to be about something true.
+7. **The surprise test.** Would someone who follows this beat be surprised?
+   Not "is it true," not "is it timely" — is the outcome different from what
+   they would have guessed? A story fails this two ways, and both have killed
+   real ideas:
+
+   - **Predictable.** The facts are new, the conclusion is not. Data centres
+     use enormous amounts of power. A foundry is building another plant. A
+     Chinese lab tightened its model licence. Each of those is reported
+     accurately and lands as a shrug, because the reader finished the thought
+     before the video did. Trending is not the same as surprising, and a hot
+     topic is the easiest place to file a predictable story by mistake.
+   - **Already normal.** The mechanism is written up as a first, but the
+     audience has been living with it for years. Sports betting is everywhere,
+     so a futures curve on hockey is a variation, not a shock. Ask what the
+     viewer already accepts before calling something new.
+
+   The bar, stated positively: something genuinely new, that almost nobody is
+   tracking, that makes a normal person either curious or angry. Filter 6 asks
+   whether they will argue. This one asks whether they will look up at all.
 
 Filter 4 also applies across buckets: the long-form idea must not be one of the
 day's nine shorts wearing a longer runtime.

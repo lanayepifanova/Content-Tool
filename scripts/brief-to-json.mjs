@@ -9,7 +9,7 @@ import { dirname, join } from "node:path";
 const path = process.argv[2];
 if (!path) {
   console.error(
-    "usage: node scripts/brief-to-json.mjs <brief.md> | --index | --performance | --friends"
+    "usage: node scripts/brief-to-json.mjs <brief.md> | --index | --performance | --friends | --guidelines"
   );
   process.exit(1);
 }
@@ -225,6 +225,100 @@ function buildFriends(src = "agent/friends.md") {
   const dest = src.replace(/\.md$/, ".json");
   writeFileSync(dest, JSON.stringify({ devices, channels }, null, 2));
   return { dest, channels: channels.length, devices: devices.length };
+}
+
+// The rubric, as the reader can see it. agent/taste.md is the file the agent
+// reads before every run and the file /basis-point-learn rewrites, so the
+// Guidelines tab renders that file rather than a second copy of it — a
+// guideline the dashboard shows but the scan does not read would be worse than
+// no tab at all. The parse is deliberately generic: headings, paragraphs and
+// lists, whatever the prose happens to be that week.
+function buildGuidelines(src = "agent/taste.md") {
+  const lines = readFileSync(src, "utf8").split("\n");
+  const sections = [];
+  let section = null;
+  let list = null; // the open list block, if any
+  let para = [];   // the open paragraph's lines
+
+  const flushPara = () => {
+    if (para.length && section) section.blocks.push({ type: "p", text: para.join(" ").trim() });
+    para = [];
+  };
+  const flushList = () => {
+    list = null;
+  };
+
+  for (const raw of lines) {
+    const line = raw.replace(/\s+$/, "");
+
+    const heading = line.match(/^(#{1,3}) (.*)$/);
+    if (heading) {
+      flushPara();
+      flushList();
+      // The h1 is the file's title, not a section.
+      if (heading[1].length === 1) continue;
+      section = { title: heading[2].trim(), level: heading[1].length, blocks: [] };
+      sections.push(section);
+      continue;
+    }
+    if (!section) continue;
+
+    // Horizontal rules separate sections in the source; they carry no meaning
+    // once the sections are objects.
+    if (/^-{3,}$/.test(line)) {
+      flushPara();
+      flushList();
+      continue;
+    }
+    if (/^<!--/.test(line)) continue;
+
+    if (!line.trim()) {
+      flushPara();
+      // A blank line inside an indented list is a paragraph break within the
+      // item, not the end of the list — taste.md writes filters that way.
+      continue;
+    }
+
+    const bullet = line.match(/^(\s*)(?:[-*] |(\d+)\. )(.*)$/);
+    if (bullet) {
+      flushPara();
+      const [, indent, num, text] = bullet;
+      if (indent.length >= 2 && list?.items.length) {
+        // Nested under the item above it.
+        const parent = list.items[list.items.length - 1];
+        (parent.sub ??= []).push(text.trim());
+      } else {
+        if (!list) {
+          list = { type: num ? "ol" : "ul", items: [] };
+          section.blocks.push(list);
+        }
+        list.items.push({ text: text.trim() });
+      }
+      continue;
+    }
+
+    // A continuation line: it belongs to whatever is currently open.
+    if (list && /^\s/.test(line)) {
+      const item = list.items[list.items.length - 1];
+      const target = item.sub?.length ? "sub" : "text";
+      if (target === "sub") item.sub[item.sub.length - 1] += ` ${line.trim()}`;
+      else item.text += ` ${line.trim()}`;
+      continue;
+    }
+    flushList();
+    para.push(line.trim());
+  }
+  flushPara();
+
+  const dest = "agent/guidelines.json";
+  writeFileSync(dest, JSON.stringify({ source: src, sections }, null, 2));
+  return { dest, sections: sections.length };
+}
+
+if (path === "--guidelines") {
+  const r = buildGuidelines();
+  console.log(`${r.dest} — ${r.sections} sections`);
+  process.exit(0);
 }
 
 if (path === "--friends") {

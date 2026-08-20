@@ -116,6 +116,89 @@ function Tags({ tags }) {
   );
 }
 
+// The rubric is prose written for a human reading the file, so the inline
+// syntax it uses — bold leads, quoted lines in italics, `code` — is unpacked
+// here. Same reasoning as Pattern below: three markers do not justify a
+// markdown dependency.
+function Inline({ text }) {
+  const out = [];
+  const re = /\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`/g;
+  let last = 0;
+  let m;
+  while ((m = re.exec(text))) {
+    if (m.index > last) out.push(text.slice(last, m.index));
+    if (m[1] !== undefined) out.push(<strong key={m.index}>{m[1]}</strong>);
+    else if (m[2] !== undefined) out.push(<em key={m.index}>{m[2]}</em>);
+    else out.push(<code key={m.index}>{m[3]}</code>);
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) out.push(text.slice(last));
+  return <>{out}</>;
+}
+
+// One `##` or `###` section of agent/taste.md. The tab renders the rubric file
+// itself rather than a summary of it, so what the reader sees and what the scan
+// obeys cannot drift apart.
+function GuidelineSection({ section }) {
+  const Items = ({ block }) => {
+    const Tag = block.type === "ol" ? "ol" : "ul";
+    return (
+      <Tag className="rule-list">
+        {block.items.map((item, i) => (
+          <li key={i}>
+            <Inline text={item.text} />
+            {item.sub?.length > 0 && (
+              <ul className="rule-list rule-sub">
+                {item.sub.map((t, j) => (
+                  <li key={j}>
+                    <Inline text={t} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </Tag>
+    );
+  };
+  return (
+    <section className={`rule${section.level === 3 ? " rule-nested" : ""}`}>
+      <h3>{section.title}</h3>
+      {section.blocks.map((b, i) =>
+        b.type === "p" ? (
+          <p key={i}>
+            <Inline text={b.text} />
+          </p>
+        ) : (
+          <Items key={i} block={b} />
+        )
+      )}
+    </section>
+  );
+}
+
+// A thrown-out idea, from either of the two ways an idea gets thrown out: the
+// Kill button, which deletes the entry and leaves a line in briefs/KILLED.md,
+// and a plain `-` rating, which leaves the entry in its brief but takes it off
+// every shelf. Both are rejections and both carry a reason, so the tab shows
+// them together and marks which is which rather than showing half the record.
+function Killed({ item }) {
+  return (
+    <li className="killed">
+      <span className="killed-title">{item.title}</span>
+      {item.reason ? (
+        <span className="killed-why">{item.reason}</span>
+      ) : (
+        <span className="killed-why killed-noreason">no reason given</span>
+      )}
+      <span className="killed-meta">
+        {item.date} · {item.id}
+        {item.deleted && <em className="killed-tag">deleted</em>}
+      </span>
+    </li>
+  );
+}
+
 // A pattern line from agent/performance.md: "**Lead.** body *(evidence)*".
 // The markdown is written for a human reading the file, so the small amount of
 // inline syntax is unpacked here rather than pulled in as a dependency.
@@ -612,13 +695,15 @@ const VIEWS = [
   { key: "kept", label: "Kept", blurb: "worth making" },
   { key: "unread", label: "Unread", blurb: "not triaged yet" },
   { key: "done", label: "Done", blurb: "posted" },
+  { key: "killed", label: "Killed", blurb: "thrown out, and why" },
   { key: "performance", label: "My account", blurb: "what actually worked" },
   { key: "friends", label: "Friends", blurb: "channels worth learning from" },
+  { key: "guidelines", label: "Guidelines", blurb: "the bar an idea has to clear" },
 ];
 
-// Which shelf an idea sits on. Killed ideas are deleted from the brief outright,
-// so the only `down` ratings left are from before that existed — they stay
-// hidden rather than reappearing as unread work.
+// Which shelf an idea sits on. A `down` rating belongs to no shelf — it is a
+// rejection, and it shows up under Killed alongside the ideas the Kill button
+// deleted outright, rather than reappearing here as unread work.
 const shelfOf = (i) =>
   i.status === "done" ? "done" : i.rating === "up" ? "kept" : i.rating ? null : "unread";
 
@@ -633,6 +718,8 @@ export default function App() {
   const [ideas, setIdeas] = useState(null);
   const [perf, setPerf] = useState(null);
   const [friends, setFriends] = useState(null);
+  const [guidelines, setGuidelines] = useState(null);
+  const [killed, setKilled] = useState(null);
   const [error, setError] = useState(null);
 
   const loadIdeas = () =>
@@ -651,9 +738,18 @@ export default function App() {
       .then((r) => r.json())
       .then(setFriends)
       .catch(() => {});
+    fetch(api("guidelines"))
+      .then((r) => r.json())
+      .then(setGuidelines)
+      .catch(() => {});
+    fetch(api("killed"))
+      .then((r) => r.json())
+      .then(setKilled)
+      .catch(() => {});
   }, []);
 
-  const isShelf = view !== "performance" && view !== "friends";
+  const PAGES = ["performance", "friends", "guidelines", "killed"];
+  const isShelf = !PAGES.includes(view);
 
   const counts = { kept: 0, unread: 0, done: 0 };
   for (const i of ideas ?? []) {
@@ -666,6 +762,23 @@ export default function App() {
   const shown = (ideas ?? []).filter((i) => shelfOf(i) === view);
   const byBucket = BUCKETS.map((b) => ({ ...b, ideas: shown.filter((i) => i.bucket === b.key) }))
     .filter((b) => b.ideas.length > 0);
+
+  // Everything thrown out, newest first. The two sources never overlap: a
+  // deleted idea is gone from the brief that the `-` ratings are read from.
+  const rejected = [
+    ...(killed?.killed ?? []).map((k) => ({ ...k, deleted: true })),
+    ...(ideas ?? [])
+      .filter((i) => i.rating === "down")
+      .map((i) => ({
+        slug: i.slug,
+        date: i.date,
+        id: i.id,
+        bucket: i.bucket,
+        title: i.title,
+        reason: i.ratingReason,
+        deleted: false,
+      })),
+  ].sort((a, b) => (a.date === b.date ? a.id.localeCompare(b.id) : b.date.localeCompare(a.date)));
 
   const empty = {
     kept: "Nothing kept yet — go to Unread and keep what is worth making.",
@@ -687,6 +800,9 @@ export default function App() {
           )}
           {view === "friends" && friends?.channels && (
             <span className="reader-count">{friends.channels.length} channels</span>
+          )}
+          {view === "killed" && killed && ideas && (
+            <span className="reader-count">{rejected.length} thrown out</span>
           )}
         </div>
       </header>
@@ -794,6 +910,55 @@ export default function App() {
             </section>
           )}
         </>
+      )}
+
+      {view === "guidelines" && guidelines && (
+        <>
+          {guidelines.missing && (
+            <p className="reader-empty">
+              No rubric derived yet — run{" "}
+              <code>node scripts/brief-to-json.mjs --guidelines</code>.
+            </p>
+          )}
+          {guidelines.sections?.map((section) => (
+            <GuidelineSection key={section.title} section={section} />
+          ))}
+        </>
+      )}
+
+      {view === "killed" && killed && ideas && (
+        <section className="bucket">
+          <h2>
+            Thrown out <span>rated down or deleted, newest first</span>
+            <em>{rejected.length}</em>
+          </h2>
+          {rejected.length === 0 ? (
+            <p className="reader-empty">Nothing thrown out yet.</p>
+          ) : (
+            <ul className="killed-list">
+              {rejected.map((k) => (
+                <Killed key={k.slug + k.id} item={k} />
+              ))}
+            </ul>
+          )}
+        </section>
+      )}
+
+      {view === "guidelines" && (
+        <footer className="reader-foot">
+          This is <code>agent/taste.md</code> as the scan reads it. Edit that file, or run{" "}
+          <code>/basis-point-learn</code>, then{" "}
+          <code>node scripts/brief-to-json.mjs --guidelines</code> to refresh.
+        </footer>
+      )}
+
+      {view === "killed" && (
+        <footer className="reader-foot">
+          Every rejection: the <strong>deleted</strong> ones from{" "}
+          <code>briefs/KILLED.md</code>, the rest still sitting in their briefs on a{" "}
+          <code>rate: -</code> line. These reasons are half of what{" "}
+          <code>/basis-point-learn</code> reads — the winners alone teach nothing.
+        </footer>
       )}
 
       {view === "friends" && (

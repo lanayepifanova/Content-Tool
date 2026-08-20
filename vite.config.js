@@ -35,6 +35,38 @@ function briefServer() {
       ? JSON.parse(readFileSync("agent/friends.json", "utf8"))
       : { devices: [], channels: [], missing: true };
 
+  const guidelinesDoc = () =>
+    existsSync("agent/guidelines.json")
+      ? JSON.parse(readFileSync("agent/guidelines.json", "utf8"))
+      : { sections: [], missing: true };
+
+  // The kill log, newest first. Killed ideas are gone from their brief, so this
+  // one line is all that is left of them — and it is the half of the training
+  // signal that teaches the most, which is a poor reason to keep it out of the
+  // reader. Parsed here rather than derived, because the file is one line per
+  // idea and the writing endpoint below already owns its shape.
+  const killedDoc = () => {
+    if (!existsSync("briefs/KILLED.md")) return { killed: [] };
+    const killed = readFileSync("briefs/KILLED.md", "utf8")
+      .split("\n")
+      .filter((l) => l.startsWith("- "))
+      .map((l) => {
+        const m = l.slice(2).match(/^(\S+)\s+([ABCD]\d+)\s*·\s*([^—]*?)(?:\s+—\s+(.*))?$/);
+        if (!m) return null;
+        return {
+          slug: m[1],
+          date: (m[1].match(/^\d{4}-\d{2}-\d{2}/) ?? [m[1]])[0],
+          id: m[2],
+          bucket: { A: "news", B: "tutorial", C: "explainer", D: "longform" }[m[2][0]],
+          title: m[3].trim(),
+          reason: m[4]?.trim() || null,
+        };
+      })
+      .filter(Boolean)
+      .reverse();
+    return { killed };
+  };
+
   const json = (res, code, body) => {
     res.statusCode = code;
     res.setHeader("Content-Type", "application/json");
@@ -82,6 +114,12 @@ function briefServer() {
       // Channels worth learning from. Derived from agent/friends.md by
       // `node scripts/brief-to-json.mjs --friends`.
       server.middlewares.use("/api/friends", (req, res) => json(res, 200, friendsDoc()));
+
+      // The rubric the scan actually reads, rendered as a tab. Derived from
+      // agent/taste.md by `node scripts/brief-to-json.mjs --guidelines`.
+      server.middlewares.use("/api/guidelines", (req, res) => json(res, 200, guidelinesDoc()));
+
+      server.middlewares.use("/api/killed", (req, res) => json(res, 200, killedDoc()));
 
       server.middlewares.use("/api/brief", (req, res) => {
         const slug = (req.url || "").replace(/^\//, "").split("?")[0];
@@ -194,6 +232,8 @@ function briefServer() {
       emit("ideas", allIdeas());
       emit("performance", performanceDoc());
       emit("friends", friendsDoc());
+      emit("guidelines", guidelinesDoc());
+      emit("killed", killedDoc());
     },
   };
 }

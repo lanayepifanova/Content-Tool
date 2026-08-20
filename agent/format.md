@@ -98,6 +98,15 @@ Each one:
 - **No rhetorical question, no "you won't believe," no "this changes
   everything," no "let me explain,"** and nothing that reads as a title card
   rather than a person talking.
+- **Lands for someone outside the beat.** Every noun has to be one a stranger
+  already owns. "The cheap AI costs more at busy times of day" works on a
+  person who has never heard of DeepSeek; "DeepSeek introduced off-peak
+  discount pricing on its API" works on someone who already reads about
+  DeepSeek, and that person was going to watch anyway. Write for the one who
+  wasn't. When the mechanism has no everyday name, borrow one — the strongest
+  version of this hook is the analogy to a thing the viewer already gets a bill
+  for, and the reference case is *"Starting Monday, the cheap AI costs more at
+  busy times of day. Like electricity."*
 
 ### The types
 
@@ -132,6 +141,10 @@ verbatim:
   substation in Ohio with its own dedicated gas plant."*
 - **second person** — puts the viewer inside the fact, without inventing one.
   *"You can now take a position on how much electricity a chatbot burns."*
+- **familiar thing** — the strange new mechanism named as the ordinary one it
+  behaves like, where the likeness is exact rather than decorative. *"The cheap
+  AI costs more at busy times of day. Like electricity."* Use it when the story
+  is true but the vocabulary is the barrier.
 
 Six to ten of these per idea, each a different type. Where a type genuinely has
 no honest version for a story, skip it rather than forcing one — eight real
