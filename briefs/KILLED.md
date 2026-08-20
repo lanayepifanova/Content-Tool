@@ -7,3 +7,4 @@ half of the training signal — `/basis-point-learn` reads it alongside the
 - 2026-08-17 A1 · Insurance that skips the adjuster
 - 2026-08-16 A1 · The NHL gets a futures curve
 - 2026-08-17 A3 · Open weights with a revenue clause — can you make this easier to understand while preserving the intellectual-ness of it? pretend im explaining to liek college freshman or something
+- 2026-08-17 A2 · TSMC as the junior partner

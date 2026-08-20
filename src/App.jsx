@@ -177,6 +177,45 @@ function GuidelineSection({ section }) {
   );
 }
 
+// A signed-off script. The whole point of this tab is reading it aloud, so the
+// prose is set wide and quiet and the one control copies the lot — the next
+// thing that happens to a script here is that it gets recorded.
+function ApprovedScript({ script }) {
+  const [copied, setCopied] = useState(null);
+  const plain = script.paragraphs.join("\n\n");
+
+  return (
+    <article className="script">
+      <header className="script-head">
+        <h3>{script.title}</h3>
+        <div className="script-controls">
+          <span className="script-meta">
+            {script.words} words{script.from ? ` · ${script.from}` : ""}
+          </span>
+          <button
+            type="button"
+            className={copied === true ? "is-copied" : ""}
+            onClick={async () => {
+              try {
+                await navigator.clipboard.writeText(plain);
+                setCopied(true);
+              } catch {
+                setCopied(false); // blocked clipboard — the text is still selectable
+              }
+              setTimeout(() => setCopied(null), 1400);
+            }}
+          >
+            {copied === true ? "Copied" : copied === false ? "Blocked" : "Copy script"}
+          </button>
+        </div>
+      </header>
+      {script.paragraphs.map((t, i) => (
+        <p key={i}>{t}</p>
+      ))}
+    </article>
+  );
+}
+
 // A thrown-out idea, from either of the two ways an idea gets thrown out: the
 // Kill button, which deletes the entry and leaves a line in briefs/KILLED.md,
 // and a plain `-` rating, which leaves the entry in its brief but takes it off
@@ -695,6 +734,7 @@ const VIEWS = [
   { key: "kept", label: "Kept", blurb: "worth making" },
   { key: "unread", label: "Unread", blurb: "not triaged yet" },
   { key: "done", label: "Done", blurb: "posted" },
+  { key: "approved", label: "Approved scripts", blurb: "signed off, ready to record" },
   { key: "killed", label: "Killed", blurb: "thrown out, and why" },
   { key: "performance", label: "My account", blurb: "what actually worked" },
   { key: "friends", label: "Friends", blurb: "channels worth learning from" },
@@ -720,6 +760,7 @@ export default function App() {
   const [friends, setFriends] = useState(null);
   const [guidelines, setGuidelines] = useState(null);
   const [killed, setKilled] = useState(null);
+  const [approved, setApproved] = useState(null);
   const [error, setError] = useState(null);
 
   const loadIdeas = () =>
@@ -746,9 +787,13 @@ export default function App() {
       .then((r) => r.json())
       .then(setKilled)
       .catch(() => {});
+    fetch(api("approved"))
+      .then((r) => r.json())
+      .then(setApproved)
+      .catch(() => {});
   }, []);
 
-  const PAGES = ["performance", "friends", "guidelines", "killed"];
+  const PAGES = ["performance", "friends", "guidelines", "killed", "approved"];
   const isShelf = !PAGES.includes(view);
 
   const counts = { kept: 0, unread: 0, done: 0 };
@@ -803,6 +848,9 @@ export default function App() {
           )}
           {view === "killed" && killed && ideas && (
             <span className="reader-count">{rejected.length} thrown out</span>
+          )}
+          {view === "approved" && approved?.scripts && (
+            <span className="reader-count">{approved.scripts.length} ready</span>
           )}
         </div>
       </header>
@@ -942,6 +990,30 @@ export default function App() {
             </ul>
           )}
         </section>
+      )}
+
+      {view === "approved" && approved && (
+        <section className="bucket">
+          <h2>
+            Approved <span>signed off, ready to record</span>
+            <em>{approved.scripts?.length ?? 0}</em>
+          </h2>
+          {!approved.scripts?.length ? (
+            <p className="reader-empty">
+              Nothing approved yet. A script lands here once the words are signed off.
+            </p>
+          ) : (
+            approved.scripts.map((sc) => <ApprovedScript key={sc.title} script={sc} />)
+          )}
+        </section>
+      )}
+
+      {view === "approved" && (
+        <footer className="reader-foot">
+          From <code>briefs/APPROVED.md</code>. Ask for a script on an idea you kept, and
+          it lands here once you have signed off on the words — then{" "}
+          <code>node scripts/brief-to-json.mjs --approved</code> to refresh.
+        </footer>
       )}
 
       {view === "guidelines" && (

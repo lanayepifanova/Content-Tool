@@ -20,6 +20,7 @@ briefs/INDEX.md ───┘         │                  │
              └────kill────→ deleted from the brief, logged to briefs/KILLED.md
 
   agent/taste.md ──→ --guidelines ─→ the reader's Guidelines tab
+  briefs/APPROVED.md ─→ --approved ─→ the reader's Approved scripts tab
 
 briefs/*.md + KILLED.md ──→ /basis-point-learn ─────→ rewrites LEARNED in taste.md
 agent/performance.md    ──→ /basis-point-performance ─→ rewrites What has actually worked
@@ -33,9 +34,11 @@ back into the markdown.
 triaged. *Kept* is what is worth making, and a kept idea grows a **Research
 more** row — a news search for its subject plus the sources it was built from.
 *Done* is what has been posted. Each of those three splits by bucket, with the
-date on the card. *Killed* is everything thrown out — the ideas the Kill button
-deleted and the ones left in their briefs on a `-` line — shown with the reason,
-because that is the half of the training signal that teaches most. *Guidelines*
+date on the card. *Approved scripts* is the end of the line: the scripts signed off and ready to
+record, set wide for reading aloud, one button to copy the lot. *Killed* is
+everything thrown out — the ideas the Kill button deleted and the ones left in
+their briefs on a `-` line — shown with the reason, because that is the half of
+the training signal that teaches most. *Guidelines*
 renders `agent/taste.md` itself, so the bar the reader sees is the bar the scan
 obeys. *My account* is the published log and the rules earned from it. *Friends*
 is channels worth learning from and the specific device to take from each.
@@ -66,7 +69,10 @@ describing it.
 
 **The script gets written after an idea is approved,** in conversation, to the
 standard in `agent/format.md`. Nine finished scripts per run meant most of a
-run's cost went to ideas that were about to be killed.
+run's cost went to ideas that were about to be killed. Once the words are signed off
+the script goes into `briefs/APPROVED.md` and shows up under *Approved scripts*.
+Nothing edits one afterwards without being asked — a silent improvement to a
+sentence already approved is the change that is never wanted.
 
 **Hooks** is the opening line in six to ten versions, each a different type —
 *flat first*, *number*, *sounds fake*, *reversal*, *artifact*, *correction* and

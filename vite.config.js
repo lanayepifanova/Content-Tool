@@ -40,6 +40,11 @@ function briefServer() {
       ? JSON.parse(readFileSync("agent/guidelines.json", "utf8"))
       : { sections: [], missing: true };
 
+  const approvedDoc = () =>
+    existsSync("briefs/approved.json")
+      ? JSON.parse(readFileSync("briefs/approved.json", "utf8"))
+      : { scripts: [], missing: true };
+
   // The kill log, newest first. Killed ideas are gone from their brief, so this
   // one line is all that is left of them — and it is the half of the training
   // signal that teaches the most, which is a poor reason to keep it out of the
@@ -120,6 +125,11 @@ function briefServer() {
       server.middlewares.use("/api/guidelines", (req, res) => json(res, 200, guidelinesDoc()));
 
       server.middlewares.use("/api/killed", (req, res) => json(res, 200, killedDoc()));
+
+      // The signed-off scripts, from briefs/APPROVED.md by
+      // `node scripts/brief-to-json.mjs --approved`. Read-only on purpose:
+      // these are the words she says on camera, and nothing edits one silently.
+      server.middlewares.use("/api/approved", (req, res) => json(res, 200, approvedDoc()));
 
       server.middlewares.use("/api/brief", (req, res) => {
         const slug = (req.url || "").replace(/^\//, "").split("?")[0];
@@ -234,6 +244,7 @@ function briefServer() {
       emit("friends", friendsDoc());
       emit("guidelines", guidelinesDoc());
       emit("killed", killedDoc());
+      emit("approved", approvedDoc());
     },
   };
 }

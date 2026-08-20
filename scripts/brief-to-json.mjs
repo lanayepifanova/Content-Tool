@@ -3,13 +3,13 @@
 // single source of truth.
 //   node scripts/brief-to-json.mjs briefs/2026-08-15-am.md
 //   node scripts/brief-to-json.mjs --index   (rebuild briefs/INDEX.md only)
-import { readFileSync, writeFileSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const path = process.argv[2];
 if (!path) {
   console.error(
-    "usage: node scripts/brief-to-json.mjs <brief.md> | --index | --performance | --friends | --guidelines"
+    "usage: node scripts/brief-to-json.mjs <brief.md> | --index | --performance | --friends | --guidelines | --approved"
   );
   process.exit(1);
 }
@@ -318,6 +318,47 @@ function buildGuidelines(src = "agent/taste.md") {
 if (path === "--guidelines") {
   const r = buildGuidelines();
   console.log(`${r.dest} — ${r.sections} sections`);
+  process.exit(0);
+}
+
+// The approved scripts — the end of the pipeline. An idea is pitched in a
+// brief, kept in the reader, written out when it is worth writing, and lands in
+// briefs/APPROVED.md once Lana has signed off on the words. Read-only for the
+// reader: a script here is what she says on camera, and the app has no business
+// editing one.
+function buildApproved(src = "briefs/APPROVED.md") {
+  if (!existsSync(src)) return { dest: "briefs/approved.json", scripts: 0, missing: true };
+  const md = readFileSync(src, "utf8");
+  const scripts = [];
+  for (const chunk of md.split(/^## /m).slice(1)) {
+    const title = chunk.split("\n")[0].trim();
+    const field = (label) =>
+      chunk.match(new RegExp(`\\*\\*${label}\\*\\*[ \\t]*([^\\n]*)`))?.[1].trim() || null;
+
+    // Everything under **Script** to the section's end, minus the `---` rule.
+    // Paragraphs are one line each, the same deal as a brief.
+    const body = chunk.match(/\*\*Script\*\*[ \t]*\n([\s\S]*?)(?:\n-{3,}\s*$|$)/);
+    const paragraphs = (body?.[1] ?? "")
+      .split("\n")
+      .map((l) => l.trim())
+      .filter((l) => l && !/^-{3,}$/.test(l) && !/^\*\*/.test(l));
+    if (!paragraphs.length) continue;
+
+    scripts.push({
+      title,
+      from: field("From"),
+      paragraphs,
+      words: paragraphs.join(" ").split(/\s+/).filter(Boolean).length,
+    });
+  }
+  const dest = "briefs/approved.json";
+  writeFileSync(dest, JSON.stringify({ scripts }, null, 2));
+  return { dest, scripts: scripts.length };
+}
+
+if (path === "--approved") {
+  const r = buildApproved();
+  console.log(`${r.dest} — ${r.scripts} scripts`);
   process.exit(0);
 }
 
