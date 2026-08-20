@@ -139,7 +139,7 @@ function toHtml(md) {
   closeList();
   return `<div style="max-width:640px;margin:0 auto;padding:24px 20px;background:#fff">${out.join("\n")}
 <p style="font:400 12px/1.5 -apple-system,sans-serif;color:#999;margin-top:32px;padding-top:14px;border-top:1px solid #e5e5e5">
-Rate ideas in the brief file, then run <code>/basis-point-learn</code>.</p></div>`;
+Rate ideas in the brief file, or in the reader at localhost:5173.</p></div>`;
 }
 
 const path = process.argv[2];

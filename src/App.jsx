@@ -116,67 +116,6 @@ function Tags({ tags }) {
   );
 }
 
-// The rubric is prose written for a human reading the file, so the inline
-// syntax it uses — bold leads, quoted lines in italics, `code` — is unpacked
-// here. Same reasoning as Pattern below: three markers do not justify a
-// markdown dependency.
-function Inline({ text }) {
-  const out = [];
-  const re = /\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`/g;
-  let last = 0;
-  let m;
-  while ((m = re.exec(text))) {
-    if (m.index > last) out.push(text.slice(last, m.index));
-    if (m[1] !== undefined) out.push(<strong key={m.index}>{m[1]}</strong>);
-    else if (m[2] !== undefined) out.push(<em key={m.index}>{m[2]}</em>);
-    else out.push(<code key={m.index}>{m[3]}</code>);
-    last = m.index + m[0].length;
-  }
-  if (last < text.length) out.push(text.slice(last));
-  return <>{out}</>;
-}
-
-// One `##` or `###` section of agent/taste.md. The tab renders the rubric file
-// itself rather than a summary of it, so what the reader sees and what the scan
-// obeys cannot drift apart.
-function GuidelineSection({ section }) {
-  const Items = ({ block }) => {
-    const Tag = block.type === "ol" ? "ol" : "ul";
-    return (
-      <Tag className="rule-list">
-        {block.items.map((item, i) => (
-          <li key={i}>
-            <Inline text={item.text} />
-            {item.sub?.length > 0 && (
-              <ul className="rule-list rule-sub">
-                {item.sub.map((t, j) => (
-                  <li key={j}>
-                    <Inline text={t} />
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </Tag>
-    );
-  };
-  return (
-    <section className={`rule${section.level === 3 ? " rule-nested" : ""}`}>
-      <h3>{section.title}</h3>
-      {section.blocks.map((b, i) =>
-        b.type === "p" ? (
-          <p key={i}>
-            <Inline text={b.text} />
-          </p>
-        ) : (
-          <Items key={i} block={b} />
-        )
-      )}
-    </section>
-  );
-}
-
 // A signed-off script. The whole point of this tab is reading it aloud, so the
 // prose is set wide and quiet and the one control copies the lot — the next
 // thing that happens to a script here is that it gets recorded.
@@ -238,102 +177,6 @@ function Killed({ item }) {
   );
 }
 
-// A pattern line from agent/performance.md: "**Lead.** body *(evidence)*".
-// The markdown is written for a human reading the file, so the small amount of
-// inline syntax is unpacked here rather than pulled in as a dependency.
-function Pattern({ text }) {
-  const lead = text.match(/^\*\*(.+?)\*\*\s*/);
-  let rest = lead ? text.slice(lead[0].length) : text;
-  const cite = rest.match(/\*\(([^)]*)\)\*\s*$/);
-  if (cite) rest = rest.slice(0, cite.index).trim();
-  return (
-    <li>
-      {lead && <strong>{lead[1]}</strong>} {rest}
-      {cite && <span className="pattern-cite">{cite[1]}</span>}
-    </li>
-  );
-}
-
-const views = (n) =>
-  n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, "")}K` : String(n ?? "");
-
-// What a published video did and the read on why. The three prose fields are
-// the whole point of the tab — the number says something worked, these say what
-// to do again.
-function Video({ video }) {
-  return (
-    <article className="perf">
-      <header className="perf-head">
-        <div>
-          <h3>{video.title}</h3>
-          <p className="perf-meta">
-            {[video.platform, video.posted].filter(Boolean).join(" · ")}
-          </p>
-        </div>
-        <div className="perf-numbers">
-          <span className="perf-views">{video.views ? views(video.views) : video.viewsLabel}</span>
-          {video.engagement && <span className="perf-engagement">{video.engagement}</span>}
-        </div>
-      </header>
-
-      {video.format?.length > 0 && (
-        <div className="perf-format">
-          {video.format.map((f) => (
-            <span key={f}>{f}</span>
-          ))}
-        </div>
-      )}
-
-      {video.hook && (
-        <p className="perf-hook">
-          <span>hook</span> {video.hook}
-        </p>
-      )}
-
-      {video.topComments?.length > 0 && (
-        <div className="perf-block">
-          <span>Top comments</span>
-          <ul className="perf-comments">
-            {video.topComments.map((c, i) => {
-              const split = c.match(/^([\d,]+)\s+—\s+([\s\S]+)$/);
-              return (
-                <li key={i}>
-                  {split ? (
-                    <>
-                      <span className="perf-comment-likes">{split[1]}</span> {split[2]}
-                    </>
-                  ) : (
-                    c
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
-
-      {[
-        ["What the comments did", video.comments],
-        ["Why it worked", video.why],
-        ["Repeat it by", video.repeat],
-      ]
-        .filter(([, v]) => v)
-        .map(([label, v]) => (
-          <div className="perf-block" key={label}>
-            <span>{label}</span>
-            <p>{v}</p>
-          </div>
-        ))}
-
-      {video.link && (
-        <a className="perf-link" href={video.link} target="_blank" rel="noreferrer">
-          Watch it
-        </a>
-      )}
-    </article>
-  );
-}
-
 // The one-line summary and the paragraph under it, from whatever the brief has.
 // Cloud-era briefs carry **Hook** and **Why it's good**; script-era briefs carry
 // the hook menu and the script, whose first sentence is hook one by design — so
@@ -353,106 +196,6 @@ function infoOf(idea) {
 // the brief's own sources are already read, the search is what is new since.
 const newsSearch = (idea) =>
   `https://news.google.com/search?q=${encodeURIComponent(idea.title)}`;
-
-// A channel worth learning from. The card leads on the mechanic rather than the
-// numbers — the reach is context for whether a device is worth copying, not the
-// thing being copied.
-function Friend({ friend }) {
-  return (
-    <article className="perf">
-      <header className="perf-head">
-        <div>
-          <h3>@{friend.handle}</h3>
-          {friend.profile && <p className="perf-meta">{friend.profile}</p>}
-        </div>
-        {friend.link && (
-          <a className="perf-link" href={friend.link} target="_blank" rel="noreferrer">
-            Open
-          </a>
-        )}
-      </header>
-
-      {[
-        ["Reach", friend.reach],
-        ["The model", friend.model],
-      ]
-        .filter(([, v]) => v)
-        .map(([label, v]) => (
-          <div className="perf-block" key={label}>
-            <span>{label}</span>
-            <p>{v}</p>
-          </div>
-        ))}
-
-      {friend.steal?.length > 0 && (
-        <div className="perf-block">
-          <span>Steal this</span>
-          <ul className="friend-list">
-            {friend.steal.map((t, i) => (
-              <li key={i}>{t}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {friend.avoid && (
-        <div className="perf-block">
-          <span>Don't copy</span>
-          <p>{friend.avoid}</p>
-        </div>
-      )}
-
-      {friend.posts?.length > 0 && (
-        <div className="perf-block">
-          <span>Best posts</span>
-          <ul className="friend-list is-posts">
-            {friend.posts.map((t, i) => (
-              <li key={i}>{t}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {friend.videos?.map((v) => (
-        <div className="studied" key={v.title}>
-          <h4>{v.title}</h4>
-          {v.numbers && <p className="studied-numbers">{v.numbers}</p>}
-          {[
-            ["On-screen hook", v.onScreen],
-            ["Spoken open", v.spoken],
-            ["Caption", v.caption],
-            ["What it actually is", v.what],
-          ]
-            .filter(([, val]) => val)
-            .map(([label, val]) => (
-              <div className="perf-block" key={label}>
-                <span>{label}</span>
-                <p>{val}</p>
-              </div>
-            ))}
-          {v.beats?.length > 0 && (
-            <div className="perf-block">
-              <span>Beats</span>
-              <ul className="friend-list">
-                {v.beats.map((b, i) => (
-                  <li key={i}>{b}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {v.steal && (
-            <div className="perf-block is-steal">
-              <span>Steal</span>
-              <p>{v.steal}</p>
-            </div>
-          )}
-        </div>
-      ))}
-
-      {friend.note && <p className="idea-note">{friend.note}</p>}
-    </article>
-  );
-}
 
 function Idea({ idea, slug, onRated, onKilled, onStatus }) {
   const [rating, setRating] = useState(idea.rating);
@@ -514,8 +257,8 @@ function Idea({ idea, slug, onRated, onKilled, onStatus }) {
   }
 
   // Kill removes the entry from the brief markdown. The reason is written to
-  // briefs/KILLED.md first — the negative examples are what /basis-point-learn
-  // learns from, and deleting them silently would train the agent on wins only.
+  // briefs/KILLED.md first — a brief that keeps only its winners is half a
+  // record, and the reasons are the half worth having.
   async function kill() {
     setSaving(true);
     try {
@@ -736,9 +479,6 @@ const VIEWS = [
   { key: "done", label: "Done", blurb: "posted" },
   { key: "approved", label: "Approved scripts", blurb: "signed off, ready to record" },
   { key: "killed", label: "Killed", blurb: "thrown out, and why" },
-  { key: "performance", label: "My account", blurb: "what actually worked" },
-  { key: "friends", label: "Friends", blurb: "channels worth learning from" },
-  { key: "guidelines", label: "Guidelines", blurb: "the bar an idea has to clear" },
 ];
 
 // Which shelf an idea sits on. A `down` rating belongs to no shelf — it is a
@@ -756,9 +496,6 @@ const api = (name) => (READ_ONLY ? `/api/${name}.json` : `/api/${name}`);
 export default function App() {
   const [view, setView] = useState("kept");
   const [ideas, setIdeas] = useState(null);
-  const [perf, setPerf] = useState(null);
-  const [friends, setFriends] = useState(null);
-  const [guidelines, setGuidelines] = useState(null);
   const [killed, setKilled] = useState(null);
   const [approved, setApproved] = useState(null);
   const [error, setError] = useState(null);
@@ -771,18 +508,6 @@ export default function App() {
 
   useEffect(() => {
     loadIdeas();
-    fetch(api("performance"))
-      .then((r) => r.json())
-      .then(setPerf)
-      .catch(() => {});
-    fetch(api("friends"))
-      .then((r) => r.json())
-      .then(setFriends)
-      .catch(() => {});
-    fetch(api("guidelines"))
-      .then((r) => r.json())
-      .then(setGuidelines)
-      .catch(() => {});
     fetch(api("killed"))
       .then((r) => r.json())
       .then(setKilled)
@@ -793,7 +518,7 @@ export default function App() {
       .catch(() => {});
   }, []);
 
-  const PAGES = ["performance", "friends", "guidelines", "killed", "approved"];
+  const PAGES = ["killed", "approved"];
   const isShelf = !PAGES.includes(view);
 
   const counts = { kept: 0, unread: 0, done: 0 };
@@ -840,12 +565,6 @@ export default function App() {
         </div>
         <div className="reader-controls">
           {isShelf && ideas && <span className="reader-count">{counts[view]}</span>}
-          {view === "performance" && perf?.videos && (
-            <span className="reader-count">{perf.videos.length} posted</span>
-          )}
-          {view === "friends" && friends?.channels && (
-            <span className="reader-count">{friends.channels.length} channels</span>
-          )}
           {view === "killed" && killed && ideas && (
             <span className="reader-count">{rejected.length} thrown out</span>
           )}
@@ -901,79 +620,6 @@ export default function App() {
           </section>
         ))}
 
-      {view === "performance" && perf && (
-        <>
-          {perf.missing && (
-            <p className="reader-empty">
-              No performance log yet — run <code>node scripts/brief-to-json.mjs --performance</code>.
-            </p>
-          )}
-          {perf.patterns?.length > 0 && (
-            <section className="bucket">
-              <h2>
-                What to repeat <span>distilled from the videos below</span>
-              </h2>
-              <ul className="patterns">
-                {perf.patterns.map((t, i) => (
-                  <Pattern key={i} text={t} />
-                ))}
-              </ul>
-            </section>
-          )}
-          {perf.videos?.length > 0 && (
-            <section className="bucket">
-              <h2>
-                Posted <span>most-viewed first</span>
-              </h2>
-              {perf.videos.map((v) => (
-                <Video key={v.title} video={v} />
-              ))}
-            </section>
-          )}
-        </>
-      )}
-
-      {view === "friends" && friends && (
-        <>
-          {friends.devices?.length > 0 && (
-            <section className="bucket">
-              <h2>
-                Devices worth stealing <span>across all four</span>
-              </h2>
-              <ul className="patterns">
-                {friends.devices.map((t, i) => (
-                  <Pattern key={i} text={t} />
-                ))}
-              </ul>
-            </section>
-          )}
-          {friends.channels?.length > 0 && (
-            <section className="bucket">
-              <h2>
-                Channels <span>what each one does</span>
-              </h2>
-              {friends.channels.map((f) => (
-                <Friend key={f.handle} friend={f} />
-              ))}
-            </section>
-          )}
-        </>
-      )}
-
-      {view === "guidelines" && guidelines && (
-        <>
-          {guidelines.missing && (
-            <p className="reader-empty">
-              No rubric derived yet — run{" "}
-              <code>node scripts/brief-to-json.mjs --guidelines</code>.
-            </p>
-          )}
-          {guidelines.sections?.map((section) => (
-            <GuidelineSection key={section.title} section={section} />
-          ))}
-        </>
-      )}
-
       {view === "killed" && killed && ideas && (
         <section className="bucket">
           <h2>
@@ -1016,40 +662,19 @@ export default function App() {
         </footer>
       )}
 
-      {view === "guidelines" && (
-        <footer className="reader-foot">
-          This is <code>agent/taste.md</code> as the scan reads it. Edit that file, or run{" "}
-          <code>/basis-point-learn</code>, then{" "}
-          <code>node scripts/brief-to-json.mjs --guidelines</code> to refresh.
-        </footer>
-      )}
-
       {view === "killed" && (
         <footer className="reader-foot">
           Every rejection: the <strong>deleted</strong> ones from{" "}
           <code>briefs/KILLED.md</code>, the rest still sitting in their briefs on a{" "}
-          <code>rate: -</code> line. These reasons are half of what{" "}
-          <code>/basis-point-learn</code> reads — the winners alone teach nothing.
+          <code>rate: -</code> line. The reasons are the half of the record that
+          teaches most — a brief that keeps only its winners teaches nothing.
         </footer>
       )}
 
-      {view === "friends" && (
-        <footer className="reader-foot">
-          Add a channel to <code>agent/friends.md</code>, or run{" "}
-          <code>/basis-point-friends</code> with a profile URL and let it do the read.
-        </footer>
-      )}
-
-      {view === "performance" && (
-        <footer className="reader-foot">
-          Edit <code>agent/performance.md</code> when a video lands, or run{" "}
-          <code>/basis-point-performance</code> with the numbers and let it write the read.
-        </footer>
-      )}
       {view === "unread" && shown.length > 0 && (
         <footer className="reader-foot">
-          Keep or kill everything here. A reason in the box is what trains{" "}
-          <code>/basis-point-learn</code> — killed ideas keep theirs in{" "}
+          Keep or kill everything here. The reason in the box is the part worth
+          writing — killed ideas keep theirs in{" "}
           <code>briefs/KILLED.md</code>.
         </footer>
       )}

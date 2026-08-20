@@ -11,9 +11,9 @@ function briefServer() {
       ? readdirSync("briefs").filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, "")).sort().reverse()
       : [];
 
-  // The three read-only documents the reader opens with. Hoisted out of the
-  // middlewares because the production build emits them as static files too —
-  // the deployed reader has no server, so the same data has to be baked in.
+  // The documents the reader opens with. Hoisted out of the middlewares because
+  // the production build emits them as static files too — the deployed reader
+  // has no server, so the same data has to be baked in.
   const allIdeas = () =>
     listBriefs().flatMap((slug) => {
       let doc;
@@ -24,21 +24,6 @@ function briefServer() {
         date: (slug.match(/^\d{4}-\d{2}-\d{2}/) ?? [slug])[0],
       }));
     });
-
-  const performanceDoc = () =>
-    existsSync("agent/performance.json")
-      ? JSON.parse(readFileSync("agent/performance.json", "utf8"))
-      : { patterns: [], videos: [], missing: true };
-
-  const friendsDoc = () =>
-    existsSync("agent/friends.json")
-      ? JSON.parse(readFileSync("agent/friends.json", "utf8"))
-      : { devices: [], channels: [], missing: true };
-
-  const guidelinesDoc = () =>
-    existsSync("agent/guidelines.json")
-      ? JSON.parse(readFileSync("agent/guidelines.json", "utf8"))
-      : { sections: [], missing: true };
 
   const approvedDoc = () =>
     existsSync("briefs/approved.json")
@@ -112,18 +97,6 @@ function briefServer() {
         })
       );
 
-      // The published-video log. Derived from agent/performance.md by
-      // `node scripts/brief-to-json.mjs --performance`, same as briefs.
-      server.middlewares.use("/api/performance", (req, res) => json(res, 200, performanceDoc()));
-
-      // Channels worth learning from. Derived from agent/friends.md by
-      // `node scripts/brief-to-json.mjs --friends`.
-      server.middlewares.use("/api/friends", (req, res) => json(res, 200, friendsDoc()));
-
-      // The rubric the scan actually reads, rendered as a tab. Derived from
-      // agent/taste.md by `node scripts/brief-to-json.mjs --guidelines`.
-      server.middlewares.use("/api/guidelines", (req, res) => json(res, 200, guidelinesDoc()));
-
       server.middlewares.use("/api/killed", (req, res) => json(res, 200, killedDoc()));
 
       // The signed-off scripts, from briefs/APPROVED.md by
@@ -160,8 +133,8 @@ function briefServer() {
       const rejoin = ({ head, entries }) => head + entries.map((e) => `## ${e}`).join("");
 
       // Killing an idea deletes it from the brief. The one-line record goes to
-      // briefs/KILLED.md first: the `-` ratings are what /basis-point-learn
-      // learns from, and a brief that only keeps its winners teaches nothing.
+      // briefs/KILLED.md first: a brief that only keeps its winners teaches
+      // nothing, and the reason is the part worth keeping.
       server.middlewares.use("/api/kill", (req, res) =>
         body(req, res, ({ slug, id, reason = "" }) => {
           if (!/^[\w.-]+$/.test(slug) || !/^[ABCD]\d+$/.test(id)) return json(res, 400, { error: "bad request" });
@@ -176,8 +149,8 @@ function briefServer() {
           const log = "briefs/KILLED.md";
           const header =
             "# Killed ideas\n\nOne line per idea deleted from a brief, newest last. This is the negative\n" +
-            "half of the training signal — `/basis-point-learn` reads it alongside the\n" +
-            "`rate:` lines that survive in the briefs.\n\n";
+            "half of the record, alongside the `rate:` lines that survive in the\n" +
+            "briefs.\n\n";
           writeFileSync(log, (existsSync(log) ? readFileSync(log, "utf8") : header) + line);
 
           // Keep the "N ideas" count in the brief's subtitle honest.
@@ -232,7 +205,7 @@ function briefServer() {
     },
 
     // The deployed reader is a static viewer: there is no server to answer
-    // /api/*, so the three read paths are frozen into files at build time and
+    // /api/*, so the read paths are frozen into files at build time and
     // fetched as /api/<name>.json. The writing endpoints have no counterpart
     // here on purpose — briefs/*.md is the source of truth and it lives on the
     // machine the scan runs on, not on the host.
@@ -240,9 +213,6 @@ function briefServer() {
       const emit = (name, doc) =>
         this.emitFile({ type: "asset", fileName: `api/${name}.json`, source: JSON.stringify(doc) });
       emit("ideas", allIdeas());
-      emit("performance", performanceDoc());
-      emit("friends", friendsDoc());
-      emit("guidelines", guidelinesDoc());
       emit("killed", killedDoc());
       emit("approved", approvedDoc());
     },

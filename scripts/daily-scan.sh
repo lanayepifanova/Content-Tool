@@ -9,6 +9,14 @@
 
 set -uo pipefail
 
+# The scan skill and the rubric it read were deleted on 2026-08-20 — Lana is
+# rebuilding the rules from scratch. Until a new scan exists this script has
+# nothing to run, so it stops here rather than firing a run against files that
+# are gone. Delete this block to bring the daily job back.
+echo "daily-scan: disabled — basis-point-scan and agent/ were removed on 2026-08-20."
+echo "daily-scan: rebuild the scan skill and its rubric, then remove this guard."
+exit 0
+
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 LOG_DIR="$HOME/Library/Logs/basis-point"
 LOG="$LOG_DIR/$(date +%Y-%m-%d).log"
